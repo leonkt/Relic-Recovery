@@ -20,9 +20,10 @@ public class LinearTestTeleOp extends LinearOpMode {
     DcMotorController mc2;
     DcMotorController mc3;
     private enum State {
-        STATE_ONCE, STATE_POSITION
+        STATE_ONCE, STATE_POSITION, STATE_ONE, STATE_TWO, STATE_THREE, STATE_FOUR, STATE_FIVE, STATE_SIX
     };
     private State mCurrentState;
+    private State mHookArmState;
     public ElapsedTime  mRuntime = new ElapsedTime();   // Time into round.
     private ElapsedTime mStateTime = new ElapsedTime();  // Time into current state
     private int mLeftEncoderTarget;
@@ -46,6 +47,8 @@ public class LinearTestTeleOp extends LinearOpMode {
         HookArm.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
         HookArm.setMode(DcMotorController.RunMode.RESET_ENCODERS);
         int REV = 0;
+        newHookState(State.STATE_ONE);
+        newState(State.STATE_ONCE);
 
         waitForStart();
 
@@ -53,7 +56,7 @@ public class LinearTestTeleOp extends LinearOpMode {
 
             mRuntime.reset();
 
-            /* float left = -gamepad1.left_stick_y;
+            float left = -gamepad1.left_stick_y;
             float right = -gamepad1.right_stick_y;
 
             right = Range.clip(right, -1, 1);
@@ -79,7 +82,7 @@ public class LinearTestTeleOp extends LinearOpMode {
                 motorRight.setPower(0);
             }
 
-            float HookArm1 = -gamepad2.left_stick_y;
+            /*float HookArm1 = -gamepad2.left_stick_y;
             float TM1 = -gamepad2.right_stick_y;
 
             HookArm1 = Range.clip(HookArm1, -1, 1);
@@ -104,25 +107,99 @@ public class LinearTestTeleOp extends LinearOpMode {
                 //HookArm.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
                 //HookArm.setPower(-0.1);
                 //newState(State.STATE_ONCE);
+                HookArm.setTargetPosition(47);
+                HookArm.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
+                HookArm.setPower(-0.1);
             } else if(gamepad2.right_bumper) {
                 //HookArm.setTargetPosition(incrementBy20(HookArm,1));
                 //HookArm.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
                 //HookArm.setPower(0.1);
                 //newState(State.STATE_ONCE);
+                HookArm.setTargetPosition(150);
+                HookArm.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
+                HookArm.setPower(-0.1);
             } else {
                 //HookArm.setTargetPosition(currentPosition(HookArm));
                 //HookArm.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
                 //HookArm.setPower(-0.1);
             }
             if(-gamepad2.left_stick_y > 0) {
-                TM.setPower(1);
-                W.setPower(getPWR(REV));
-                sleep(waitTime(REV));
+                switch(mHookArmState) {
+                    case STATE_ONE:
+                        TM.setPower(1);
+                        W.setPower(getPWRF(REV));
+                        sleep(500);
+                        newHookState(State.STATE_TWO);
+                        break;
+                    case STATE_TWO:
+                        TM.setPower(1);
+                        W.setPower(getPWRF(REV));
+                        sleep(500);
+                        newHookState(State.STATE_THREE);
+                        break;
+                    case STATE_THREE:
+                        TM.setPower(1);
+                        W.setPower(getPWRF(REV));
+                        sleep(500);
+                        newHookState(State.STATE_FOUR);
+                        break;
+                    case STATE_FOUR:
+                        TM.setPower(1);
+                        W.setPower(getPWRF(REV));
+                        sleep(500);
+                        newHookState(State.STATE_FIVE);
+                        break;
+                    case STATE_FIVE:
+                        TM.setPower(1);
+                        W.setPower(getPWRF(REV));
+                        sleep(500);
+                        newHookState(State.STATE_SIX);
+                        break;
+                    case STATE_SIX:
+                        TM.setPower(0.75);
+                        W.setPower(getPWRF(REV));
+                        sleep(500);
+                        break;
+                }
                 REV++;
             } else if(-gamepad2.left_stick_y < 0) {
-                TM.setPower(-1);
-                W.setPower(-getPWR(REV));
-                sleep(waitTime(REV));
+                switch(mHookArmState) {
+                    case STATE_ONE:
+                        TM.setPower(-1);
+                        W.setPower(-getPWRF(REV));
+                        sleep(500);
+                        break;
+                    case STATE_TWO:
+                        TM.setPower(-1);
+                        W.setPower(-getPWRF(REV));
+                        sleep(500);
+                        newHookState(State.STATE_TWO);
+                        break;
+                    case STATE_THREE:
+                        TM.setPower(-1);
+                        W.setPower(-getPWRF(REV));
+                        sleep(500);
+                        newHookState(State.STATE_FOUR);
+                        break;
+                    case STATE_FOUR:
+                        TM.setPower(-1);
+                        W.setPower(-getPWRF(REV));
+                        sleep(500);
+                        newHookState(State.STATE_THREE);
+                        break;
+                    case STATE_FIVE:
+                        TM.setPower(-1);
+                        W.setPower(-getPWRF(REV));
+                        sleep(500);
+                        newHookState(State.STATE_FOUR);
+                        break;
+                    case STATE_SIX:
+                        TM.setPower(-0.75);
+                        W.setPower(-getPWRF(REV));
+                        sleep(500);
+                        newHookState(State.STATE_FIVE);
+                        break;
+                }
                 REV--;
             } else {
                 TM.setPower(0);
@@ -199,26 +276,27 @@ public class LinearTestTeleOp extends LinearOpMode {
         return TARGET;
     }
 
-    double getPWR(int ROTATION_NUMBER) {
-        if(ROTATION_NUMBER > 5) {
-            ROTATION_NUMBER = 5;
+    double getPWRF(int ROTATION_NUMBER) {
+        if(ROTATION_NUMBER > 6) {
+            ROTATION_NUMBER = 6;
         }
         if(ROTATION_NUMBER < 0) {
             ROTATION_NUMBER = 0;
         }
-        double[] array = {0.75, 0.67, 0.59, 0.51, 0.42, 0.33};
+        double[] array = {0.40, 0.44, 0.48, 0.54, 0.64, 0.80, 1};
+        // 11 in, 19 in, 27 in, 34 in, 42 in, 48 in, 50 in
         return array[ROTATION_NUMBER];
     }
 
-    int waitTime(int ROTATION_NUMBER) {
-        if(ROTATION_NUMBER > 5) {
-            ROTATION_NUMBER = 5;
+    double getPWRR(int ROTATION_NUMBER) {
+        if(ROTATION_NUMBER > 6) {
+            ROTATION_NUMBER = 6;
         }
         if(ROTATION_NUMBER < 0) {
             ROTATION_NUMBER = 0;
         }
-        int[] waitarray = {526, 592, 671, 775, 943, 1196};
-        return waitarray[ROTATION_NUMBER];
+        double[] array = {0.30, 0.45, 0.55, 0.65, 0.75, 0.85};
+        return array[ROTATION_NUMBER];
     }
 
     int currentPosition(DcMotor motor) throws InterruptedException {
@@ -238,6 +316,12 @@ public class LinearTestTeleOp extends LinearOpMode {
         // Reset the state time, and then change to next state.
         mStateTime.reset();
         mCurrentState = newState;
+    }
+
+    private void newHookState(State newState)
+    {
+        mStateTime.reset();
+        mHookArmState = newState;
     }
 
     //--------------------------------------------------------------------------
