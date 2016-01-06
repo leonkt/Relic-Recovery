@@ -147,13 +147,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       android:layout_marginBottom="10dp"
       android:text="" />
 
-    <FrameLayout
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_below="@+id/textErrorMessage"
+    <org.opencv.android.JavaCameraView
+        android:layout_width="320dp"
+        android:layout_height="240dp"
         android:layout_centerHorizontal="true"
-        android:id="@+id/previewLayout">
-    </FrameLayout>
+        android:layout_alignParentBottom="true"
+        android:id="@+id/color_blob_detection_activity_surface_view" />
 
   </RelativeLayout>
 </LinearLayout>

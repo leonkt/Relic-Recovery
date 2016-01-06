@@ -1,122 +1,110 @@
 package com.qualcomm.ftcrobotcontroller.opmodes;
 
-import com.qualcomm.ftcrobotcontroller.CameraPreview;
-import com.qualcomm.ftcrobotcontroller.FtcRobotControllerActivity;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import java.io.ByteArrayOutputStream;
-
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.ImageFormat;
-import android.graphics.Rect;
-import android.graphics.YuvImage;
-import android.hardware.Camera;
+import android.media.AudioManager;
+import android.media.ToneGenerator;
 import android.util.Log;
 
-/**
- * TeleOp Mode
- * <p>
- *Enables control of the robot via the gamepad
- */
-public class CameraOp extends OpMode {
-    private Camera camera;
-    public CameraPreview preview;
-    public Bitmap image;
-    private int width;
-    private int height;
-    private YuvImage yuvImage = null;
-    private int looped = 0;
-    private String data;
+import com.qualcomm.ftcrobotcontroller.BeaconSeekerActivity;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
-    private int red(int pixel) {
-        return (pixel >> 16) & 0xff;
-    }
-
-    private int green(int pixel) {
-        return (pixel >> 8) & 0xff;
-    }
-
-    private int blue(int pixel) {
-        return pixel & 0xff;
-    }
-
-    private Camera.PreviewCallback previewCallback = new Camera.PreviewCallback() {
-        public void onPreviewFrame(byte[] data, Camera camera)
-        {
-            Camera.Parameters parameters = camera.getParameters();
-            width = parameters.getPreviewSize().width;
-            height = parameters.getPreviewSize().height;
-            yuvImage = new YuvImage(data, ImageFormat.NV21, width, height, null);
-            looped += 1;
-        }
-    };
-
-    private void convertImage() {
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        yuvImage.compressToJpeg(new Rect(0, 0, width, height), 0, out);
-        byte[] imageBytes = out.toByteArray();
-        image = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-    }
-    /*
-     * Code to run when the op mode is first enabled goes here
-     * @see com.qualcomm.robotcore.eventloop.opmode.OpMode#start()
-     */
+public class CameraOp extends PushBotTelemetry {
+    private static final String TAG = "BeaconSeekerOp";
+    private static ToneGenerator toneGen1;
     @Override
     public void init() {
-        camera = ((FtcRobotControllerActivity)hardwareMap.appContext).camera;
-        camera.setPreviewCallback(previewCallback);
+        Log.i("test", "in init()");
 
-        Camera.Parameters parameters = camera.getParameters();
-        data = parameters.flatten();
-
-        ((FtcRobotControllerActivity) hardwareMap.appContext).initPreview(camera, this, previewCallback);
-    }
-
-    /*
-     * This method will be called repeatedly in a loop
-     * @see com.qualcomm.robotcore.eventloop.opmode.OpMode#loop()
-     */
-    public int highestColor(int red, int green, int blue) {
-        int[] color = {red,green,blue};
-        int value = 0;
-        for (int i = 1; i < 3; i++) {
-            if (color[value] < color[i]) {
-                value = i;
-            }
-        }
-        return value;
+        BeaconSeekerActivity.enableBeaconSeeker();
+        this.toneGen1 = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
+        this.toneGen1.startTone(ToneGenerator.TONE_SUP_CONFIRM,150);
+        this.toneGen1.startTone(ToneGenerator.TONE_DTMF_0,150);
+        this.toneGen1.startTone(ToneGenerator.TONE_DTMF_A,150);
     }
 
     @Override
+    public void start() {
+        Log.i("test", "in start()");
+
+    }
+
+    public int count = 0;
+    @Override
     public void loop() {
-        if (yuvImage != null) {
-            int redValue = 0;
-            int blueValue = 0;
-            int greenValue = 0;
-            convertImage();
-            for (int x = 0; x < width; x++) {
-                for (int y = 0; y < height; y++) {
-                    int pixel = image.getPixel(x, y);
-                    redValue += red(pixel);
-                    blueValue += blue(pixel);
-                    greenValue += green(pixel);
+        count = count + 1;
+        telemetry.addData("Count", count);
+
+
+        telemetry.addData("Beacon X,Y (Pixels)", ((int) BeaconSeekerActivity.mBeaconCenterPointPixels.x) + "," + ((int) BeaconSeekerActivity.mBeaconCenterPointPixels.y));
+
+        telemetry.addData("Beacon X,Y (Percent)", ((int) (100 * BeaconSeekerActivity.mBeaconCenterPointPercent.x)) + "%, " +
+                ((int) (100 * BeaconSeekerActivity.mBeaconCenterPointPercent.y)) + "%");
+
+        if (count%50 == 0) {
+            if (BeaconSeekerActivity.mBeaconCenterPointPixels.x > 0 && BeaconSeekerActivity.mBeaconCenterPointPixels.y > 0) {
+
+                if (BeaconSeekerActivity.mBeaconCenterPointPercent.y > 0.5) {
+                    this.toneGen1.startTone(ToneGenerator.TONE_PROP_BEEP, 150);
+                    telemetry.addData("Beacon Y (Percent)", " > 50 ");
+                    //set_drive_power(-0.5f, 0.5f);
+                } else {
+                    this.toneGen1.startTone(ToneGenerator.TONE_DTMF_A, 150);
+                    telemetry.addData("Beacon Y (Percent)", " < 50 ");
+                    //set_drive_power(0.5f, -0.5f);
                 }
             }
-            int color = highestColor(redValue, greenValue, blueValue);
-            String colorString = "";
-            switch (color) {
-                case 0:
-                    colorString = "RED";
-                    break;
-                case 1:
-                    colorString = "GREEN";
-                    break;
-                case 2:
-                    colorString = "BLUE";
-            }
-            telemetry.addData("Color:", "Color detected is: " + colorString);
         }
-        telemetry.addData("Looped","Looped " + Integer.toString(looped) + " times");
-        Log.d("DEBUG:",data);
+
+        /*
+        telemetry.addData("State = ", v_state);
+
+
+        switch (v_state) {
+            case 0:
+                Log.i("test", "case 0");
+                v_state++;
+
+                break;
+            case 1:
+                run_using_encoders();
+
+                set_drive_power(0.0f, 0.00f);
+
+                if (have_drive_encoders_reached(16501, 16501)) {
+                    set_drive_power(0.0f, 0.0f);
+                    v_state++;
+                }
+                break;
+            case 2:
+                run_using_encoders();
+
+                if (has_right_drive_encoder_reached(4880)) {
+                    set_drive_power(0.0f, 0.0f);
+                    v_state++;
+
+                }
+                break;
+            case 3:
+                Log.i("test", "case 3");
+                run_using_encoders();
+
+                set_drive_power(0.5f, 0.5f);
+
+                if (has_right_drive_encoder_reached(7880)) {
+                    set_drive_power(0.0f, 0.0f);
+                    v_state++;
+                }
+                break;
+
+        }*/
+
+
     }
+
+    @Override
+    public void stop() {
+        BeaconSeekerActivity.disableBeaconSeeker();
+    }
+
+    private int v_state = 0;
 }
