@@ -4,6 +4,7 @@ import com.qualcomm.ftcrobotcontroller.FtcRobotControllerActivity;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorController;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.ServoController;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
@@ -19,6 +20,8 @@ public class LockdownRedAuto extends LinearOpMode {
     DcMotor W;
     DcMotor HookArm;
     DcMotor dP;
+    Servo T;
+    Servo C;
     DcMotorController mc1;
     DcMotorController mc2;
     DcMotorController mc3;
@@ -51,6 +54,8 @@ public class LockdownRedAuto extends LinearOpMode {
         motorRight.setDirection(DcMotor.Direction.REVERSE);
         motorLeft = hardwareMap.dcMotor.get("motorLeft");
         dP = hardwareMap.dcMotor.get("Dustpan");
+        T = hardwareMap.servo.get("T");
+        C = hardwareMap.servo.get("C");
         motorRight.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
         motorLeft.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
         motorRight.setMode(DcMotorController.RunMode.RESET_ENCODERS);
@@ -63,7 +68,18 @@ public class LockdownRedAuto extends LinearOpMode {
 
         waitForStart();
 
-        double DISTANCE = 54.0;
+        driveBackward(54.0);
+        constantSpeed();
+        spin("Right",1150);
+        normalSpeed();
+        raisedP();
+        driveStraight(24.0,4950);
+        raise45();
+        motorLeft.setPower(0);
+        motorRight.setPower(0);
+    }
+
+    public void driveBackward(double DISTANCE) throws InterruptedException {
         double ROTATIONS = DISTANCE / CIRCUMFERENCE;
         double COUNTS = ENCODER_CPR * ROTATIONS * GEAR_RATIO;
         motorLeft.setTargetPosition(-(int) COUNTS);
@@ -72,67 +88,80 @@ public class LockdownRedAuto extends LinearOpMode {
         motorRight.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
         motorLeft.setPower(-0.5);
         motorRight.setPower(-0.5);
-        sleep(7500);
-        motorLeft.setTargetPosition(-4200);
-        motorLeft.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        motorLeft.setPower(0.5);
-        sleep(50);
-
+        sleep(7000);
     }
 
-    public void driveInches(double DISTANCE) throws InterruptedException {
+    public void driveStraight(double DISTANCE, int x) throws InterruptedException {
         double ROTATIONS = DISTANCE / CIRCUMFERENCE;
         double COUNTS = ENCODER_CPR * ROTATIONS * GEAR_RATIO;
-        motorLeft.setTargetPosition(-(int) COUNTS);
-        motorRight.setTargetPosition(-(int) COUNTS);
+        motorLeft.setTargetPosition((int) COUNTS);
+        motorRight.setTargetPosition((int) COUNTS);
         motorLeft.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
         motorRight.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        motorLeft.setPower(-0.5);
-        motorRight.setPower(-0.5);
-        sleep(8500);
+        motorLeft.setPower(0.3);
+        motorRight.setPower(0.3);
+        sleep(x);
     }
 
-    public void moveRight(double PWR) throws InterruptedException {
-        motorRight.setTargetPosition(-4750);
-        waitOneFullHardwareCycle();
-        motorRight.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        motorRight.setPower(PWR);
+    public void spin(String a, int i) throws InterruptedException {
+        if(a.equals("Left")) {
+            motorLeft.setPower(-0.5);
+            motorRight.setPower(0.5);
+        }
+        if(a.equals("Right")) {
+            motorLeft.setPower(0.5);
+            motorRight.setPower(-0.5);
+        }
+        sleep(i);
+        motorLeft.setPower(0);
+        motorRight.setPower(0);
     }
 
-    public void moveLeft(double PWR) throws InterruptedException {
-        motorLeft.setTargetPosition(-4550);
-        waitOneFullHardwareCycle();
-        motorLeft.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        motorLeft.setPower(PWR);
+    public void turn(String a, int i) throws InterruptedException {
+        if(a.equals("Left")) {
+            motorLeft.setPower(-0.5);
+            motorRight.setPower(0.5);
+        }
+        if(a.equals("Right")) {
+            motorLeft.setPower(0.5);
+            motorRight.setPower(-0.5);
+        }
+        sleep(i);
     }
 
-    public void turnRight() throws InterruptedException {
-        motorLeft.setPower(0.5);
-        motorRight.setPower(-0.5);
-        sleep(100);
+    public void curve(String a, int i) throws InterruptedException {
+        if(a.equals("Left")) {
+            motorLeft.setPower(0.4);
+            motorRight.setPower(0.7);
+        }
+        if(a.equals("Right")) {
+            motorLeft.setPower(0.7);
+            motorRight.setPower(0.4);
+        }
+        sleep(i);
     }
 
-    public void turnLeft() throws InterruptedException {
-        motorLeft.setPower(-0.5);
-        motorRight.setPower(0.5);
-        sleep(100);
+    public void raisedP() throws InterruptedException {
+        dP.setTargetPosition(20);
+        dP.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
+        dP.setPower(-0.2);
     }
 
-    public void curveLeft() throws InterruptedException {
-        motorLeft.setPower(0.4);
-        motorRight.setPower(0.7);
-        sleep(100);
-    }
-
-    public void curveRight() throws InterruptedException {
-        motorLeft.setPower(0.7);
-        motorRight.setPower(0.4);
-        sleep(100);
+    public void raise45() throws InterruptedException {
+        HookArm.setTargetPosition(45);
+        HookArm.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
+        HookArm.setPower(-0.3);
     }
 
     public void resetEncoders() throws InterruptedException {
         motorLeft.setMode(DcMotorController.RunMode.RESET_ENCODERS);
         motorRight.setMode(DcMotorController.RunMode.RESET_ENCODERS);
+        waitOneFullHardwareCycle();
+    }
+
+    public void normalSpeed() throws InterruptedException {
+        motorLeft.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
+        motorRight.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
         waitOneFullHardwareCycle();
     }
 

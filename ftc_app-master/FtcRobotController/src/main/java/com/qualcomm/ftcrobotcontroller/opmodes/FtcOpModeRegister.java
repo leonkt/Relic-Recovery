@@ -63,11 +63,8 @@ public class FtcOpModeRegister implements OpModeRegister {
     //manager.register ("PushBotAuto", PushBotAuto.class);
     //manager.register ("PushBotManual", PushBotManual.class);
     manager.register("LockdownRedRamp", LockdownRedAuto.class);
-    manager.register("LockdownBlueAuto", LockdownBlueAuto.class);
     manager.register("LockdownNothing", LockdownNothing.class);
     manager.register("LockdownTeleOp", LockdownTeleOp.class);
-    manager.register("LockdownTest", LockdownTest.class);
-    manager.register("CameraOp", CameraOp.class);
     manager.register("LockdownDriveToBeaconRed", LockdownDriveToBeacon.class);
 
 

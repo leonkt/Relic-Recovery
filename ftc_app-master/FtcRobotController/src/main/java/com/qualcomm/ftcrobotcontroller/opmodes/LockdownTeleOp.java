@@ -19,6 +19,8 @@ public class LockdownTeleOp extends LinearOpMode {
 	DcMotor W;
 	DcMotor HookArm;
 	DcMotor dP;
+	Servo T;
+	Servo C;
 	DcMotorController mc1;
 	DcMotorController mc2;
 	DcMotorController mc3;
@@ -49,6 +51,8 @@ public class LockdownTeleOp extends LinearOpMode {
 		motorRight.setDirection(DcMotor.Direction.REVERSE);
 		motorLeft = hardwareMap.dcMotor.get("motorLeft");
 		dP = hardwareMap.dcMotor.get("Dustpan");
+		T = hardwareMap.servo.get("T");
+		C = hardwareMap.servo.get("C");
 		motorRight.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
 		motorLeft.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
 		dP.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
