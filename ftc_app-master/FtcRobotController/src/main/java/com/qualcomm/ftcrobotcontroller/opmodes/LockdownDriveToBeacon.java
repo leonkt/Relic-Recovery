@@ -62,17 +62,18 @@ public class LockdownDriveToBeacon extends LinearOpMode {
 
         waitForStart();
 
-        driveBackward(30.0,4700, 0.5);
-        constantSpeed();
-        turnGyro(-45.0,0.5);
-        resetEncoders();
-        normalSpeed();
-        driveBackward(65.0,8300, 0.7);
+        driveBackward(30.0, 4500, 0.5);
+        turnGyro(-45.0, 0.5);
+        driveBackward(65.0, 7500, 0.7);
         raisedP();
-        turnGyro(-45.0,0.5);
+        turnGyro(-45.0, 0.5);
+        tDrop();
     }
 
     public void driveBackward(double DISTANCE, int x, double power) throws InterruptedException {
+        normalSpeed();
+        resetEncoders();
+        waitOneFullHardwareCycle();
         double ROTATIONS = DISTANCE / CIRCUMFERENCE;
         double COUNTS = ENCODER_CPR * ROTATIONS * GEAR_RATIO;
         motorLeft.setTargetPosition(-(int) COUNTS);
@@ -82,6 +83,8 @@ public class LockdownDriveToBeacon extends LinearOpMode {
         motorLeft.setPower(-power);
         motorRight.setPower(-power);
         sleep(x);
+        motorLeft.setPower(0.0);
+        motorRight.setPower(0.0);
     }
 
     public void driveStraight(double DISTANCE, int x) throws InterruptedException {
@@ -123,8 +126,9 @@ public class LockdownDriveToBeacon extends LinearOpMode {
     }
 
     public void turnGyro(double degrees, double power) throws InterruptedException {
+        constantSpeed();
         double leftPower, rightPower;
-        if (degrees < 0.0)
+        if (degrees <= 0.0)
         {
             leftPower = -power;
             rightPower = power;
@@ -145,6 +149,7 @@ public class LockdownDriveToBeacon extends LinearOpMode {
         }
         motorLeft.setPower(0.0);
         motorRight.setPower(0.0);
+        sleep(20);
     }
 
     public void curve(String a, int i) throws InterruptedException {
