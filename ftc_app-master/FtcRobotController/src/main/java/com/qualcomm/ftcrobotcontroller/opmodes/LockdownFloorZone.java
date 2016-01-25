@@ -12,7 +12,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 /**
  * Created by Owner on 12/27/2015.
  */
-public class LockdownDriveToBeacon extends LinearOpMode {
+public class LockdownFloorZone extends LinearOpMode {
 
     DcMotor motorRight;
     DcMotor motorLeft;
@@ -55,13 +55,13 @@ public class LockdownDriveToBeacon extends LinearOpMode {
         motorRight = hardwareMap.dcMotor.get("motorRight");
         motorRight.setDirection(DcMotor.Direction.REVERSE);
         motorLeft = hardwareMap.dcMotor.get("motorLeft");
-        dP = hardwareMap.dcMotor.get("Dustpan");
         motorRight.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
         motorLeft.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
         motorRight.setMode(DcMotorController.RunMode.RESET_ENCODERS);
         motorLeft.setMode(DcMotorController.RunMode.RESET_ENCODERS);
         HookArm.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
         HookArm.setMode(DcMotorController.RunMode.RESET_ENCODERS);
+        dP = hardwareMap.dcMotor.get("Dustpan");
         dP.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
         dP.setMode(DcMotorController.RunMode.RESET_ENCODERS);
         gyroHeading = 0.0;
@@ -72,16 +72,19 @@ public class LockdownDriveToBeacon extends LinearOpMode {
         waitForStart();
 
         mTotalTime.startTime();
-        driveBackward(33.0, 0.5);
-        spinGyro(-39.9, 0.5);
+        driveBackward(35.0, 0.5);
+        spinGyro(-39.5, 0.5);
         driveBackward(61.75, 0.5);
         spinGyro(-80.0, 0.5);
         sleep(100);
         raisedP();
         tPrep();
-        driveBackward(16.0, 0.2);
+        driveBackward(18.0, 0.2);
         lowerdP();
         tDrop();
+        sleep(100);
+        driveForward(15.0, 0.5);
+        spinGyro(35.0, 0.5);
         telemetry.addData("Total Time", mTotalTime.time());
     }
 
@@ -92,14 +95,12 @@ public class LockdownDriveToBeacon extends LinearOpMode {
         mRunTime.reset();
         if(power == 0.5) {
             FRACTION = 0.095;
-            delayTime = FRACTION * DISTANCE;
         } else if(power == 0.2) {
             FRACTION = 0.35;
-            delayTime = FRACTION * DISTANCE;
         } else {
             FRACTION = 0.075;
-            delayTime = FRACTION * DISTANCE;
         }
+        delayTime = FRACTION * DISTANCE;
         double ROTATIONS = DISTANCE / CIRCUMFERENCE;
         double COUNTS = ENCODER_CPR * ROTATIONS * GEAR_RATIO;
         int LeftTarget = - (int) COUNTS + getMotorPosition(motorLeft);
@@ -123,11 +124,12 @@ public class LockdownDriveToBeacon extends LinearOpMode {
         mRunTime.reset();
         if(power == 0.5) {
             FRACTION = 0.095;
-            delayTime = FRACTION * DISTANCE;
         } else if(power == 0.2) {
             FRACTION = 0.35;
-            delayTime = FRACTION * DISTANCE;
+        }  else {
+            FRACTION = 0.08;
         }
+        delayTime = FRACTION * DISTANCE;
         double ROTATIONS = DISTANCE / CIRCUMFERENCE;
         double COUNTS = ENCODER_CPR * ROTATIONS * GEAR_RATIO;
         int LeftTarget = (int) COUNTS + getMotorPosition(motorLeft);
@@ -139,7 +141,7 @@ public class LockdownDriveToBeacon extends LinearOpMode {
         motorLeft.setPower(power);
         motorRight.setPower(power);
         mRunTime.startTime();
-        while(mRunTime.time() < delayTime || touchSensor.isPressed()) {
+        while(mRunTime.time() < delayTime) {
             waitOneFullHardwareCycle();
         }
     }
@@ -213,8 +215,8 @@ public class LockdownDriveToBeacon extends LinearOpMode {
     public void normalSpeed() throws InterruptedException {
         motorLeft.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
         motorRight.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
-        resetEncoders();
         waitOneFullHardwareCycle();
+        resetEncoders();
     }
 
     public void constantSpeed() throws InterruptedException {
@@ -240,22 +242,22 @@ public class LockdownDriveToBeacon extends LinearOpMode {
 
     public int getMotorPosition(DcMotor motor) throws InterruptedException
     {
-            if(mc1.getMotorControllerDeviceMode() == DcMotorController.DeviceMode.READ_ONLY) {
-                return motor.getCurrentPosition();
-            } else {
-                mc1.setMotorControllerDeviceMode(DcMotorController.DeviceMode.READ_ONLY);
-                while (mc1.getMotorControllerDeviceMode() != DcMotorController.DeviceMode.READ_ONLY)
-                {
-                    waitOneFullHardwareCycle();
-                }
-                int currPosition = motor.getCurrentPosition();
-                mc1.setMotorControllerDeviceMode(DcMotorController.DeviceMode.WRITE_ONLY);
-                while (mc1.getMotorControllerDeviceMode() != DcMotorController.DeviceMode.WRITE_ONLY)
-                {
-                    waitOneFullHardwareCycle();
-                }
-                return currPosition;
+        if(mc1.getMotorControllerDeviceMode() == DcMotorController.DeviceMode.READ_ONLY) {
+            return motor.getCurrentPosition();
+        } else {
+            mc1.setMotorControllerDeviceMode(DcMotorController.DeviceMode.READ_ONLY);
+            while (mc1.getMotorControllerDeviceMode() != DcMotorController.DeviceMode.READ_ONLY)
+            {
+                waitOneFullHardwareCycle();
             }
+            int currPosition = motor.getCurrentPosition();
+            mc1.setMotorControllerDeviceMode(DcMotorController.DeviceMode.WRITE_ONLY);
+            while (mc1.getMotorControllerDeviceMode() != DcMotorController.DeviceMode.WRITE_ONLY)
+            {
+                waitOneFullHardwareCycle();
+            }
+            return currPosition;
+        }
 
     }
 }

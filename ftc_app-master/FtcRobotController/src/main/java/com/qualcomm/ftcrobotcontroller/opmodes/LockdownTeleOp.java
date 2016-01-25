@@ -140,15 +140,15 @@ public class LockdownTeleOp extends LinearOpMode {
 				dP.setPower(-0.10);
 				setTARGET_1(0);
 			} else if(gamepad1.right_bumper) {
-				dP.setTargetPosition(550);
+				dP.setTargetPosition(150);
 				dP.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
 				dP.setPower(-0.20);
-				setTARGET_1(550);
+				setTARGET_1(150);
 			} else if(gamepad1.left_trigger != 0) {
-				dP.setTargetPosition(700);
+				dP.setTargetPosition(250);
 				dP.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
 				dP.setPower(-0.10);
-				setTARGET_1(700);
+				setTARGET_1(250);
 			} else if(gamepad1.right_trigger != 0) {
 				dP.setTargetPosition(950);
 				dP.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
@@ -250,6 +250,12 @@ public class LockdownTeleOp extends LinearOpMode {
 			} else {
 				TM.setPower(0);
 				W.setPower(0);
+			}
+			if(gamepad2.right_stick_x > 0) {
+				C.setPosition(0);
+			}
+			if(gamepad2.right_stick_x < 0) {
+				C.setPosition(1);
 			}
 			telemetry.addData("HookArm State", mHookArmState);
 			if(mHookArmState == State.STATE_SIX) {

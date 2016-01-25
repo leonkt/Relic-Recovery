@@ -1,13 +1,13 @@
 package com.qualcomm.ftcrobotcontroller.opmodes;
 
-import com.qualcomm.ftcrobotcontroller.FtcRobotControllerActivity;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorController;
+import com.qualcomm.robotcore.hardware.GyroSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.ServoController;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.robotcore.util.Range;
 
 /**
  * Created by Owner on 12/27/2015.
@@ -22,23 +22,21 @@ public class LockdownRedAuto extends LinearOpMode {
     DcMotor dP;
     Servo T;
     Servo C;
+    GyroSensor G;
+    TouchSensor touchSensor;
     DcMotorController mc1;
     DcMotorController mc2;
     DcMotorController mc3;
     ServoController sc1;
-    private enum State {
-        driveInches, turntoMountain, driveUpMountain
-    };
-    private State mCurrentState;
-    private State mHookArmState;
-    public ElapsedTime mRuntime = new ElapsedTime();   // Time into round.
-    private ElapsedTime mStateTime = new ElapsedTime();  // Time into current state
-    private int TARGET;
-    private int TARGET_1;
+    private long lastTime;
+    private double zeroOffset;
+    private double gyroHeading;
+    private ElapsedTime mRunTime = new ElapsedTime();
+    private ElapsedTime mTotalTime = new ElapsedTime();
 
     final static int ENCODER_CPR = 1120;     //Encoder Counts per Revolution
-    final static double GEAR_RATIO = 2;      //Gear Ratio
-    final static int WHEEL_DIAMETER = 4;     //Diameter of the wheel in inches
+    final static double GEAR_RATIO = 1;      //Gear Ratio
+    final static int WHEEL_DIAMETER = 2;     //Diameter of the wheel in inches
 
     final static double CIRCUMFERENCE = Math.PI * WHEEL_DIAMETER;
 
@@ -49,102 +47,146 @@ public class LockdownRedAuto extends LinearOpMode {
         sc1 = hardwareMap.servoController.get("sc1Sc");
         TM = hardwareMap.dcMotor.get("TM");
         W = hardwareMap.dcMotor.get("W");
+        T = hardwareMap.servo.get("T");
+        C = hardwareMap.servo.get("C");
+        G = hardwareMap.gyroSensor.get("G");
+        touchSensor = hardwareMap.touchSensor.get("TS");
         HookArm = hardwareMap.dcMotor.get("HookArm");
         motorRight = hardwareMap.dcMotor.get("motorRight");
         motorRight.setDirection(DcMotor.Direction.REVERSE);
         motorLeft = hardwareMap.dcMotor.get("motorLeft");
         dP = hardwareMap.dcMotor.get("Dustpan");
-        T = hardwareMap.servo.get("T");
-        C = hardwareMap.servo.get("C");
         motorRight.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
         motorLeft.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
         motorRight.setMode(DcMotorController.RunMode.RESET_ENCODERS);
         motorLeft.setMode(DcMotorController.RunMode.RESET_ENCODERS);
-        dP.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
         HookArm.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
         HookArm.setMode(DcMotorController.RunMode.RESET_ENCODERS);
+        dP.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
         dP.setMode(DcMotorController.RunMode.RESET_ENCODERS);
-        mCurrentState = State.driveInches;
+        gyroHeading = 0.0;
+        mTotalTime.reset();
+        calibrateGyro();
 
         waitForStart();
 
-        driveBackward(54.0);
-        constantSpeed();
-        spin("Right",1150);
+        mTotalTime.startTime();
+        driveBackward(33.0, 0.5);
+        spinGyro(-40.0, 0.5);
+        telemetry.addData("Total Time", mTotalTime.time());
+    }
+
+    public void driveBackward(double DISTANCE, double power) throws InterruptedException {
+        double FRACTION;
+        double delayTime = 0.0;
         normalSpeed();
-        raisedP();
-        driveStraight(24.0,4950);
-        raise45();
-        motorLeft.setPower(0);
-        motorRight.setPower(0);
-    }
-
-    public void driveBackward(double DISTANCE) throws InterruptedException {
+        mRunTime.reset();
+        if(power == 0.5) {
+            FRACTION = 0.095;
+            delayTime = FRACTION * DISTANCE;
+        } else if(power == 0.2) {
+            FRACTION = 0.35;
+            delayTime = FRACTION * DISTANCE;
+        } else {
+            FRACTION = 0.075;
+            delayTime = FRACTION * DISTANCE;
+        }
         double ROTATIONS = DISTANCE / CIRCUMFERENCE;
         double COUNTS = ENCODER_CPR * ROTATIONS * GEAR_RATIO;
-        motorLeft.setTargetPosition(-(int) COUNTS);
-        motorRight.setTargetPosition(-(int) COUNTS);
+        int LeftTarget = - (int) COUNTS + getMotorPosition(motorLeft);
+        int RightTarget = - (int) COUNTS + getMotorPosition(motorRight);
+        motorLeft.setTargetPosition(LeftTarget);
+        motorRight.setTargetPosition(RightTarget);
         motorLeft.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
         motorRight.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        motorLeft.setPower(-0.5);
-        motorRight.setPower(-0.5);
-        sleep(7000);
+        motorLeft.setPower(power);
+        motorRight.setPower(power);
+        mRunTime.startTime();
+        while(mRunTime.time() < delayTime && !touchSensor.isPressed()) {
+            waitOneFullHardwareCycle();
+        }
     }
 
-    public void driveStraight(double DISTANCE, int x) throws InterruptedException {
+    public void driveForward(double DISTANCE, double power) throws InterruptedException {
+        double FRACTION;
+        double delayTime = 0.0;
+        normalSpeed();
+        mRunTime.reset();
+        if(power == 0.5) {
+            FRACTION = 0.095;
+            delayTime = FRACTION * DISTANCE;
+        } else if(power == 0.2) {
+            FRACTION = 0.35;
+            delayTime = FRACTION * DISTANCE;
+        }
         double ROTATIONS = DISTANCE / CIRCUMFERENCE;
         double COUNTS = ENCODER_CPR * ROTATIONS * GEAR_RATIO;
-        motorLeft.setTargetPosition((int) COUNTS);
-        motorRight.setTargetPosition((int) COUNTS);
+        int LeftTarget = (int) COUNTS + getMotorPosition(motorLeft);
+        int RightTarget = (int) COUNTS + getMotorPosition(motorRight);
+        motorLeft.setTargetPosition(LeftTarget);
+        motorRight.setTargetPosition(RightTarget);
         motorLeft.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
         motorRight.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        motorLeft.setPower(0.3);
-        motorRight.setPower(0.3);
-        sleep(x);
+        motorLeft.setPower(power);
+        motorRight.setPower(power);
+        mRunTime.startTime();
+        while(mRunTime.time() < delayTime || touchSensor.isPressed()) {
+            waitOneFullHardwareCycle();
+        }
     }
 
-    public void spin(String a, int i) throws InterruptedException {
-        if(a.equals("Left")) {
-            motorLeft.setPower(-0.5);
-            motorRight.setPower(0.5);
+    public void spinGyro(double degrees, double power) throws InterruptedException {
+        constantSpeed();
+        double leftPower, rightPower;
+        if (degrees <= 0.0)
+        {
+            leftPower = -power;
+            rightPower = power;
         }
-        if(a.equals("Right")) {
-            motorLeft.setPower(0.5);
-            motorRight.setPower(-0.5);
+        else
+        {
+            leftPower = power;
+            rightPower = -power;
         }
-        sleep(i);
-        motorLeft.setPower(0);
-        motorRight.setPower(0);
+        lastTime = System.currentTimeMillis();
+        motorLeft.setPower(leftPower);
+        motorRight.setPower(rightPower);
+        while (Math.abs(gyroHeading) <= Math.abs(degrees))
+        {
+            telemetry.addData("Gyro Heading", gyroHeading);
+            integrateGyro();
+            waitOneFullHardwareCycle();
+        }
+        motorLeft.setPower(0.0);
+        motorRight.setPower(0.0);
     }
 
-    public void turn(String a, int i) throws InterruptedException {
-        if(a.equals("Left")) {
-            motorLeft.setPower(-0.5);
-            motorRight.setPower(0.5);
-        }
-        if(a.equals("Right")) {
-            motorLeft.setPower(0.5);
-            motorRight.setPower(-0.5);
-        }
-        sleep(i);
+    public void tPrep() throws InterruptedException {
+        T.setPosition(0.25);
+        waitOneFullHardwareCycle();
     }
 
-    public void curve(String a, int i) throws InterruptedException {
-        if(a.equals("Left")) {
-            motorLeft.setPower(0.4);
-            motorRight.setPower(0.7);
-        }
-        if(a.equals("Right")) {
-            motorLeft.setPower(0.7);
-            motorRight.setPower(0.4);
-        }
-        sleep(i);
+    public void tDrop() throws InterruptedException {
+        T.setPosition(0.55);
+        waitOneFullHardwareCycle();
     }
 
     public void raisedP() throws InterruptedException {
-        dP.setTargetPosition(20);
+        dP.setTargetPosition(150);
         dP.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        dP.setPower(-0.2);
+        dP.setPower(-0.09);
+        sleep(165);
+        dP.setTargetPosition(250);
+        dP.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
+        dP.setPower(-0.07);
+        sleep(150);
+    }
+
+    public void lowerdP() throws InterruptedException {
+        dP.setTargetPosition(150);
+        dP.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
+        dP.setPower(-0.08);
+        waitOneFullHardwareCycle();
     }
 
     public void raise45() throws InterruptedException {
@@ -162,6 +204,7 @@ public class LockdownRedAuto extends LinearOpMode {
     public void normalSpeed() throws InterruptedException {
         motorLeft.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
         motorRight.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
+        resetEncoders();
         waitOneFullHardwareCycle();
     }
 
@@ -169,6 +212,21 @@ public class LockdownRedAuto extends LinearOpMode {
         motorLeft.setMode(DcMotorController.RunMode.RUN_WITHOUT_ENCODERS);
         motorRight.setMode(DcMotorController.RunMode.RUN_WITHOUT_ENCODERS);
         waitOneFullHardwareCycle();
+    }
+
+    public void calibrateGyro() throws InterruptedException {
+        double sum = 0.0;
+        for(int i = 0; i < 50; i++) {
+            sum += G.getRotation();
+            sleep(20);
+        }
+        zeroOffset = sum/50.0;
+    }
+
+    public void integrateGyro() {
+        long currTime = System.currentTimeMillis();
+        gyroHeading += (G.getRotation() - zeroOffset)*(currTime - lastTime)/1000.0;
+        lastTime = currTime;
     }
 
     public int getMotorPosition(DcMotor motor) throws InterruptedException
@@ -190,80 +248,5 @@ public class LockdownRedAuto extends LinearOpMode {
             return currPosition;
         }
 
-    }
-
-    int setTARGET_1(int i) {
-        TARGET_1 = i;
-        return TARGET_1;
-    }
-
-    int setTARGET(int i) {
-        TARGET = i;
-        return TARGET;
-    }
-
-    double scaleInput(double dVal) {
-        double[] scaleArray = {0.0, 0.11, 0.13, 0.15, 0.18, 0.24,
-                0.30, 0.36, 0.43, 0.50, 0.65, 0.72, 0.75, 0.80, 0.85, 0.95, 1.00};
-
-        // get the corresponding index for the scaleInput array.
-        int index = (int) (dVal * 16.0);
-
-        // index should be positive.
-        if (index < 0) {
-            index = -index;
-        }
-
-        // index cannot exceed size of array minus 1.
-        if (index > 16) {
-            index = 16;
-        }
-
-        // get value from the array.
-        double dScale = 0;
-        if (dVal < 0) {
-            dScale = -scaleArray[index];
-        } else {
-            dScale = scaleArray[index];
-        }
-
-        // return scaled value.
-        return dScale;
-    }
-
-    double getPWRF(int ROTATION_NUMBER) {
-        if(ROTATION_NUMBER > 6) {
-            ROTATION_NUMBER = 6;
-        }
-        if(ROTATION_NUMBER < 0) {
-            ROTATION_NUMBER = 0;
-        }
-        double[] array = {0.90, 1, 1, 1, 1, 1, 1};
-        // 13-14 in, 23.5 in, 34 in, 43 in, 52 in , 60 in
-        return array[ROTATION_NUMBER];
-    }
-
-    double getPWRR(int ROTATION_NUMBER) {
-        if(ROTATION_NUMBER > 6) {
-            ROTATION_NUMBER = 6;
-        }
-        if(ROTATION_NUMBER < 0) {
-            ROTATION_NUMBER = 0;
-        }
-        double[] array = {0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.50};
-        return array[ROTATION_NUMBER];
-    }
-
-    private void newState(State newState)
-    {
-        // Reset the state time, and then change to next state.
-        mStateTime.reset();
-        mCurrentState = newState;
-    }
-
-    private void newHookState(State newState)
-    {
-        mStateTime.reset();
-        mHookArmState = newState;
     }
 }
