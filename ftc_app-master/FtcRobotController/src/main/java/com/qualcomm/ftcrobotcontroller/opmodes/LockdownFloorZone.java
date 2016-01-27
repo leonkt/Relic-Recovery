@@ -64,7 +64,6 @@ public class LockdownFloorZone extends LinearOpMode {
         dP = hardwareMap.dcMotor.get("Dustpan");
         dP.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
         dP.setMode(DcMotorController.RunMode.RESET_ENCODERS);
-        gyroHeading = 0.0;
         mRunTime.reset();
         mTotalTime.reset();
         calibrateGyro();
@@ -73,18 +72,20 @@ public class LockdownFloorZone extends LinearOpMode {
 
         mTotalTime.startTime();
         driveBackward(35.0, 0.5);
-        spinGyro(-39.5, 0.5);
-        driveBackward(61.75, 0.5);
-        spinGyro(-80.0, 0.5);
+        spinGyro(-39.7, 0.5);
+        driveBackward(61.65, 0.5);
+        spinGyro(-40.0, 0.5);
         sleep(100);
         raisedP();
         tPrep();
-        driveBackward(18.0, 0.2);
+        driveBackward(15.0, 0.2);
         lowerdP();
         tDrop();
         sleep(100);
-        driveForward(15.0, 0.5);
-        spinGyro(35.0, 0.5);
+        driveForward(12.0, 0.5);
+        zerodP();
+        spinGyro(-90.0, 0.5);
+        driveBackward(23.0, 0.5);
         telemetry.addData("Total Time", mTotalTime.time());
     }
 
@@ -112,7 +113,10 @@ public class LockdownFloorZone extends LinearOpMode {
         motorLeft.setPower(power);
         motorRight.setPower(power);
         mRunTime.startTime();
-        while(mRunTime.time() < delayTime && !touchSensor.isPressed()) {
+        while(mRunTime.time() < delayTime) {
+            if(touchSensor.isPressed()) {
+                break;
+            }
             waitOneFullHardwareCycle();
         }
     }
@@ -159,9 +163,10 @@ public class LockdownFloorZone extends LinearOpMode {
             leftPower = power;
             rightPower = -power;
         }
-        lastTime = System.currentTimeMillis();
         motorLeft.setPower(leftPower);
         motorRight.setPower(rightPower);
+        lastTime = System.currentTimeMillis();
+        gyroHeading = 0.0;
         while (Math.abs(gyroHeading) <= Math.abs(degrees))
         {
             telemetry.addData("Gyro Heading", gyroHeading);
@@ -197,6 +202,14 @@ public class LockdownFloorZone extends LinearOpMode {
         dP.setTargetPosition(150);
         dP.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
         dP.setPower(-0.08);
+        waitOneFullHardwareCycle();
+    }
+
+    public void zerodP() throws InterruptedException {
+        dP.setTargetPosition(0);
+        dP.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
+        dP.setPower(-0.1);
+        T.setPosition(0);
         waitOneFullHardwareCycle();
     }
 
