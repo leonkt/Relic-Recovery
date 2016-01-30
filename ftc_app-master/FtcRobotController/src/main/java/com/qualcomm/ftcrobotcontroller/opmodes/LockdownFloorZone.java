@@ -72,19 +72,20 @@ public class LockdownFloorZone extends LinearOpMode {
 
         mTotalTime.startTime();
         driveBackward(35.0, 0.5);
-        spinGyro(-39.7, 0.5);
+        spinGyro(-39.0, 0.5);
         driveBackward(61.65, 0.5);
-        spinGyro(-40.0, 0.5);
+        spinGyro(-37.0, 0.5);
         sleep(100);
         raisedP();
         tPrep();
-        driveBackward(15.0, 0.2);
+        sleep(100);
+        driveBackward(13.0, 0.2);
         lowerdP();
         tDrop();
         sleep(100);
         driveForward(12.0, 0.5);
         zerodP();
-        spinGyro(-90.0, 0.5);
+        spinGyro(-87.0, 0.5);
         driveBackward(23.0, 0.5);
         telemetry.addData("Total Time", mTotalTime.time());
     }
@@ -94,9 +95,9 @@ public class LockdownFloorZone extends LinearOpMode {
         double delayTime = 0.0;
         normalSpeed();
         mRunTime.reset();
-        if(power == 0.5) {
+        if (power == 0.5) {
             FRACTION = 0.095;
-        } else if(power == 0.2) {
+        } else if (power == 0.2) {
             FRACTION = 0.35;
         } else {
             FRACTION = 0.075;
@@ -104,8 +105,8 @@ public class LockdownFloorZone extends LinearOpMode {
         delayTime = FRACTION * DISTANCE;
         double ROTATIONS = DISTANCE / CIRCUMFERENCE;
         double COUNTS = ENCODER_CPR * ROTATIONS * GEAR_RATIO;
-        int LeftTarget = - (int) COUNTS + getMotorPosition(motorLeft);
-        int RightTarget = - (int) COUNTS + getMotorPosition(motorRight);
+        int LeftTarget = -(int) COUNTS + getMotorPosition(motorLeft);
+        int RightTarget = -(int) COUNTS + getMotorPosition(motorRight);
         motorLeft.setTargetPosition(LeftTarget);
         motorRight.setTargetPosition(RightTarget);
         motorLeft.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
@@ -113,8 +114,8 @@ public class LockdownFloorZone extends LinearOpMode {
         motorLeft.setPower(power);
         motorRight.setPower(power);
         mRunTime.startTime();
-        while(mRunTime.time() < delayTime) {
-            if(touchSensor.isPressed()) {
+        while (mRunTime.time() < delayTime) {
+            if (touchSensor.isPressed()) {
                 break;
             }
             waitOneFullHardwareCycle();
@@ -126,11 +127,11 @@ public class LockdownFloorZone extends LinearOpMode {
         double delayTime = 0.0;
         normalSpeed();
         mRunTime.reset();
-        if(power == 0.5) {
+        if (power == 0.5) {
             FRACTION = 0.095;
-        } else if(power == 0.2) {
+        } else if (power == 0.2) {
             FRACTION = 0.35;
-        }  else {
+        } else {
             FRACTION = 0.08;
         }
         delayTime = FRACTION * DISTANCE;
@@ -145,7 +146,7 @@ public class LockdownFloorZone extends LinearOpMode {
         motorLeft.setPower(power);
         motorRight.setPower(power);
         mRunTime.startTime();
-        while(mRunTime.time() < delayTime) {
+        while (mRunTime.time() < delayTime) {
             waitOneFullHardwareCycle();
         }
     }
@@ -153,13 +154,10 @@ public class LockdownFloorZone extends LinearOpMode {
     public void spinGyro(double degrees, double power) throws InterruptedException {
         constantSpeed();
         double leftPower, rightPower;
-        if (degrees <= 0.0)
-        {
+        if (degrees <= 0.0) {
             leftPower = -power;
             rightPower = power;
-        }
-        else
-        {
+        } else {
             leftPower = power;
             rightPower = -power;
         }
@@ -167,8 +165,7 @@ public class LockdownFloorZone extends LinearOpMode {
         motorRight.setPower(rightPower);
         lastTime = System.currentTimeMillis();
         gyroHeading = 0.0;
-        while (Math.abs(gyroHeading) <= Math.abs(degrees))
-        {
+        while (Math.abs(gyroHeading) <= Math.abs(degrees)) {
             telemetry.addData("Gyro Heading", gyroHeading);
             integrateGyro();
             waitOneFullHardwareCycle();
@@ -213,12 +210,6 @@ public class LockdownFloorZone extends LinearOpMode {
         waitOneFullHardwareCycle();
     }
 
-    public void raise45() throws InterruptedException {
-        HookArm.setTargetPosition(45);
-        HookArm.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        HookArm.setPower(-0.3);
-    }
-
     public void resetEncoders() throws InterruptedException {
         motorLeft.setMode(DcMotorController.RunMode.RESET_ENCODERS);
         motorRight.setMode(DcMotorController.RunMode.RESET_ENCODERS);
@@ -240,33 +231,30 @@ public class LockdownFloorZone extends LinearOpMode {
 
     public void calibrateGyro() throws InterruptedException {
         double sum = 0.0;
-        for(int i = 0; i < 50; i++) {
+        for (int i = 0; i < 50; i++) {
             sum += G.getRotation();
             sleep(20);
         }
-        zeroOffset = sum/50.0;
+        zeroOffset = sum / 50.0;
     }
 
     public void integrateGyro() {
         long currTime = System.currentTimeMillis();
-        gyroHeading += (G.getRotation() - zeroOffset)*(currTime - lastTime)/1000.0;
+        gyroHeading += (G.getRotation() - zeroOffset) * (currTime - lastTime) / 1000.0;
         lastTime = currTime;
     }
 
-    public int getMotorPosition(DcMotor motor) throws InterruptedException
-    {
-        if(mc1.getMotorControllerDeviceMode() == DcMotorController.DeviceMode.READ_ONLY) {
+    public int getMotorPosition(DcMotor motor) throws InterruptedException {
+        if (mc1.getMotorControllerDeviceMode() == DcMotorController.DeviceMode.READ_ONLY) {
             return motor.getCurrentPosition();
         } else {
             mc1.setMotorControllerDeviceMode(DcMotorController.DeviceMode.READ_ONLY);
-            while (mc1.getMotorControllerDeviceMode() != DcMotorController.DeviceMode.READ_ONLY)
-            {
+            while (mc1.getMotorControllerDeviceMode() != DcMotorController.DeviceMode.READ_ONLY) {
                 waitOneFullHardwareCycle();
             }
             int currPosition = motor.getCurrentPosition();
             mc1.setMotorControllerDeviceMode(DcMotorController.DeviceMode.WRITE_ONLY);
-            while (mc1.getMotorControllerDeviceMode() != DcMotorController.DeviceMode.WRITE_ONLY)
-            {
+            while (mc1.getMotorControllerDeviceMode() != DcMotorController.DeviceMode.WRITE_ONLY) {
                 waitOneFullHardwareCycle();
             }
             return currPosition;
