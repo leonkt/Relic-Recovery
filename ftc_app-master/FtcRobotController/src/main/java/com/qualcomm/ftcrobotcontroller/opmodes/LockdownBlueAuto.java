@@ -34,9 +34,12 @@ public class LockdownBlueAuto extends LinearOpMode {
     private double gyroHeading;
     private ElapsedTime mRunTime = new ElapsedTime();
     private ElapsedTime mTotalTime = new ElapsedTime();
-    private enum State{
+
+    private enum State {
         STATE_ONE, STATE_TWO, STATE_THREE, STATE_FOUR, STATE_FIVE, STATE_SIX, STATE_RETRACT
-    };
+    }
+
+    ;
     private State mHookArmState;
 
     final static int ENCODER_CPR = 1120;     //Encoder Counts per Revolution
@@ -77,139 +80,106 @@ public class LockdownBlueAuto extends LinearOpMode {
         waitForStart();
 
         mTotalTime.startTime();
-        //pivotGyro(-40.0, 0.5);
-        //driveForward(64.0, 0.5);
-        //sleep(100);
-        //spinGyro(-80.0, 0.5);
-        //sleep(100);
-        //driveForward(40.0, 0.5);
+        sleep(7000);
+        pivotGyro(40.0, 0.5);
+        driveForward(64.0, 0.5);
+        sleep(100);
+        spinGyro(80.0, 0.5);
+        sleep(100);
+        driveForward(40.0, 0.5);
+        raiseBox();
         raiseHookArm();
-        while(REV <= 7) {
-            switch(mHookArmState) {
+        sleep(100);
+        while (mHookArmState != State.STATE_RETRACT) {
+            switch (mHookArmState) {
                 case STATE_ONE:
-                    TM.setPower(0.45);
+                    TM.setPower(0.55);
                     W.setPower(getPWRF(REV));
-                    sleep(100);
+                    sleep(400);
                     newHookState(State.STATE_TWO);
+                    REV++;
                     break;
                 case STATE_TWO:
-                    TM.setPower(0.45);
+                    TM.setPower(0.55);
                     W.setPower(getPWRF(REV));
-                    sleep(100);
+                    sleep(400);
                     newHookState(State.STATE_THREE);
+                    REV++;
                     break;
                 case STATE_THREE:
-                    TM.setPower(0.40);
+                    TM.setPower(0.55);
                     W.setPower(getPWRF(REV));
-                    sleep(150);
+                    sleep(450);
                     newHookState(State.STATE_FOUR);
+                    REV++;
                     break;
                 case STATE_FOUR:
-                    TM.setPower(0.40);
+                    TM.setPower(0.50);
                     W.setPower(getPWRF(REV));
-                    sleep(200);
+                    sleep(450);
                     newHookState(State.STATE_FIVE);
+                    REV++;
                     break;
                 case STATE_FIVE:
-                    TM.setPower(0.40);
+                    TM.setPower(0.50);
                     W.setPower(getPWRF(REV));
-                    sleep(250);
+                    sleep(450);
                     newHookState(State.STATE_SIX);
+                    REV++;
                     break;
                 case STATE_SIX:
-                    TM.setPower(0.40);
+                    TM.setPower(0.45);
                     W.setPower(getPWRF(REV));
-                    sleep(250);
+                    sleep(500);
                     newHookState(State.STATE_RETRACT);
                     break;
-                case STATE_RETRACT:
-                    break;
             }
-            REV++;
-        }/*
-        while(REV >= 0) {
-            switch(mHookArmState) {
-                case STATE_ONE:
-                    TM.setPower(-1);
-                    W.setPower(-getPWRR(REV));
-                    motorRight.setPower(1);
-                    motorLeft.setPower(1);
-                    sleep(550);
-                    break;
-                case STATE_TWO:
-                    TM.setPower(-1);
-                    W.setPower(-getPWRR(REV));
-                    motorRight.setPower(0.8);
-                    motorLeft.setPower(0.7);
-                    sleep(550);
-                    newHookState(State.STATE_TWO);
-                    break;
-                case STATE_THREE:
-                    TM.setPower(-1);
-                    W.setPower(-getPWRR(REV));
-                    motorRight.setPower(0.8);
-                    motorLeft.setPower(0.7);
-                    sleep(550);
-                    newHookState(State.STATE_FOUR);
-                    break;
+        }
+        TM.setPower(0);
+        W.setPower(0);
+        latchHookArm();
+        sleep(100);
+        constantSpeed();
+        while (mHookArmState != State.STATE_THREE) {
+            switch (mHookArmState) {
                 case STATE_FOUR:
                     TM.setPower(-1);
                     W.setPower(-getPWRR(REV));
-                    motorRight.setPower(0.8);
+                    motorRight.setPower(0.9);
                     motorLeft.setPower(0.7);
-                    sleep(550);
+                    sleep(600);
                     newHookState(State.STATE_THREE);
                     break;
                 case STATE_FIVE:
                     TM.setPower(-1);
                     W.setPower(-getPWRR(REV));
-                    motorRight.setPower(0.8);
+                    motorRight.setPower(0.9);
                     motorLeft.setPower(0.7);
-                    sleep(550);
+                    sleep(500);
                     newHookState(State.STATE_FOUR);
                     break;
                 case STATE_SIX:
                     TM.setPower(-getPWRR(REV));
-                    W.setPower(-1);
-                    sleep(750);
+                    W.setPower(-0.8);
+                    motorRight.setPower(0.8);
+                    motorLeft.setPower(0.7);
+                    sleep(800);
                     newHookState(State.STATE_FIVE);
                     break;
                 case STATE_RETRACT:
+                    motorRight.setPower(0.8);
+                    motorLeft.setPower(0.7);
+                    sleep(300);
                     newHookState(State.STATE_SIX);
                     break;
             }
             REV--;
-        }*/
+        }
+        TM.setPower(0.0);
+        W.setPower(0.0);
+        motorLeft.setPower(0.0);
+        motorRight.setPower(0.0);
         telemetry.addData("Total Time", mTotalTime.time());
-    }
-
-    public void driveBackward(double DISTANCE, double power) throws InterruptedException {
-        double FRACTION;
-        double delayTime = 0.0;
-        normalSpeed();
-        mRunTime.reset();
-        if(power == 0.5) {
-            FRACTION = 0.095;
-        } else if(power == 0.2) {
-            FRACTION = 0.35;
-        } else {
-            FRACTION = 0.075;
-        }
-        delayTime = FRACTION * DISTANCE;
-        double ROTATIONS = DISTANCE / CIRCUMFERENCE;
-        double COUNTS = ENCODER_CPR * ROTATIONS * GEAR_RATIO;
-        int LeftTarget = - (int) COUNTS + getMotorPosition(motorLeft);
-        int RightTarget = - (int) COUNTS + getMotorPosition(motorRight);
-        motorLeft.setTargetPosition(LeftTarget);
-        motorRight.setTargetPosition(RightTarget);
-        motorLeft.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        motorRight.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        motorLeft.setPower(power);
-        motorRight.setPower(power);
-        mRunTime.startTime();
-        while(mRunTime.time() < delayTime) {
-            waitOneFullHardwareCycle();
-        }
     }
 
     public void driveForward(double DISTANCE, double power) throws InterruptedException {
@@ -217,11 +187,11 @@ public class LockdownBlueAuto extends LinearOpMode {
         double delayTime = 0.0;
         normalSpeed();
         mRunTime.reset();
-        if(power == 0.5) {
+        if (power == 0.5) {
             FRACTION = 0.095;
-        } else if(power == 0.2) {
+        } else if (power == 0.2) {
             FRACTION = 0.35;
-        }  else {
+        } else {
             FRACTION = 0.08;
         }
         delayTime = FRACTION * DISTANCE;
@@ -236,48 +206,20 @@ public class LockdownBlueAuto extends LinearOpMode {
         motorLeft.setPower(power);
         motorRight.setPower(power);
         mRunTime.startTime();
-        while(mRunTime.time() < delayTime) {
+        while (mRunTime.time() < delayTime) {
             waitOneFullHardwareCycle();
         }
         motorLeft.setPower(0.0);
         motorRight.setPower(0.0);
     }
 
-    public void driveRightForward(double DISTANCE, double power) throws InterruptedException {
-        double FRACTION;
-        double delayTime = 0.0;
-        normalSpeed();
-        mRunTime.reset();
-        if(power == 0.5) {
-            FRACTION = 0.095;
-        } else if(power == 0.2) {
-            FRACTION = 0.35;
-        }  else {
-            FRACTION = 0.08;
-        }
-        delayTime = FRACTION * DISTANCE;
-        double ROTATIONS = DISTANCE / CIRCUMFERENCE;
-        double COUNTS = ENCODER_CPR * ROTATIONS * GEAR_RATIO;
-        int RightTarget = (int) COUNTS + getMotorPosition(motorRight);
-        motorRight.setTargetPosition(RightTarget);
-        motorRight.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        motorRight.setPower(power);
-        mRunTime.startTime();
-        while(mRunTime.time() < delayTime) {
-            waitOneFullHardwareCycle();
-        }
-    }
-
     public void spinGyro(double degrees, double power) throws InterruptedException {
         constantSpeed();
         double leftPower, rightPower;
-        if (degrees < 0.0)
-        {
+        if (degrees < 0.0) {
             leftPower = -power;
             rightPower = power;
-        }
-        else
-        {
+        } else {
             leftPower = power;
             rightPower = -power;
         }
@@ -287,8 +229,7 @@ public class LockdownBlueAuto extends LinearOpMode {
         lastTime = System.currentTimeMillis();
         gyroHeading = 0.0;
         waitOneFullHardwareCycle();
-        while (Math.abs(gyroHeading) <= Math.abs(degrees))
-        {
+        while (Math.abs(gyroHeading) <= Math.abs(degrees)) {
             telemetry.addData("Gyro Heading", gyroHeading);
             integrateGyro();
             waitOneFullHardwareCycle();
@@ -299,27 +240,29 @@ public class LockdownBlueAuto extends LinearOpMode {
     }
 
     public void raiseHookArm() throws InterruptedException {
-        HookArm.setTargetPosition(80);
+        HookArm.setTargetPosition(70);
+        HookArm.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
+        HookArm.setPower(-0.25);
+        waitOneFullHardwareCycle();
+    }
+
+    public void latchHookArm() throws InterruptedException {
+        HookArm.setTargetPosition(50);
         HookArm.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
         HookArm.setPower(-0.3);
     }
 
-    public void latchHookArm() throws InterruptedException {
-        HookArm.setTargetPosition(70);
-        HookArm.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        HookArm.setPower(-0.3);
+    public void raiseBox() throws InterruptedException {
+        T.setPosition(0.4);
     }
 
     public void pivotGyro(double degrees, double power) throws InterruptedException {
         constantSpeed();
         double leftPower, rightPower;
-        if (degrees < 0.0)
-        {
+        if (degrees < 0.0) {
             leftPower = 0.0;
             rightPower = power;
-        }
-        else
-        {
+        } else {
             leftPower = power;
             rightPower = 0.0;
         }
@@ -329,8 +272,7 @@ public class LockdownBlueAuto extends LinearOpMode {
         lastTime = System.currentTimeMillis();
         gyroHeading = 0.0;
         waitOneFullHardwareCycle();
-        while (Math.abs(gyroHeading) <= Math.abs(degrees))
-        {
+        while (Math.abs(gyroHeading) <= Math.abs(degrees)) {
             telemetry.addData("Gyro Heading", gyroHeading);
             integrateGyro();
             waitOneFullHardwareCycle();
@@ -346,22 +288,22 @@ public class LockdownBlueAuto extends LinearOpMode {
     }
 
     double getPWRF(int ROTATION_NUMBER) {
-        if(ROTATION_NUMBER > 6) {
+        if (ROTATION_NUMBER > 6) {
             ROTATION_NUMBER = 6;
         }
-        if(ROTATION_NUMBER < 0) {
+        if (ROTATION_NUMBER < 0) {
             ROTATION_NUMBER = 0;
         }
-        double[] array = {0.70, 0.70, 0.70, 0.80, 0.80, 0.80, 1};
+        double[] array = {0.80, 0.80, 0.85, 0.85, 0.90, 0.90, 1};
         // 13-14 in, 23.5 in, 34 in, 43 in, 52 in , 60 in
         return array[ROTATION_NUMBER];
     }
 
     double getPWRR(int ROTATION_NUMBER) {
-        if(ROTATION_NUMBER > 6) {
+        if (ROTATION_NUMBER > 6) {
             ROTATION_NUMBER = 6;
         }
-        if(ROTATION_NUMBER < 0) {
+        if (ROTATION_NUMBER < 0) {
             ROTATION_NUMBER = 0;
         }
         double[] array = {0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.50};
@@ -389,34 +331,31 @@ public class LockdownBlueAuto extends LinearOpMode {
 
     public void calibrateGyro() throws InterruptedException {
         double sum = 0.0;
-        for(int i = 0; i < 50; i++) {
+        for (int i = 0; i < 50; i++) {
             sum += G.getRotation();
             sleep(20);
         }
-        zeroOffset = sum/50.0;
+        zeroOffset = sum / 50.0;
     }
 
     public void integrateGyro() throws InterruptedException {
         long currTime = System.currentTimeMillis();
-        gyroHeading += (G.getRotation() - zeroOffset)*(currTime - lastTime)/1000.0;
+        gyroHeading += (G.getRotation() - zeroOffset) * (currTime - lastTime) / 1000.0;
         lastTime = currTime;
         waitOneFullHardwareCycle();
     }
 
-    public int getMotorPosition(DcMotor motor) throws InterruptedException
-    {
-        if(mc1.getMotorControllerDeviceMode() == DcMotorController.DeviceMode.READ_ONLY) {
+    public int getMotorPosition(DcMotor motor) throws InterruptedException {
+        if (mc1.getMotorControllerDeviceMode() == DcMotorController.DeviceMode.READ_ONLY) {
             return motor.getCurrentPosition();
         } else {
             mc1.setMotorControllerDeviceMode(DcMotorController.DeviceMode.READ_ONLY);
-            while (mc1.getMotorControllerDeviceMode() != DcMotorController.DeviceMode.READ_ONLY)
-            {
+            while (mc1.getMotorControllerDeviceMode() != DcMotorController.DeviceMode.READ_ONLY) {
                 waitOneFullHardwareCycle();
             }
             int currPosition = motor.getCurrentPosition();
             mc1.setMotorControllerDeviceMode(DcMotorController.DeviceMode.WRITE_ONLY);
-            while (mc1.getMotorControllerDeviceMode() != DcMotorController.DeviceMode.WRITE_ONLY)
-            {
+            while (mc1.getMotorControllerDeviceMode() != DcMotorController.DeviceMode.WRITE_ONLY) {
                 waitOneFullHardwareCycle();
             }
             return currPosition;

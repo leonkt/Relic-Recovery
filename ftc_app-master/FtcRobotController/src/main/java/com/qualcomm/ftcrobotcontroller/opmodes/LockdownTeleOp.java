@@ -28,15 +28,11 @@ public class LockdownTeleOp extends LinearOpMode {
 
     private enum State {
         STATE_ONE, STATE_TWO, STATE_THREE, STATE_FOUR, STATE_FIVE, STATE_SIX
-    }
+    };
 
-    ;
-    private State mCurrentState;
     private State mHookArmState;
     public ElapsedTime mRuntime = new ElapsedTime();   // Time into round.
     private ElapsedTime mStateTime = new ElapsedTime();  // Time into current state
-    private int mLeftEncoderTarget;
-    private int mRightEncoderTarget;
     private int TARGET;
     private int TARGET_1;
 
@@ -120,19 +116,19 @@ public class LockdownTeleOp extends LinearOpMode {
                 HookArm.setPower(-0.5);
             }
             if (gamepad2.b) {
-                TM.setPower(-1);
+                TM.setPower(-0.7);
                 sleep(50);
             }
             if (gamepad2.a) {
-                W.setPower(-1);
-                sleep(50);
-            }
-            if (gamepad2.x) {
-                TM.setPower(1);
+                W.setPower(-0.7);
                 sleep(50);
             }
             if (gamepad2.y) {
-                W.setPower(1);
+                TM.setPower(0.7);
+                sleep(50);
+            }
+            if (gamepad2.x) {
+                W.setPower(0.7);
                 sleep(50);
             }
             if (gamepad1.left_bumper) {
@@ -163,7 +159,7 @@ public class LockdownTeleOp extends LinearOpMode {
             if (-gamepad2.left_stick_y > 0) {
                 switch (mHookArmState) {
                     case STATE_ONE:
-                        TM.setPower(0.60);
+                        TM.setPower(0.55);
                         W.setPower(getPWRF(REV));
                         sleep(600);
                         newHookState(State.STATE_TWO);
@@ -181,7 +177,7 @@ public class LockdownTeleOp extends LinearOpMode {
                         newHookState(State.STATE_FOUR);
                         break;
                     case STATE_FOUR:
-                        TM.setPower(0.50);
+                        TM.setPower(0.45);
                         W.setPower(getPWRF(REV));
                         sleep(550);
                         newHookState(State.STATE_FIVE);
@@ -252,11 +248,12 @@ public class LockdownTeleOp extends LinearOpMode {
                 TM.setPower(0);
                 W.setPower(0);
             }
-            if (gamepad2.right_stick_x > 0.1) {
+            if (gamepad1.a) {
                 C.setPosition(0);
-            }
-            if (gamepad2.right_stick_x < -0.1) {
+            } else if (gamepad1.b) {
                 C.setPosition(1);
+            } else {
+                C.setPosition(0.5);
             }
             telemetry.addData("HookArm State", mHookArmState);
             if (mHookArmState == State.STATE_SIX) {
@@ -271,24 +268,6 @@ public class LockdownTeleOp extends LinearOpMode {
         HookArm.setPower(0);
         motorLeft.setPower(0);
         motorRight.setPower(0);
-    }
-
-    public int getMotorPosition(DcMotor motor) throws InterruptedException {
-        DcMotorController motorController = motor.getController();
-        if (motorController.getMotorControllerDeviceMode() == DcMotorController.DeviceMode.READ_ONLY) {
-            return motor.getCurrentPosition();
-        } else {
-            motorController.setMotorControllerDeviceMode(DcMotorController.DeviceMode.READ_ONLY);
-            while (motorController.getMotorControllerDeviceMode() != DcMotorController.DeviceMode.READ_ONLY) {
-                waitForNextHardwareCycle();
-            }
-            int currPosition = motor.getCurrentPosition();
-            motorController.setMotorControllerDeviceMode(DcMotorController.DeviceMode.WRITE_ONLY);
-            while (motorController.getMotorControllerDeviceMode() != DcMotorController.DeviceMode.WRITE_ONLY) {
-                waitForNextHardwareCycle();
-            }
-            return currPosition;
-        }
     }
 
     int setTARGET_1(int i) {
@@ -337,7 +316,7 @@ public class LockdownTeleOp extends LinearOpMode {
         if (ROTATION_NUMBER < 0) {
             ROTATION_NUMBER = 0;
         }
-        double[] array = {0.90, 1, 1, 1, 1, 1, 1};
+        double[] array = {0.90, 0.90, 0.95, 1, 1, 1, 1};
         // 13-14 in, 23.5 in, 34 in, 43 in, 52 in , 60 in
         return array[ROTATION_NUMBER];
     }
@@ -353,138 +332,8 @@ public class LockdownTeleOp extends LinearOpMode {
         return array[ROTATION_NUMBER];
     }
 
-    private void newState(State newState) {
-        // Reset the state time, and then change to next state.
-        mStateTime.reset();
-        mCurrentState = newState;
-    }
-
     private void newHookState(State newState) {
         mStateTime.reset();
         mHookArmState = newState;
-    }
-
-    //--------------------------------------------------------------------------
-    // setEncoderTarget( LeftEncoder, RightEncoder);
-    // Sets Absolute Encoder Position
-    //--------------------------------------------------------------------------
-    void setEncoderTarget(int leftEncoder, int rightEncoder) {
-        motorLeft.setTargetPosition(mLeftEncoderTarget = leftEncoder);
-        motorRight.setTargetPosition(mRightEncoderTarget = rightEncoder);
-    }
-
-    //--------------------------------------------------------------------------
-    // addEncoderTarget( LeftEncoder, RightEncoder);
-    // Sets relative Encoder Position.  Offset current targets with passed data
-    //--------------------------------------------------------------------------
-    void addEncoderTarget(int leftEncoder, int rightEncoder) {
-        motorLeft.setTargetPosition(mLeftEncoderTarget += leftEncoder);
-        motorRight.setTargetPosition(mRightEncoderTarget += rightEncoder);
-    }
-
-    //--------------------------------------------------------------------------
-    // setDrivePower( LeftPower, RightPower);
-    //--------------------------------------------------------------------------
-    void setDrivePower(double leftPower, double rightPower) {
-        motorLeft.setPower(Range.clip(leftPower, -1, 1));
-        motorRight.setPower(Range.clip(rightPower, -1, 1));
-    }
-
-    //--------------------------------------------------------------------------
-    // setDriveSpeed( LeftSpeed, RightSpeed);
-    //--------------------------------------------------------------------------
-    void setDriveSpeed(double leftSpeed, double rightSpeed) {
-        setDrivePower(leftSpeed, rightSpeed);
-    }
-
-    //--------------------------------------------------------------------------
-    // runToPosition ()
-    // Set both drive motors to encoder servo mode (requires encoders)
-    //--------------------------------------------------------------------------
-    public void runToPosition() {
-        setDriveMode(DcMotorController.RunMode.RUN_TO_POSITION);
-    }
-
-    //--------------------------------------------------------------------------
-    // useConstantSpeed ()
-    // Set both drive motors to constant speed (requires encoders)
-    //--------------------------------------------------------------------------
-    public void useConstantSpeed() {
-        setDriveMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
-    }
-
-    //--------------------------------------------------------------------------
-    // useConstantPower ()
-    // Set both drive motors to constant power (encoders NOT required)
-    //--------------------------------------------------------------------------
-    public void useConstantPower() {
-        setDriveMode(DcMotorController.RunMode.RUN_WITHOUT_ENCODERS);
-    }
-
-    //--------------------------------------------------------------------------
-    // resetDriveEncoders()
-    // Reset both drive motor encoders, and clear current encoder targets.
-    //--------------------------------------------------------------------------
-    public void resetDriveEncoders() {
-        setEncoderTarget(0, 0);
-        setDriveMode(DcMotorController.RunMode.RESET_ENCODERS);
-    }
-
-    //--------------------------------------------------------------------------
-    // syncEncoders()
-    // Load the current encoder values into the Target Values
-    // Essentially synch's the software with the hardware
-    //--------------------------------------------------------------------------
-    void synchEncoders() {
-        //	get and set the encoder targets
-        mLeftEncoderTarget = motorLeft.getCurrentPosition();
-        mRightEncoderTarget = motorRight.getCurrentPosition();
-    }
-
-    //--------------------------------------------------------------------------
-    // setDriveMode ()
-    // Set both drive motors to new mode if they need changing.
-    //--------------------------------------------------------------------------
-    public void setDriveMode(DcMotorController.RunMode mode) {
-        // Ensure the motors are in the correct mode.
-        if (motorLeft.getMode() != mode)
-            motorLeft.setMode(mode);
-
-        if (motorRight.getMode() != mode)
-            motorRight.setMode(mode);
-    }
-
-    //--------------------------------------------------------------------------
-    // getLeftPosition ()
-    // Return Left Encoder count
-    //--------------------------------------------------------------------------
-    int getLeftPosition() {
-        return motorLeft.getCurrentPosition();
-    }
-
-    //--------------------------------------------------------------------------
-    // getRightPosition ()
-    // Return Right Encoder count
-    //--------------------------------------------------------------------------
-    int getRightPosition() {
-        return motorRight.getCurrentPosition();
-    }
-
-    //--------------------------------------------------------------------------
-    // moveComplete()
-    // Return true if motors have both reached the desired encoder target
-    //--------------------------------------------------------------------------
-    boolean moveComplete() {
-        //  return (!mLeftMotor.isBusy() && !mRightMotor.isBusy());
-        return ((Math.abs(getLeftPosition() - mLeftEncoderTarget) < 10) &&
-                (Math.abs(getRightPosition() - mRightEncoderTarget) < 10));
-    }
-
-    //--------------------------------------------------------------------------
-    // encodersAtZero()
-    // Return true if both encoders read zero (or close)
-    //--------------------------------------------------------------------------
-    boolean encodersAtZero() {
-        return ((Math.abs(getLeftPosition()) < 5) && (Math.abs(getRightPosition()) < 5));
     }
 }

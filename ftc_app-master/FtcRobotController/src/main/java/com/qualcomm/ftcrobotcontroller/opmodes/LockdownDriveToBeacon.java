@@ -181,7 +181,7 @@ public class LockdownDriveToBeacon extends LinearOpMode {
         delayTime = FRACTION * DISTANCE;
         double ROTATIONS = DISTANCE / CIRCUMFERENCE;
         double COUNTS = ENCODER_CPR * ROTATIONS * GEAR_RATIO;
-        int RightTarget = (int) COUNTS + getMotorPosition(motorRight);
+        int RightTarget = (int) COUNTS;
         motorRight.setTargetPosition(RightTarget);
         motorRight.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
         motorRight.setPower(power);
@@ -250,45 +250,6 @@ public class LockdownDriveToBeacon extends LinearOpMode {
         dP.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
         dP.setPower(-0.1);
         waitOneFullHardwareCycle();
-    }
-
-    public void releaseTAPE() throws InterruptedException {
-        switch (mHookArmState) {
-            case STATE_ONE:
-                TM.setPower(0.60);
-                W.setPower(getPWRF(REV));
-                sleep(600);
-                newHookState(State.STATE_TWO);
-                break;
-            case STATE_TWO:
-                TM.setPower(0.55);
-                W.setPower(getPWRF(REV));
-                sleep(550);
-                break;
-        }
-        REV++;
-        waitOneFullHardwareCycle();
-    }
-
-    public void pullTAPE() throws InterruptedException {
-        switch (mHookArmState) {
-            case STATE_ONE:
-                TM.setPower(-1);
-                W.setPower(-getPWRR(REV));
-                motorRight.setPower(1);
-                motorLeft.setPower(1);
-                sleep(550);
-                break;
-            case STATE_TWO:
-                TM.setPower(-1);
-                W.setPower(-getPWRR(REV));
-                motorRight.setPower(0.8);
-                motorLeft.setPower(0.7);
-                sleep(550);
-                newHookState(State.STATE_TWO);
-                break;
-        }
-        REV--;
     }
 
     public void newHookState(State state) throws InterruptedException {

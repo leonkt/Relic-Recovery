@@ -80,6 +80,7 @@ public class LockdownRedAuto extends LinearOpMode {
         waitForStart();
 
         mTotalTime.startTime();
+        sleep(7000);
         pivotGyro(-40.0, 0.5);
         driveForward(64.0, 0.5);
         sleep(100);
@@ -181,35 +182,6 @@ public class LockdownRedAuto extends LinearOpMode {
         telemetry.addData("Total Time", mTotalTime.time());
     }
 
-    public void driveBackward(double DISTANCE, double power) throws InterruptedException {
-        double FRACTION;
-        double delayTime = 0.0;
-        normalSpeed();
-        mRunTime.reset();
-        if (power == 0.5) {
-            FRACTION = 0.095;
-        } else if (power == 0.2) {
-            FRACTION = 0.35;
-        } else {
-            FRACTION = 0.075;
-        }
-        delayTime = FRACTION * DISTANCE;
-        double ROTATIONS = DISTANCE / CIRCUMFERENCE;
-        double COUNTS = ENCODER_CPR * ROTATIONS * GEAR_RATIO;
-        int LeftTarget = -(int) COUNTS + getMotorPosition(motorLeft);
-        int RightTarget = -(int) COUNTS + getMotorPosition(motorRight);
-        motorLeft.setTargetPosition(LeftTarget);
-        motorRight.setTargetPosition(RightTarget);
-        motorLeft.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        motorRight.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        motorLeft.setPower(power);
-        motorRight.setPower(power);
-        mRunTime.startTime();
-        while (mRunTime.time() < delayTime) {
-            waitOneFullHardwareCycle();
-        }
-    }
-
     public void driveForward(double DISTANCE, double power) throws InterruptedException {
         double FRACTION;
         double delayTime = 0.0;
@@ -239,31 +211,6 @@ public class LockdownRedAuto extends LinearOpMode {
         }
         motorLeft.setPower(0.0);
         motorRight.setPower(0.0);
-    }
-
-    public void driveRightForward(double DISTANCE, double power) throws InterruptedException {
-        double FRACTION;
-        double delayTime = 0.0;
-        normalSpeed();
-        mRunTime.reset();
-        if (power == 0.5) {
-            FRACTION = 0.095;
-        } else if (power == 0.2) {
-            FRACTION = 0.35;
-        } else {
-            FRACTION = 0.08;
-        }
-        delayTime = FRACTION * DISTANCE;
-        double ROTATIONS = DISTANCE / CIRCUMFERENCE;
-        double COUNTS = ENCODER_CPR * ROTATIONS * GEAR_RATIO;
-        int RightTarget = (int) COUNTS + getMotorPosition(motorRight);
-        motorRight.setTargetPosition(RightTarget);
-        motorRight.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        motorRight.setPower(power);
-        mRunTime.startTime();
-        while (mRunTime.time() < delayTime) {
-            waitOneFullHardwareCycle();
-        }
     }
 
     public void spinGyro(double degrees, double power) throws InterruptedException {

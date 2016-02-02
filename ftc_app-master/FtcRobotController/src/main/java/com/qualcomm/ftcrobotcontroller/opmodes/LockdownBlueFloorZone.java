@@ -82,7 +82,7 @@ public class LockdownBlueFloorZone extends LinearOpMode {
         lowerdP();
         tDrop();
         sleep(100);
-        driveForward(12.0, 0.5);
+        driveForward(12.0, 0.2);
         zerodP();
         spinGyro(80.0, 0.5);
         driveBackward(23.0, 0.5);

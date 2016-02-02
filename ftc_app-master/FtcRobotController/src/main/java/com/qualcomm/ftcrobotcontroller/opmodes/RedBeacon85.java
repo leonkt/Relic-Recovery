@@ -10,9 +10,9 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
- * Created by Owner on 12/27/2015.
+ * Created by Owner on 1/30/2016.
  */
-public class LockdownFloorZone extends LinearOpMode {
+public class RedBeacon85 extends LinearOpMode {
 
     DcMotor motorRight;
     DcMotor motorLeft;
@@ -28,11 +28,13 @@ public class LockdownFloorZone extends LinearOpMode {
     DcMotorController mc2;
     DcMotorController mc3;
     ServoController sc1;
+    private int REV = 0;
     private long lastTime;
     private double zeroOffset;
     private double gyroHeading;
     private ElapsedTime mRunTime = new ElapsedTime();
     private ElapsedTime mTotalTime = new ElapsedTime();
+    private ElapsedTime mClock = new ElapsedTime();
 
     final static int ENCODER_CPR = 1120;     //Encoder Counts per Revolution
     final static double GEAR_RATIO = 1;      //Gear Ratio
@@ -55,38 +57,46 @@ public class LockdownFloorZone extends LinearOpMode {
         motorRight = hardwareMap.dcMotor.get("motorRight");
         motorRight.setDirection(DcMotor.Direction.REVERSE);
         motorLeft = hardwareMap.dcMotor.get("motorLeft");
+        dP = hardwareMap.dcMotor.get("Dustpan");
         motorRight.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
         motorLeft.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
         motorRight.setMode(DcMotorController.RunMode.RESET_ENCODERS);
         motorLeft.setMode(DcMotorController.RunMode.RESET_ENCODERS);
         HookArm.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
         HookArm.setMode(DcMotorController.RunMode.RESET_ENCODERS);
-        dP = hardwareMap.dcMotor.get("Dustpan");
         dP.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
         dP.setMode(DcMotorController.RunMode.RESET_ENCODERS);
         mRunTime.reset();
         mTotalTime.reset();
+        T.setPosition(0.05);
+        sleep(10);
         calibrateGyro();
 
         waitForStart();
 
         mTotalTime.startTime();
-        driveBackward(35.0, 0.5);
-        spinGyro(-39.0, 0.5);
-        driveBackward(61.65, 0.5);
-        spinGyro(-37.0, 0.5);
-        sleep(100);
+        driveBackward(7.1, 0.5);
+        spinGyro(-80.0, 0.5);
+        setClock(0.15);
+        driveBackward(8.6, 0.2);
+        grabClimbers();
+        driveForward(21, 0.5);
+        setClock(0.15);
+        spinGyro(40.0, 0.33);
+        driveBackward(47.0, 0.5);
+        setClock(0.06);
+        driveBackward(49.5, 0.5);
+        setClock(0.2);
+        spinGyro(-40.0, 0.3);
+        driveBackward(13.0, 0.5);
         raisedP();
-        tPrep();
-        sleep(100);
-        driveBackward(13.0, 0.2);
+        setClock(0.1);
+        driveBackward(15.0, 0.2);
         lowerdP();
         tDrop();
-        sleep(100);
-        driveForward(12.0, 0.2);
+        setClock(1.5);
+        driveForward(15.0, 0.5);
         zerodP();
-        spinGyro(-87.0, 0.5);
-        driveBackward(23.0, 0.5);
         telemetry.addData("Total Time", mTotalTime.time());
     }
 
@@ -96,7 +106,7 @@ public class LockdownFloorZone extends LinearOpMode {
         normalSpeed();
         mRunTime.reset();
         if (power == 0.5) {
-            FRACTION = 0.095;
+            FRACTION = 0.097;
         } else if (power == 0.2) {
             FRACTION = 0.35;
         } else {
@@ -120,6 +130,9 @@ public class LockdownFloorZone extends LinearOpMode {
             }
             waitOneFullHardwareCycle();
         }
+        motorLeft.setPower(0.0);
+        motorRight.setPower(0.0);
+        waitOneFullHardwareCycle();
     }
 
     public void driveForward(double DISTANCE, double power) throws InterruptedException {
@@ -128,7 +141,7 @@ public class LockdownFloorZone extends LinearOpMode {
         normalSpeed();
         mRunTime.reset();
         if (power == 0.5) {
-            FRACTION = 0.095;
+            FRACTION = 0.097;
         } else if (power == 0.2) {
             FRACTION = 0.35;
         } else {
@@ -149,12 +162,14 @@ public class LockdownFloorZone extends LinearOpMode {
         while (mRunTime.time() < delayTime) {
             waitOneFullHardwareCycle();
         }
+        motorLeft.setPower(0.0);
+        motorRight.setPower(0.0);
     }
 
     public void spinGyro(double degrees, double power) throws InterruptedException {
         constantSpeed();
         double leftPower, rightPower;
-        if (degrees <= 0.0) {
+        if (degrees < 0.0) {
             leftPower = -power;
             rightPower = power;
         } else {
@@ -163,8 +178,36 @@ public class LockdownFloorZone extends LinearOpMode {
         }
         motorLeft.setPower(leftPower);
         motorRight.setPower(rightPower);
+        waitOneFullHardwareCycle();
         lastTime = System.currentTimeMillis();
         gyroHeading = 0.0;
+        waitOneFullHardwareCycle();
+        while (Math.abs(gyroHeading) <= Math.abs(degrees)) {
+            integrateGyro();
+            telemetry.addData("Gyro Heading", gyroHeading);
+            waitOneFullHardwareCycle();
+        }
+        motorLeft.setPower(0.0);
+        motorRight.setPower(0.0);
+        waitOneFullHardwareCycle();
+    }
+
+    public void pivotGyro(double degrees, double power) throws InterruptedException {
+        constantSpeed();
+        double leftPower, rightPower;
+        if (degrees < 0.0) {
+            leftPower = 0.0;
+            rightPower = power;
+        } else {
+            leftPower = power;
+            rightPower = 0.0;
+        }
+        motorLeft.setPower(leftPower);
+        motorRight.setPower(rightPower);
+        waitOneFullHardwareCycle();
+        lastTime = System.currentTimeMillis();
+        gyroHeading = 0.0;
+        waitOneFullHardwareCycle();
         while (Math.abs(gyroHeading) <= Math.abs(degrees)) {
             telemetry.addData("Gyro Heading", gyroHeading);
             integrateGyro();
@@ -172,27 +215,31 @@ public class LockdownFloorZone extends LinearOpMode {
         }
         motorLeft.setPower(0.0);
         motorRight.setPower(0.0);
-    }
-
-    public void tPrep() throws InterruptedException {
-        T.setPosition(0.25);
         waitOneFullHardwareCycle();
     }
 
     public void tDrop() throws InterruptedException {
-        T.setPosition(0.55);
+        T.setPosition(0.48);
         waitOneFullHardwareCycle();
+    }
+
+    public void grabClimbers() throws InterruptedException {
+        dP.setTargetPosition(40);
+        dP.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
+        dP.setPower(-0.09);
+        T.setPosition(0.23);
+        setClock(0.1);
     }
 
     public void raisedP() throws InterruptedException {
         dP.setTargetPosition(150);
         dP.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        dP.setPower(-0.09);
-        sleep(165);
-        dP.setTargetPosition(250);
+        dP.setPower(-0.04);
+        setClock(0.200);
+        dP.setTargetPosition(217);
         dP.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        dP.setPower(-0.07);
-        sleep(150);
+        dP.setPower(-0.04);
+        setClock(0.200);
     }
 
     public void lowerdP() throws InterruptedException {
@@ -214,6 +261,7 @@ public class LockdownFloorZone extends LinearOpMode {
         motorLeft.setMode(DcMotorController.RunMode.RESET_ENCODERS);
         motorRight.setMode(DcMotorController.RunMode.RESET_ENCODERS);
         waitOneFullHardwareCycle();
+        setClock(0.05);
     }
 
     public void normalSpeed() throws InterruptedException {
@@ -238,10 +286,19 @@ public class LockdownFloorZone extends LinearOpMode {
         zeroOffset = sum / 50.0;
     }
 
-    public void integrateGyro() {
+    public void integrateGyro() throws InterruptedException {
         long currTime = System.currentTimeMillis();
         gyroHeading += (G.getRotation() - zeroOffset) * (currTime - lastTime) / 1000.0;
         lastTime = currTime;
+        waitOneFullHardwareCycle();
+    }
+
+    public void setClock(double time) throws InterruptedException {
+        mClock.reset();
+        mClock.startTime();
+        while(mClock.time() < time) {
+            waitOneFullHardwareCycle();
+        }
     }
 
     public int getMotorPosition(DcMotor motor) throws InterruptedException {

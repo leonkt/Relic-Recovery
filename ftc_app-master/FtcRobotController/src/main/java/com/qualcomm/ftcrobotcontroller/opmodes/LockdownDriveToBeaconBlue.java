@@ -115,8 +115,8 @@ public class LockdownDriveToBeaconBlue extends LinearOpMode {
         delayTime = FRACTION * DISTANCE;
         double ROTATIONS = DISTANCE / CIRCUMFERENCE;
         double COUNTS = ENCODER_CPR * ROTATIONS * GEAR_RATIO;
-        int LeftTarget = - (int) COUNTS + getMotorPosition(motorLeft);
-        int RightTarget = - (int) COUNTS + getMotorPosition(motorRight);
+        int LeftTarget = -(int) COUNTS + getMotorPosition(motorLeft);
+        int RightTarget = -(int) COUNTS + getMotorPosition(motorRight);
         motorLeft.setTargetPosition(LeftTarget);
         motorRight.setTargetPosition(RightTarget);
         motorLeft.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
