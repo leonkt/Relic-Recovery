@@ -21,40 +21,32 @@
  * SOFTWARE.
  */
 
-package com.qualcomm.ftcrobotcontroller.opmodes;
-
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import ftc8564.Robot;
+package ftc8564;
 
 /**
- * Created by Owner on 12/27/2015.
+ * Created by Owner on 2/4/2016.
  */
-public class LockdownBlueFloorZone extends LinearOpMode {
 
-    public Robot robot;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-    public void runOpMode() throws InterruptedException {
+public class Robot {
 
-        robot = new Robot(this,true);
-        robot.driveBase.calibrateGyro();
+    public DriveBase driveBase = null;
+    public Hanger hanger = null;
+    public ClimberDeployer climberDeployer = null;
 
-        waitForStart();
+    public Robot(LinearOpMode opMode, Boolean auto) throws InterruptedException {
+        driveBase = new DriveBase(opMode);
+        if(!auto) {
+            driveBase.constantSpeed();
+            hanger = new Hanger(opMode,driveBase);
+        }
+        climberDeployer = new ClimberDeployer(opMode);
+    }
 
-        robot.driveBase.driveBackward(35.0, 0.5);
-        robot.driveBase.spinGyro(37.5, 0.5);
-        robot.driveBase.driveBackward(60.0, 0.5);
-        robot.driveBase.spinGyro(37.0, 0.5);
-        robot.driveBase.waitTime(0.1);
-        robot.climberDeployer.raisedP();
-        robot.climberDeployer.tPrep();
-        robot.driveBase.driveBackward(14.0, 0.2);
-        robot.climberDeployer.lowerdP();
-        robot.climberDeployer.tDrop();
-        robot.driveBase.waitTime(0.1);
-        robot.driveBase.driveForward(12.0, 0.2);
-        robot.climberDeployer.zerodP();
-        robot.driveBase.spinGyro(80.0, 0.5);
-        robot.driveBase.driveBackward(23.0, 0.5);
+    public void stop() throws InterruptedException {
+        driveBase.stop();
+        hanger.stop();
     }
 
 }
