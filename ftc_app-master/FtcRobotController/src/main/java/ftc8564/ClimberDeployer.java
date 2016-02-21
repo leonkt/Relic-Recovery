@@ -39,6 +39,7 @@ public class ClimberDeployer {
     private DcMotor dP;
     private Servo T;
     private Servo flipper;
+    private Servo boxLeftRight;
     private ElapsedTime mClock = new ElapsedTime();
     private int TARGET_1;
 
@@ -48,8 +49,10 @@ public class ClimberDeployer {
         dP = opMode.hardwareMap.dcMotor.get("Dustpan");
         T = opMode.hardwareMap.servo.get("T");
         flipper = opMode.hardwareMap.servo.get("flipper");
+        boxLeftRight = opMode.hardwareMap.servo.get("boxLeftRight");
         dP.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
         dP.setMode(DcMotorController.RunMode.RESET_ENCODERS);
+        boxLeftRight.setPosition(0.5);
 
     }
 
@@ -78,6 +81,21 @@ public class ClimberDeployer {
 
     public void tHighUp() throws InterruptedException {
         T.setPosition(0.75);
+        opMode.waitOneFullHardwareCycle();
+    }
+
+    public void tiltBoxLeft() throws InterruptedException {
+        boxLeftRight.setPosition(0.25);
+        opMode.waitOneFullHardwareCycle();
+    }
+
+    public void tiltBoxRight() throws InterruptedException {
+        boxLeftRight.setPosition(0.75);
+        opMode.waitOneFullHardwareCycle();
+    }
+
+    public void centerBox() throws InterruptedException {
+        boxLeftRight.setPosition(0.5);
         opMode.waitOneFullHardwareCycle();
     }
 
@@ -137,11 +155,11 @@ public class ClimberDeployer {
         setTARGET_1(150);
     }
 
-    public void dP250() throws InterruptedException {
-        dP.setTargetPosition(250);
+    public void dP550() throws InterruptedException {
+        dP.setTargetPosition(550);
         dP.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
         dP.setPower(-0.10);
-        setTARGET_1(250);
+        setTARGET_1(550);
     }
 
     public void dP950() throws InterruptedException {

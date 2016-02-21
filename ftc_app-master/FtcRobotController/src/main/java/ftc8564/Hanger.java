@@ -41,6 +41,7 @@ public class Hanger {
     private DcMotor TM;
     private DcMotor HookArm;
     private Servo allClear;
+    private Servo ziplineServo;
     private int TARGET;
     private int REV;
     private enum State {
@@ -57,6 +58,7 @@ public class Hanger {
         TM = opMode.hardwareMap.dcMotor.get("TM");
         allClear = opMode.hardwareMap.servo.get("allClear");
         HookArm = opMode.hardwareMap.dcMotor.get("HookArm");
+        ziplineServo = opMode.hardwareMap.servo.get("C");
         HookArm.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
         HookArm.setMode(DcMotorController.RunMode.RESET_ENCODERS);
         mHookArmState = State.STATE_ONE;
@@ -202,6 +204,18 @@ public class Hanger {
     public void stop() throws InterruptedException {
         TM.setPower(0.0);
         W.setPower(0.0);
+    }
+
+    public void lowerZipline() throws InterruptedException {
+        ziplineServo.setPosition(0);
+    }
+
+    public void raiseZipline() throws InterruptedException {
+        ziplineServo.setPosition(1);
+    }
+
+    public void zeroZipline() throws InterruptedException {
+        ziplineServo.setPosition(0.5);
     }
 
     int setTARGET(int i) {

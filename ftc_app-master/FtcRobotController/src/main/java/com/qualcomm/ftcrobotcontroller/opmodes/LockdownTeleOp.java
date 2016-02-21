@@ -68,7 +68,7 @@ public class LockdownTeleOp extends LinearOpMode {
             } else if (gamepad1.right_bumper) {
                 robot.climberDeployer.dP150();
             } else if (gamepad1.left_trigger == 1) {
-                robot.climberDeployer.dP250();
+                robot.climberDeployer.dP550();
             } else if (gamepad1.right_trigger == 1) {
                 robot.climberDeployer.dP950();
             } else {
@@ -101,6 +101,21 @@ public class LockdownTeleOp extends LinearOpMode {
             }
             if(gamepad2.dpad_left) {
                 robot.climberDeployer.tHighUp();
+            }
+            if(gamepad2.x) {
+                robot.climberDeployer.tiltBoxLeft();
+            } else if(gamepad2.b) {
+                robot.climberDeployer.tiltBoxRight();
+            } else {
+                robot.climberDeployer.centerBox();
+            }
+            // Zipline Climbers
+            if(gamepad1.x) {
+                robot.hanger.raiseZipline();
+            } else if(gamepad1.b) {
+                robot.hanger.lowerZipline();
+            } else {
+                robot.hanger.zeroZipline();
             }
         }
     }
