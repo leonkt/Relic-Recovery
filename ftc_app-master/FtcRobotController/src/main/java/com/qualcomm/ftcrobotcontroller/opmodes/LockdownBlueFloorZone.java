@@ -35,7 +35,7 @@ public class LockdownBlueFloorZone extends LinearOpMode {
 
     public void runOpMode() throws InterruptedException {
 
-        robot = new Robot(this,true);
+        robot = new Robot(this);
         robot.driveBase.calibrateGyro();
 
         waitForStart();

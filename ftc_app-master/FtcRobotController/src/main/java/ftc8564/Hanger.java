@@ -62,6 +62,7 @@ public class Hanger {
         HookArm.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
         HookArm.setMode(DcMotorController.RunMode.RESET_ENCODERS);
         mHookArmState = State.STATE_ONE;
+        allClear.setPosition(0.5);
     }
 
     public void upAllClear() throws InterruptedException {

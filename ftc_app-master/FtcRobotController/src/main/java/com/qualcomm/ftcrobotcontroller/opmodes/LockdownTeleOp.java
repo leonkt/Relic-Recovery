@@ -37,7 +37,8 @@ public class LockdownTeleOp extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        robot = new Robot(this, false);
+        robot = new Robot(this);
+        robot.driveBase.constantSpeed();
         waitForStart();
         while (opModeIsActive()) {
             // Drive Train command
@@ -66,57 +67,58 @@ public class LockdownTeleOp extends LinearOpMode {
             if (gamepad1.left_bumper) {
                 robot.climberDeployer.dP0();
             } else if (gamepad1.right_bumper) {
-                robot.climberDeployer.dP150();
+                robot.climberDeployer.dP250();
             } else if (gamepad1.left_trigger == 1) {
-                robot.climberDeployer.dP550();
+                robot.climberDeployer.dP700();
             } else if (gamepad1.right_trigger == 1) {
                 robot.climberDeployer.dP950();
             } else {
                 robot.climberDeployer.steadydP();
             }
             // All Clear Signal
-            if(gamepad1.dpad_up) {
+            if (gamepad1.dpad_up) {
                 robot.hanger.upAllClear();
-            } else if(gamepad1.dpad_down) {
+            } else if (gamepad1.dpad_down) {
                 robot.hanger.downAllClear();
             } else {
                 robot.hanger.noAllClear();
             }
             //Flipper
-            if(gamepad1.dpad_left) {
+            if (gamepad1.dpad_left) {
                 robot.climberDeployer.setFlipper();
             }
-            if(gamepad1.dpad_right) {
+            if (gamepad1.dpad_right) {
                 robot.climberDeployer.stopFlipper();
             }
             //Climber Box
-            if(gamepad2.dpad_up) {
+            if (gamepad2.dpad_up) {
                 robot.climberDeployer.tZero();
             }
-            if(gamepad2.dpad_right) {
+            if (gamepad2.dpad_right) {
                 robot.climberDeployer.tPrep();
             }
-            if(gamepad2.dpad_down) {
+            if (gamepad2.dpad_down) {
                 robot.climberDeployer.tDrop();
             }
-            if(gamepad2.dpad_left) {
+            if (gamepad2.dpad_left) {
                 robot.climberDeployer.tHighUp();
             }
-            if(gamepad2.x) {
+            if (gamepad2.x) {
                 robot.climberDeployer.tiltBoxLeft();
-            } else if(gamepad2.b) {
+            } else if (gamepad2.b) {
                 robot.climberDeployer.tiltBoxRight();
             } else {
                 robot.climberDeployer.centerBox();
             }
             // Zipline Climbers
-            if(gamepad1.x) {
+            if (gamepad1.x) {
                 robot.hanger.raiseZipline();
-            } else if(gamepad1.b) {
+            } else if (gamepad1.b) {
                 robot.hanger.lowerZipline();
             } else {
                 robot.hanger.zeroZipline();
             }
-        }
+        } // end of if gamepad1.back not pressed
+
     }
 }

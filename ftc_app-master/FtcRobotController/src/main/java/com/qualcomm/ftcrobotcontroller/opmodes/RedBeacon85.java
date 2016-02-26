@@ -34,7 +34,7 @@ public class RedBeacon85 extends LinearOpMode {
     public Robot robot;
 
     public void runOpMode() throws InterruptedException {
-        robot = new Robot(this,true);
+        robot = new Robot(this);
         robot.driveBase.calibrateGyro();
 
         waitForStart();

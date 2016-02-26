@@ -35,18 +35,10 @@ public class Robot {
     public Hanger hanger = null;
     public ClimberDeployer climberDeployer = null;
 
-    public Robot(LinearOpMode opMode, Boolean auto) throws InterruptedException {
+    public Robot(LinearOpMode opMode) throws InterruptedException {
         driveBase = new DriveBase(opMode);
-        if(!auto) {
-            driveBase.constantSpeed();
-            hanger = new Hanger(opMode,driveBase);
-        }
         climberDeployer = new ClimberDeployer(opMode);
-    }
-
-    public void stop() throws InterruptedException {
-        driveBase.stop();
-        hanger.stop();
+        hanger = new Hanger(opMode,driveBase);
     }
 
 }

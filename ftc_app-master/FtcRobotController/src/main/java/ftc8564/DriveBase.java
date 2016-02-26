@@ -113,6 +113,37 @@ public class DriveBase {
         motorRight.setPower(0.0);
     }
 
+    public void driveForwardNoTouch(double DISTANCE, double power) throws InterruptedException {
+        double FRACTION;
+        double delayTime = 0.0;
+        normalSpeed();
+        mRunTime.reset();
+        if (power == 0.5) {
+            FRACTION = 0.095;
+        } else if (power == 0.2) {
+            FRACTION = 0.35;
+        } else {
+            FRACTION = 0.08;
+        }
+        delayTime = FRACTION * DISTANCE;
+        double ROTATIONS = DISTANCE / CIRCUMFERENCE;
+        double COUNTS = ENCODER_CPR * ROTATIONS * GEAR_RATIO;
+        int LeftTarget = (int) COUNTS + getMotorPosition(motorLeft);
+        int RightTarget = (int) COUNTS + getMotorPosition(motorRight);
+        motorLeft.setTargetPosition(LeftTarget);
+        motorRight.setTargetPosition(RightTarget);
+        motorLeft.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
+        motorRight.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
+        motorLeft.setPower(power);
+        motorRight.setPower(power);
+        mRunTime.startTime();
+        while (mRunTime.time() < delayTime) {
+            opMode.waitOneFullHardwareCycle();
+        }
+        motorLeft.setPower(0.0);
+        motorRight.setPower(0.0);
+    }
+
     public void driveBackward(double DISTANCE, double power) throws InterruptedException {
         double FRACTION;
         double delayTime = 0.0;
@@ -145,6 +176,35 @@ public class DriveBase {
         }
     }
 
+    public void driveBackwardNoTouch(double DISTANCE, double power) throws InterruptedException {
+        double FRACTION;
+        double delayTime = 0.0;
+        normalSpeed();
+        mRunTime.reset();
+        if (power == 0.5) {
+            FRACTION = 0.095;
+        } else if (power == 0.2) {
+            FRACTION = 0.35;
+        } else {
+            FRACTION = 0.08;
+        }
+        delayTime = FRACTION * DISTANCE;
+        double ROTATIONS = DISTANCE / CIRCUMFERENCE;
+        double COUNTS = ENCODER_CPR * ROTATIONS * GEAR_RATIO;
+        int LeftTarget = -(int) COUNTS + getMotorPosition(motorLeft);
+        int RightTarget = -(int) COUNTS + getMotorPosition(motorRight);
+        motorLeft.setTargetPosition(LeftTarget);
+        motorRight.setTargetPosition(RightTarget);
+        motorLeft.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
+        motorRight.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
+        motorLeft.setPower(power);
+        motorRight.setPower(power);
+        mRunTime.startTime();
+        while (mRunTime.time() < delayTime) {
+            opMode.waitOneFullHardwareCycle();
+        }
+    }
+
     public void spinGyro(double degrees, double power) throws InterruptedException {
         constantSpeed();
         double leftPower, rightPower;
@@ -162,7 +222,6 @@ public class DriveBase {
         gyroHeading = 0.0;
         opMode.waitOneFullHardwareCycle();
         while (Math.abs(gyroHeading) <= Math.abs(degrees)) {
-            opMode.telemetry.addData("Gyro Heading", gyroHeading);
             integrateGyro();
             opMode.waitOneFullHardwareCycle();
         }
@@ -188,7 +247,31 @@ public class DriveBase {
         gyroHeading = 0.0;
         opMode.waitOneFullHardwareCycle();
         while (Math.abs(gyroHeading) <= Math.abs(degrees)) {
-            opMode.telemetry.addData("Gyro Heading", gyroHeading);
+            integrateGyro();
+            opMode.waitOneFullHardwareCycle();
+        }
+        motorLeft.setPower(0.0);
+        motorRight.setPower(0.0);
+        opMode.waitOneFullHardwareCycle();
+    }
+
+    public void pivotLeftGyro(double degrees, double power) throws InterruptedException {
+        constantSpeed();
+        double leftPower, rightPower;
+        if (degrees < 0.0) {
+            leftPower = -power;
+            rightPower = 0.0;
+        } else {
+            leftPower = 0.0;
+            rightPower = -power;
+        }
+        motorLeft.setPower(leftPower);
+        motorRight.setPower(rightPower);
+        opMode.waitOneFullHardwareCycle();
+        lastTime = System.currentTimeMillis();
+        gyroHeading = 0.0;
+        opMode.waitOneFullHardwareCycle();
+        while (Math.abs(gyroHeading) <= Math.abs(degrees)) {
             integrateGyro();
             opMode.waitOneFullHardwareCycle();
         }
@@ -238,12 +321,6 @@ public class DriveBase {
         if (Math.abs(value) < deadband) value = 0.0;
         gyroHeading += value * (currTime - lastTime) / 1000.0;
         lastTime = currTime;
-        opMode.waitOneFullHardwareCycle();
-    }
-
-    public void stop() throws InterruptedException {
-        motorLeft.setPower(0.0);
-        motorRight.setPower(0.0);
         opMode.waitOneFullHardwareCycle();
     }
 

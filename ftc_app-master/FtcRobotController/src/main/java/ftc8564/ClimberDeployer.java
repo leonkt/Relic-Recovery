@@ -51,8 +51,11 @@ public class ClimberDeployer {
         flipper = opMode.hardwareMap.servo.get("flipper");
         boxLeftRight = opMode.hardwareMap.servo.get("boxLeftRight");
         dP.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
+        dP.setDirection(DcMotor.Direction.REVERSE);
         dP.setMode(DcMotorController.RunMode.RESET_ENCODERS);
-        boxLeftRight.setPosition(0.5);
+        boxLeftRight.setPosition(0.47);
+        T.setPosition(0);
+        flipper.setPosition(0);
 
     }
 
@@ -60,8 +63,18 @@ public class ClimberDeployer {
         flipper.setPosition(0);
     }
 
+    public void halfFlipper() throws InterruptedException {
+        flipper.setPosition(0.75);
+    }
+
     public void stopFlipper() throws InterruptedException {
-        flipper.setPosition(0.6);
+        flipper.setPosition(0.82);
+    }
+
+    public void sweepFlipper() throws InterruptedException {
+        stopFlipper();
+        waitTime(0.3);
+        setFlipper();
     }
 
     public void tZero() throws InterruptedException {
@@ -95,18 +108,28 @@ public class ClimberDeployer {
     }
 
     public void centerBox() throws InterruptedException {
-        boxLeftRight.setPosition(0.5);
+        boxLeftRight.setPosition(0.47);
+        opMode.waitOneFullHardwareCycle();
+    }
+
+    public void autonomousTiltRight() throws InterruptedException {
+        boxLeftRight.setPosition(0.67);
+        opMode.waitOneFullHardwareCycle();
+    }
+
+    public void autonomousTiltLeft() throws InterruptedException {
+        boxLeftRight.setPosition(0.25);
         opMode.waitOneFullHardwareCycle();
     }
 
     public void raisedP() throws InterruptedException {
         dP.setTargetPosition(150);
         dP.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        dP.setPower(-0.09);
+        dP.setPower(0.09);
         waitTime(0.165);
         dP.setTargetPosition(250);
         dP.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        dP.setPower(-0.07);
+        dP.setPower(0.07);
         waitTime(0.15);
     }
 
@@ -136,7 +159,7 @@ public class ClimberDeployer {
     public void grabClimbers() throws InterruptedException {
         dP.setTargetPosition(40);
         dP.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        dP.setPower(-0.09);
+        dP.setPower(0.09);
         T.setPosition(0.23);
         waitTime(0.1);
     }
@@ -144,35 +167,41 @@ public class ClimberDeployer {
     public void dP0() throws InterruptedException {
         dP.setTargetPosition(0);
         dP.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        dP.setPower(-0.10);
+        dP.setPower(0.05);
         setTARGET_1(0);
     }
 
-    public void dP150() throws InterruptedException {
-        dP.setTargetPosition(150);
+    public void dP250() throws InterruptedException {
+        dP.setTargetPosition(250);
         dP.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        dP.setPower(-0.20);
-        setTARGET_1(150);
+        dP.setPower(0.05);
+        setTARGET_1(250);
     }
 
-    public void dP550() throws InterruptedException {
-        dP.setTargetPosition(550);
+    public void dP650() throws InterruptedException {
+        dP.setTargetPosition(650);
         dP.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        dP.setPower(-0.10);
-        setTARGET_1(550);
+        dP.setPower(0.05);
+    }
+
+    public void dP700() throws InterruptedException {
+        dP.setTargetPosition(700);
+        dP.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
+        dP.setPower(0.05);
+        setTARGET_1(700);
     }
 
     public void dP950() throws InterruptedException {
         dP.setTargetPosition(950);
         dP.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        dP.setPower(-0.10);
+        dP.setPower(0.05);
         setTARGET_1(950);
     }
 
     public void steadydP() throws InterruptedException {
         dP.setTargetPosition(TARGET_1);
         dP.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        dP.setPower(-0.15);
+        dP.setPower(0.06);
     }
 
     int setTARGET_1(int i) {
