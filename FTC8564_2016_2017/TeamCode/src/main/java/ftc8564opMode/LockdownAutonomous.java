@@ -52,7 +52,6 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
 
     @Override
     public void runOpMode() throws InterruptedException {
-        HalDashboard dashboard = new HalDashboard(telemetry);
         robot = new Robot(this);
         doMenus();
         waitForStart();

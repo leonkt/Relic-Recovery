@@ -22,6 +22,7 @@
 
 package ftclib;
 
+import ftc8564lib.Robot;
 import hallib.HalDashboard;
 import hallib.HalUtil;
 
@@ -144,7 +145,7 @@ public abstract class FtcMenu
             throw new NullPointerException("menuTitle/menuButtons cannot be null.");
         }
 
-        dashboard = FtcOpMode.getDashboard();
+        dashboard = Robot.getDashboard();
         this.menuTitle = menuTitle;
         this.parent = parent;
         this.menuButtons = menuButtons;
@@ -261,7 +262,7 @@ public abstract class FtcMenu
                         //
                         // We are done with the menus. Let's clear the dashboard.
                         //
-                        FtcOpMode.getDashboard().clearDisplay();
+                        Robot.getDashboard().clearDisplay();
                     }
                 }
                 else if ((buttonsPressed & MENUBUTTON_UP) != 0)
