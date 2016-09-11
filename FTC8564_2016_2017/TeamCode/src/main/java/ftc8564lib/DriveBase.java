@@ -27,7 +27,6 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.GyroSensor;
-import com.qualcomm.robotcore.hardware.TouchSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
@@ -40,23 +39,28 @@ public class DriveBase {
     final static int WHEEL_DIAMETER = 2;     //Diameter of the wheel in inches
     final static double CIRCUMFERENCE = Math.PI * WHEEL_DIAMETER;
 
-    private DcMotor leftMotor, rightMotor;
-    private TouchSensor touchSensor;
+    private DcMotor leftMotorBack, leftMotorFront, rightMotorFront, rightMotorBack;
     private GyroSensor gyroSensor;
     private ElapsedTime mRunTime = new ElapsedTime();
-    private ElapsedTime mClock = new ElapsedTime();
 
     public DriveBase(LinearOpMode opMode) throws InterruptedException {
         this.opMode = opMode;
-        rightMotor = opMode.hardwareMap.dcMotor.get("rightMotor");
-        rightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        leftMotor = opMode.hardwareMap.dcMotor.get("leftMotor");
-        leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightMotorFront = opMode.hardwareMap.dcMotor.get("rightMotorFront");
+        rightMotorFront.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightMotorBack = opMode.hardwareMap.dcMotor.get("rightMotorBack");
+        rightMotorBack.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftMotorFront = opMode.hardwareMap.dcMotor.get("leftMotorFront");
+        leftMotorFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftMotorBack = opMode.hardwareMap.dcMotor.get("leftMotorBack");
+        leftMotorFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftMotorBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightMotorFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightMotorBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftMotorFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftMotorBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightMotorFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightMotorBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         gyroSensor = opMode.hardwareMap.gyroSensor.get("gyroSensor");
-        touchSensor = opMode.hardwareMap.touchSensor.get("touchSensor");
         mRunTime.reset();
         gyroSensor.calibrate();
     }
@@ -64,18 +68,30 @@ public class DriveBase {
     public void driveForward(double distance, double power) throws InterruptedException {
         double ROTATIONS = distance / CIRCUMFERENCE;
         double COUNTS = ENCODER_CPR * ROTATIONS * GEAR_RATIO;
-        int leftTarget = (int) COUNTS + leftMotor.getCurrentPosition();
-        int rightTarget = (int) COUNTS + rightMotor.getCurrentPosition();
-        leftMotor.setTargetPosition(leftTarget);
-        rightMotor.setTargetPosition(rightTarget);
-        leftMotor.setPower(power);
-        rightMotor.setPower(power);
-        while(leftMotor.isBusy() || rightMotor.isBusy()) {
-            if(!leftMotor.isBusy()) {
-                leftMotor.setPower(0);
+        int leftTargetFront = (int) COUNTS + leftMotorFront.getCurrentPosition();
+        int rightTargetFront = (int) COUNTS + rightMotorFront.getCurrentPosition();
+        int leftTargetBack = (int) COUNTS + leftMotorBack.getCurrentPosition();
+        int rightTargetBack = (int) COUNTS + rightMotorBack.getCurrentPosition();
+        leftMotorFront.setTargetPosition(leftTargetFront);
+        rightMotorFront.setTargetPosition(rightTargetFront);
+        leftMotorBack.setTargetPosition(leftTargetBack);
+        rightMotorBack.setTargetPosition(rightTargetBack);
+        leftMotorFront.setPower(power);
+        rightMotorFront.setPower(power);
+        leftMotorBack.setPower(power);
+        rightMotorBack.setPower(power);
+        while(leftMotorFront.isBusy() || rightMotorFront.isBusy() || leftMotorBack.isBusy() || rightMotorBack.isBusy()) {
+            if(!leftMotorFront.isBusy()) {
+                leftMotorFront.setPower(0);
             }
-            if(!rightMotor.isBusy()) {
-                rightMotor.setPower(0);
+            if(!rightMotorFront.isBusy()) {
+                rightMotorFront.setPower(0);
+            }
+            if(!leftMotorBack.isBusy()) {
+                leftMotorBack.setPower(0);
+            }
+            if(!rightMotorBack.isBusy()) {
+                rightMotorBack.setPower(0);
             }
         }
         resetMotors();
@@ -86,13 +102,17 @@ public class DriveBase {
         rightPower = Range.clip(rightPower, -1, 1);
         leftPower = (float) scaleInput(leftPower);
         rightPower = (float) scaleInput(rightPower);
-        leftMotor.setPower(leftPower);
-        rightMotor.setPower(rightPower);
+        leftMotorFront.setPower(leftPower);
+        rightMotorFront.setPower(rightPower);
+        leftMotorBack.setPower(leftPower);
+        rightMotorBack.setPower(rightPower);
     }
 
     public void resetMotors() throws InterruptedException {
-        leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftMotorFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightMotorFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftMotorBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightMotorBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 
     double scaleInput(double dVal) {

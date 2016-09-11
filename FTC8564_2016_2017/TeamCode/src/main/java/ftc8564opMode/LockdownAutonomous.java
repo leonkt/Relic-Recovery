@@ -25,16 +25,13 @@ package ftc8564opMode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.util.ElapsedTime;
 import ftclib.*;
-import hallib.*;
-import ftc8564lib.Robot;
+import ftc8564lib.*;
 
 @Autonomous(name="Autonomous", group="Autonomous")
 public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButtons {
 
-    Robot robot;
-    private ElapsedTime mClock = new ElapsedTime();
+    AutoProgram auto;
 
     public enum Alliance {
         RED_ALLIANCE,
@@ -52,7 +49,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
 
     @Override
     public void runOpMode() throws InterruptedException {
-        robot = new Robot(this);
+        auto = new AutoProgram(alliance);
         doMenus();
         waitForStart();
 
@@ -62,7 +59,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
                 break;
             default:
             case DO_NOTHING:
-                runDoNothing();
+                auto.runDoNothing();
                 break;
         }
     }
@@ -99,13 +96,5 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         FtcMenu.walkMenuTree(allianceMenu);
         alliance = (Alliance) allianceMenu.getCurrentChoiceObject();
         strategy = (Strategy) strategyMenu.getCurrentChoiceObject();
-    }
-
-    private void runDoNothing() throws InterruptedException {
-        mClock.reset();
-        mClock.startTime();
-        while (mClock.time() <= 29.9) {
-
-        }
     }
 }

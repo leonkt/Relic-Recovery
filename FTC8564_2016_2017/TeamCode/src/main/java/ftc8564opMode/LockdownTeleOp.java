@@ -23,13 +23,8 @@
 
 package ftc8564opMode;
 
-/**
- * Created by Owner on 2/7/2016.
- */
-
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-
 import ftc8564lib.Robot;
 
 @TeleOp(name="TeleOp", group="TeleOp")
@@ -44,7 +39,7 @@ public class LockdownTeleOp extends LinearOpMode {
         waitForStart();
         while (opModeIsActive()) {
             // Drive Train command
-            //robot.driveBase.tankDrive(-gamepad1.left_stick_y, -gamepad1.right_stick_y);
+            robot.driveBase.tankDrive(-gamepad1.left_stick_y, -gamepad1.right_stick_y);
             // Tape Measure and Winch motor
             if (-gamepad2.left_stick_y > 0) {
                 //robot.hanger.runUP();
