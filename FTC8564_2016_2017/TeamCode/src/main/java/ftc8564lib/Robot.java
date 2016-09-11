@@ -29,9 +29,10 @@ import hallib.*;
 public class Robot {
 
     private static HalDashboard dashboard = null;
+    public DriveBase driveBase = null;
 
     public Robot(LinearOpMode opMode) throws InterruptedException {
-
+        driveBase = new DriveBase(opMode);
     }
 
     public static HalDashboard getDashboard() {
