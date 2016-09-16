@@ -38,6 +38,9 @@ public class AutoProgram{
 
     public void runShootBall() throws InterruptedException {
         robot.driveBase.driveForward(10,10);
+        robot.driveBase.pidControlLeft.displayPidInfo(1);
+        robot.driveBase.pidControlRight.displayPidInfo(2);
+        robot.driveBase.pidControlTurn.displayPidInfo(3);
     }
 
     public void runDoNothing() throws InterruptedException {

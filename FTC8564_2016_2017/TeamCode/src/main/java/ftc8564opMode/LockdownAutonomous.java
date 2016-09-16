@@ -55,7 +55,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
 
         switch (strategy) {
             case TEST_1:
-                //runBeacon85(alliance);
+                auto.runShootBall();
                 break;
             default:
             case DO_NOTHING:
@@ -92,6 +92,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         allianceMenu.addChoice("Blue", Alliance.BLUE_ALLIANCE, strategyMenu);
 
         strategyMenu.addChoice("Do Nothing", Strategy.DO_NOTHING);
+        strategyMenu.addChoice("Shoot Ball", Strategy.TEST_1);
 
         FtcMenu.walkMenuTree(allianceMenu);
         alliance = (Alliance) allianceMenu.getCurrentChoiceObject();
