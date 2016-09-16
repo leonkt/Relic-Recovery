@@ -42,8 +42,8 @@ public class PIDControlTurn {
     private boolean noOscillation = false;
     private double minInput = 0.0;
     private double maxInput = 0.0;
-    private double minOutput = 0.0;
-    private double maxOutput = 360.0;
+    private double minOutput = -180.0;
+    private double maxOutput = 180.0;
 
     private double prevError = 0.0;
     private double totalError = 0.0;
