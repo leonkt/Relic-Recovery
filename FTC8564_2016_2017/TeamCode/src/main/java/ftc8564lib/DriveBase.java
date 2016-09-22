@@ -36,7 +36,7 @@ public class DriveBase {
     PIDControl pidControlLeft, pidControlRight;
     PIDControlTurn pidControlTurn;
 
-    final static int ENCODER_CPR = 1120;     //Encoder Counts per Revolution
+    final static int ENCODER_CPR = 1120;     //Encoder Counts per Revolution on NeveRest 40 Motors
     final static double GEAR_RATIO = 1;      //Gear Ratio
     final static int WHEEL_DIAMETER = 2;     //Diameter of the wheel in inches
     final static double CIRCUMFERENCE = Math.PI * WHEEL_DIAMETER;
@@ -86,8 +86,8 @@ public class DriveBase {
         pidControlTurn.setTarget(0.00);
         while (leftMotor.isBusy() || rightMotor.isBusy()) {
             if(!pidControlLeft.isOnTarget() || !pidControlRight.isOnTarget() || !pidControlTurn.isOnTarget()) {
-                double leftPower = pidControlLeft.getOutput() + pidControlTurn.getOutput();
-                double rightPower = pidControlRight.getOutput() - pidControlTurn.getOutput();
+                double leftPower = pidControlLeft.getPowerOutput() + pidControlTurn.getTurnOutput();
+                double rightPower = pidControlRight.getPowerOutput() - pidControlTurn.getTurnOutput();
                 leftPower = Range.clip(leftPower, -1, 1);
                 rightPower = Range.clip(rightPower, -1, 1);
                 leftMotor.setPower(leftPower);

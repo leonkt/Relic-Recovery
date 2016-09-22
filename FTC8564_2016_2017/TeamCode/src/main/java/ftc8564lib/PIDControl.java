@@ -24,8 +24,16 @@
 package ftc8564lib;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
-
 import hallib.*;
+
+/*
+*   PID Control is a way to minimize error by using a formula called Proportion, Integral, Derivative.
+*   Overtime, the robot will make large errors by not being extremely accurate when going to the target value.
+*   In order to fix this, it's possible to minimize the error by adjusting the power through proportion then integral and then derivative.
+*   Each one respectively are ok in reducing error. The Proportion method drastically affects the error so it needs a lot of fine tuning.
+*   The Integral and Derivative method are fine tuning methods and are combined to create an effective way of reducing error.
+*   These three methods are used for current time processing. A fourth method called feedforward sort of acts to predict the next error and adjust for it.
+*/
 
 public class PIDControl {
 
@@ -130,7 +138,7 @@ public class PIDControl {
     }
 
     //Calculates the power output for driving forward
-    public double getOutput() {
+    public double getPowerOutput() {
 
         double error = setPoint - motorL.getCurrentPosition();
         if (inverted) {
