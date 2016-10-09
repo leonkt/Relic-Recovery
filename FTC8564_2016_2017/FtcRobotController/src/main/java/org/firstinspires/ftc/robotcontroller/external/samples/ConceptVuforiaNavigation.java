@@ -98,7 +98,7 @@ public class ConceptVuforiaNavigation extends LinearOpMode {
      */
     VuforiaLocalizer vuforia;
 
-    @Override public void runOpMode() throws InterruptedException {
+    @Override public void runOpMode() {
         /**
          * Start up Vuforia, telling it the id of the view that we wish to use as the parent for
          * the camera monitor feedback; if no camera monitor feedback is desired, use the parameterless
@@ -123,7 +123,7 @@ public class ConceptVuforiaNavigation extends LinearOpMode {
          * {@link Parameters} instance with which you initialize Vuforia.
          */
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(R.id.cameraMonitorViewId);
-        //parameters.vuforiaLicenseKey = "ATsODcD/////AAAAAVw2lR...d45oGpdljdOh5LuFB9nDNfckoxb8COxKSFX";
+        parameters.vuforiaLicenseKey = "ATsODcD/////AAAAAVw2lR...d45oGpdljdOh5LuFB9nDNfckoxb8COxKSFX";
         parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
         this.vuforia = ClassFactory.createVuforiaLocalizer(parameters);
 
@@ -319,7 +319,6 @@ public class ConceptVuforiaNavigation extends LinearOpMode {
                 telemetry.addData("Pos", "Unknown");
             }
             telemetry.update();
-            idle();
         }
     }
 

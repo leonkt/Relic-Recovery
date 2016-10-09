@@ -25,10 +25,11 @@ package ftc8564lib;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
+
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class DriveBase {
 
@@ -45,23 +46,26 @@ public class DriveBase {
     private ModernRoboticsI2cGyro gyroSensor;
     private ElapsedTime mRunTime = new ElapsedTime();
 
+    Telemetry telemetry;
+
     public DriveBase(LinearOpMode opMode) throws InterruptedException {
         this.opMode = opMode;
+        this.telemetry = opMode.telemetry;
         rightMotor = opMode.hardwareMap.dcMotor.get("rightMotor");
-        rightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightMotor.setDirection(DcMotor.Direction.REVERSE);
         leftMotor = opMode.hardwareMap.dcMotor.get("leftMotor");
         leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        gyroSensor = (ModernRoboticsI2cGyro)opMode.hardwareMap.gyroSensor.get("gyro");
+        //gyroSensor = (ModernRoboticsI2cGyro)opMode.hardwareMap.gyroSensor.get("gyro");
         mRunTime.reset();
-        gyroSensor.calibrate();
-        while(gyroSensor.isCalibrating()) {
-            Thread.sleep(50);
-            opMode.idle();
-        }
-        gyroSensor.resetZAxisIntegrator();
+        //gyroSensor.calibrate();
+        //while(gyroSensor.isCalibrating()) {
+        //   Thread.sleep(50);
+        //    opMode.idle();
+        //}
+        //gyroSensor.resetZAxisIntegrator();
         //Sets up PID Drive
         pidControlLeft = new PIDControl(0.05,0,0,0,1,10, leftMotor);
         pidControlRight = new PIDControl(0.05,0,0,0,1,10, rightMotor);
@@ -106,6 +110,9 @@ public class DriveBase {
         rightPower = (float) scaleInput(rightPower);
         leftMotor.setPower(leftPower);
         rightMotor.setPower(rightPower);
+
+        telemetry.addData("Drive", "L[%5.2f], R[%5.2f]", leftPower, rightPower);
+        telemetry.update();
     }
 
     public void resetMotors() throws InterruptedException {
