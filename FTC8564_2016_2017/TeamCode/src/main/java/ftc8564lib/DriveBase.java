@@ -26,16 +26,16 @@ package ftc8564lib;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
+import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
-
-import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class DriveBase {
 
     LinearOpMode opMode;
     PIDControl pidControlLeft, pidControlRight;
     PIDControlTurn pidControlTurn;
+    OpticalDistanceSensor odsLeft, odsRight;
 
     final static int ENCODER_CPR = 1120;     //Encoder Counts per Revolution on NeveRest 40 Motors
     final static double GEAR_RATIO = 1;      //Gear Ratio
@@ -46,11 +46,8 @@ public class DriveBase {
     private ModernRoboticsI2cGyro gyroSensor;
     private ElapsedTime mRunTime = new ElapsedTime();
 
-    Telemetry telemetry;
-
     public DriveBase(LinearOpMode opMode) throws InterruptedException {
         this.opMode = opMode;
-        this.telemetry = opMode.telemetry;
         rightMotor = opMode.hardwareMap.dcMotor.get("rightMotor");
         rightMotor.setDirection(DcMotor.Direction.REVERSE);
         leftMotor = opMode.hardwareMap.dcMotor.get("leftMotor");
@@ -58,23 +55,26 @@ public class DriveBase {
         rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        //gyroSensor = (ModernRoboticsI2cGyro)opMode.hardwareMap.gyroSensor.get("gyro");
+        gyroSensor = (ModernRoboticsI2cGyro)opMode.hardwareMap.gyroSensor.get("gyro");
         mRunTime.reset();
-        //gyroSensor.calibrate();
-        //while(gyroSensor.isCalibrating()) {
-        //   Thread.sleep(50);
-        //    opMode.idle();
-        //}
-        //gyroSensor.resetZAxisIntegrator();
+        gyroSensor.calibrate();
+        while(gyroSensor.isCalibrating()) {
+           Thread.sleep(50);
+            opMode.idle();
+        }
+        gyroSensor.resetZAxisIntegrator();
         //Sets up PID Drive
         pidControlLeft = new PIDControl(0.05,0,0,0,1,10, leftMotor);
         pidControlRight = new PIDControl(0.05,0,0,0,1,10, rightMotor);
         pidControlRight.setInverted(true);
         pidControlTurn = new PIDControlTurn(0.05,0,0,0,1,10, gyroSensor);
+        odsLeft = opMode.hardwareMap.opticalDistanceSensor.get("odsLeft");
+        odsRight = opMode.hardwareMap.opticalDistanceSensor.get("odsRight");
     }
 
     //Input distance in inches and power with decimal to hundredth place
     public void driveForward(double distance, double power) throws InterruptedException {
+        normalSpeed();
         double ROTATIONS = distance / CIRCUMFERENCE;
         double COUNTS = ENCODER_CPR * ROTATIONS * GEAR_RATIO;
         int leftTarget = (int) COUNTS + leftMotor.getCurrentPosition();
@@ -103,6 +103,55 @@ public class DriveBase {
         resetPIDDrive();
     }
 
+    public void driveForwardODS(double distance, double power) throws InterruptedException {
+        normalSpeed();
+        double ROTATIONS = distance / CIRCUMFERENCE;
+        double COUNTS = ENCODER_CPR * ROTATIONS * GEAR_RATIO;
+        int leftTarget = (int) COUNTS + leftMotor.getCurrentPosition();
+        int rightTarget = (int) COUNTS + rightMotor.getCurrentPosition();
+        leftMotor.setTargetPosition(leftTarget);
+        rightMotor.setTargetPosition(rightTarget);
+        leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        leftMotor.setPower(power);
+        rightMotor.setPower(power);
+        pidControlLeft.setTarget(COUNTS);
+        pidControlRight.setTarget(COUNTS);
+        pidControlTurn.setTarget(0.00);
+        while (leftMotor.isBusy() || rightMotor.isBusy()) {
+            if(!pidControlLeft.isOnTarget() || !pidControlRight.isOnTarget() || !pidControlTurn.isOnTarget()) {
+                double leftPower = pidControlLeft.getPowerOutput() + pidControlTurn.getTurnOutput();
+                double rightPower = pidControlRight.getPowerOutput() - pidControlTurn.getTurnOutput();
+                leftPower = Range.clip(leftPower, -1, 1);
+                rightPower = Range.clip(rightPower, -1, 1);
+                leftMotor.setPower(leftPower);
+                rightMotor.setPower(rightPower);
+            }
+            opMode.idle();
+        }
+        resetMotors();
+        resetPIDDrive();
+    }
+
+    public void spinGyro(double degrees, double power) throws InterruptedException {
+        constantSpeed();
+        double leftPower, rightPower;
+        if (degrees < 0.0) {
+            leftPower = -power;
+            rightPower = power;
+        } else {
+            leftPower = power;
+            rightPower = -power;
+        }
+        leftMotor.setPower(leftPower);
+        rightMotor.setPower(rightPower);
+        while (Math.abs(gyroSensor.getHeading()) <= Math.abs(degrees)) {
+            opMode.idle();
+        }
+        leftMotor.setPower(0.0);
+        rightMotor.setPower(0.0);
+    }
+
     public void tankDrive(float leftPower, float rightPower) throws InterruptedException {
         leftPower = Range.clip(leftPower, -1, 1);
         rightPower = Range.clip(rightPower, -1, 1);
@@ -110,14 +159,21 @@ public class DriveBase {
         rightPower = (float) scaleInput(rightPower);
         leftMotor.setPower(leftPower);
         rightMotor.setPower(rightPower);
-
-        telemetry.addData("Drive", "L[%5.2f], R[%5.2f]", leftPower, rightPower);
-        telemetry.update();
     }
 
     public void resetMotors() throws InterruptedException {
         leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    }
+
+    public void constantSpeed() throws InterruptedException {
+        leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    }
+
+    public void normalSpeed() throws InterruptedException {
+        leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     double scaleInput(double dVal) {

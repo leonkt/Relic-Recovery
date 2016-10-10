@@ -35,13 +35,13 @@ public class LockdownTeleOp extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         robot = new Robot(this);
-        //robot.driveBase.constantSpeed();
+        robot.driveBase.constantSpeed();
         waitForStart();
         while (opModeIsActive()) {
             // Drive Train command
-            robot.driveBase.tankDrive(-gamepad1.left_stick_y, -gamepad1.right_stick_y);
+            robot.driveBase.tankDrive(gamepad1.left_stick_y, gamepad1.right_stick_y);
             // Tape Measure and Winch motor
-            if (-gamepad2.left_stick_y > 0) {
+            /*if (-gamepad2.left_stick_y > 0) {
                 //robot.hanger.runUP();
             } else if (-gamepad2.left_stick_y < 0) {
                 //robot.hanger.runDOWN();
@@ -114,7 +114,7 @@ public class LockdownTeleOp extends LinearOpMode {
                 //robot.hanger.lowerZipline();
             } else {
                 //robot.hanger.zeroZipline();
-            }
+            }*/
         } // end of if gamepad1.back not pressed
 
     }
