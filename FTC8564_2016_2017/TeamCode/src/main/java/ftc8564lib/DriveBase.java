@@ -162,6 +162,8 @@ public class DriveBase {
     }
 
     public void resetMotors() throws InterruptedException {
+        leftMotor.setPower(0);
+        rightMotor.setPower(0);
         leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
