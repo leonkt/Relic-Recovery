@@ -33,6 +33,7 @@ public class Robot {
 
     public Robot(LinearOpMode opMode) throws InterruptedException {
         driveBase = new DriveBase(opMode);
+        dashboard = new HalDashboard(opMode.telemetry);
     }
 
     public static HalDashboard getDashboard() {

@@ -39,7 +39,7 @@ public class DriveBase {
 
     final static int ENCODER_CPR = 1120;     //Encoder Counts per Revolution on NeveRest 40 Motors
     final static double GEAR_RATIO = 1;      //Gear Ratio
-    final static int WHEEL_DIAMETER = 2;     //Diameter of the wheel in inches
+    final static int WHEEL_DIAMETER = 4;     //Diameter of the wheel in inches
     final static double CIRCUMFERENCE = Math.PI * WHEEL_DIAMETER;
 
     private DcMotor leftMotor, rightMotor;
@@ -64,10 +64,10 @@ public class DriveBase {
         }
         gyroSensor.resetZAxisIntegrator();
         //Sets up PID Drive
-        pidControlLeft = new PIDControl(0.05,0,0,0,1,10, leftMotor);
-        pidControlRight = new PIDControl(0.05,0,0,0,1,10, rightMotor);
-        pidControlRight.setInverted(true);
-        pidControlTurn = new PIDControlTurn(0.05,0,0,0,1,10, gyroSensor);
+        //pidControlLeft = new PIDControl(0.05,0,0,0,1,10, leftMotor);
+        //pidControlRight = new PIDControl(0.05,0,0,0,1,10, rightMotor);
+        //pidControlRight.setInverted(true);
+        //pidControlTurn = new PIDControlTurn(0.05,0,0,0,1,10, gyroSensor);
         odsLeft = opMode.hardwareMap.opticalDistanceSensor.get("odsLeft");
         odsRight = opMode.hardwareMap.opticalDistanceSensor.get("odsRight");
     }
@@ -85,18 +85,18 @@ public class DriveBase {
         rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         leftMotor.setPower(power);
         rightMotor.setPower(power);
-        pidControlLeft.setTarget(COUNTS);
-        pidControlRight.setTarget(COUNTS);
-        pidControlTurn.setTarget(0.00);
+        //pidControlLeft.setTarget(COUNTS);
+        //pidControlRight.setTarget(COUNTS);
+        //pidControlTurn.setTarget(0.00);
         while (leftMotor.isBusy() || rightMotor.isBusy()) {
-            if(!pidControlLeft.isOnTarget() || !pidControlRight.isOnTarget() || !pidControlTurn.isOnTarget()) {
-                double leftPower = pidControlLeft.getPowerOutput() + pidControlTurn.getTurnOutput();
-                double rightPower = pidControlRight.getPowerOutput() - pidControlTurn.getTurnOutput();
-                leftPower = Range.clip(leftPower, -1, 1);
-                rightPower = Range.clip(rightPower, -1, 1);
-                leftMotor.setPower(leftPower);
-                rightMotor.setPower(rightPower);
-            }
+            //if(!pidControlLeft.isOnTarget() || !pidControlRight.isOnTarget() || !pidControlTurn.isOnTarget()) {
+            //    double leftPower = pidControlLeft.getPowerOutput() + pidControlTurn.getTurnOutput();
+            //    double rightPower = pidControlRight.getPowerOutput() - pidControlTurn.getTurnOutput();
+            //    leftPower = Range.clip(leftPower, -1, 1);
+            //    rightPower = Range.clip(rightPower, -1, 1);
+            //    leftMotor.setPower(leftPower);
+            //    rightMotor.setPower(rightPower);
+            //}
             opMode.idle();
         }
         resetMotors();

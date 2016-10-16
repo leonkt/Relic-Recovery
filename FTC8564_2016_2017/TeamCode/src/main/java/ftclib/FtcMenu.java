@@ -144,7 +144,6 @@ public abstract class FtcMenu
         {
             throw new NullPointerException("menuTitle/menuButtons cannot be null.");
         }
-
         dashboard = Robot.getDashboard();
         this.menuTitle = menuTitle;
         this.parent = parent;

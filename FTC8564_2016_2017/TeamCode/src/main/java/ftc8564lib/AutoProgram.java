@@ -26,18 +26,19 @@ package ftc8564lib;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import ftc8564opMode.LockdownAutonomous;
 
-public class AutoProgram{
+public class AutoProgram {
 
     Robot robot;
     LockdownAutonomous.Alliance alliance;
     private ElapsedTime mClock = new ElapsedTime();
 
-    public AutoProgram(LockdownAutonomous.Alliance alliance) {
+    public AutoProgram(LockdownAutonomous.Alliance alliance, Robot robot) {
         this.alliance = alliance;
+        this.robot = robot;
     }
 
     public void runShootBall() throws InterruptedException {
-        robot.driveBase.driveForward(10,10);
+        robot.driveBase.driveForward(10,1);
         robot.driveBase.pidControlLeft.displayPidInfo(1);
         robot.driveBase.pidControlRight.displayPidInfo(2);
         robot.driveBase.pidControlTurn.displayPidInfo(3);

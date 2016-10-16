@@ -32,6 +32,7 @@ import ftc8564lib.*;
 public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButtons {
 
     AutoProgram auto;
+    Robot robot;
 
     public enum Alliance {
         RED_ALLIANCE,
@@ -49,8 +50,9 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
 
     @Override
     public void runOpMode() throws InterruptedException {
+        robot = new Robot(this);
         doMenus();
-        auto = new AutoProgram(alliance);
+        auto = new AutoProgram(alliance, robot);
         waitForStart();
 
         switch (strategy) {
