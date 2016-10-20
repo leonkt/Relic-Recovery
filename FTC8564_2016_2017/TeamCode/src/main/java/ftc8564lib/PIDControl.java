@@ -23,7 +23,6 @@
 
 package ftc8564lib;
 
-import com.qualcomm.robotcore.hardware.DcMotor;
 import hallib.*;
 
 /*
@@ -37,8 +36,6 @@ import hallib.*;
 
 public class PIDControl {
 
-    public DcMotor motorL;
-
     private HalDashboard dashboard;
     private double kP;
     private double kI;
@@ -46,6 +43,7 @@ public class PIDControl {
     private double kF;
     private double tolerance;
     private double settlingTime;
+    private PidInput pidInput;
 
     private boolean inverted = false;
     private boolean absSetPoint = false;
@@ -61,8 +59,13 @@ public class PIDControl {
     private double setPoint = 0.0;
     private double output = 0.0;
 
+    public interface PidInput
+    {
+        double getInput(PIDControl pidCtrl);
+    }
+
     // Constructor
-    public PIDControl(double kP, double kI, double kD, double kF, double tolerance, double settlingTime, DcMotor motorL) {
+    public PIDControl(double kP, double kI, double kD, double kF, double tolerance, double settlingTime, PidInput pidInput) {
         dashboard = Robot.getDashboard();
         this.kP = kP;
         this.kI = kI;
@@ -70,11 +73,11 @@ public class PIDControl {
         this.kF = kF;
         this.tolerance = tolerance;
         this.settlingTime = settlingTime;
-        this.motorL = motorL;
+        this.pidInput = pidInput;
     }
 
     public void displayPidInfo(int lineNum) {
-        dashboard.displayPrintf(lineNum, "Target=%.1f, Input=%.1f, Error=%.1f", setPoint, motorL.getCurrentPosition(), prevError);
+        dashboard.displayPrintf(lineNum, "Target=%.1f, Input=%.1f, Error=%.1f", setPoint, pidInput.getInput(this), prevError);
         dashboard.displayPrintf(lineNum + 1, "minOutput=%.1f, Output=%.1f, maxOutput=%.1f", minOutput, output, maxOutput);
     }
 
@@ -85,7 +88,7 @@ public class PIDControl {
 
     //Sets distance in ticks
     public void setTarget(double target) {
-        double input = motorL.getCurrentPosition();
+        double input = pidInput.getInput(this);
         setPoint = target;
         if (!absSetPoint) {
             setPoint += input;
@@ -140,7 +143,7 @@ public class PIDControl {
     //Calculates the power output for driving forward
     public double getPowerOutput() {
 
-        double error = setPoint - motorL.getCurrentPosition();
+        double error = setPoint - pidInput.getInput(this);
         if (inverted) {
             error = -error;
         }

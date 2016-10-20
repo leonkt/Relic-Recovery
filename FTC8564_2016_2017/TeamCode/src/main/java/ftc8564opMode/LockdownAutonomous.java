@@ -64,6 +64,9 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
                 auto.runDoNothing();
                 break;
         }
+
+        auto.runCleanUp();
+
     }
 
     @Override
@@ -100,4 +103,5 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         alliance = (Alliance) allianceMenu.getCurrentChoiceObject();
         strategy = (Strategy) strategyMenu.getCurrentChoiceObject();
     }
+
 }
