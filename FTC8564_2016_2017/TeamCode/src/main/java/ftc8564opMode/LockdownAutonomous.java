@@ -41,7 +41,9 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
 
     public enum Strategy {
         DO_NOTHING,
-        TEST_1
+        TEST_1,
+        TEST_2,
+        SPIN
 
     }
 
@@ -58,6 +60,12 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         switch (strategy) {
             case TEST_1:
                 auto.runShootBall();
+                break;
+            case TEST_2:
+                auto.runBackward();
+                break;
+            case SPIN:
+                auto.runSpin();
                 break;
             default:
             case DO_NOTHING:
@@ -98,6 +106,8 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
 
         strategyMenu.addChoice("Do Nothing", Strategy.DO_NOTHING);
         strategyMenu.addChoice("Test 1", Strategy.TEST_1);
+        strategyMenu.addChoice("Test 2", Strategy.TEST_2);
+        strategyMenu.addChoice("Spin", Strategy.SPIN);
 
         FtcMenu.walkMenuTree(allianceMenu);
         alliance = (Alliance) allianceMenu.getCurrentChoiceObject();

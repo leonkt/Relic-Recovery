@@ -41,6 +41,14 @@ public class AutoProgram {
         robot.driveBase.driveForwardPID(35,.1);
     }
 
+    public void runBackward() throws InterruptedException {
+        robot.driveBase.driveBackwardPID(35,.1);
+    }
+
+    public void runSpin() throws InterruptedException {
+        robot.driveBase.spinGyroPID(45,.3);
+    }
+
     public void runDoNothing() throws InterruptedException {
         mClock.reset();
         mClock.startTime();

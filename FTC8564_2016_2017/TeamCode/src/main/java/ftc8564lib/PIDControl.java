@@ -79,6 +79,9 @@ public class PIDControl {
     public void displayPidInfo(int lineNum) {
         dashboard.displayPrintf(lineNum, "Target=%.1f, Input=%.1f, Error=%.1f", setPoint, pidInput.getInput(this), prevError);
         dashboard.displayPrintf(lineNum + 1, "minOutput=%.1f, Output=%.1f, maxOutput=%.1f", minOutput, output, maxOutput);
+        System.out.printf("Target=%.1f, Input=%.1f, Error=%.1f", setPoint, pidInput.getInput(this), prevError);
+        System.out.println();
+        System.out.printf("minOutput=%.1f, Output=%.1f, maxOutput=%.1f", minOutput, output, maxOutput);
     }
 
     //Inverts information if needed

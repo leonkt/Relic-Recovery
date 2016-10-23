@@ -62,9 +62,8 @@ public class DriveBase implements PIDControl.PidInput {
            Thread.sleep(50);
             opMode.idle();
         }
-        gyroSensor.resetZAxisIntegrator();
-        //Sets up PID Drive
-        pidControl = new PIDControl(0.03,0,0,0,2.0,0.2,this);
+        //Sets up PID Drive: kP, kI, kD, kF, Tolerance, Settling Time
+        pidControl = new PIDControl(0.03,0,0.011,0,2.0,0.2,this);
         pidControlTurn = new PIDControl(0.05,0,0,0,2.0,0.2,this);
         odsLeft = opMode.hardwareMap.opticalDistanceSensor.get("odsLeft");
         odsRight = opMode.hardwareMap.opticalDistanceSensor.get("odsRight");
@@ -109,6 +108,7 @@ public class DriveBase implements PIDControl.PidInput {
 
     public void driveForwardPID(double distance, double power) throws InterruptedException {
         normalSpeed();
+        gyroSensor.resetZAxisIntegrator();
         double ROTATIONS = distance / CIRCUMFERENCE;
         double COUNTS = ENCODER_CPR * ROTATIONS * GEAR_RATIO;
         int leftTarget = (int) COUNTS + leftMotor.getCurrentPosition();
@@ -119,7 +119,7 @@ public class DriveBase implements PIDControl.PidInput {
         rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         leftMotor.setPower(power);
         rightMotor.setPower(power);
-        pidControl.setTarget(COUNTS);
+        pidControl.setTarget(distance);
         pidControlTurn.setTarget(0.00);
         while (leftMotor.isBusy() || rightMotor.isBusy()) {
             if(!pidControl.isOnTarget() || !pidControlTurn.isOnTarget()) {
@@ -130,10 +130,6 @@ public class DriveBase implements PIDControl.PidInput {
                 leftMotor.setPower(leftPower);
                 rightMotor.setPower(rightPower);
             }
-            pidControl.displayPidInfo(1);
-            pidControlTurn.displayPidInfo(3);
-            opMode.telemetry.log();
-            opMode.telemetry.update();
             opMode.idle();
         }
         resetMotors();
@@ -142,6 +138,7 @@ public class DriveBase implements PIDControl.PidInput {
 
     public void driveBackwardPID(double distance, double power) throws InterruptedException {
         normalSpeed();
+        gyroSensor.resetZAxisIntegrator();
         double ROTATIONS = distance / CIRCUMFERENCE;
         double COUNTS = ENCODER_CPR * ROTATIONS * GEAR_RATIO;
         int leftTarget = (int) COUNTS + leftMotor.getCurrentPosition();
@@ -152,7 +149,7 @@ public class DriveBase implements PIDControl.PidInput {
         rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         leftMotor.setPower(power);
         rightMotor.setPower(power);
-        pidControl.setTarget(-COUNTS);
+        pidControl.setTarget(-distance);
         pidControlTurn.setTarget(0.00);
         while (leftMotor.isBusy() || rightMotor.isBusy()) {
             if(!pidControl.isOnTarget() || !pidControlTurn.isOnTarget()) {
@@ -163,9 +160,6 @@ public class DriveBase implements PIDControl.PidInput {
                 leftMotor.setPower(leftPower);
                 rightMotor.setPower(rightPower);
             }
-            pidControl.displayPidInfo(1);
-            pidControlTurn.displayPidInfo(3);
-            opMode.telemetry.update();
             opMode.idle();
         }
         resetMotors();
@@ -174,6 +168,7 @@ public class DriveBase implements PIDControl.PidInput {
 
     public void spinGyro(double degrees, double power) throws InterruptedException {
         constantSpeed();
+        gyroSensor.resetZAxisIntegrator();
         double leftPower, rightPower;
         if (degrees < 0.0) {
             leftPower = -power;
@@ -184,7 +179,39 @@ public class DriveBase implements PIDControl.PidInput {
         }
         leftMotor.setPower(leftPower);
         rightMotor.setPower(rightPower);
-        while (Math.abs(gyroSensor.getHeading()) <= Math.abs(degrees)) {
+        while (Math.abs(gyroSensor.getIntegratedZValue()) <= Math.abs(degrees)) {
+            opMode.idle();
+        }
+        leftMotor.setPower(0.0);
+        rightMotor.setPower(0.0);
+    }
+
+    public void spinGyroPID(double degrees, double power) throws InterruptedException {
+        constantSpeed();
+        gyroSensor.resetZAxisIntegrator();
+        double leftPower, rightPower;
+        if (degrees < 0.0) {
+            leftPower = -power;
+            rightPower = power;
+        } else {
+            leftPower = power;
+            rightPower = -power;
+        }
+        leftMotor.setPower(leftPower);
+        rightMotor.setPower(rightPower);
+        while (Math.abs(gyroSensor.getIntegratedZValue()) <= Math.abs(degrees)) {
+            if(!pidControlTurn.isOnTarget())
+            {
+                if (degrees < 0.0) {
+                    leftPower -= pidControlTurn.getPowerOutput();
+                    rightPower += pidControlTurn.getPowerOutput();
+                } else {
+                    leftPower += pidControlTurn.getPowerOutput();
+                    rightPower -= pidControlTurn.getPowerOutput();
+                }
+                leftMotor.setPower(leftPower);
+                rightMotor.setPower(rightPower);
+            }
             opMode.idle();
         }
         leftMotor.setPower(0.0);
