@@ -38,7 +38,7 @@ public class AutoProgram {
     }
 
     public void runShootBall() throws InterruptedException {
-        robot.driveBase.driveForward(35,.1);
+        robot.driveBase.driveForwardPID(35,.1);
     }
 
     public void runDoNothing() throws InterruptedException {

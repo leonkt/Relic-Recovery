@@ -132,6 +132,7 @@ public class DriveBase implements PIDControl.PidInput {
             }
             pidControl.displayPidInfo(1);
             pidControlTurn.displayPidInfo(3);
+            opMode.telemetry.log();
             opMode.telemetry.update();
             opMode.idle();
         }
