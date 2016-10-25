@@ -32,13 +32,13 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 package ftc8564opMode;
 
+import android.graphics.Bitmap;
 import com.qualcomm.ftcrobotcontroller.R;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.vuforia.HINT;
 import com.vuforia.Vuforia;
-
-import org.firstinspires.ftc.robotcore.external.ClassFactory;
+import ftc8564lib.VuforiaLocalizerImplSubclass;
 import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
 import org.firstinspires.ftc.robotcore.external.matrices.VectorF;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
@@ -55,7 +55,7 @@ public class VuforiaNav extends LinearOpMode {
         params.vuforiaLicenseKey = "your key here";
         params.cameraMonitorFeedback = VuforiaLocalizer.Parameters.CameraMonitorFeedback.AXES;
 
-        VuforiaLocalizer vuforia = ClassFactory.createVuforiaLocalizer(params);
+        VuforiaLocalizerImplSubclass vuforia = new VuforiaLocalizerImplSubclass(params);
         Vuforia.setHint(HINT.HINT_MAX_SIMULTANEOUS_IMAGE_TARGETS, 4);
         VuforiaTrackables beacons = vuforia.loadTrackablesFromAsset("FTC_2016-17");
         beacons.get(0).setName("Wheels");
@@ -68,6 +68,13 @@ public class VuforiaNav extends LinearOpMode {
         beacons.activate();
 
         while(opModeIsActive()) {
+
+            if(vuforia.rgb != null)
+            {
+                Bitmap bm = Bitmap.createBitmap(vuforia.rgb.getWidth(), vuforia.rgb.getHeight(), Bitmap.Config.RGB_565);
+                bm.copyPixelsFromBuffer(vuforia.rgb.getPixels());
+            }
+
             for(VuforiaTrackable beacon : beacons) {
                 OpenGLMatrix pose = ((VuforiaTrackableDefaultListener) beacon.getListener()).getPose();
                 if(pose != null) {
