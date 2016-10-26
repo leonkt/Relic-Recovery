@@ -58,6 +58,7 @@ public class AutoProgram {
 
     public void runCleanUp() throws InterruptedException {
         robot.driveBase.resetMotors();
+        robot.driveBase.resetPIDDrive();
     }
 
 }

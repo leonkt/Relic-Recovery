@@ -41,6 +41,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.vuforia.HINT;
 import com.vuforia.Vuforia;
 import ftc8564lib.VuforiaLocalizerImplSubclass;
+import ftc8564lib.pixelObject;
 import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
 import org.firstinspires.ftc.robotcore.external.matrices.VectorF;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
@@ -51,7 +52,15 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 @Autonomous(name="Vuforia Navigation", group ="Autonomous")
 public class VuforiaNav extends LinearOpMode {
 
-    @Override public void runOpMode() {
+    @Override
+    public void runOpMode() {
+
+        int color = 0;
+        int red = 0;
+        int green = 0;
+        int blue = 0;
+        int pixelColor = 2;
+
         VuforiaLocalizer.Parameters params = new VuforiaLocalizer.Parameters(R.id.cameraMonitorViewId);
         params.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
         params.vuforiaLicenseKey = "AUgbT0j/////AAAAGTj0axLoDUvmo1PWo4YoBxkeKIG99PQSTrgFoQVymuq7TMc3OGQozLZo6d+dLt0EiQwR87XKW4aXt/7BZr95khAoylxKP02Vh5PmZbp18YDa5g9gWiYUGUvHqLUbNgMKotFhGgE9noRvWbiP2RxgOCy+HoT39NaFXiLiH69cLGbCzpz1tzuvRPce/EVkWBBomcS2yC/hl1hTlBjvzTHN1lKMv59s9gYhC69DNODQeNg2JMOv3ggMlRDTjOpbNZUZAQkHfqS/2w0W8d0+krzVBD129juhL2r6u4mWVhXFq2FOZoUTezbkaFTxKCRadl3v5ot5aPmuEU4mSFtmrw15J6R9XtRAg/U8/I1k7zpRpVTg";
@@ -75,12 +84,26 @@ public class VuforiaNav extends LinearOpMode {
             {
                 Bitmap bm = Bitmap.createBitmap(vuforia.rgb.getWidth(), vuforia.rgb.getHeight(), Bitmap.Config.RGB_565);
                 bm.copyPixelsFromBuffer(vuforia.rgb.getPixels());
+
+                pixelObject[][] pixel = new pixelObject[vuforia.rgb.getWidth()][vuforia.rgb.getHeight()];
+
                 for(int height = 0; height < bm.getHeight(); height++)
                 {
                     for(int width = 0; width < bm.getWidth(); width++)
                     {
-
+                        color = bm.getPixel(width,height);
+                        red = Color.red(color);
+                        green = Color.green(color);
+                        blue = Color.blue(color);
+                        if(red > 200)
+                        {
+                            pixelColor = 0;
+                        } else if(blue > 200)
+                        {
+                            pixelColor = 1;
+                        }
                     }
+
                 }
             }
 
