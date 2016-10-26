@@ -1,6 +1,5 @@
 /*
- * Lockdown Framework Library
- * Copyright (c) 2015 Lockdown Team 8564 (lockdown8564.weebly.com)
+ * Copyright (c) 2015 Titan Robotics Club (http://www.titanrobotics.com)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 
 package ftc8564lib;
 

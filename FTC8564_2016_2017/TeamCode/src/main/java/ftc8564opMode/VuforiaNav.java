@@ -103,7 +103,6 @@ public class VuforiaNav extends LinearOpMode {
                             pixelColor = 1;
                         }
                     }
-
                 }
             }
 
