@@ -33,6 +33,8 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 package ftc8564opMode;
 
 import android.graphics.Bitmap;
+import android.graphics.Color;
+
 import com.qualcomm.ftcrobotcontroller.R;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -73,6 +75,13 @@ public class VuforiaNav extends LinearOpMode {
             {
                 Bitmap bm = Bitmap.createBitmap(vuforia.rgb.getWidth(), vuforia.rgb.getHeight(), Bitmap.Config.RGB_565);
                 bm.copyPixelsFromBuffer(vuforia.rgb.getPixels());
+                for(int height = 0; height < bm.getHeight(); height++)
+                {
+                    for(int width = 0; width < bm.getWidth(); width++)
+                    {
+
+                    }
+                }
             }
 
             for(VuforiaTrackable beacon : beacons) {
