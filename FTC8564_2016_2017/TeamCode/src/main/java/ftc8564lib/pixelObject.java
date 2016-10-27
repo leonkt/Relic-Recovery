@@ -38,9 +38,11 @@ public class pixelObject implements Comparable<pixelObject> {
 
     public int getColor() { return color; }
 
+    public void setCount(int val) { count = val; }
+
     public int getCount() { return count; }
 
-    public int getXpos() { return xpos; }
+    public void setXpos(int val) { xpos = val; }
 
     public void addCount() { count++; }
 
@@ -65,12 +67,12 @@ public class pixelObject implements Comparable<pixelObject> {
     {
         if(color == 0)
         {
-            return "Red"+String.valueOf(count);
+            return ("R"+String.valueOf(count));
         } else if(color == 1)
         {
-            return "Blue"+String.valueOf(count);
+            return ("B"+String.valueOf(count));
         } else {
-            return "Other"+String.valueOf(count);
+            return ("O"+String.valueOf(count));
         }
     }
 

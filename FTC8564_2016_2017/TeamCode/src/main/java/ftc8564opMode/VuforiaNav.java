@@ -55,13 +55,6 @@ public class VuforiaNav extends LinearOpMode {
     @Override
     public void runOpMode() {
 
-        int color = 0;
-        int red = 0;
-        int green = 0;
-        int blue = 0;
-        int xpos = 0;
-        int count = 0;
-
         VuforiaLocalizer.Parameters params = new VuforiaLocalizer.Parameters(R.id.cameraMonitorViewId);
         params.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
         params.vuforiaLicenseKey = "AUgbT0j/////AAAAGTj0axLoDUvmo1PWo4YoBxkeKIG99PQSTrgFoQVymuq7TMc3OGQozLZo6d+dLt0EiQwR87XKW4aXt/7BZr95khAoylxKP02Vh5PmZbp18YDa5g9gWiYUGUvHqLUbNgMKotFhGgE9noRvWbiP2RxgOCy+HoT39NaFXiLiH69cLGbCzpz1tzuvRPce/EVkWBBomcS2yC/hl1hTlBjvzTHN1lKMv59s9gYhC69DNODQeNg2JMOv3ggMlRDTjOpbNZUZAQkHfqS/2w0W8d0+krzVBD129juhL2r6u4mWVhXFq2FOZoUTezbkaFTxKCRadl3v5ot5aPmuEU4mSFtmrw15J6R9XtRAg/U8/I1k7zpRpVTg";
@@ -75,14 +68,23 @@ public class VuforiaNav extends LinearOpMode {
         beacons.get(2).setName("Lego");
         beacons.get(3).setName("Gears");
 
+        boolean test = false;
+
         waitForStart();
 
         beacons.activate();
 
         while(opModeIsActive()) {
 
-            if(vuforia.rgb != null)
+            if(test)
             {
+                int color = 0;
+                int red = 0;
+                int green = 0;
+                int blue = 0;
+                int xpos = 0;
+                int count = 0;
+
                 Bitmap bm = Bitmap.createBitmap(vuforia.rgb.getWidth(), vuforia.rgb.getHeight(), Bitmap.Config.RGB_565);
                 bm.copyPixelsFromBuffer(vuforia.rgb.getPixels());
 
@@ -111,7 +113,28 @@ public class VuforiaNav extends LinearOpMode {
                 }
 
                 for(int height = 0; height < bm.getHeight(); height++) {
+                    //int lastcol = 0; // last column with run-legth
+                    xpos = 0;
                     for (int width = 0; width < bm.getWidth(); width++) {
+
+                        /*if (width == 0)
+                        {
+                            pixel[lastcol][height].setCount(1);
+                            pixel[lastcol][height].setColor(colorPixel[width][height].getColor());
+                            pixel[lastcol][height].setXpos(width);
+                        } else {
+                            if (pixel[lastcol][height].getColor() == colorPixel[width][height].getColor()) {
+                                // increment count
+                                pixel[lastcol][height].addCount();
+                            } else {
+                                // increment lastcol and start new run-length
+                                lastcol++;
+                                pixel[lastcol][height].setCount(1);
+                                pixel[lastcol][height].setColor(colorPixel[width][height].getColor());
+                                pixel[lastcol][height].setXpos(width);
+                            }
+                        }*/
+
                         int previous = colorPixel[count][height].getColor();
                         if(colorPixel[width][height].getColor() != previous)
                         {
@@ -125,7 +148,14 @@ public class VuforiaNav extends LinearOpMode {
 
                 for(int height = 0; height < bm.getHeight(); height++) {
                     for (int width = 0; width < bm.getWidth(); width++) {
-                       System.out.print(pixel[width][height].toString() + " ");
+                        if(pixel[width][height] != null)
+                        {
+                            telemetry.addData("",pixel[width][height].toString() + " ");
+                        } else {
+                            telemetry.addData("","-1 ");
+                        }
+                        telemetry.addLine();
+                        telemetry.update();
                     }
                 }
             }
@@ -143,6 +173,7 @@ public class VuforiaNav extends LinearOpMode {
             }
             telemetry.update();
         }
+
     }
 
     String format(OpenGLMatrix transformationMatrix) {
