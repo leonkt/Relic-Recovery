@@ -23,7 +23,7 @@
 
 package ftc8564lib;
 
-public class pixelObject {
+public class pixelObject implements Comparable<pixelObject> {
 
     int color;
     int count;
@@ -41,5 +41,37 @@ public class pixelObject {
     public int getCount() { return count; }
 
     public int getXpos() { return xpos; }
+
+    public void addCount() { count++; }
+
+    public void resetCount() { count = 0; }
+
+    public void setColor(int i) { color = i; }
+
+    public int compareTo(pixelObject object)
+    {
+        if(color > object.color)
+        {
+            return 1;
+        } else if(color == object.color)
+        {
+            return 0;
+        } else {
+            return -1;
+        }
+    }
+
+    public String toString()
+    {
+        if(color == 0)
+        {
+            return "Red"+String.valueOf(count);
+        } else if(color == 1)
+        {
+            return "Blue"+String.valueOf(count);
+        } else {
+            return "Other"+String.valueOf(count);
+        }
+    }
 
 }

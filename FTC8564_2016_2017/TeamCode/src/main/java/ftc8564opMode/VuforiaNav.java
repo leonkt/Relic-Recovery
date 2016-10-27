@@ -59,7 +59,8 @@ public class VuforiaNav extends LinearOpMode {
         int red = 0;
         int green = 0;
         int blue = 0;
-        int pixelColor = 2;
+        int xpos = 0;
+        int count = 0;
 
         VuforiaLocalizer.Parameters params = new VuforiaLocalizer.Parameters(R.id.cameraMonitorViewId);
         params.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
@@ -86,6 +87,10 @@ public class VuforiaNav extends LinearOpMode {
                 bm.copyPixelsFromBuffer(vuforia.rgb.getPixels());
 
                 pixelObject[][] pixel = new pixelObject[vuforia.rgb.getWidth()][vuforia.rgb.getHeight()];
+                pixelObject[][] colorPixel = new pixelObject[vuforia.rgb.getWidth()][vuforia.rgb.getHeight()];
+                pixelObject beaconRed = new pixelObject(0,0,xpos);
+                pixelObject beaconBlue = new pixelObject(1,0,xpos);
+                pixelObject beaconOther = new pixelObject(-1,0,xpos);
 
                 for(int height = 0; height < bm.getHeight(); height++)
                 {
@@ -95,13 +100,32 @@ public class VuforiaNav extends LinearOpMode {
                         red = Color.red(color);
                         green = Color.green(color);
                         blue = Color.blue(color);
-                        if(red > 200)
-                        {
-                            pixelColor = 0;
-                        } else if(blue > 200)
-                        {
-                            pixelColor = 1;
+                        if (red > blue && red > green) {
+                            colorPixel[width][height] = beaconRed;
+                        } else if (blue > green && blue > red) {
+                            colorPixel[width][height] = beaconBlue;
+                        } else {
+                            colorPixel[width][height] = beaconOther;
                         }
+                    }
+                }
+
+                for(int height = 0; height < bm.getHeight(); height++) {
+                    for (int width = 0; width < bm.getWidth(); width++) {
+                        int previous = colorPixel[count][height].getColor();
+                        if(colorPixel[width][height].getColor() != previous)
+                        {
+                            pixel[xpos][height] = colorPixel[count][height];
+                            count = width;
+                            xpos++;
+                        }
+                        colorPixel[count][height].addCount();
+                    }
+                }
+
+                for(int height = 0; height < bm.getHeight(); height++) {
+                    for (int width = 0; width < bm.getWidth(); width++) {
+                       System.out.print(pixel[width][height].toString() + " ");
                     }
                 }
             }
