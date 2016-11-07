@@ -34,6 +34,7 @@ package ftc8564opMode;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.util.Log;
 
 import com.qualcomm.ftcrobotcontroller.R;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -125,17 +126,13 @@ public class VuforiaNav extends LinearOpMode {
                     }
                 }
 
-                for (int height = 0; height < bm.getHeight(); height++) {
-                    for (int width = 0; width < bm.getWidth(); width++) {
-                        if (pixel[width][height] != null) {
-                            telemetry.addData("Array", Arrays.toString(pixel));
-                        } else {
-                            telemetry.addData("Array", "-1");
-                        }
-                        telemetry.addLine();
+                for(int height = 0; height < bm.getHeight(); height++)
+                {
+                    for(int width = 0; width < bm.getWidth(); width++)
+                    {
+
                     }
                 }
-                telemetry.update();
             }
 
             for (VuforiaTrackable beacon : beacons) {
@@ -152,12 +149,6 @@ public class VuforiaNav extends LinearOpMode {
             }
             telemetry.update();
             idle();
-        }
-
-        while(isStopRequested())
-        {
-            vuforia.clearGlSurface();
-            vuforia.rgb = null;
         }
 
     }

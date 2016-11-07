@@ -89,6 +89,11 @@ public class PIDControl {
         this.inverted = inverted;
     }
 
+    public void setAbsoluteSetPoint(boolean absolute)
+    {
+        this.absSetPoint = absolute;
+    }
+
     //Sets distance in ticks
     public void setTarget(double target) {
         double input = pidInput.getInput(this);
@@ -142,6 +147,12 @@ public class PIDControl {
 
         return onTarget;
     }
+
+    public void setOutputRange(double minOutput, double maxOutput)
+    {
+        this.minOutput = minOutput;
+        this.maxOutput = maxOutput;
+    }   //setOutputRange
 
     //Calculates the power output for driving forward
     public double getPowerOutput() {

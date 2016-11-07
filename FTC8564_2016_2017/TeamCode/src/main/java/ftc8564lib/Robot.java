@@ -30,9 +30,11 @@ public class Robot {
 
     private static HalDashboard dashboard = null;
     public DriveBase driveBase = null;
+    public PulleySystem PulleySystem = null;
 
     public Robot(LinearOpMode opMode) throws InterruptedException {
         driveBase = new DriveBase(opMode);
+        PulleySystem = new PulleySystem(opMode);
         dashboard = new HalDashboard(opMode.telemetry);
     }
 

@@ -44,6 +44,8 @@ public class pixelObject implements Comparable<pixelObject> {
 
     public void setXpos(int val) { xpos = val; }
 
+    public int getXpos() { return xpos; }
+
     public void addCount() { count++; }
 
     public void resetCount() { count = 0; }
