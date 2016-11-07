@@ -69,6 +69,31 @@ public class DriveBase implements PIDControl.PidInput {
         odsRight = opMode.hardwareMap.opticalDistanceSensor.get("odsRight");
     }
 
+    public void driveForwardOds(double power) throws InterruptedException {
+        normalSpeed();
+        double ROTATIONS = 5 / CIRCUMFERENCE;
+        double COUNTS = ENCODER_CPR * ROTATIONS * GEAR_RATIO;
+        int leftTarget = (int) COUNTS + leftMotor.getCurrentPosition();
+        int rightTarget = (int) COUNTS + rightMotor.getCurrentPosition();
+        leftMotor.setTargetPosition(leftTarget);
+        rightMotor.setTargetPosition(rightTarget);
+        leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        leftMotor.setPower(power);
+        rightMotor.setPower(power);
+        while (leftMotor.isBusy() || rightMotor.isBusy()) {
+            if(odsLeft.getRawLightDetected() >= 3.0)
+            {
+                leftMotor.setPower(0);
+            } else if(odsRight.getRawLightDetected() >= 3.0)
+            {
+                leftMotor.setPower(0);
+            }
+            opMode.idle();
+        }
+        resetMotors();
+    }
+
     //Input distance in inches and power with decimal to hundredth place
     public void driveForward(double distance, double power) throws InterruptedException {
         normalSpeed();

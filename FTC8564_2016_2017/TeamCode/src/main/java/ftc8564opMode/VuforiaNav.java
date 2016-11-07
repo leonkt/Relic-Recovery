@@ -79,7 +79,7 @@ public class VuforiaNav extends LinearOpMode {
 
         while (opModeIsActive()) {
 
-            if (vuforia.rgb != null && gamepad1.a) {
+            if (vuforia.rgb != null) {
                 int color = 0;
                 int red = 0;
                 int green = 0;
@@ -92,7 +92,6 @@ public class VuforiaNav extends LinearOpMode {
 
                 pixelObject[][] pixel = new pixelObject[vuforia.rgb.getWidth()][vuforia.rgb.getHeight()];
                 pixelObject[][] colorPixel = new pixelObject[vuforia.rgb.getWidth()][vuforia.rgb.getHeight()];
-                String[][] test = new String[vuforia.rgb.getWidth()][vuforia.rgb.getHeight()];
                 pixelObject beaconRed = new pixelObject(0, 0, xpos);
                 pixelObject beaconBlue = new pixelObject(1, 0, xpos);
                 pixelObject beaconOther = new pixelObject(-1, 0, xpos);
@@ -103,7 +102,6 @@ public class VuforiaNav extends LinearOpMode {
                         red = Color.red(color);
                         green = Color.green(color);
                         blue = Color.blue(color);
-                        test[width][height] = String.valueOf(red) + " " + String.valueOf(green) + " " + String.valueOf(blue);
                         if (red > blue && red > green) {
                             colorPixel[width][height] = beaconRed;
                         } else if (blue > green && blue > red) {
@@ -112,11 +110,6 @@ public class VuforiaNav extends LinearOpMode {
                             colorPixel[width][height] = beaconOther;
                         }
                     }
-                }
-
-                for(int row = 0; row < bm.getHeight(); row++)
-                {
-                   Log.i("RGB", Arrays.toString(test[row]));
                 }
 
                 for (int height = 0; height < bm.getHeight(); height++) {
@@ -130,6 +123,14 @@ public class VuforiaNav extends LinearOpMode {
                             xpos++;
                         }
                         colorPixel[count][height].addCount();
+                    }
+                }
+
+                for(int height = 0; height < bm.getHeight(); height++)
+                {
+                    for(int width = 0; width < bm.getWidth(); width++)
+                    {
+
                     }
                 }
             }
@@ -148,12 +149,6 @@ public class VuforiaNav extends LinearOpMode {
             }
             telemetry.update();
             idle();
-        }
-
-        while(isStopRequested())
-        {
-            vuforia.clearGlSurface();
-            vuforia.rgb = null;
         }
 
     }

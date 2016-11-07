@@ -23,16 +23,28 @@
 
 package ftc8564lib;
 
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
+public class PulleySystem {
 
-public class PulleySystem implements PIDControl.PidInput{
+    DcMotor leftPulley;
+    DcMotor rightPulley;
 
-    public PulleySystem() throws InterruptedException {
-
+    public PulleySystem(LinearOpMode opMode) {
+        leftPulley = opMode.hardwareMap.dcMotor.get("leftPulley");
+        rightPulley = opMode.hardwareMap.dcMotor.get("rightPulley");
     }
 
-    @Override
-    public double getInput(PIDControl pidCtrl) {
-        return 0;
+    public void setPower(double power)
+    {
+        leftPulley.setPower(power);
+        rightPulley.setPower(power);
+    }
+
+    public void resetMotors()
+    {
+        leftPulley.setPower(0);
+        rightPulley.setPower(0);
     }
 }

@@ -41,31 +41,42 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
 
     public enum Strategy {
         DO_NOTHING,
-        TEST_1,
-        TEST_2,
-        SPIN
+        ONE_BEACON,
+        TWO_BEACON,
+        PARKING,
+        CORNER_VORTEX,
+        SHOOTBALL
+    }
 
+    public enum Delay {
+        ZERO,
+        FIVE,
+        TEN
     }
 
     private Alliance alliance = Alliance.RED_ALLIANCE;
     private Strategy strategy = Strategy.DO_NOTHING;
+    private Delay delay = Delay.ZERO;
 
     @Override
     public void runOpMode() throws InterruptedException {
         robot = new Robot(this);
         doMenus();
-        auto = new AutoProgram(alliance, robot);
+        auto = new AutoProgram(alliance, robot, delay);
         waitForStart();
 
         switch (strategy) {
-            case TEST_1:
+            case ONE_BEACON:
+                auto.runOneBeacon();
+                break;
+            case TWO_BEACON:
+                auto.runTwoBeacon();
+                break;
+            case SHOOTBALL:
                 auto.runShootBall();
                 break;
-            case TEST_2:
-                auto.runBackward();
-                break;
-            case SPIN:
-                auto.runSpin();
+            case CORNER_VORTEX:
+                auto.runCornerVortex();
                 break;
             default:
             case DO_NOTHING:
@@ -100,18 +111,26 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
     private void doMenus() throws InterruptedException {
         FtcChoiceMenu allianceMenu = new FtcChoiceMenu("Alliance:", null, this);
         FtcChoiceMenu strategyMenu = new FtcChoiceMenu("Strategy:", allianceMenu, this);
+        FtcChoiceMenu delayMenu = new FtcChoiceMenu("Delay: ", strategyMenu, this);
 
         allianceMenu.addChoice("Red", Alliance.RED_ALLIANCE, strategyMenu);
         allianceMenu.addChoice("Blue", Alliance.BLUE_ALLIANCE, strategyMenu);
 
         strategyMenu.addChoice("Do Nothing", Strategy.DO_NOTHING);
-        strategyMenu.addChoice("Test 1", Strategy.TEST_1);
-        strategyMenu.addChoice("Test 2", Strategy.TEST_2);
-        strategyMenu.addChoice("Spin", Strategy.SPIN);
+        strategyMenu.addChoice("One Beacon", Strategy.ONE_BEACON);
+        strategyMenu.addChoice("Two Beacon", Strategy.TWO_BEACON);
+        strategyMenu.addChoice("Shoot Ball", Strategy.SHOOTBALL);
+        strategyMenu.addChoice("Corner Vortex", Strategy.CORNER_VORTEX);
+        strategyMenu.addChoice("Parking",Strategy.PARKING);
+
+        delayMenu.addChoice("0 ", Delay.ZERO);
+        delayMenu.addChoice("5 ", Delay.FIVE);
+        delayMenu.addChoice("10 ", Delay.TEN);
 
         FtcMenu.walkMenuTree(allianceMenu);
         alliance = (Alliance) allianceMenu.getCurrentChoiceObject();
         strategy = (Strategy) strategyMenu.getCurrentChoiceObject();
+        delay = (Delay) delayMenu.getCurrentChoiceObject();
     }
 
 }
