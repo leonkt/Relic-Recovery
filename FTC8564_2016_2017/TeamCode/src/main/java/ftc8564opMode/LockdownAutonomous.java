@@ -47,9 +47,47 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
 
     }
 
+    public enum Idea1 {
+        SHOOTING,
+        BEACON_1,
+        BEACON_2,
+    }
+
+    public enum Idea2{
+        PARKING,
+        BEACON_1,
+        BEACON_2,
+        BEACON_3,
+        BEACON_4
+    }
+
+    public enum Idea3{
+        CORNER_VORTEX,
+        PARKING
+    }
+
+
     private Alliance alliance = Alliance.RED_ALLIANCE;
     private Strategy strategy = Strategy.DO_NOTHING;
+    private Idea1 idea1 = Idea1.SHOOTING;
+    private Idea2 idea2 = Idea2.PARKING;
+    private Idea3 idea3 = Idea3.CORNER_VORTEX;
 
+    @Override
+    public void runOpMode() throws InterruptedException {
+        robot = new Robot(this);
+        doMenus();
+        auto = new AutoProgram(alliance, robot);
+        waitForStart();
+
+        switch (strategy) {
+            case BEACON_1:
+                auto.runShootBall();
+                break;
+            case BEACON_2:
+                auto.
+        }
+    }
     @Override
     public void runOpMode() throws InterruptedException {
         robot = new Robot(this);
