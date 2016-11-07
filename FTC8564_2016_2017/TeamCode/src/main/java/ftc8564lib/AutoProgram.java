@@ -74,8 +74,6 @@ public class AutoProgram {
         robot.driveBase.resetPIDDrive();
     }
 
-<<<<<<< HEAD
-=======
     private void runDelay() throws InterruptedException {
         double time = 0;
         if(delay == LockdownAutonomous.Delay.ZERO)
@@ -88,11 +86,10 @@ public class AutoProgram {
         {
             time = 10;
         }
-        mClock.reset();
         mClock.startTime();
         while (mClock.time() <= time) {
         }
+        mClock.reset();
     }
->>>>>>> a2ec6303a3696e3ba37548fd04c6f50e8edb2b20
 
 }
