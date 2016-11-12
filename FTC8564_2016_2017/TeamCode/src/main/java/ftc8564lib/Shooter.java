@@ -26,29 +26,57 @@ package ftc8564lib;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-public class PulleySystem {
+public class Shooter {
 
-    DcMotor leftPulley;
-    DcMotor rightPulley;
-    DcMotor leftArm;
-    DcMotor rightArm;
+    DcMotor tennisArm;
 
-    public PulleySystem(LinearOpMode opMode) {
-        leftPulley = opMode.hardwareMap.dcMotor.get("leftPulley");
-        rightPulley = opMode.hardwareMap.dcMotor.get("rightPulley");
-        leftPulley.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        rightPulley.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+    public Shooter(LinearOpMode opMode) {
+        tennisArm = opMode.hardwareMap.dcMotor.get("tennisArm");
+        tennisArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        tennisArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        tennisArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        tennisArm.setPower(0.2);
     }
 
-    public void setPower(double power)
+    public void setTennisArmPower(boolean up)
     {
-        leftPulley.setPower(power);
-        rightPulley.setPower(power);
+        if(up)
+        {
+            tennisArm.setTargetPosition(checkPos(1));
+            tennisArm.setPower(0.5);
+        } else {
+            tennisArm.setTargetPosition(checkPos(0));
+            tennisArm.setPower(-0.5);
+        }
+    }
+
+    public void setTennisArmPower()
+    {
+        tennisArm.setTargetPosition(tennisArm.getCurrentPosition());
+    }
+
+    private int checkPos(int i)
+    {
+        if(i == 0)
+        {
+            if(tennisArm.getCurrentPosition() - 100 < 0)
+            {
+                return 0;
+            }
+            return tennisArm.getCurrentPosition() - 100;
+        } else if(i == 1){
+            if(tennisArm.getCurrentPosition() + 100 > 500)
+            {
+                return 500;
+            }
+            return tennisArm.getCurrentPosition() + 100;
+        }
+        return tennisArm.getCurrentPosition();
     }
 
     public void resetMotors()
     {
-        leftPulley.setPower(0);
-        rightPulley.setPower(0);
+        tennisArm.setPower(0);
     }
+
 }

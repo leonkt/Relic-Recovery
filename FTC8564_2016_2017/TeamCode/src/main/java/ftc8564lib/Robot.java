@@ -31,10 +31,12 @@ public class Robot {
     private static HalDashboard dashboard = null;
     public DriveBase driveBase = null;
     public PulleySystem PulleySystem = null;
+    public Shooter shooter = null;
 
-    public Robot(LinearOpMode opMode) throws InterruptedException {
-        driveBase = new DriveBase(opMode);
+    public Robot(LinearOpMode opMode, boolean auto) throws InterruptedException {
+        driveBase = new DriveBase(opMode, auto);
         PulleySystem = new PulleySystem(opMode);
+        shooter = new Shooter(opMode);
         dashboard = new HalDashboard(opMode.telemetry);
     }
 

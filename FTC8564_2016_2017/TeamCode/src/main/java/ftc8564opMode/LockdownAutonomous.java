@@ -59,7 +59,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
 
     @Override
     public void runOpMode() throws InterruptedException {
-        robot = new Robot(this);
+        robot = new Robot(this,true);
         doMenus();
         auto = new AutoProgram(alliance, robot, delay);
         waitForStart();

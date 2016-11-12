@@ -34,13 +34,31 @@ public class LockdownTeleOp extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        robot = new Robot(this);
+        robot = new Robot(this,false);
         robot.driveBase.constantSpeed();
         waitForStart();
         while (opModeIsActive()) {
             // Drive Train command
             robot.driveBase.tankDrive(gamepad1.left_stick_y, gamepad1.right_stick_y);
+            // Pulley System
             robot.PulleySystem.setPower(gamepad2.left_stick_y);
-        } // end of if gamepad1.back not pressed
+            // Tennis Arm
+            if(gamepad1.left_bumper)
+            {
+                robot.shooter.setTennisArmPower(true);
+            } else if(gamepad1.left_trigger == 1)
+            {
+                robot.shooter.setTennisArmPower(false);
+            } else
+            {
+                robot.shooter.setTennisArmPower();
+            }
+        }
+
+        robot.PulleySystem.resetMotors();
+        robot.shooter.resetMotors();
+        robot.driveBase.resetMotors();
+        robot.driveBase.resetPIDDrive();
+
     }
 }

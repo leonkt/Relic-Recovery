@@ -46,7 +46,7 @@ public class DriveBase implements PIDControl.PidInput {
     private ModernRoboticsI2cGyro gyroSensor;
     private ElapsedTime mRunTime = new ElapsedTime();
 
-    public DriveBase(LinearOpMode opMode) throws InterruptedException {
+    public DriveBase(LinearOpMode opMode, boolean auto) throws InterruptedException {
         this.opMode = opMode;
         rightMotor = opMode.hardwareMap.dcMotor.get("rightMotor");
         rightMotor.setDirection(DcMotor.Direction.REVERSE);
@@ -58,9 +58,16 @@ public class DriveBase implements PIDControl.PidInput {
         gyroSensor = (ModernRoboticsI2cGyro)opMode.hardwareMap.gyroSensor.get("gyro");
         mRunTime.reset();
         gyroSensor.calibrate();
-        while(gyroSensor.isCalibrating()) {
-           Thread.sleep(50);
-            opMode.idle();
+        if(auto)
+        {
+            opMode.telemetry.addData("Calibrating Don't Move","");
+            opMode.telemetry.update();
+            while(gyroSensor.isCalibrating()) {
+                Thread.sleep(5);
+                opMode.idle();
+            }
+            opMode.telemetry.addData("Done Calibration","");
+            opMode.telemetry.update();
         }
         //Sets up PID Drive: kP, kI, kD, kF, Tolerance, Settling Time
         pidControl = new PIDControl(0.03,0,0.011,0,2.0,0.2,this);
@@ -82,12 +89,12 @@ public class DriveBase implements PIDControl.PidInput {
         leftMotor.setPower(power);
         rightMotor.setPower(power);
         while (leftMotor.isBusy() || rightMotor.isBusy()) {
-            if(odsLeft.getRawLightDetected() >= 3.0)
+            if(odsLeft.getLightDetected() >= 3.0)
             {
                 leftMotor.setPower(0);
-            } else if(odsRight.getRawLightDetected() >= 3.0)
+            } else if(odsRight.getLightDetected() >= 3.0)
             {
-                leftMotor.setPower(0);
+                rightMotor.setPower(0);
             }
             opMode.idle();
         }
