@@ -32,10 +32,9 @@ public class Shooter {
 
     public Shooter(LinearOpMode opMode) {
         tennisArm = opMode.hardwareMap.dcMotor.get("tennisArm");
-        tennisArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         tennisArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         tennisArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        tennisArm.setPower(0.2);
+        tennisArm.setPower(0.5);
     }
 
     public void setTennisArmPower(boolean up)
@@ -43,16 +42,9 @@ public class Shooter {
         if(up)
         {
             tennisArm.setTargetPosition(checkPos(1));
-            tennisArm.setPower(0.5);
         } else {
             tennisArm.setTargetPosition(checkPos(0));
-            tennisArm.setPower(-0.5);
         }
-    }
-
-    public void setTennisArmPower()
-    {
-        tennisArm.setTargetPosition(tennisArm.getCurrentPosition());
     }
 
     private int checkPos(int i)

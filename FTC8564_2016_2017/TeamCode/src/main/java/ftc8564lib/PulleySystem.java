@@ -36,14 +36,17 @@ public class PulleySystem {
     public PulleySystem(LinearOpMode opMode) {
         leftPulley = opMode.hardwareMap.dcMotor.get("leftPulley");
         rightPulley = opMode.hardwareMap.dcMotor.get("rightPulley");
-        leftPulley.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        rightPulley.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
     public void setPower(double power)
     {
         leftPulley.setPower(power);
         rightPulley.setPower(power);
+    }
+
+    private void checkPos(int i)
+    {
+
     }
 
     public void resetMotors()
