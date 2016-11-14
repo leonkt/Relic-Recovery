@@ -51,10 +51,10 @@ public class DriveBase implements PIDControl.PidInput {
         rightMotor = opMode.hardwareMap.dcMotor.get("rightMotor");
         rightMotor.setDirection(DcMotor.Direction.REVERSE);
         leftMotor = opMode.hardwareMap.dcMotor.get("leftMotor");
-        leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         gyroSensor = (ModernRoboticsI2cGyro)opMode.hardwareMap.gyroSensor.get("gyro");
         mRunTime.reset();
         gyroSensor.calibrate();
@@ -84,8 +84,6 @@ public class DriveBase implements PIDControl.PidInput {
         int rightTarget = (int) COUNTS + rightMotor.getCurrentPosition();
         leftMotor.setTargetPosition(leftTarget);
         rightMotor.setTargetPosition(rightTarget);
-        leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         leftMotor.setPower(power);
         rightMotor.setPower(power);
         while (leftMotor.isBusy() || rightMotor.isBusy()) {
@@ -110,8 +108,6 @@ public class DriveBase implements PIDControl.PidInput {
         int rightTarget = (int) COUNTS + rightMotor.getCurrentPosition();
         leftMotor.setTargetPosition(leftTarget);
         rightMotor.setTargetPosition(rightTarget);
-        leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         leftMotor.setPower(power);
         rightMotor.setPower(power);
         while (leftMotor.isBusy() || rightMotor.isBusy()) {
@@ -128,8 +124,6 @@ public class DriveBase implements PIDControl.PidInput {
         int rightTarget = (int) COUNTS + rightMotor.getCurrentPosition();
         leftMotor.setTargetPosition(-leftTarget);
         rightMotor.setTargetPosition(-rightTarget);
-        leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         leftMotor.setPower(power);
         rightMotor.setPower(power);
         while (leftMotor.isBusy() || rightMotor.isBusy()) {
@@ -147,8 +141,6 @@ public class DriveBase implements PIDControl.PidInput {
         int rightTarget = (int) COUNTS + rightMotor.getCurrentPosition();
         leftMotor.setTargetPosition(leftTarget);
         rightMotor.setTargetPosition(rightTarget);
-        leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         leftMotor.setPower(power);
         rightMotor.setPower(power);
         pidControl.setTarget(distance);
@@ -177,8 +169,6 @@ public class DriveBase implements PIDControl.PidInput {
         int rightTarget = (int) COUNTS + rightMotor.getCurrentPosition();
         leftMotor.setTargetPosition(-leftTarget);
         rightMotor.setTargetPosition(-rightTarget);
-        leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         leftMotor.setPower(power);
         rightMotor.setPower(power);
         pidControl.setTarget(-distance);

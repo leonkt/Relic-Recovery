@@ -47,6 +47,8 @@ public class Shooter {
         }
     }
 
+    public void setTennisArmPower() { tennisArm.setTargetPosition(tennisArm.getCurrentPosition());}
+
     private int checkPos(int i)
     {
         if(i == 0)

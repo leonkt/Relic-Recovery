@@ -33,20 +33,62 @@ public class PulleySystem {
     DcMotor leftArm;
     DcMotor rightArm;
 
+    final static int ENCODER_CPR = 1680;     //Encoder Counts per Revolution on NeveRest 60 Motors
+    final static int MAX_HEIGHT = 25;        //Max height our pulley system can go
+    final static int DISTANCE = MAX_HEIGHT*ENCODER_CPR;
+
     public PulleySystem(LinearOpMode opMode) {
         leftPulley = opMode.hardwareMap.dcMotor.get("leftPulley");
         rightPulley = opMode.hardwareMap.dcMotor.get("rightPulley");
+        //leftPulley.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //rightPulley.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //leftPulley.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        //rightPulley.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        //leftPulley.setPower(0.8);
+        //rightPulley.setPower(0.6);
     }
 
-    public void setPower(double power)
+    public void changePower(double power)
     {
         leftPulley.setPower(power);
-        rightPulley.setPower(power);
+        rightPulley.setPower(0.775*power);
     }
 
-    private void checkPos(int i)
+    public void setPower(boolean up)
     {
+        if(up)
+        {
+            leftPulley.setTargetPosition(checkPos(1));
+            rightPulley.setTargetPosition(leftPulley.getCurrentPosition());
+        } else {
+            leftPulley.setTargetPosition(checkPos(0));
+            rightPulley.setTargetPosition(leftPulley.getCurrentPosition());
+        }
+    }
 
+    public void setPower()
+    {
+        leftPulley.setTargetPosition(leftPulley.getCurrentPosition());
+        rightPulley.setTargetPosition(leftPulley.getCurrentPosition());
+    }
+
+    private int checkPos(int i)
+    {
+        if(i == 0)
+        {
+            if(leftPulley.getCurrentPosition() - 200 < 0)
+            {
+                return 0;
+            }
+            return leftPulley.getCurrentPosition() - 200;
+        } else if(i == 1){
+            if(leftPulley.getCurrentPosition() + 200 > DISTANCE)
+            {
+                return DISTANCE;
+            }
+            return leftPulley.getCurrentPosition() + 200;
+        }
+        return leftPulley.getCurrentPosition();
     }
 
     public void resetMotors()

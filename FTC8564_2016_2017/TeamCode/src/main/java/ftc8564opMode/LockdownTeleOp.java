@@ -41,7 +41,15 @@ public class LockdownTeleOp extends LinearOpMode {
             // Drive Train command
             robot.driveBase.tankDrive(gamepad1.left_stick_y, gamepad1.right_stick_y);
             // Pulley System
-            robot.PulleySystem.setPower(gamepad2.left_stick_y);
+            /*if(gamepad2.left_stick_y > 0)
+            {
+                robot.PulleySystem.setPower(false);
+            } else if(gamepad2.left_stick_y < 0){
+                robot.PulleySystem.setPower(true);
+            } else {
+                robot.PulleySystem.setPower();
+            }*/
+            robot.PulleySystem.changePower(-gamepad2.left_stick_y);
             // Tennis Arm
             if(gamepad1.left_bumper)
             {
@@ -49,10 +57,25 @@ public class LockdownTeleOp extends LinearOpMode {
             } else if(gamepad1.left_trigger == 1)
             {
                 robot.shooter.setTennisArmPower(false);
-            } else
-            {
+            } else {
                 robot.shooter.setTennisArmPower();
             }
+
+            if(gamepad2.a)
+            {
+                robot.beaconPush.enableLED(true);
+            }
+            if(gamepad2.b)
+            {
+                robot.beaconPush.enableLED(false);
+            }
+
+            telemetry.addData("Red", robot.beaconPush.redColor());
+            telemetry.addData("Blue", robot.beaconPush.blueColor());
+            telemetry.addData("Green", robot.beaconPush.greenColor());
+
+            telemetry.update();
+
         }
 
         robot.PulleySystem.resetMotors();

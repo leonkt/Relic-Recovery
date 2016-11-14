@@ -32,11 +32,13 @@ public class Robot {
     public DriveBase driveBase = null;
     public PulleySystem PulleySystem = null;
     public Shooter shooter = null;
+    public BeaconPush beaconPush = null;
 
     public Robot(LinearOpMode opMode, boolean auto) throws InterruptedException {
         driveBase = new DriveBase(opMode, auto);
         PulleySystem = new PulleySystem(opMode);
         shooter = new Shooter(opMode);
+        beaconPush = new BeaconPush(opMode);
         dashboard = new HalDashboard(opMode.telemetry);
     }
 

@@ -30,35 +30,33 @@ public class AutoProgram {
 
     Robot robot;
     LockdownAutonomous.Alliance alliance;
-    LockdownAutonomous.Delay delay;
     private ElapsedTime mClock = new ElapsedTime();
 
-    public AutoProgram(LockdownAutonomous.Alliance alliance, Robot robot, LockdownAutonomous.Delay delay) {
+    public AutoProgram(LockdownAutonomous.Alliance alliance, Robot robot) {
         this.alliance = alliance;
         this.robot = robot;
-        this.delay = delay;
     }
 
     public void runOneBeacon() throws InterruptedException {
-        runDelay();
         robot.driveBase.driveForwardPID(5,.1);
         robot.driveBase.spinGyroPID(45,0.3);
     }
 
     public void runTwoBeacon() throws InterruptedException {
-        runDelay();
         robot.driveBase.driveForwardPID(5,.1);
         robot.driveBase.spinGyroPID(45,0.3);
     }
 
     public void runShootBall() throws InterruptedException {
-        runDelay();
 
     }
 
     public void runCornerVortex() throws InterruptedException {
-        runDelay();
         robot.driveBase.driveForwardPID(5,.1);
+    }
+
+    public void runDefense() throws InterruptedException {
+
     }
 
     public void runDoNothing() throws InterruptedException {
@@ -69,27 +67,10 @@ public class AutoProgram {
     }
 
     public void runCleanUp() throws InterruptedException {
+        robot.shooter.resetMotors();
         robot.PulleySystem.resetMotors();
         robot.driveBase.resetMotors();
         robot.driveBase.resetPIDDrive();
-    }
-
-    private void runDelay() throws InterruptedException {
-        double time = 0;
-        if(delay == LockdownAutonomous.Delay.ZERO)
-        {
-            time = 0;
-        } else if(delay == LockdownAutonomous.Delay.FIVE)
-        {
-            time = 5;
-        } else if(delay == LockdownAutonomous.Delay.TEN)
-        {
-            time = 10;
-        }
-        mClock.startTime();
-        while (mClock.time() <= time) {
-        }
-        mClock.reset();
     }
 
 }

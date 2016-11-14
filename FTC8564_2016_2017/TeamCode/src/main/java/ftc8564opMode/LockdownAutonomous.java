@@ -44,24 +44,18 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         ONE_BEACON,
         TWO_BEACON,
         CORNER_VORTEX,
-        SHOOTBALL
-    }
-
-    public enum Delay {
-        ZERO,
-        FIVE,
-        TEN
+        SHOOTBALL,
+        DEFENSE
     }
 
     private Alliance alliance = Alliance.RED_ALLIANCE;
     private Strategy strategy = Strategy.DO_NOTHING;
-    private Delay delay = Delay.ZERO;
 
     @Override
     public void runOpMode() throws InterruptedException {
         robot = new Robot(this,true);
         doMenus();
-        auto = new AutoProgram(alliance, robot, delay);
+        auto = new AutoProgram(alliance, robot);
         waitForStart();
 
         switch (strategy) {
@@ -76,6 +70,9 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
                 break;
             case CORNER_VORTEX:
                 auto.runCornerVortex();
+                break;
+            case DEFENSE:
+                auto.runDefense();
                 break;
             default:
             case DO_NOTHING:
@@ -110,7 +107,6 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
     private void doMenus() throws InterruptedException {
         FtcChoiceMenu allianceMenu = new FtcChoiceMenu("Alliance:", null, this);
         FtcChoiceMenu strategyMenu = new FtcChoiceMenu("Strategy:", allianceMenu, this);
-        FtcChoiceMenu delayMenu = new FtcChoiceMenu("Delay: ", strategyMenu, this);
 
         allianceMenu.addChoice("Red", Alliance.RED_ALLIANCE, strategyMenu);
         allianceMenu.addChoice("Blue", Alliance.BLUE_ALLIANCE, strategyMenu);
@@ -120,15 +116,11 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         strategyMenu.addChoice("Two Beacon", Strategy.TWO_BEACON);
         strategyMenu.addChoice("Shoot Ball", Strategy.SHOOTBALL);
         strategyMenu.addChoice("Corner Vortex", Strategy.CORNER_VORTEX);
-
-        delayMenu.addChoice("0 ", Delay.ZERO);
-        delayMenu.addChoice("5 ", Delay.FIVE);
-        delayMenu.addChoice("10 ", Delay.TEN);
+        strategyMenu.addChoice("Defense", Strategy.DEFENSE);
 
         FtcMenu.walkMenuTree(allianceMenu);
         alliance = (Alliance) allianceMenu.getCurrentChoiceObject();
         strategy = (Strategy) strategyMenu.getCurrentChoiceObject();
-        delay = (Delay) delayMenu.getCurrentChoiceObject();
     }
 
 }
