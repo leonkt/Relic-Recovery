@@ -25,14 +25,15 @@ package ftc8564opMode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.util.ElapsedTime;
 import ftclib.*;
 import ftc8564lib.*;
 
 @Autonomous(name="Autonomous", group="Autonomous")
 public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButtons {
 
-    AutoProgram auto;
     Robot robot;
+    private ElapsedTime mClock = new ElapsedTime();
 
     public enum Alliance {
         RED_ALLIANCE,
@@ -55,33 +56,68 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
     public void runOpMode() throws InterruptedException {
         robot = new Robot(this,true);
         doMenus();
-        auto = new AutoProgram(alliance, robot);
         waitForStart();
 
         switch (strategy) {
             case ONE_BEACON:
-                auto.runOneBeacon();
+                runOneBeacon();
                 break;
             case TWO_BEACON:
-                auto.runTwoBeacon();
+                runTwoBeacon();
                 break;
             case SHOOTBALL:
-                auto.runShootBall();
+                runShootBall();
                 break;
             case CORNER_VORTEX:
-                auto.runCornerVortex();
+                runCornerVortex();
                 break;
             case DEFENSE:
-                auto.runDefense();
+                runDefense();
                 break;
             default:
             case DO_NOTHING:
-                auto.runDoNothing();
+                runDoNothing();
                 break;
         }
 
-        auto.runCleanUp();
+        runCleanUp();
 
+    }
+
+    private void runOneBeacon() throws InterruptedException {
+        robot.driveBase.driveForward(5,0.3);
+        robot.driveBase.spinGyro(45,0.3);
+    }
+
+    private void runTwoBeacon() throws InterruptedException {
+        robot.driveBase.driveForwardPID(5,0.3);
+        //robot.driveBase.spinGyroPID(15,0.5);
+    }
+
+    private void runShootBall() throws InterruptedException {
+
+    }
+
+    private void runCornerVortex() throws InterruptedException {
+        robot.driveBase.driveForwardPID(5,.1);
+    }
+
+    private void runDefense() throws InterruptedException {
+
+    }
+
+    private void runDoNothing() throws InterruptedException {
+        mClock.reset();
+        mClock.startTime();
+        while (mClock.time() <= 29.9) {
+        }
+    }
+
+    private void runCleanUp() throws InterruptedException {
+        robot.shooter.resetMotors();
+        robot.PulleySystem.resetMotors();
+        robot.driveBase.resetMotors();
+        robot.driveBase.resetPIDDrive();
     }
 
     @Override

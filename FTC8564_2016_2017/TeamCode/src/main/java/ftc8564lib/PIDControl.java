@@ -101,7 +101,6 @@ public class PIDControl {
         if (!absSetPoint) {
             setPoint += input;
         }
-
         if (maxInput > minInput) {
             if (setPoint > maxInput) {
                 setPoint = maxInput;
@@ -109,7 +108,6 @@ public class PIDControl {
                 setPoint = minInput;
             }
         }
-
         prevError = setPoint - input;
         if (inverted) {
             prevError = -prevError;
@@ -128,6 +126,15 @@ public class PIDControl {
         totalError = 0.0;
         setPoint = 0.0;
         output = 0.0;
+    }
+
+    public boolean isReachedTarget()
+    {
+        if(setPoint - pidInput.getInput(this) <= tolerance)
+        {
+            return true;
+        }
+        return false;
     }
 
     //Determines whether or not the robot is on track

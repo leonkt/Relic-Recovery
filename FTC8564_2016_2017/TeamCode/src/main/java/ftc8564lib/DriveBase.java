@@ -57,13 +57,13 @@ public class DriveBase implements PIDControl.PidInput {
         rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         gyroSensor = (ModernRoboticsI2cGyro)opMode.hardwareMap.gyroSensor.get("gyro");
         mRunTime.reset();
-        gyroSensor.calibrate();
         if(auto)
         {
+            gyroSensor.calibrate();
             opMode.telemetry.addData("Calibrating Don't Move","");
             opMode.telemetry.update();
             while(gyroSensor.isCalibrating()) {
-                Thread.sleep(5);
+                Thread.sleep(50);
                 opMode.idle();
             }
             opMode.telemetry.addData("Done Calibration","");
@@ -110,7 +110,7 @@ public class DriveBase implements PIDControl.PidInput {
         rightMotor.setTargetPosition(rightTarget);
         leftMotor.setPower(power);
         rightMotor.setPower(power);
-        while (leftMotor.isBusy() || rightMotor.isBusy()) {
+        while (leftMotor.getCurrentPosition() <= leftTarget && rightMotor.getCurrentPosition() <= rightTarget) {
             opMode.idle();
         }
         resetMotors();
@@ -133,19 +133,13 @@ public class DriveBase implements PIDControl.PidInput {
     }
 
     public void driveForwardPID(double distance, double power) throws InterruptedException {
-        normalSpeed();
-        gyroSensor.resetZAxisIntegrator();
+        constantSpeed();
+        double heading = gyroSensor.getIntegratedZValue();
         double ROTATIONS = distance / CIRCUMFERENCE;
         double COUNTS = ENCODER_CPR * ROTATIONS * GEAR_RATIO;
-        int leftTarget = (int) COUNTS + leftMotor.getCurrentPosition();
-        int rightTarget = (int) COUNTS + rightMotor.getCurrentPosition();
-        leftMotor.setTargetPosition(leftTarget);
-        rightMotor.setTargetPosition(rightTarget);
-        leftMotor.setPower(power);
-        rightMotor.setPower(power);
-        pidControl.setTarget(distance);
-        pidControlTurn.setTarget(0.00);
-        while (leftMotor.isBusy() || rightMotor.isBusy()) {
+        pidControl.setTarget(COUNTS);
+        pidControlTurn.setTarget(heading);
+        while (leftMotor.getCurrentPosition() <= COUNTS && rightMotor.getCurrentPosition() <= COUNTS) {
             if(!pidControl.isOnTarget() || !pidControlTurn.isOnTarget()) {
                 double leftPower = pidControl.getPowerOutput() + pidControlTurn.getPowerOutput();
                 double rightPower = pidControl.getPowerOutput() - pidControlTurn.getPowerOutput();
@@ -161,18 +155,12 @@ public class DriveBase implements PIDControl.PidInput {
     }
 
     public void driveBackwardPID(double distance, double power) throws InterruptedException {
-        normalSpeed();
-        gyroSensor.resetZAxisIntegrator();
+        constantSpeed();
+        double heading = gyroSensor.getIntegratedZValue();
         double ROTATIONS = distance / CIRCUMFERENCE;
         double COUNTS = ENCODER_CPR * ROTATIONS * GEAR_RATIO;
-        int leftTarget = (int) COUNTS + leftMotor.getCurrentPosition();
-        int rightTarget = (int) COUNTS + rightMotor.getCurrentPosition();
-        leftMotor.setTargetPosition(-leftTarget);
-        rightMotor.setTargetPosition(-rightTarget);
-        leftMotor.setPower(power);
-        rightMotor.setPower(power);
-        pidControl.setTarget(-distance);
-        pidControlTurn.setTarget(0.00);
+        pidControl.setTarget(-COUNTS);
+        pidControlTurn.setTarget(heading);
         while (leftMotor.isBusy() || rightMotor.isBusy()) {
             if(!pidControl.isOnTarget() || !pidControlTurn.isOnTarget()) {
                 double leftPower = pidControl.getPowerOutput() + pidControlTurn.getPowerOutput();
@@ -210,7 +198,6 @@ public class DriveBase implements PIDControl.PidInput {
 
     public void spinGyroPID(double degrees, double power) throws InterruptedException {
         constantSpeed();
-        gyroSensor.resetZAxisIntegrator();
         double leftPower, rightPower;
         if (degrees < 0.0) {
             leftPower = -power;
