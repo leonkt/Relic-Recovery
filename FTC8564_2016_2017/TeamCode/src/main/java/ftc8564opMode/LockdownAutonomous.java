@@ -85,13 +85,11 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
     }
 
     private void runOneBeacon() throws InterruptedException {
-        robot.driveBase.driveForward(5,0.3);
-        robot.driveBase.spinGyro(45,0.3);
+        robot.driveBase.driveForward(5,0.2);
     }
 
     private void runTwoBeacon() throws InterruptedException {
-        robot.driveBase.driveForwardPID(5,0.3);
-        //robot.driveBase.spinGyroPID(15,0.5);
+        robot.driveBase.driveForwardPID(720,0.3);
     }
 
     private void runShootBall() throws InterruptedException {

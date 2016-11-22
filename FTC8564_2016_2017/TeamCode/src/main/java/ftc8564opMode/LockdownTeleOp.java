@@ -39,7 +39,7 @@ public class LockdownTeleOp extends LinearOpMode {
         waitForStart();
         while (opModeIsActive()) {
             // Drive Train command
-            robot.driveBase.tankDrive(gamepad1.left_stick_y, gamepad1.right_stick_y);
+            robot.driveBase.tankDrive(-gamepad1.left_stick_y, -gamepad1.right_stick_y);
             // Pulley System
             /*if(gamepad2.left_stick_y > 0)
             {
@@ -69,12 +69,6 @@ public class LockdownTeleOp extends LinearOpMode {
             {
                 robot.beaconPush.enableLED(false);
             }
-
-            telemetry.addData("Red", robot.beaconPush.redColor());
-            telemetry.addData("Blue", robot.beaconPush.blueColor());
-            telemetry.addData("Green", robot.beaconPush.greenColor());
-
-            telemetry.update();
 
         }
 
