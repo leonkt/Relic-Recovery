@@ -35,7 +35,7 @@ public class LockdownTeleOp extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         robot = new Robot(this,false);
-        robot.driveBase.constantSpeed();
+        robot.driveBase.noEncoders();
         waitForStart();
         while (opModeIsActive()) {
             // Drive Train command

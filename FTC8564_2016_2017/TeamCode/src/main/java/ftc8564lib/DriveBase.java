@@ -32,19 +32,18 @@ import com.qualcomm.robotcore.util.Range;
 
 import hallib.HalDashboard;
 
-public class DriveBase implements PIDControl.PidInput {
+public class DriveBase implements PIDControl.PidInput, LineTrigger.odsInput {
 
     LinearOpMode opMode;
     PIDControl pidControl, pidControlTurn;
     OpticalDistanceSensor odsLeft, odsRight;
+    LineTrigger leftLineTrigger, rightLineTrigger;
 
     final static int ENCODER_CPR = 1120;     //Encoder Counts per Revolution on NeveRest 40 Motors
     final static double GEAR_RATIO = 1;      //Gear Ratio
     final static int WHEEL_DIAMETER = 4;     //Diameter of the wheel in inches
     final static double CIRCUMFERENCE = Math.PI * WHEEL_DIAMETER;
     final static double SCALE = 144.5/12556.5;
-    final static double TOLERANCE = 2.0 / CIRCUMFERENCE * ENCODER_CPR;  //Tolerance of accuracy of motors
-    final static double DEGREE_TOLERANCE = 2.0;
 
     private DcMotor leftMotor, rightMotor;
     private ModernRoboticsI2cGyro gyroSensor;
@@ -77,39 +76,15 @@ public class DriveBase implements PIDControl.PidInput {
         pidControlTurn = new PIDControl(0.014,0,0.02,0,2.0,0.2,this);
         odsLeft = opMode.hardwareMap.opticalDistanceSensor.get("odsLeft");
         odsRight = opMode.hardwareMap.opticalDistanceSensor.get("odsRight");
+        leftLineTrigger = new LineTrigger(this);
+        rightLineTrigger = new LineTrigger(this);
         dashboard.clearDisplay();
     }
 
-    public void driveForwardOds(double power) throws InterruptedException {
-        double ROTATIONS = 5 / CIRCUMFERENCE;
-        double COUNTS = ENCODER_CPR * ROTATIONS * GEAR_RATIO;
-        int leftTarget = (int) COUNTS + leftMotor.getCurrentPosition();
-        int rightTarget = (int) COUNTS + rightMotor.getCurrentPosition();
-        leftMotor.setTargetPosition(leftTarget);
-        rightMotor.setTargetPosition(rightTarget);
-        leftMotor.setPower(power);
-        rightMotor.setPower(power);
-        while (leftMotor.isBusy() || rightMotor.isBusy()) {
-            if(odsLeft.getLightDetected() >= 3.0)
-            {
-                leftMotor.setPower(0);
-            } else if(odsRight.getLightDetected() >= 3.0)
-            {
-                rightMotor.setPower(0);
-            }
-            opMode.idle();
-        }
-        resetMotors();
-    }
-
     //Input distance in inches and power with decimal to hundredth place
-    public void driveForwardPID(double distance) throws InterruptedException {
-        leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    public void drivePID(double distance) throws InterruptedException {
         pidControl.setTarget(distance);
-        pidControlTurn.setTarget(gyroSensor.getIntegratedZValue());
+        pidControlTurn.setTarget(0.0);
         while (!pidControl.isOnTarget() || !pidControlTurn.isOnTarget()) {
             double drivePower = pidControl.getPowerOutput();
             double turnPower = pidControlTurn.getPowerOutput();
@@ -121,51 +96,13 @@ public class DriveBase implements PIDControl.PidInput {
         resetPIDDrive();
     }
 
-    public void driveBackwardPID(double distance, double power) throws InterruptedException {
-        leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        pidControl.setTarget(-distance);
-        pidControlTurn.setTarget(gyroSensor.getIntegratedZValue());
-        while (!pidControl.isOnTarget() || !pidControlTurn.isOnTarget()) {
-            double drivePower = pidControl.getPowerOutput();
-            double turnPower = pidControlTurn.getPowerOutput();
-            leftMotor.setPower(drivePower + turnPower);
-            rightMotor.setPower(drivePower - turnPower);
-            opMode.idle();
-        }
-        resetMotors();
-        resetPIDDrive();
-    }
-
-    public void spinGyroPID(double degrees) throws InterruptedException {
-        leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    public void spinPID(double degrees) throws InterruptedException {
         pidControlTurn.setTarget(degrees);
         while (!pidControlTurn.isOnTarget()) {
             double outputPower = pidControlTurn.getPowerOutput();
             leftMotor.setPower(outputPower);
             rightMotor.setPower(-outputPower);
             pidControlTurn.displayPidInfo(5);
-            opMode.idle();
-        }
-        resetMotors();
-        resetPIDDrive();
-    }
-
-    public void setPidTarget(double distance, double degrees) throws InterruptedException {
-        pidControl.setTarget(distance);
-        pidControlTurn.setTarget(degrees);
-        dashboard.displayPrintf(11, "Distance: %.1f ft, Degrees: %.1f", distance/12.0, degrees);
-        while (!pidControl.isOnTarget() || !pidControlTurn.isOnTarget()) {
-            dashboard.displayPrintf(12, "yPos=%.1f,heading=%.1f", getInput(pidControl), getInput(pidControlTurn));
-            pidControl.displayPidInfo(13);
-            pidControlTurn.displayPidInfo(15);
-            double drivePower = pidControl.getPowerOutput();
-            double turnPower = pidControlTurn.getPowerOutput();
-            leftMotor.setPower(drivePower + turnPower);
-            rightMotor.setPower(drivePower - turnPower);
             opMode.idle();
         }
         resetMotors();
@@ -184,6 +121,17 @@ public class DriveBase implements PIDControl.PidInput {
     public void resetMotors() throws InterruptedException {
         leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    }
+
+    public void resetPIDDrive() {
+        pidControl.reset();
+        pidControlTurn.reset();
+    }
+
+    public void noEncoders()
+    {
+        leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
     double scaleInput(double dVal) {
@@ -210,11 +158,6 @@ public class DriveBase implements PIDControl.PidInput {
         return dScale;
     }
 
-    public void resetPIDDrive() {
-        pidControl.reset();
-        pidControlTurn.reset();
-    }
-
     @Override
     public double getInput(PIDControl pidCtrl)
     {
@@ -222,7 +165,7 @@ public class DriveBase implements PIDControl.PidInput {
 
         if (pidCtrl == pidControl)
         {
-            input = (leftMotor.getCurrentPosition() + rightMotor.getCurrentPosition())*SCALE/2;
+            input = (leftMotor.getCurrentPosition() + rightMotor.getCurrentPosition())*SCALE/2.0;
         }
         else if (pidCtrl == pidControlTurn)
         {
@@ -230,6 +173,21 @@ public class DriveBase implements PIDControl.PidInput {
         }
 
         return input;
+    }
+
+    @Override
+    public boolean shouldAbort(LineTrigger odsTrigger)
+    {
+        boolean abort = false;
+        if(odsTrigger == leftLineTrigger)
+        {
+            abort = odsLeft.getLightDetected() <= 3.0;
+        }
+        else if(odsTrigger == rightLineTrigger)
+        {
+            abort = odsRight.getLightDetected() <= 3.0;
+        }
+        return abort;
     }
 
 }
