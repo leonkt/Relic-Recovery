@@ -128,15 +128,6 @@ public class PIDControl {
         output = 0.0;
     }
 
-    public boolean isReachedTarget()
-    {
-        if(setPoint - pidInput.getInput(this) <= tolerance)
-        {
-            return true;
-        }
-        return false;
-    }
-
     //Determines whether or not the robot is on track
     public boolean isOnTarget() {
 

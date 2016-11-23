@@ -32,10 +32,12 @@ public class BeaconPush {
 
     ColorSensor colorSensor;
     CRServo rack;
+    LinearOpMode opMode;
+    STATE state;
 
-    static final double BUTTON_PUSHER_RETRACT_POSITION = 1;
-    static final double BUTTON_PUSHER_EXTEND_POSITION = -1;
-    static final double BUTTON_PUSHER_REST_POSITION = 0;
+    static final double BUTTON_PUSHER_RETRACT_POSITION = 0;
+    static final double BUTTON_PUSHER_EXTEND_POSITION = 1;
+    static final double BUTTON_PUSHER_REST_POSITION = 0.5;
 
     private ElapsedTime mClock = new ElapsedTime();
 
@@ -46,38 +48,46 @@ public class BeaconPush {
     }
 
     private enum STATE {
-        EXTEND,
-        RETRACT
+        EXTENDED,
+        RETRACTED
     }
 
     public BeaconPush(LinearOpMode opMode)
     {
+        this.opMode = opMode;
         colorSensor = opMode.hardwareMap.colorSensor.get("colorSensor");
         colorSensor.enableLed(false);
         rack = opMode.hardwareMap.crservo.get("rack");
+        state = STATE.RETRACTED;
+        mClock.reset();
     }
 
-    public void enableLED(boolean on)
+    public boolean isExtended()
     {
-        colorSensor.enableLed(on);
+        if(state == STATE.EXTENDED)
+        {
+            return true;
+        }
+        return false;
     }
 
-    public int redColor()
+    public void setButtonPusherExtendPosition()
     {
-        return colorSensor.red();
+        rack.setPower(BUTTON_PUSHER_EXTEND_POSITION);
+        waitTime(2);
+        rack.setPower(BUTTON_PUSHER_REST_POSITION);
+        changeState(STATE.EXTENDED);
     }
 
-    public int blueColor()
+    public void setButtonPusherRetractPosition()
     {
-        return colorSensor.blue();
+        rack.setPower(BUTTON_PUSHER_RETRACT_POSITION);
+        waitTime(2);
+        rack.setPower(BUTTON_PUSHER_REST_POSITION);
+        changeState(STATE.RETRACTED);
     }
 
-    public int greenColor()
-    {
-        return colorSensor.green();
-    }
-
-    private Color getColor()
+    public Color getColor()
     {
        if(colorSensor.red() > colorSensor.blue() && colorSensor.red() > colorSensor.green())
        {
@@ -90,11 +100,19 @@ public class BeaconPush {
        }
     }
 
-    private void waitTime(int i)
+    private void waitTime(double i)
     {
         mClock.reset();
         mClock.startTime();
-        while(mClock.seconds() < i) {}
+        while(mClock.time() <= i)
+        {
+            opMode.idle();
+        }
+    }
+
+    private void changeState(STATE newState)
+    {
+        state = newState;
     }
 
 }

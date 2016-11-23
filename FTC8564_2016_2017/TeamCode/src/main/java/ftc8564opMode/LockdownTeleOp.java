@@ -61,15 +61,6 @@ public class LockdownTeleOp extends LinearOpMode {
                 robot.shooter.setTennisArmPower();
             }
 
-            if(gamepad2.a)
-            {
-                robot.beaconPush.enableLED(true);
-            }
-            if(gamepad2.b)
-            {
-                robot.beaconPush.enableLED(false);
-            }
-
         }
 
         robot.PulleySystem.resetMotors();
