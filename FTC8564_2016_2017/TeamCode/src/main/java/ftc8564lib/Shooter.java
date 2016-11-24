@@ -28,6 +28,8 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import hallib.HalDashboard;
+
 public class Shooter {
 
     LinearOpMode opMode;
@@ -36,6 +38,7 @@ public class Shooter {
     CRServo lift;
     State state;
     ElapsedTime mClock = new ElapsedTime();
+    HalDashboard dashboard;
 
     public enum State {
         LOADING,
@@ -51,6 +54,7 @@ public class Shooter {
         tennisArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         tennisArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         tennisArm.setPower(0.5);
+        dashboard = Robot.getDashboard();
         mClock.reset();
     }
 

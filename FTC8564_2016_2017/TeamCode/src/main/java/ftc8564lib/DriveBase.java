@@ -26,31 +26,27 @@ package ftc8564lib;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
-import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
-
 import hallib.HalDashboard;
 
-public class DriveBase implements PIDControl.PidInput, LineTrigger.odsInput {
+public class DriveBase implements PIDControl.PidInput {
 
-    LinearOpMode opMode;
-    PIDControl pidControl, pidControlTurn;
-    OpticalDistanceSensor odsLeft, odsRight;
-    LineTrigger leftLineTrigger, rightLineTrigger;
+    private LinearOpMode opMode;
+    private PIDControl pidControl, pidControlTurn;
 
-    final static int ENCODER_CPR = 1120;     //Encoder Counts per Revolution on NeveRest 40 Motors
-    final static double GEAR_RATIO = 1;      //Gear Ratio
-    final static int WHEEL_DIAMETER = 4;     //Diameter of the wheel in inches
-    final static double CIRCUMFERENCE = Math.PI * WHEEL_DIAMETER;
-    final static double SCALE = 144.5/12556.5;
+    private final static double SCALE = (144.5/12556.5);
 
     private DcMotor leftMotor, rightMotor;
     private ModernRoboticsI2cGyro gyroSensor;
-    private ElapsedTime mRunTime = new ElapsedTime();
-    HalDashboard dashboard;
+    private HalDashboard dashboard;
 
-    public DriveBase(LinearOpMode opMode, boolean auto) throws InterruptedException {
+    public interface AbortTrigger
+    {
+        boolean shouldAbort();
+    }
+
+    DriveBase(LinearOpMode opMode, boolean auto) throws InterruptedException {
         this.opMode = opMode;
         rightMotor = opMode.hardwareMap.dcMotor.get("rightMotor");
         rightMotor.setDirection(DcMotor.Direction.REVERSE);
@@ -60,6 +56,7 @@ public class DriveBase implements PIDControl.PidInput, LineTrigger.odsInput {
         leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         gyroSensor = (ModernRoboticsI2cGyro)opMode.hardwareMap.gyroSensor.get("gyro");
+        ElapsedTime mRunTime = new ElapsedTime();
         mRunTime.reset();
         dashboard = Robot.getDashboard();
         if(auto)
@@ -74,18 +71,17 @@ public class DriveBase implements PIDControl.PidInput, LineTrigger.odsInput {
         //Sets up PID Drive: kP, kI, kD, kF, Tolerance, Settling Time
         pidControl = new PIDControl(0.03,0,0.001,0,2.0,0.2,this);
         pidControlTurn = new PIDControl(0.014,0,0.02,0,2.0,0.2,this);
-        odsLeft = opMode.hardwareMap.opticalDistanceSensor.get("odsLeft");
-        odsRight = opMode.hardwareMap.opticalDistanceSensor.get("odsRight");
-        leftLineTrigger = new LineTrigger(this);
-        rightLineTrigger = new LineTrigger(this);
         dashboard.clearDisplay();
     }
 
     //Input distance in inches and power with decimal to hundredth place
-    public void drivePID(double distance) throws InterruptedException {
+    public void drivePID(double distance, AbortTrigger abortTrigger) throws InterruptedException {
         pidControl.setTarget(distance);
         pidControlTurn.setTarget(0.0);
         while (!pidControl.isOnTarget() || !pidControlTurn.isOnTarget()) {
+            if (abortTrigger != null && abortTrigger.shouldAbort()) {
+                break;
+            }
             double drivePower = pidControl.getPowerOutput();
             double turnPower = pidControlTurn.getPowerOutput();
             leftMotor.setPower(drivePower + turnPower);
@@ -121,6 +117,8 @@ public class DriveBase implements PIDControl.PidInput, LineTrigger.odsInput {
     public void resetMotors() throws InterruptedException {
         leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        //rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
     public void resetPIDDrive() {
@@ -134,7 +132,7 @@ public class DriveBase implements PIDControl.PidInput, LineTrigger.odsInput {
         rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
-    double scaleInput(double dVal) {
+    private double scaleInput(double dVal) {
         double[] scaleArray = {0.0, 0.11, 0.13, 0.15, 0.18, 0.24,
                 0.30, 0.36, 0.43, 0.50, 0.65, 0.72, 0.75, 0.80, 0.85, 0.90, 0.90};
         // get the corresponding index for the scaleInput array.
@@ -162,7 +160,6 @@ public class DriveBase implements PIDControl.PidInput, LineTrigger.odsInput {
     public double getInput(PIDControl pidCtrl)
     {
         double input = 0.0;
-
         if (pidCtrl == pidControl)
         {
             input = (leftMotor.getCurrentPosition() + rightMotor.getCurrentPosition())*SCALE/2.0;
@@ -171,23 +168,7 @@ public class DriveBase implements PIDControl.PidInput, LineTrigger.odsInput {
         {
             input = gyroSensor.getIntegratedZValue();
         }
-
         return input;
-    }
-
-    @Override
-    public boolean shouldAbort(LineTrigger odsTrigger)
-    {
-        boolean abort = false;
-        if(odsTrigger == leftLineTrigger)
-        {
-            abort = odsLeft.getLightDetected() <= 3.0;
-        }
-        else if(odsTrigger == rightLineTrigger)
-        {
-            abort = odsRight.getLightDetected() <= 3.0;
-        }
-        return abort;
     }
 
 }

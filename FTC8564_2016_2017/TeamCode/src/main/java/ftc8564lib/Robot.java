@@ -24,10 +24,13 @@
 package ftc8564lib;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
+
 import hallib.*;
 
 public class Robot {
 
+    public OpticalDistanceSensor odsLeft, odsRight;
     private static HalDashboard dashboard = null;
     public DriveBase driveBase = null;
     public PulleySystem PulleySystem = null;
@@ -40,6 +43,8 @@ public class Robot {
         PulleySystem = new PulleySystem(opMode);
         shooter = new Shooter(opMode);
         beaconPush = new BeaconPush(opMode);
+        odsLeft = opMode.hardwareMap.opticalDistanceSensor.get("odsLeft");
+        odsRight = opMode.hardwareMap.opticalDistanceSensor.get("odsRight");
     }
 
     public static HalDashboard getDashboard() {

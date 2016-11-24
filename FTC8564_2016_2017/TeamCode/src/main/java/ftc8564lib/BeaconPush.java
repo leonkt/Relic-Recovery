@@ -28,6 +28,8 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import ftc8564opMode.LockdownAutonomous;
+
 public class BeaconPush {
 
     ColorSensor colorSensor;
@@ -62,6 +64,18 @@ public class BeaconPush {
         mClock.reset();
     }
 
+    public boolean detectBeaconColor(LockdownAutonomous.Alliance alliance)
+    {
+        if((alliance == LockdownAutonomous.Alliance.RED_ALLIANCE && getColor() == Color.RED) || (alliance == LockdownAutonomous.Alliance.BLUE_ALLIANCE && getColor() == Color.BLUE))
+        {
+            setButtonPusherExtendPosition();
+            setButtonPusherRetractPosition();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public boolean isExtended()
     {
         if(state == STATE.EXTENDED)
@@ -74,7 +88,7 @@ public class BeaconPush {
     public void setButtonPusherExtendPosition()
     {
         rack.setPower(BUTTON_PUSHER_EXTEND_POSITION);
-        waitTime(2);
+        waitTime(1);
         rack.setPower(BUTTON_PUSHER_REST_POSITION);
         changeState(STATE.EXTENDED);
     }
@@ -82,12 +96,12 @@ public class BeaconPush {
     public void setButtonPusherRetractPosition()
     {
         rack.setPower(BUTTON_PUSHER_RETRACT_POSITION);
-        waitTime(2);
+        waitTime(1);
         rack.setPower(BUTTON_PUSHER_REST_POSITION);
         changeState(STATE.RETRACTED);
     }
 
-    public Color getColor()
+    private Color getColor()
     {
        if(colorSensor.red() > colorSensor.blue() && colorSensor.red() > colorSensor.green())
        {
