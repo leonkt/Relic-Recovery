@@ -35,7 +35,7 @@ public class DriveBase implements PIDControl.PidInput {
     private LinearOpMode opMode;
     private PIDControl pidControl, pidControlTurn;
 
-    private final static double SCALE = (144.5/12556.5);
+    private final static double SCALE = (144.5/12556.5);    // INCHES_PER_COUNT
 
     private DcMotor leftMotor, rightMotor;
     private ModernRoboticsI2cGyro gyroSensor;
@@ -108,8 +108,8 @@ public class DriveBase implements PIDControl.PidInput {
     public void tankDrive(float leftPower, float rightPower) throws InterruptedException {
         leftPower = Range.clip(leftPower, -1, 1);
         rightPower = Range.clip(rightPower, -1, 1);
-        leftPower = (float) scaleInput(leftPower);
-        rightPower = (float) scaleInput(rightPower);
+        leftPower = (float) scalePower(leftPower);
+        rightPower = (float) scalePower(rightPower);
         leftMotor.setPower(leftPower);
         rightMotor.setPower(rightPower);
     }
@@ -117,8 +117,6 @@ public class DriveBase implements PIDControl.PidInput {
     public void resetMotors() throws InterruptedException {
         leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        //leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        //rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
     public void resetPIDDrive() {
@@ -132,28 +130,9 @@ public class DriveBase implements PIDControl.PidInput {
         rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
-    private double scaleInput(double dVal) {
-        double[] scaleArray = {0.0, 0.11, 0.13, 0.15, 0.18, 0.24,
-                0.30, 0.36, 0.43, 0.50, 0.65, 0.72, 0.75, 0.80, 0.85, 0.90, 0.90};
-        // get the corresponding index for the scaleInput array.
-        int index = (int) (dVal * 16.0);
-        // index should be positive.
-        if (index < 0) {
-            index = -index;
-        }
-        // index cannot exceed size of array minus 1.
-        if (index > 16) {
-            index = 16;
-        }
-        // get value from the array.
-        double dScale = 0;
-        if (dVal < 0) {
-            dScale = -scaleArray[index];
-        } else {
-            dScale = scaleArray[index];
-        }
-        // return scaled value.
-        return dScale;
+    private double scalePower(double dVal)
+    {
+        return -(Math.signum(dVal) * ((Math.pow(dVal, 2) * (1 - .1)) + .1));
     }
 
     @Override

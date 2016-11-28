@@ -27,6 +27,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.util.Range;
 
 import hallib.HalDashboard;
 
@@ -35,27 +36,26 @@ public class Shooter {
     LinearOpMode opMode;
     DcMotor tennisArm;
     DcMotor highSpeed;
-    CRServo lift;
-    State state;
     ElapsedTime mClock = new ElapsedTime();
     HalDashboard dashboard;
 
-    public enum State {
-        LOADING,
-        LIFTING,
-        READY,
-        FIRING
-    }
-
     public Shooter(LinearOpMode opMode) {
         this.opMode = opMode;
-        state = State.LOADING;
         tennisArm = opMode.hardwareMap.dcMotor.get("tennisArm");
         tennisArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         tennisArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         tennisArm.setPower(0.5);
+        highSpeed = opMode.hardwareMap.dcMotor.get("highSpeed");
+        highSpeed.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        highSpeed.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         dashboard = Robot.getDashboard();
         mClock.reset();
+    }
+
+    public void shootBall(float power)
+    {
+        power = Range.clip(power,-1,1);
+        highSpeed.setPower(power);
     }
 
     public void setTennisArmPower(boolean up)
@@ -92,11 +92,6 @@ public class Shooter {
     public void resetMotors()
     {
         tennisArm.setPower(0);
-    }
-
-    private void changeState(State newState)
-    {
-        state = newState;
     }
 
     private void waitTime(double i)

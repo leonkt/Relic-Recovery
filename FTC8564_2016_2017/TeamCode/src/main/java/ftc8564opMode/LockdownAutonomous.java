@@ -91,7 +91,11 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
     }
 
     private void runOneBeacon() throws InterruptedException {
-        robot.beaconPush.detectBeaconColor(alliance);
+        if(robot.beaconPush.detectBeaconColor(alliance)) {
+            robot.beaconPush.pushBeacon();
+        } else {
+
+        }
     }
 
     private void runTwoBeacon() throws InterruptedException {
@@ -167,6 +171,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
 
         FtcMenu.walkMenuTree(allianceMenu);
         alliance = (Alliance) allianceMenu.getCurrentChoiceObject();
+        startPosition = (StartPosition) startPosMenu.getCurrentChoiceObject();
         strategy = (Strategy) strategyMenu.getCurrentChoiceObject();
     }
 

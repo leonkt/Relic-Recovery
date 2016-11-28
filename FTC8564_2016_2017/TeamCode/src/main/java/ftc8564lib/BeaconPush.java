@@ -37,9 +37,9 @@ public class BeaconPush {
     LinearOpMode opMode;
     STATE state;
 
-    static final double BUTTON_PUSHER_RETRACT_POSITION = 0;
-    static final double BUTTON_PUSHER_EXTEND_POSITION = 1;
-    static final double BUTTON_PUSHER_REST_POSITION = 0.5;
+    static final double BUTTON_PUSHER_RETRACT_POSITION = 1;
+    static final double BUTTON_PUSHER_EXTEND_POSITION = -1;
+    static final double BUTTON_PUSHER_REST_POSITION = 0;
 
     private ElapsedTime mClock = new ElapsedTime();
 
@@ -68,12 +68,16 @@ public class BeaconPush {
     {
         if((alliance == LockdownAutonomous.Alliance.RED_ALLIANCE && getColor() == Color.RED) || (alliance == LockdownAutonomous.Alliance.BLUE_ALLIANCE && getColor() == Color.BLUE))
         {
-            setButtonPusherExtendPosition();
-            setButtonPusherRetractPosition();
             return true;
         } else {
             return false;
         }
+    }
+
+    public void pushBeacon()
+    {
+        setButtonPusherExtendPosition();
+        setButtonPusherRetractPosition();
     }
 
     public boolean isExtended()
@@ -85,20 +89,28 @@ public class BeaconPush {
         return false;
     }
 
-    public void setButtonPusherExtendPosition()
+    private void setButtonPusherExtendPosition()
     {
         rack.setPower(BUTTON_PUSHER_EXTEND_POSITION);
-        waitTime(1);
+        waitTime(1.3);
         rack.setPower(BUTTON_PUSHER_REST_POSITION);
+        waitTime(0.5);
         changeState(STATE.EXTENDED);
     }
 
-    public void setButtonPusherRetractPosition()
+    private void setButtonPusherRetractPosition()
     {
-        rack.setPower(BUTTON_PUSHER_RETRACT_POSITION);
-        waitTime(1);
-        rack.setPower(BUTTON_PUSHER_REST_POSITION);
-        changeState(STATE.RETRACTED);
+        if(state == STATE.EXTENDED) {
+            rack.setPower(BUTTON_PUSHER_RETRACT_POSITION);
+            waitTime(1.3);
+            rack.setPower(BUTTON_PUSHER_REST_POSITION);
+            changeState(STATE.RETRACTED);
+        }
+    }
+
+    public void holdButtonPusherPosition()
+    {
+        rack.setPower(0.1);
     }
 
     private Color getColor()

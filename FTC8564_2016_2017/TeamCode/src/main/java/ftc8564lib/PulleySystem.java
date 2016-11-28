@@ -25,70 +25,117 @@ package ftc8564lib;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.util.Range;
+
+import hallib.HalDashboard;
+import hallib.HalUtil;
 
 public class PulleySystem {
 
+    LinearOpMode opMode;
     DcMotor leftPulley;
     DcMotor rightPulley;
     DcMotor leftArm;
     DcMotor rightArm;
+    HalDashboard dashboard;
 
-    final static int ENCODER_CPR = 1680;     //Encoder Counts per Revolution on NeveRest 60 Motors
-    final static int MAX_HEIGHT = 25;        //Max height our pulley system can go
-    final static int DISTANCE = MAX_HEIGHT*ENCODER_CPR;
+    private static final double LIFT_SYNC_KP = 0.005;               //this value needs to be tuned
+    private static final double LIFT_POSITION_TOLERANCE = 25; //this value needs to be tuned; in ticks
+    private static final double SCALE = (48/9336);  //  INCHES_PER_COUNT; needs to be tuned
+    private static final int MIN_DISTANCE = 0;
+    private static final int MAX_DISTANCE = 9336;
+
+    State state;
+
+    public enum State {
+        NO_PRESSURE,
+        PRESSURE
+    }
 
     public PulleySystem(LinearOpMode opMode) {
+        this.opMode = opMode;
+        dashboard = Robot.getDashboard();
         leftPulley = opMode.hardwareMap.dcMotor.get("leftPulley");
         rightPulley = opMode.hardwareMap.dcMotor.get("rightPulley");
-        //leftPulley.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        //rightPulley.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        //leftPulley.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        //rightPulley.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        //leftPulley.setPower(0.8);
-        //rightPulley.setPower(0.6);
+        leftArm = opMode.hardwareMap.dcMotor.get("leftArm");
+        rightArm = opMode.hardwareMap.dcMotor.get("rightArm");
+        leftPulley.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightPulley.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftPulley.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightPulley.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        state = State.NO_PRESSURE;
     }
 
-    public void changePower(double power)
+    public void applyPressure()
+    {
+        changeState(State.PRESSURE);
+    }
+
+    public void noPressure()
+    {
+        changeState(State.NO_PRESSURE);
+    }
+
+    public void setLeftArm(double power)
+    {
+        leftArm.setPower(power);
+    }
+
+    public void setRightArm(double power)
+    {
+        rightArm.setPower(power);
+    }
+
+    public void restArmMotors()
+    {
+        if(state == State.PRESSURE)
+        {
+            leftArm.setPower(0.07);
+            rightArm.setPower(-0.07);
+        } else {
+            leftArm.setPower(0);
+            rightArm.setPower(0);
+        }
+    }
+
+    public void manualControl(double power)
     {
         leftPulley.setPower(power);
-        rightPulley.setPower(0.775*power);
+        rightPulley.setPower(power);
     }
 
-    public void setPower(boolean up)
+    public void setSyncMotorPower(double power) throws InterruptedException
     {
-        if(up)
+        if (power != 0.0)
         {
-            leftPulley.setTargetPosition(checkPos(1));
-            rightPulley.setTargetPosition(leftPulley.getCurrentPosition());
-        } else {
-            leftPulley.setTargetPosition(checkPos(0));
-            rightPulley.setTargetPosition(leftPulley.getCurrentPosition());
+            int targetPosition = power < 0.0? MAX_DISTANCE: MIN_DISTANCE;
+            leftPulley.setTargetPosition(targetPosition);
+            rightPulley.setTargetPosition(targetPosition);
+            boolean isOnTarget = false;
+            while (!isOnTarget)
+            {
+                double differentialPower = Range.clip((rightPulley.getCurrentPosition() - leftPulley.getCurrentPosition())*LIFT_SYNC_KP, -1.0, 1.0);
+                double leftPower = power + differentialPower;
+                double rightPower = power - differentialPower;
+                double minPower = Math.min(leftPower, rightPower);
+                double maxPower = Math.max(leftPower, rightPower);
+                double scale = maxPower > 1.0? 1.0/maxPower: minPower < 1.0? -1.0/minPower: 1.0;
+                leftPower *= scale;
+                rightPower *= scale;
+                leftPulley.setPower(Range.clip(leftPower,-1,1));
+                rightPulley.setPower(Range.clip(rightPower,-1,1));
+                isOnTarget = Math.abs(targetPosition - leftPulley.getCurrentPosition()) <= LIFT_POSITION_TOLERANCE &&
+                        Math.abs(targetPosition - rightPulley.getCurrentPosition()) <= LIFT_POSITION_TOLERANCE;
+                opMode.idle();
+            }
         }
+        leftPulley.setPower(0);
+        rightPulley.setPower(0);
     }
 
-    public void setPower()
+    private void changeState(State newState)
     {
-        leftPulley.setTargetPosition(leftPulley.getCurrentPosition());
-        rightPulley.setTargetPosition(leftPulley.getCurrentPosition());
-    }
-
-    private int checkPos(int i)
-    {
-        if(i == 0)
-        {
-            if(leftPulley.getCurrentPosition() - 200 < 0)
-            {
-                return 0;
-            }
-            return leftPulley.getCurrentPosition() - 200;
-        } else if(i == 1){
-            if(leftPulley.getCurrentPosition() + 200 > DISTANCE)
-            {
-                return DISTANCE;
-            }
-            return leftPulley.getCurrentPosition() + 200;
-        }
-        return leftPulley.getCurrentPosition();
+        state = newState;
     }
 
     public void resetMotors()
