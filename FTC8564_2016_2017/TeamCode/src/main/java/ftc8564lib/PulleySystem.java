@@ -44,6 +44,7 @@ public class PulleySystem {
     private static final double SCALE = (48/9336);  //  INCHES_PER_COUNT; needs to be tuned
     private static final int MIN_DISTANCE = 0;
     private static final int MAX_DISTANCE = 9336;
+    private double prevTarget = 0.0;
 
     State state;
 
@@ -109,10 +110,15 @@ public class PulleySystem {
         if (power != 0.0)
         {
             int targetPosition = power < 0.0? MAX_DISTANCE: MIN_DISTANCE;
-            leftPulley.setTargetPosition(targetPosition);
-            rightPulley.setTargetPosition(targetPosition);
-            boolean isOnTarget = false;
-            while (!isOnTarget)
+            if (targetPosition != prevTarget)
+            {
+                leftPulley.setTargetPosition(targetPosition);
+                rightPulley.setTargetPosition(targetPosition);
+                prevTarget = targetPosition;
+            }
+            boolean leftOnTarget = Math.abs(targetPosition - leftPulley.getCurrentPosition()) <= LIFT_POSITION_TOLERANCE;
+            boolean rightOnTarget = Math.abs(targetPosition - rightPulley.getCurrentPosition()) <= LIFT_POSITION_TOLERANCE;
+            if (!leftOnTarget || !rightOnTarget)
             {
                 double differentialPower = Range.clip((rightPulley.getCurrentPosition() - leftPulley.getCurrentPosition())*LIFT_SYNC_KP, -1.0, 1.0);
                 double leftPower = power + differentialPower;
@@ -124,13 +130,16 @@ public class PulleySystem {
                 rightPower *= scale;
                 leftPulley.setPower(Range.clip(leftPower,-1,1));
                 rightPulley.setPower(Range.clip(rightPower,-1,1));
-                isOnTarget = Math.abs(targetPosition - leftPulley.getCurrentPosition()) <= LIFT_POSITION_TOLERANCE &&
-                        Math.abs(targetPosition - rightPulley.getCurrentPosition()) <= LIFT_POSITION_TOLERANCE;
-                opMode.idle();
+            } else {
+                leftPulley.setPower(0.0);
+                rightPulley.setPower(0.0);
+                prevTarget = 0.0;
             }
+        } else {
+            leftPulley.setPower(0.0);
+            rightPulley.setPower(0.0);
+            prevTarget = 0.0;
         }
-        leftPulley.setPower(0);
-        rightPulley.setPower(0);
     }
 
     private void changeState(State newState)
