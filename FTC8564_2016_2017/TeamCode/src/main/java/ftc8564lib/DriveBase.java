@@ -132,7 +132,7 @@ public class DriveBase implements PIDControl.PidInput {
 
     private double scalePower(double dVal)
     {
-        return -(Math.signum(dVal) * ((Math.pow(dVal, 2) * (1 - .1)) + .1));
+        return -(Math.signum(dVal) * ((Math.pow(dVal, 4) * (.9)) + .1));
     }
 
     @Override

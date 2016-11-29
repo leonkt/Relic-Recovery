@@ -117,7 +117,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
 
     private void runCleanUp() throws InterruptedException {
         robot.shooter.resetMotors();
-        robot.PulleySystem.resetMotors();
+        robot.pulleySystem.resetMotors();
         robot.driveBase.resetMotors();
         robot.driveBase.resetPIDDrive();
     }

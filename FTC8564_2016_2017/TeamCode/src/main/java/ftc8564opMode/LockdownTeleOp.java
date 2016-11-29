@@ -39,7 +39,7 @@ public class LockdownTeleOp extends LinearOpMode {
         waitForStart();
         while (opModeIsActive()) {
             // Drive Train command
-            robot.driveBase.tankDrive(gamepad1.left_stick_y, gamepad1.right_stick_y);
+            robot.driveBase.tankDrive(gamepad1.right_stick_y, gamepad1.left_stick_y);
             // Pulley System
             robot.pulleySystem.setSyncMotorPower(gamepad2.left_stick_y);
             //robot.PulleySystem.manualControl(gamepad2.left_stick_y);

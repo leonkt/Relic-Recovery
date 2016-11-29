@@ -39,8 +39,8 @@ public class PulleySystem {
     DcMotor rightArm;
     HalDashboard dashboard;
 
-    private static final double LIFT_SYNC_KP = 0.005;               //this value needs to be tuned
-    private static final double LIFT_POSITION_TOLERANCE = 25; //this value needs to be tuned; in ticks
+    private static final double LIFT_SYNC_KP = 0.004;               //this value needs to be tuned
+    private static final double LIFT_POSITION_TOLERANCE = 50; //this value needs to be tuned; in ticks
     private static final double SCALE = (48/9336);  //  INCHES_PER_COUNT; needs to be tuned
     private static final int MIN_DISTANCE = 0;
     private static final int MAX_DISTANCE = 9336;
