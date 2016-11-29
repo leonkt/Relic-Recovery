@@ -42,21 +42,15 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
 
     public enum Strategy {
         DO_NOTHING,
-        ONE_BEACON,
-        TWO_BEACON,
+        SIXTY_POINT,
+        HUNDRED_POINT,
         CORNER_VORTEX,
         SHOOT_BALL,
         DEFENSE
     }
 
-    public enum StartPosition {
-        CLOSE,
-        FAR
-    }
-
     private Alliance alliance = Alliance.RED_ALLIANCE;
     private Strategy strategy = Strategy.DO_NOTHING;
-    private StartPosition startPosition = StartPosition.CLOSE;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -65,11 +59,11 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         waitForStart();
 
         switch (strategy) {
-            case ONE_BEACON:
-                runOneBeacon();
+            case SIXTY_POINT:
+                runSixtyPoint();
                 break;
-            case TWO_BEACON:
-                runTwoBeacon();
+            case HUNDRED_POINT:
+                runHundredPoint();
                 break;
             case SHOOT_BALL:
                 runShootBall();
@@ -90,7 +84,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
 
     }
 
-    private void runOneBeacon() throws InterruptedException {
+    private void runSixtyPoint() throws InterruptedException {
         if(robot.beaconPush.detectBeaconColor(alliance)) {
             robot.beaconPush.pushBeacon();
         } else {
@@ -98,7 +92,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         }
     }
 
-    private void runTwoBeacon() throws InterruptedException {
+    private void runHundredPoint() throws InterruptedException {
         robot.driveBase.drivePID(10, this);
     }
 
@@ -129,7 +123,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
     }
 
     @Override
-    public boolean shouldAbort() { return robot.odsLeft.getRawLightDetected() >= 1.0 || robot.odsRight.getRawLightDetected() >= 1.0; }
+    public boolean shouldAbort() { return robot.odsLeft.getLightDetected() >= 0.2 || robot.odsRight.getLightDetected() >= 0.2; }
 
     @Override
     public boolean isMenuUpButton() {
@@ -159,19 +153,15 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         allianceMenu.addChoice("Red", Alliance.RED_ALLIANCE, startPosMenu);
         allianceMenu.addChoice("Blue", Alliance.BLUE_ALLIANCE, startPosMenu);
 
-        startPosMenu.addChoice("Close", StartPosition.CLOSE, strategyMenu);
-        startPosMenu.addChoice("Far", StartPosition.FAR, strategyMenu);
-
         strategyMenu.addChoice("Do Nothing", Strategy.DO_NOTHING);
-        strategyMenu.addChoice("One Beacon", Strategy.ONE_BEACON);
-        strategyMenu.addChoice("Two Beacon", Strategy.TWO_BEACON);
-        strategyMenu.addChoice("Shoot Ball", Strategy.SHOOT_BALL);
-        strategyMenu.addChoice("Corner Vortex", Strategy.CORNER_VORTEX);
+        strategyMenu.addChoice("2 Beacons: Close", Strategy.SIXTY_POINT);
+        strategyMenu.addChoice("2 Shot + 2 Beacons + Park: Close", Strategy.HUNDRED_POINT);
+        strategyMenu.addChoice("2 Shot + Cap Ball: Far", Strategy.SHOOT_BALL);
+        strategyMenu.addChoice("Corner Vortex: Close", Strategy.CORNER_VORTEX);
         strategyMenu.addChoice("Defense", Strategy.DEFENSE);
 
         FtcMenu.walkMenuTree(allianceMenu);
         alliance = (Alliance) allianceMenu.getCurrentChoiceObject();
-        startPosition = (StartPosition) startPosMenu.getCurrentChoiceObject();
         strategy = (Strategy) strategyMenu.getCurrentChoiceObject();
     }
 

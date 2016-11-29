@@ -62,8 +62,8 @@ public class PulleySystem {
         rightArm = opMode.hardwareMap.dcMotor.get("rightArm");
         leftPulley.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightPulley.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        leftPulley.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        rightPulley.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        leftPulley.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightPulley.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         state = State.NO_PRESSURE;
     }
 
@@ -109,11 +109,9 @@ public class PulleySystem {
     {
         if (power != 0.0)
         {
-            int targetPosition = power < 0.0? MAX_DISTANCE: MIN_DISTANCE;
+            int targetPosition = power < 0.0 ? MAX_DISTANCE: MIN_DISTANCE;
             if (targetPosition != prevTarget)
             {
-                leftPulley.setTargetPosition(targetPosition);
-                rightPulley.setTargetPosition(targetPosition);
                 prevTarget = targetPosition;
             }
             boolean leftOnTarget = Math.abs(targetPosition - leftPulley.getCurrentPosition()) <= LIFT_POSITION_TOLERANCE;
@@ -125,11 +123,9 @@ public class PulleySystem {
                 double rightPower = power - differentialPower;
                 double minPower = Math.min(leftPower, rightPower);
                 double maxPower = Math.max(leftPower, rightPower);
-                double scale = maxPower > 1.0? 1.0/maxPower: minPower < 1.0? -1.0/minPower: 1.0;
-                leftPower *= scale;
-                rightPower *= scale;
-                leftPulley.setPower(Range.clip(leftPower,-1,1));
-                rightPulley.setPower(Range.clip(rightPower,-1,1));
+                double scale = maxPower > 1.0 ? 1.0/maxPower: minPower < 1.0 ? -1.0/minPower: 1.0;
+                leftPulley.setPower(leftPower*scale);
+                rightPulley.setPower(rightPower*scale);
             } else {
                 leftPulley.setPower(0.0);
                 rightPulley.setPower(0.0);

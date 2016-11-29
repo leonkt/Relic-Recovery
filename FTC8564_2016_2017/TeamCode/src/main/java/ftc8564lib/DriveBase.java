@@ -46,7 +46,7 @@ public class DriveBase implements PIDControl.PidInput {
         boolean shouldAbort();
     }
 
-    DriveBase(LinearOpMode opMode, boolean auto) throws InterruptedException {
+    public DriveBase(LinearOpMode opMode, boolean auto) throws InterruptedException {
         this.opMode = opMode;
         rightMotor = opMode.hardwareMap.dcMotor.get("rightMotor");
         rightMotor.setDirection(DcMotor.Direction.REVERSE);

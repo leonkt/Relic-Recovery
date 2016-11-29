@@ -41,8 +41,8 @@ public class LockdownTeleOp extends LinearOpMode {
             // Drive Train command
             robot.driveBase.tankDrive(gamepad1.left_stick_y, gamepad1.right_stick_y);
             // Pulley System
-            //robot.PulleySystem.setSyncMotorPower(gamepad2.left_stick_y);
-            robot.PulleySystem.manualControl(gamepad2.left_stick_y);
+            robot.pulleySystem.setSyncMotorPower(gamepad2.left_stick_y);
+            //robot.PulleySystem.manualControl(gamepad2.left_stick_y);
             //Beacon Push
             if(gamepad1.right_bumper)
             {
@@ -63,26 +63,26 @@ public class LockdownTeleOp extends LinearOpMode {
             //Ball Arm
            if(gamepad2.left_bumper)
             {
-                robot.PulleySystem.setLeftArm(0.05);
+                robot.pulleySystem.setLeftArm(-0.07);
             } else if(gamepad2.left_trigger == 1)
             {
-                robot.PulleySystem.setLeftArm(-0.05);
+                robot.pulleySystem.setLeftArm(0.07);
             } else {
-                robot.PulleySystem.setLeftArm(0);
+                robot.pulleySystem.setLeftArm(0);
             }
             if(gamepad2.right_bumper)
             {
-                robot.PulleySystem.setRightArm(-0.05);
+                robot.pulleySystem.setRightArm(0.07);
             } else if(gamepad2.right_trigger == 1)
             {
-                robot.PulleySystem.setRightArm(0.05);
+                robot.pulleySystem.setRightArm(-0.07);
             } else {
-                robot.PulleySystem.setRightArm(0);
+                robot.pulleySystem.setRightArm(0);
             }
             robot.beaconPush.holdButtonPusherPosition();
         }
 
-        robot.PulleySystem.resetMotors();
+        robot.pulleySystem.resetMotors();
         robot.shooter.resetMotors();
         robot.driveBase.resetMotors();
         robot.driveBase.resetPIDDrive();

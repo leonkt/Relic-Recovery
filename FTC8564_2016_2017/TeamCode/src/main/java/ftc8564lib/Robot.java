@@ -33,14 +33,14 @@ public class Robot {
     public OpticalDistanceSensor odsLeft, odsRight;
     private static HalDashboard dashboard = null;
     public DriveBase driveBase = null;
-    public PulleySystem PulleySystem = null;
+    public PulleySystem pulleySystem = null;
     public Shooter shooter = null;
     public BeaconPush beaconPush = null;
 
     public Robot(LinearOpMode opMode, boolean auto) throws InterruptedException {
         dashboard = new HalDashboard(opMode.telemetry);
         driveBase = new DriveBase(opMode, auto);
-        PulleySystem = new PulleySystem(opMode);
+        pulleySystem = new PulleySystem(opMode);
         shooter = new Shooter(opMode);
         beaconPush = new BeaconPush(opMode);
         odsLeft = opMode.hardwareMap.opticalDistanceSensor.get("odsLeft");
