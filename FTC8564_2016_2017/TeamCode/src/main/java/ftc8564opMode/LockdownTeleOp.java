@@ -30,10 +30,12 @@ import ftc8564lib.Robot;
 @TeleOp(name="LockdownTeleOp", group="TeleOp")
 public class LockdownTeleOp extends LinearOpMode {
 
-    Robot robot;
+    private Robot robot;
+    private boolean inProgress;
 
     @Override
     public void runOpMode() throws InterruptedException {
+        inProgress = false;
         robot = new Robot(this,false);
         robot.driveBase.noEncoders();
         waitForStart();
@@ -41,8 +43,8 @@ public class LockdownTeleOp extends LinearOpMode {
             // Drive Train command
             robot.driveBase.tankDrive(gamepad1.right_stick_y, gamepad1.left_stick_y);
             // Pulley System
-            robot.pulleySystem.setSyncMotorPower(gamepad2.left_stick_y);
-            //robot.PulleySystem.manualControl(gamepad2.left_stick_y);
+            robot.pulleySystem.setSyncMotorPower(-gamepad2.left_stick_y);
+            //robot.pulleySystem.manualControl(gamepad2.left_stick_y, gamepad2.right_stick_y);
             //Beacon Push
             if(gamepad1.right_bumper)
             {
@@ -59,26 +61,24 @@ public class LockdownTeleOp extends LinearOpMode {
                 robot.shooter.setTennisArmPower();
             }
             //Shooting Mechanism
-            robot.shooter.shootBall(gamepad2.right_stick_x);
+            if(gamepad2.x && !inProgress)
+            {
+                inProgress = true;
+                robot.shooter.shootBall(-1);
+            } else if(gamepad2.b && !inProgress)
+            {
+                inProgress = true;
+                robot.shooter.shootBall(1);
+            } else if(gamepad2.right_stick_y == 0)
+            {
+                robot.shooter.primeBall(gamepad2.right_stick_x);
+            }
+            if(!gamepad2.x && !gamepad2.b)
+            {
+                inProgress = false;
+            }
             //Ball Arm
-           if(gamepad2.left_bumper)
-            {
-                robot.pulleySystem.setLeftArm(-0.07);
-            } else if(gamepad2.left_trigger == 1)
-            {
-                robot.pulleySystem.setLeftArm(0.07);
-            } else {
-                robot.pulleySystem.setLeftArm(0);
-            }
-            if(gamepad2.right_bumper)
-            {
-                robot.pulleySystem.setRightArm(0.07);
-            } else if(gamepad2.right_trigger == 1)
-            {
-                robot.pulleySystem.setRightArm(-0.07);
-            } else {
-                robot.pulleySystem.setRightArm(0);
-            }
+
             robot.beaconPush.holdButtonPusherPosition();
         }
 

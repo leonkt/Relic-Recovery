@@ -45,6 +45,8 @@ public class Robot {
         beaconPush = new BeaconPush(opMode);
         odsLeft = opMode.hardwareMap.opticalDistanceSensor.get("odsLeft");
         odsRight = opMode.hardwareMap.opticalDistanceSensor.get("odsRight");
+        odsLeft.enableLed(true);
+        odsRight.enableLed(true);
     }
 
     public static HalDashboard getDashboard() {

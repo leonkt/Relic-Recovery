@@ -45,6 +45,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         SIXTY_POINT,
         HUNDRED_POINT,
         CORNER_VORTEX,
+        CAP_BALL,
         SHOOT_BALL,
         DEFENSE
     }
@@ -71,6 +72,9 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             case CORNER_VORTEX:
                 runCornerVortex();
                 break;
+            case CAP_BALL:
+                runCapBall();
+                break;
             case DEFENSE:
                 runDefense();
                 break;
@@ -85,27 +89,33 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
     }
 
     private void runSixtyPoint() throws InterruptedException {
-        if(robot.beaconPush.detectBeaconColor(alliance)) {
-            robot.beaconPush.pushBeacon();
-        } else {
-
-        }
+        robot.driveBase.drivePID(-25, null);
+        robot.driveBase.spinPID(35);
+        robot.driveBase.drivePID(-50, null);
+        robot.driveBase.spinPID(55);
+        robot.driveBase.drivePID(-16, null);
+        robot.driveBase.drivePID(8, null);
+        robot.driveBase.spinPID(-90);
     }
 
     private void runHundredPoint() throws InterruptedException {
-        robot.driveBase.drivePID(10, this);
+
     }
 
     private void runShootBall() throws InterruptedException {
-        robot.driveBase.spinPID(-10);
+        robot.driveBase.spinPID(15);
     }
 
     private void runCornerVortex() throws InterruptedException {
-        robot.driveBase.drivePID(robot.beaconPush.detectBeaconColor(alliance) ? 0 : 10, null);
+        robot.driveBase.spinPID(90);
+    }
+
+    private void runCapBall() throws InterruptedException {
+        robot.driveBase.spinPID(35);
     }
 
     private void runDefense() throws InterruptedException {
-
+        robot.driveBase.spinPID(55);
     }
 
     private void runDoNothing() throws InterruptedException {
@@ -147,17 +157,17 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
 
     private void doMenus() throws InterruptedException {
         FtcChoiceMenu allianceMenu = new FtcChoiceMenu("Alliance:", null, this);
-        FtcChoiceMenu startPosMenu = new FtcChoiceMenu("Start position:", allianceMenu, this);
-        FtcChoiceMenu strategyMenu = new FtcChoiceMenu("Strategy:", startPosMenu, this);
+        FtcChoiceMenu strategyMenu = new FtcChoiceMenu("Strategy:", allianceMenu, this);
 
-        allianceMenu.addChoice("Red", Alliance.RED_ALLIANCE, startPosMenu);
-        allianceMenu.addChoice("Blue", Alliance.BLUE_ALLIANCE, startPosMenu);
+        allianceMenu.addChoice("Red", Alliance.RED_ALLIANCE, strategyMenu);
+        allianceMenu.addChoice("Blue", Alliance.BLUE_ALLIANCE, strategyMenu);
 
         strategyMenu.addChoice("Do Nothing", Strategy.DO_NOTHING);
         strategyMenu.addChoice("2 Beacons: Close", Strategy.SIXTY_POINT);
         strategyMenu.addChoice("2 Shot + 2 Beacons + Park: Close", Strategy.HUNDRED_POINT);
         strategyMenu.addChoice("2 Shot + Cap Ball: Far", Strategy.SHOOT_BALL);
         strategyMenu.addChoice("Corner Vortex: Close", Strategy.CORNER_VORTEX);
+        strategyMenu.addChoice("Cap Ball: Tile Seam", Strategy.CAP_BALL);
         strategyMenu.addChoice("Defense", Strategy.DEFENSE);
 
         FtcMenu.walkMenuTree(allianceMenu);

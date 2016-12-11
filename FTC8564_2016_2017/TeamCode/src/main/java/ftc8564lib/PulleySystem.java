@@ -35,8 +35,6 @@ public class PulleySystem {
     LinearOpMode opMode;
     DcMotor leftPulley;
     DcMotor rightPulley;
-    DcMotor leftArm;
-    DcMotor rightArm;
     HalDashboard dashboard;
 
     private static final double LIFT_SYNC_KP = 0.004;               //this value needs to be tuned
@@ -46,72 +44,37 @@ public class PulleySystem {
     private static final int MAX_DISTANCE = 9336;
     private double prevTarget = 0.0;
 
-    State state;
-
-    public enum State {
-        NO_PRESSURE,
-        PRESSURE
-    }
-
     public PulleySystem(LinearOpMode opMode) {
         this.opMode = opMode;
         dashboard = Robot.getDashboard();
         leftPulley = opMode.hardwareMap.dcMotor.get("leftPulley");
         rightPulley = opMode.hardwareMap.dcMotor.get("rightPulley");
-        leftArm = opMode.hardwareMap.dcMotor.get("leftArm");
-        rightArm = opMode.hardwareMap.dcMotor.get("rightArm");
         leftPulley.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightPulley.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        leftPulley.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        rightPulley.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        state = State.NO_PRESSURE;
+        //leftPulley.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        //rightPulley.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        leftPulley.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightPulley.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
 
-    public void applyPressure()
+    public void manualControl(double leftPower, double rightPower)
     {
-        changeState(State.PRESSURE);
+        leftPulley.setPower(leftPower);
+        rightPulley.setPower(rightPower);
     }
 
-    public void noPressure()
-    {
-        changeState(State.NO_PRESSURE);
-    }
-
-    public void setLeftArm(double power)
-    {
-        leftArm.setPower(power);
-    }
-
-    public void setRightArm(double power)
-    {
-        rightArm.setPower(power);
-    }
-
-    public void restArmMotors()
-    {
-        if(state == State.PRESSURE)
-        {
-            leftArm.setPower(0.07);
-            rightArm.setPower(-0.07);
-        } else {
-            leftArm.setPower(0);
-            rightArm.setPower(0);
-        }
-    }
-
-    public void manualControl(double power)
-    {
-        leftPulley.setPower(power);
-        rightPulley.setPower(power);
-    }
-
-    public void setSyncMotorPower(double power) throws InterruptedException
+    public void setSyncMotorPower(double power)
     {
         if (power != 0.0)
         {
-            int targetPosition = power < 0.0 ? MAX_DISTANCE: MIN_DISTANCE;
+            int targetPosition = power < 0.0? MIN_DISTANCE: MAX_DISTANCE;
             if (targetPosition != prevTarget)
             {
+                //
+                // We just changed direction so let's set a new target.
+                //
+                leftPulley.setTargetPosition(targetPosition);
+                rightPulley.setTargetPosition(targetPosition);
                 prevTarget = targetPosition;
             }
             boolean leftOnTarget = Math.abs(targetPosition - leftPulley.getCurrentPosition()) <= LIFT_POSITION_TOLERANCE;
@@ -123,24 +86,23 @@ public class PulleySystem {
                 double rightPower = power - differentialPower;
                 double minPower = Math.min(leftPower, rightPower);
                 double maxPower = Math.max(leftPower, rightPower);
-                double scale = maxPower > 1.0 ? 1.0/maxPower: minPower < 1.0 ? -1.0/minPower: 1.0;
+                double scale = maxPower > 1.0? 1.0/maxPower: minPower < -1.0? -1.0/minPower: 1.0;
                 leftPulley.setPower(leftPower*scale);
                 rightPulley.setPower(rightPower*scale);
-            } else {
+            }
+            else
+            {
                 leftPulley.setPower(0.0);
                 rightPulley.setPower(0.0);
                 prevTarget = 0.0;
             }
-        } else {
+        }
+        else
+        {
             leftPulley.setPower(0.0);
             rightPulley.setPower(0.0);
             prevTarget = 0.0;
         }
-    }
-
-    private void changeState(State newState)
-    {
-        state = newState;
     }
 
     public void resetMotors()

@@ -53,6 +53,7 @@ public class PIDControl {
     private double minOutput = -1.0;
     private double maxOutput = 1.0;
 
+    private double prevTime = 0.0;
     private double prevError = 0.0;
     private double totalError = 0.0;
     private double settlingStartTime = 0.0;
@@ -94,6 +95,14 @@ public class PIDControl {
         this.absSetPoint = absolute;
     }
 
+    public void setPID(double kP, double kI, double kD, double kF)
+    {
+        this.kP = kP;
+        this.kI = kI;
+        this.kD = kD;
+        this.kF = kF;
+    }
+
     //Sets distance in ticks
     public void setTarget(double target) {
         double input = pidInput.getInput(this);
@@ -109,6 +118,7 @@ public class PIDControl {
             }
         }
         prevError = setPoint - input;
+        prevTime = HalUtil.getCurrentTime();
         if (inverted) {
             prevError = -prevError;
         }
@@ -122,6 +132,7 @@ public class PIDControl {
     }
 
     public void reset() {
+        prevTime = 0.0;
         prevError = 0.0;
         totalError = 0.0;
         setPoint = 0.0;
@@ -142,7 +153,6 @@ public class PIDControl {
         } else if (HalUtil.getCurrentTime() >= settlingStartTime + settlingTime) {
             onTarget = true;
         }
-
         return onTarget;
     }
 
@@ -153,7 +163,54 @@ public class PIDControl {
     }   //setOutputRange
 
     //Calculates the power output for driving forward
-    public double getPowerOutput() {
+    public double getPowerOutput()
+    {
+        double currTime = HalUtil.getCurrentTime();
+        double deltaTime = currTime - prevTime;
+        prevTime = currTime;
+        double error = setPoint - pidInput.getInput(this);
+        if (inverted)
+        {
+            error = -error;
+        }
+
+        if (kI != 0.0)
+        {
+            double potentialGain = (totalError + error * deltaTime) * kI;
+            if (potentialGain >= maxOutput)
+            {
+                totalError = maxOutput / kI;
+            }
+            else if (potentialGain > minOutput)
+            {
+                totalError += error * deltaTime;
+            }
+            else
+            {
+                totalError = minOutput / kI;
+            }
+        }
+
+        output = kF*setPoint + kP*error + kI*totalError;
+        if (deltaTime != 0)
+        {
+            output += kD*(error - prevError)/deltaTime;
+        }
+
+        prevError = error;
+        if (output > maxOutput)
+        {
+            output = maxOutput;
+        }
+        else if (output < minOutput)
+        {
+            output = minOutput;
+        }
+
+        return output;
+    }
+
+    public double getOutput() {
 
         double error = setPoint - pidInput.getInput(this);
         if (inverted) {

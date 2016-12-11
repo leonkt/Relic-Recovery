@@ -52,10 +52,16 @@ public class Shooter {
         mClock.reset();
     }
 
-    public void shootBall(float power)
+    public void primeBall(double power)
     {
-        power = Range.clip(power,-1,1);
+        highSpeed.setPower(Range.clip(power,-0.08,0.08));
+    }
+
+    public void shootBall(double power)
+    {
         highSpeed.setPower(power);
+        waitTime(0.4);
+        highSpeed.setPower(0);
     }
 
     public void setTennisArmPower(boolean up)
