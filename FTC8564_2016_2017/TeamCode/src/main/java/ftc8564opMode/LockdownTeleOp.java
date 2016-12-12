@@ -53,8 +53,12 @@ public class LockdownTeleOp extends LinearOpMode {
             //Beacon Push
             if(gamepad1.right_bumper)
             {
-                robot.beaconPush.pushBeacon();
+                robot.beaconPush.pushBeacon(true);
+            } else if(gamepad1.right_trigger == 1)
+            {
+                robot.beaconPush.pushBeacon(false);
             }
+            robot.beaconPush.buttonPusherTask();
             // Tennis Arm
             if(gamepad1.left_bumper)
             {
@@ -87,7 +91,6 @@ public class LockdownTeleOp extends LinearOpMode {
             {
                 robot.pulleySystem.releaseForklift();
             }
-            robot.beaconPush.holdButtonPusherPosition();
         }
 
         robot.pulleySystem.resetMotors();

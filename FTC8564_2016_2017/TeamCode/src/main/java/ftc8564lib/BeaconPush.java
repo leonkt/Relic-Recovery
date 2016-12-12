@@ -31,6 +31,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import java.util.concurrent.locks.Lock;
 
 import ftc8564opMode.LockdownAutonomous;
+import hallib.HalUtil;
 
 public class BeaconPush {
 
@@ -42,6 +43,7 @@ public class BeaconPush {
     static final double BUTTON_PUSHER_RETRACT_POSITION = 1;
     static final double BUTTON_PUSHER_EXTEND_POSITION = -1;
     static final double BUTTON_PUSHER_REST_POSITION = 0;
+    private double endTime;
 
     private ElapsedTime mClock = new ElapsedTime();
 
@@ -51,7 +53,10 @@ public class BeaconPush {
         OTHER
     }
 
-    private enum STATE {
+    private enum STATE
+    {
+        EXTENDING,
+        RETRACTING,
         EXTENDED,
         RETRACTED
     }
@@ -70,45 +75,56 @@ public class BeaconPush {
         mClock.reset();
     }
 
-    public boolean detectBeaconColor(LockdownAutonomous.Alliance alliance)
+    public boolean beaconColorIsAlliance(LockdownAutonomous.Alliance alliance)
     {
         return (alliance == LockdownAutonomous.Alliance.RED_ALLIANCE && getColor(alliance) == Color.RED) || (alliance == LockdownAutonomous.Alliance.BLUE_ALLIANCE && getColor(alliance) == Color.BLUE);
     }
 
-    public void pushBeacon()
+    public void pushBeacon(boolean redAllianceRack)
     {
-        setButtonPusherExtendPosition();
-        setButtonPusherRetractPosition();
+        setButtonPusherExtendPosition(redAllianceRack);
+        setButtonPusherRetractPosition(redAllianceRack);
     }
 
-    public boolean isExtended()
+    private void setButtonPusherExtendPosition(boolean redAllianceRack)
     {
-        return state == STATE.EXTENDED;
-    }
-
-    private void setButtonPusherExtendPosition()
-    {
-        redRack.setPower(BUTTON_PUSHER_EXTEND_POSITION);
-        waitTime(1.3);
-        redRack.setPower(BUTTON_PUSHER_REST_POSITION);
-        waitTime(0.1);
-        changeState(STATE.EXTENDED);
-    }
-
-    private void setButtonPusherRetractPosition()
-    {
-        if(state == STATE.EXTENDED) {
-            redRack.setPower(BUTTON_PUSHER_RETRACT_POSITION);
-            waitTime(1.3);
-            redRack.setPower(BUTTON_PUSHER_REST_POSITION);
-            changeState(STATE.RETRACTED);
+        // Assuming pusher state is RETRACTED
+        if (state == STATE.RETRACTED && redAllianceRack)
+        {
+            redRack.setPower(BUTTON_PUSHER_EXTEND_POSITION);
+            endTime = HalUtil.getCurrentTime() + 1.1;
+            changeState(STATE.EXTENDING);
+        } else if(state == STATE.RETRACTED)
+        {
+            blueRack.setPower(BUTTON_PUSHER_RETRACT_POSITION);
+            endTime = HalUtil.getCurrentTime() + 0.8;
+            changeState(STATE.EXTENDING);
         }
     }
-
-    public void holdButtonPusherPosition()
+    private void setButtonPusherRetractPosition(boolean redAllianceRack)
     {
-        redRack.setPower(0.1);
-        blueRack.setPower(0.1);
+        // Assuming pusher state is EXTENDED
+        if (state == STATE.EXTENDED && redAllianceRack)
+        {
+            redRack.setPower(BUTTON_PUSHER_RETRACT_POSITION);
+            endTime = HalUtil.getCurrentTime() + 1.1;
+            changeState(STATE.RETRACTING);
+        } else if(state == STATE.EXTENDED)
+        {
+            blueRack.setPower(BUTTON_PUSHER_EXTEND_POSITION);
+            endTime = HalUtil.getCurrentTime() + 0.8;
+            changeState(STATE.RETRACTING);
+        }
+    }
+    public void buttonPusherTask()
+    {
+        // If we are extending or retracting, check if the endTime to see if we are done.
+        if ((state == STATE.EXTENDING || state == STATE.RETRACTING) && HalUtil.getCurrentTime() >= endTime)
+        {
+            redRack.setPower(0.1);
+            blueRack.setPower(BUTTON_PUSHER_REST_POSITION);
+            changeState(state == STATE.EXTENDING ? STATE.EXTENDED: STATE.RETRACTED);
+        }
     }
 
     private Color getColor(LockdownAutonomous.Alliance alliance)
@@ -137,16 +153,6 @@ public class BeaconPush {
             }
         }
         return Color.OTHER;
-    }
-
-    private void waitTime(double i)
-    {
-        mClock.reset();
-        mClock.startTime();
-        while(mClock.time() <= i)
-        {
-            opMode.idle();
-        }
     }
 
     private void changeState(STATE newState)

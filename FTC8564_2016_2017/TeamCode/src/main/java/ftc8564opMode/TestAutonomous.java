@@ -21,36 +21,47 @@
  * SOFTWARE.
  */
 
-package ftc8564lib;
+package ftc8564opMode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
+import com.qualcomm.robotcore.util.ElapsedTime;
+import ftclib.*;
+import ftc8564lib.*;
 
-import hallib.*;
+@Autonomous(name="TestAutonomous", group="Autonomous")
+public class TestAutonomous extends LinearOpMode implements DriveBase.AbortTrigger {
 
-public class Robot {
+    Robot robot;
 
-    public OpticalDistanceSensor odsLeft, odsRight;
-    private static HalDashboard dashboard = null;
-    public DriveBase driveBase = null;
-    public PulleySystem pulleySystem = null;
-    public Shooter shooter = null;
-    public BeaconPush beaconPush = null;
-
-    public Robot(LinearOpMode opMode, boolean auto) throws InterruptedException {
-        dashboard = new HalDashboard(opMode.telemetry);
-        driveBase = new DriveBase(opMode, auto);
-        pulleySystem = new PulleySystem(opMode);
-        shooter = new Shooter(opMode);
-        beaconPush = new BeaconPush(opMode);
-        odsLeft = opMode.hardwareMap.opticalDistanceSensor.get("odsLeft");
-        odsRight = opMode.hardwareMap.opticalDistanceSensor.get("odsRight");
-        odsLeft.enableLed(false);
-        odsRight.enableLed(false);
+    public enum Alliance {
+        RED_ALLIANCE,
+        BLUE_ALLIANCE
     }
 
-    public static HalDashboard getDashboard() {
-        return dashboard;
+    private Alliance alliance = Alliance.RED_ALLIANCE;
+
+    @Override
+    public void runOpMode() throws InterruptedException {
+        robot = new Robot(this,true);
+        waitForStart();
+
+        robot.driveBase.drivePID(-25, null);
+        robot.driveBase.spinPID(35);
+        robot.driveBase.drivePID(-50, null);
+        robot.driveBase.spinPID(55);
+        robot.driveBase.drivePID(-16, null);
+        robot.driveBase.drivePID(4, null);
+        robot.driveBase.spinPID(-90);
+
+        robot.shooter.resetMotors();
+        robot.pulleySystem.resetMotors();
+        robot.driveBase.resetMotors();
+        robot.driveBase.resetPIDDrive();
+
     }
+
+    @Override
+    public boolean shouldAbort() { return robot.odsLeft.getLightDetected() >= 0.2 || robot.odsRight.getLightDetected() >= 0.2; }
 
 }

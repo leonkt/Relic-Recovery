@@ -131,10 +131,10 @@ public class DriveBase implements PIDControl.PidInput {
             pidControlTurn.setPID(0.033,0,0.00012,0);
         } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) <= 55.0)
         {
-            pidControlTurn.setPID(0.031,0,0.00005,0);
+            pidControlTurn.setPID(0.032,0,0.00005,0);
         } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) <= 90.0)
         {
-            pidControlTurn.setPID(0.03,0,0.00015,0);
+            pidControlTurn.setPID(0.030,0,0.0002,0);
         } else {
             pidControlTurn.setPID(0.015,0,0.02,0);
         }
@@ -193,7 +193,7 @@ public class DriveBase implements PIDControl.PidInput {
 
     private double scalePower(double dVal)
     {
-        return -(Math.signum(dVal) * ((Math.pow(dVal, 4) * (.9)) + .1));
+        return -(Math.signum(dVal) * ((Math.pow(dVal, 2) * (.9)) + .1));
     }
 
     @Override
@@ -210,5 +210,4 @@ public class DriveBase implements PIDControl.PidInput {
         }
         return input;
     }
-
 }
