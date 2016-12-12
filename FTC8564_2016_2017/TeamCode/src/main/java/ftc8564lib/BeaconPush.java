@@ -27,12 +27,15 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
+
+import java.util.concurrent.locks.Lock;
+
 import ftc8564opMode.LockdownAutonomous;
 
 public class BeaconPush {
 
-    ColorSensor colorSensor;
-    CRServo rack;
+    ColorSensor redColorSensor, blueColorSensor;
+    CRServo redRack, blueRack;
     LinearOpMode opMode;
     STATE state;
 
@@ -56,16 +59,20 @@ public class BeaconPush {
     public BeaconPush(LinearOpMode opMode)
     {
         this.opMode = opMode;
-        colorSensor = opMode.hardwareMap.colorSensor.get("colorSensor");
-        colorSensor.enableLed(false);
-        rack = opMode.hardwareMap.crservo.get("rack");
+        redColorSensor = opMode.hardwareMap.colorSensor.get("colorSensor");
+        redColorSensor.enableLed(false);
+        blueColorSensor = opMode.hardwareMap.colorSensor.get("colorSensor1");
+        blueColorSensor.enableLed(false);
+        redRack = opMode.hardwareMap.crservo.get("rack");
+        redRack.setPower(0.1);
+        blueRack = opMode.hardwareMap.crservo.get("rack1");
         state = STATE.RETRACTED;
         mClock.reset();
     }
 
     public boolean detectBeaconColor(LockdownAutonomous.Alliance alliance)
     {
-        return (alliance == LockdownAutonomous.Alliance.RED_ALLIANCE && getColor() == Color.RED) || (alliance == LockdownAutonomous.Alliance.BLUE_ALLIANCE && getColor() == Color.BLUE);
+        return (alliance == LockdownAutonomous.Alliance.RED_ALLIANCE && getColor(alliance) == Color.RED) || (alliance == LockdownAutonomous.Alliance.BLUE_ALLIANCE && getColor(alliance) == Color.BLUE);
     }
 
     public void pushBeacon()
@@ -81,9 +88,9 @@ public class BeaconPush {
 
     private void setButtonPusherExtendPosition()
     {
-        rack.setPower(BUTTON_PUSHER_EXTEND_POSITION);
+        redRack.setPower(BUTTON_PUSHER_EXTEND_POSITION);
         waitTime(1.3);
-        rack.setPower(BUTTON_PUSHER_REST_POSITION);
+        redRack.setPower(BUTTON_PUSHER_REST_POSITION);
         waitTime(0.1);
         changeState(STATE.EXTENDED);
     }
@@ -91,29 +98,45 @@ public class BeaconPush {
     private void setButtonPusherRetractPosition()
     {
         if(state == STATE.EXTENDED) {
-            rack.setPower(BUTTON_PUSHER_RETRACT_POSITION);
+            redRack.setPower(BUTTON_PUSHER_RETRACT_POSITION);
             waitTime(1.3);
-            rack.setPower(BUTTON_PUSHER_REST_POSITION);
+            redRack.setPower(BUTTON_PUSHER_REST_POSITION);
             changeState(STATE.RETRACTED);
         }
     }
 
     public void holdButtonPusherPosition()
     {
-        rack.setPower(0.1);
+        redRack.setPower(0.1);
+        blueRack.setPower(0.1);
     }
 
-    private Color getColor()
+    private Color getColor(LockdownAutonomous.Alliance alliance)
     {
-       if(colorSensor.red() > colorSensor.blue() && colorSensor.red() > colorSensor.green())
-       {
-           return Color.RED;
-       } else if(colorSensor.blue() > colorSensor.red() && colorSensor.blue() > colorSensor.green())
-       {
-           return Color.BLUE;
-       } else {
-           return Color.OTHER;
-       }
+        if(LockdownAutonomous.Alliance.RED_ALLIANCE == alliance)
+        {
+            if(redColorSensor.red() > redColorSensor.blue() && redColorSensor.red() > redColorSensor.green())
+            {
+                return Color.RED;
+            } else if(redColorSensor.blue() > redColorSensor.red() && redColorSensor.blue() > redColorSensor.green())
+            {
+                return Color.BLUE;
+            } else {
+                return Color.OTHER;
+            }
+        } else if(LockdownAutonomous.Alliance.BLUE_ALLIANCE == alliance)
+        {
+            if(redColorSensor.red() > redColorSensor.blue() && redColorSensor.red() > redColorSensor.green())
+            {
+                return Color.RED;
+            } else if(redColorSensor.blue() > redColorSensor.red() && redColorSensor.blue() > redColorSensor.green())
+            {
+                return Color.BLUE;
+            } else {
+                return Color.OTHER;
+            }
+        }
+        return Color.OTHER;
     }
 
     private void waitTime(double i)

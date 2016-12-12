@@ -25,6 +25,7 @@ package ftc8564lib;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 
 import hallib.HalDashboard;
@@ -33,16 +34,14 @@ import hallib.HalUtil;
 public class PulleySystem {
 
     LinearOpMode opMode;
-    DcMotor leftPulley;
-    DcMotor rightPulley;
+    DcMotor leftPulley, rightPulley;
+    Servo ropeHolder;
     HalDashboard dashboard;
 
-    private static final double LIFT_SYNC_KP = 0.004;               //this value needs to be tuned
-    private static final double LIFT_POSITION_TOLERANCE = 50; //this value needs to be tuned; in ticks
-    private static final double SCALE = (48/9336);  //  INCHES_PER_COUNT; needs to be tuned
+    private static final double LIFT_SYNC_KP = 0.002;               //this value needs to be tuned
+    private static final double LIFT_POSITION_TOLERANCE = 100; //this value needs to be tuned; in ticks
     private static final int MIN_DISTANCE = 0;
     private static final int MAX_DISTANCE = 9336;
-    private double prevTarget = 0.0;
 
     public PulleySystem(LinearOpMode opMode) {
         this.opMode = opMode;
@@ -51,16 +50,27 @@ public class PulleySystem {
         rightPulley = opMode.hardwareMap.dcMotor.get("rightPulley");
         leftPulley.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightPulley.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        //leftPulley.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        //rightPulley.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        leftPulley.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        rightPulley.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        leftPulley.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightPulley.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        ropeHolder = opMode.hardwareMap.servo.get("ropeHolder");
+        ropeHolder.setPosition(1);
     }
 
-    public void manualControl(double leftPower, double rightPower)
+    public void manualControl(double leftPower, double rightPower, boolean doubleControl)
     {
-        leftPulley.setPower(leftPower);
-        rightPulley.setPower(rightPower);
+        if(!doubleControl)
+        {
+            leftPulley.setPower(leftPower);
+            rightPulley.setPower(rightPower);
+        } else {
+            leftPulley.setPower(leftPower);
+            rightPulley.setPower(leftPower);
+        }
+    }
+
+    public void releaseForklift()
+    {
+        ropeHolder.setPosition(0);
     }
 
     public void setSyncMotorPower(double power)
@@ -68,15 +78,6 @@ public class PulleySystem {
         if (power != 0.0)
         {
             int targetPosition = power < 0.0? MIN_DISTANCE: MAX_DISTANCE;
-            if (targetPosition != prevTarget)
-            {
-                //
-                // We just changed direction so let's set a new target.
-                //
-                leftPulley.setTargetPosition(targetPosition);
-                rightPulley.setTargetPosition(targetPosition);
-                prevTarget = targetPosition;
-            }
             boolean leftOnTarget = Math.abs(targetPosition - leftPulley.getCurrentPosition()) <= LIFT_POSITION_TOLERANCE;
             boolean rightOnTarget = Math.abs(targetPosition - rightPulley.getCurrentPosition()) <= LIFT_POSITION_TOLERANCE;
             if (!leftOnTarget || !rightOnTarget)
@@ -94,14 +95,12 @@ public class PulleySystem {
             {
                 leftPulley.setPower(0.0);
                 rightPulley.setPower(0.0);
-                prevTarget = 0.0;
             }
         }
         else
         {
             leftPulley.setPower(0.0);
             rightPulley.setPower(0.0);
-            prevTarget = 0.0;
         }
     }
 

@@ -43,8 +43,13 @@ public class LockdownTeleOp extends LinearOpMode {
             // Drive Train command
             robot.driveBase.tankDrive(gamepad1.right_stick_y, gamepad1.left_stick_y);
             // Pulley System
-            robot.pulleySystem.setSyncMotorPower(-gamepad2.left_stick_y);
-            //robot.pulleySystem.manualControl(gamepad2.left_stick_y, gamepad2.right_stick_y);
+            //robot.pulleySystem.setSyncMotorPower(-gamepad2.left_stick_y);
+            if(gamepad2.left_bumper)
+            {
+                robot.pulleySystem.manualControl(gamepad2.left_stick_y, gamepad2.right_stick_y, false);
+            } else {
+                robot.pulleySystem.manualControl(gamepad2.left_stick_y, gamepad2.right_stick_y, true);
+            }
             //Beacon Push
             if(gamepad1.right_bumper)
             {
@@ -77,8 +82,11 @@ public class LockdownTeleOp extends LinearOpMode {
             {
                 inProgress = false;
             }
-            //Ball Arm
-
+            //Forklift
+            if(gamepad2.a)
+            {
+                robot.pulleySystem.releaseForklift();
+            }
             robot.beaconPush.holdButtonPusherPosition();
         }
 
