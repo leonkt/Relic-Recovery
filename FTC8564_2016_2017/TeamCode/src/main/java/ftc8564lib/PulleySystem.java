@@ -56,16 +56,10 @@ public class PulleySystem {
         ropeHolder.setPosition(1);
     }
 
-    public void manualControl(double leftPower, double rightPower, boolean doubleControl)
+    public void manualControl(double leftPower, double rightPower)
     {
-        if(!doubleControl)
-        {
-            leftPulley.setPower(leftPower);
-            rightPulley.setPower(rightPower);
-        } else {
-            leftPulley.setPower(leftPower);
-            rightPulley.setPower(leftPower);
-        }
+        leftPulley.setPower(leftPower);
+        rightPulley.setPower(rightPower);
     }
 
     public void releaseForklift()

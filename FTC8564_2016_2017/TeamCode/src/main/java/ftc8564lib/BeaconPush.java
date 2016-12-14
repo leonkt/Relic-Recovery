@@ -92,7 +92,7 @@ public class BeaconPush {
         if (state == STATE.RETRACTED && redAllianceRack)
         {
             redRack.setPower(BUTTON_PUSHER_EXTEND_POSITION);
-            endTime = HalUtil.getCurrentTime() + 1.1;
+            endTime = HalUtil.getCurrentTime() + 1;
             changeState(STATE.EXTENDING);
         } else if(state == STATE.RETRACTED)
         {
@@ -107,7 +107,7 @@ public class BeaconPush {
         if (state == STATE.EXTENDED && redAllianceRack)
         {
             redRack.setPower(BUTTON_PUSHER_RETRACT_POSITION);
-            endTime = HalUtil.getCurrentTime() + 1.1;
+            endTime = HalUtil.getCurrentTime() + 1;
             changeState(STATE.RETRACTING);
         } else if(state == STATE.EXTENDED)
         {

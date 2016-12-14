@@ -94,13 +94,13 @@ public class DriveBase implements PIDControl.PidInput {
             if (abortTrigger != null && abortTrigger.shouldAbort()) {
                 break;
             }
-            double currTime = HalUtil.getCurrentTime();
             int currLeftPos = leftMotor.getCurrentPosition();
             int currRightPos = rightMotor.getCurrentPosition();
             double drivePower = pidControl.getPowerOutput();
             double turnPower = pidControlTurn.getPowerOutput();
             leftMotor.setPower(drivePower + turnPower);
             rightMotor.setPower(drivePower - turnPower);
+            double currTime = HalUtil.getCurrentTime();
             /*if (currLeftPos != prevLeftPos || currRightPos != prevRightPos)
             {
                 stallStartTime = currTime;
@@ -114,7 +114,7 @@ public class DriveBase implements PIDControl.PidInput {
             }*/
             opMode.idle();
         }
-        resetMotors();
+        //resetMotors();
         resetPIDDrive();
     }
 
@@ -128,24 +128,24 @@ public class DriveBase implements PIDControl.PidInput {
             pidControlTurn.setPID(0.033,0,0.0001,0);
         } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) <= 35.0)
         {
-            pidControlTurn.setPID(0.033,0,0.00012,0);
+            pidControlTurn.setPID(0.032,0,0.0002,0);
         } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) <= 55.0)
         {
-            pidControlTurn.setPID(0.032,0,0.00005,0);
+            pidControlTurn.setPID(0.029,0,0.0,0);
         } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) <= 90.0)
         {
-            pidControlTurn.setPID(0.030,0,0.0002,0);
+            pidControlTurn.setPID(0.025,0,0.0002,0);
         } else {
             pidControlTurn.setPID(0.015,0,0.02,0);
         }
         pidControlTurn.setTarget(degrees);
         while (!pidControlTurn.isOnTarget()) {
-            double currTime = HalUtil.getCurrentTime();
             int currLeftPos = leftMotor.getCurrentPosition();
             int currRightPos = rightMotor.getCurrentPosition();
             double outputPower = pidControlTurn.getPowerOutput();
             leftMotor.setPower(outputPower);
             rightMotor.setPower(-outputPower);
+            double currTime = HalUtil.getCurrentTime();
             /*if (currLeftPos != prevLeftPos || currRightPos != prevRightPos)
             {
                 stallStartTime = currTime;
@@ -160,7 +160,7 @@ public class DriveBase implements PIDControl.PidInput {
             pidControlTurn.displayPidInfo(0);
             opMode.idle();
         }
-        resetMotors();
+        //resetMotors();
         resetPIDDrive();
     }
 

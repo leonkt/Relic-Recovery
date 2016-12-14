@@ -46,9 +46,9 @@ public class LockdownTeleOp extends LinearOpMode {
             //robot.pulleySystem.setSyncMotorPower(-gamepad2.left_stick_y);
             if(gamepad2.left_bumper)
             {
-                robot.pulleySystem.manualControl(gamepad2.left_stick_y, gamepad2.right_stick_y, false);
+                robot.pulleySystem.manualControl(gamepad2.left_stick_y, gamepad2.left_stick_y);
             } else {
-                robot.pulleySystem.manualControl(gamepad2.left_stick_y, gamepad2.right_stick_y, true);
+                robot.pulleySystem.manualControl(gamepad2.left_stick_y, gamepad2.right_stick_y);
             }
             //Beacon Push
             if(gamepad1.right_bumper)

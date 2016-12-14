@@ -40,7 +40,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         BLUE_ALLIANCE
     }
 
-    public enum Strategy {
+    private enum Strategy {
         DO_NOTHING,
         SIXTY_POINT,
         HUNDRED_POINT,
@@ -89,13 +89,13 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
     }
 
     private void runSixtyPoint() throws InterruptedException {
-        robot.driveBase.drivePID(-25, null);
-        robot.driveBase.spinPID(35);
-        robot.driveBase.drivePID(-50, null);
-        robot.driveBase.spinPID(55);
-        robot.driveBase.drivePID(-16, null);
-        robot.driveBase.drivePID(5, null);
-        robot.driveBase.spinPID(-90);
+        robot.driveBase.drivePID(25, null);
+        robot.driveBase.spinPID(30);
+        robot.driveBase.drivePID(55, null);
+        robot.driveBase.spinPID(60);
+        robot.driveBase.drivePID(20, null);
+        robot.driveBase.drivePID(-5, null);
+        robot.driveBase.spinPID(90);
     }
 
     private void runHundredPoint() throws InterruptedException {

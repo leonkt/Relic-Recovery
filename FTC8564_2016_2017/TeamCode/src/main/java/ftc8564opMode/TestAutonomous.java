@@ -34,31 +34,40 @@ public class TestAutonomous extends LinearOpMode implements DriveBase.AbortTrigg
 
     Robot robot;
 
-    public enum Alliance {
+    private enum Alliance {
         RED_ALLIANCE,
         BLUE_ALLIANCE
     }
 
+    private enum State {
+        INIT,
+        GO_TO_BEACON,
+        ALIGN_WITH_WALL
+    }
+
     private Alliance alliance = Alliance.RED_ALLIANCE;
+    private State state = State.INIT;
 
     @Override
     public void runOpMode() throws InterruptedException {
         robot = new Robot(this,true);
         waitForStart();
 
-        robot.driveBase.drivePID(-25, null);
-        robot.driveBase.spinPID(35);
-        robot.driveBase.drivePID(-50, null);
-        robot.driveBase.spinPID(55);
-        robot.driveBase.drivePID(-16, null);
-        robot.driveBase.drivePID(4, null);
-        robot.driveBase.spinPID(-90);
+        //robot.driveBase.drivePID(15, null);
+        robot.driveBase.spinPID(45);
+        //robot.driveBase.drivePID(20, null);
+        //robot.shooter.shootBall(-1);
 
         robot.shooter.resetMotors();
         robot.pulleySystem.resetMotors();
         robot.driveBase.resetMotors();
         robot.driveBase.resetPIDDrive();
 
+    }
+
+    private void newState(State state)
+    {
+        this.state = state;
     }
 
     @Override
