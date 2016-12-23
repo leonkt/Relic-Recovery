@@ -77,19 +77,26 @@ public class DriveBase implements PIDControl.PidInput {
         //Sets up PID Drive: kP, kI, kD, kF, Tolerance, Settling Time
         pidControl = new PIDControl(0.03,0,0,0,2.0,0.2,this);
         pidControlTurn = new PIDControl(0.02,0,0,0,2.0,0.2,this);
+        pidControlTurn.setAbsoluteSetPoint(true);
         dashboard.clearDisplay();
     }
 
     //Input distance in inches and power with decimal to hundredth place
     public void drivePID(double distance, AbortTrigger abortTrigger) throws InterruptedException {
-        if(distance < 10)
+        if (Math.abs(distance) < 5)
+        {
+            pidControl.setPID(0.08,0,0,0);
+        }
+        else if(Math.abs(distance) < 10)
         {
             pidControl.setPID(0.05,0,0,0);
-        } else {
+        } else
+        {
             pidControl.setPID(0.03,0,0,0);
         }
         pidControl.setTarget(distance);
         pidControlTurn.setTarget(0.0);
+        stallStartTime = HalUtil.getCurrentTime();
         while (!pidControl.isOnTarget() || !pidControlTurn.isOnTarget()) {
             if (abortTrigger != null && abortTrigger.shouldAbort()) {
                 break;
@@ -101,7 +108,7 @@ public class DriveBase implements PIDControl.PidInput {
             leftMotor.setPower(drivePower + turnPower);
             rightMotor.setPower(drivePower - turnPower);
             double currTime = HalUtil.getCurrentTime();
-            /*if (currLeftPos != prevLeftPos || currRightPos != prevRightPos)
+            if (currLeftPos != prevLeftPos || currRightPos != prevRightPos)
             {
                 stallStartTime = currTime;
                 prevLeftPos = currLeftPos;
@@ -111,34 +118,25 @@ public class DriveBase implements PIDControl.PidInput {
             {
                 // The motors are stalled for more than 0.5 seconds.
                 break;
-            }*/
+            }
             opMode.idle();
         }
-        //resetMotors();
         resetPIDDrive();
     }
 
     public void spinPID(double degrees) throws InterruptedException {
         pidControlTurn.setOutputRange(-0.5,0.5);
-        if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) <= 10.0)
+        if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 15.0)
         {
-            pidControlTurn.setPID(0.05,0,0,0);
-        } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) <= 20.0)
+            pidControlTurn.setPID(0.03,0,0,0);
+        } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 80.0)
         {
-            pidControlTurn.setPID(0.033,0,0.0001,0);
-        } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) <= 35.0)
-        {
-            pidControlTurn.setPID(0.032,0,0.0002,0);
-        } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) <= 55.0)
-        {
-            pidControlTurn.setPID(0.029,0,0.0,0);
-        } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) <= 90.0)
-        {
-            pidControlTurn.setPID(0.025,0,0.0002,0);
+            pidControlTurn.setPID(0.0235,0,0.0003,0);
         } else {
             pidControlTurn.setPID(0.015,0,0.02,0);
         }
         pidControlTurn.setTarget(degrees);
+        stallStartTime = HalUtil.getCurrentTime();
         while (!pidControlTurn.isOnTarget()) {
             int currLeftPos = leftMotor.getCurrentPosition();
             int currRightPos = rightMotor.getCurrentPosition();
@@ -160,7 +158,6 @@ public class DriveBase implements PIDControl.PidInput {
             pidControlTurn.displayPidInfo(0);
             opMode.idle();
         }
-        //resetMotors();
         resetPIDDrive();
     }
 
@@ -194,6 +191,11 @@ public class DriveBase implements PIDControl.PidInput {
     private double scalePower(double dVal)
     {
         return -(Math.signum(dVal) * ((Math.pow(dVal, 2) * (.9)) + .1));
+    }
+
+    public void resetHeading()
+    {
+        gyroSensor.resetZAxisIntegrator();
     }
 
     @Override

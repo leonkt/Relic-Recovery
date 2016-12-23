@@ -42,6 +42,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
 
     private enum Strategy {
         DO_NOTHING,
+        ONE_BEACON,
         SIXTY_POINT,
         HUNDRED_POINT,
         CORNER_VORTEX,
@@ -59,9 +60,14 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         doMenus();
         waitForStart();
 
+        robot.driveBase.resetHeading();
+
         switch (strategy) {
             case SIXTY_POINT:
                 runSixtyPoint();
+                break;
+            case ONE_BEACON:
+                runOneBeacon();
                 break;
             case HUNDRED_POINT:
                 runHundredPoint();
@@ -93,13 +99,21 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         robot.driveBase.spinPID(30);
         robot.driveBase.drivePID(55, null);
         robot.driveBase.spinPID(60);
-        robot.driveBase.drivePID(20, null);
+        robot.driveBase.drivePID(22, null);
         robot.driveBase.drivePID(-5, null);
         robot.driveBase.spinPID(90);
+        robot.driveBase.drivePID(-20, this);
+    }
+
+    private void runOneBeacon() throws InterruptedException {
+
     }
 
     private void runHundredPoint() throws InterruptedException {
-
+        robot.driveBase.drivePID(15, null);
+        robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 45 : -45);
+        robot.driveBase.drivePID(20, null);
+        robot.shooter.shootBall(alliance == Alliance.RED_ALLIANCE ? -1 : 1);
     }
 
     private void runShootBall() throws InterruptedException {
@@ -111,7 +125,9 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
     }
 
     private void runCapBall() throws InterruptedException {
-        robot.driveBase.spinPID(35);
+        robot.driveBase.drivePID(25, null);
+        robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 45 : -45);
+        robot.driveBase.drivePID(40, null);
     }
 
     private void runDefense() throws InterruptedException {
@@ -163,6 +179,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         allianceMenu.addChoice("Blue", Alliance.BLUE_ALLIANCE, strategyMenu);
 
         strategyMenu.addChoice("Do Nothing", Strategy.DO_NOTHING);
+        strategyMenu.addChoice("One Beacon: Close", Strategy.ONE_BEACON);
         strategyMenu.addChoice("2 Beacons: Close", Strategy.SIXTY_POINT);
         strategyMenu.addChoice("2 Shot + 2 Beacons + Park: Close", Strategy.HUNDRED_POINT);
         strategyMenu.addChoice("2 Shot + Cap Ball: Far", Strategy.SHOOT_BALL);

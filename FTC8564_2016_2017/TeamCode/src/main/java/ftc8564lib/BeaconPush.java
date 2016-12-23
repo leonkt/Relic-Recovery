@@ -137,8 +137,6 @@ public class BeaconPush {
             } else if(redColorSensor.blue() > redColorSensor.red() && redColorSensor.blue() > redColorSensor.green())
             {
                 return Color.BLUE;
-            } else {
-                return Color.OTHER;
             }
         } else if(LockdownAutonomous.Alliance.BLUE_ALLIANCE == alliance)
         {
@@ -148,8 +146,6 @@ public class BeaconPush {
             } else if(redColorSensor.blue() > redColorSensor.red() && redColorSensor.blue() > redColorSensor.green())
             {
                 return Color.BLUE;
-            } else {
-                return Color.OTHER;
             }
         }
         return Color.OTHER;

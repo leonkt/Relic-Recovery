@@ -87,10 +87,6 @@ public class LockdownTeleOp extends LinearOpMode {
                 inProgress = false;
             }
             //Forklift
-            if(gamepad2.a)
-            {
-                robot.pulleySystem.releaseForklift();
-            }
         }
 
         robot.pulleySystem.resetMotors();

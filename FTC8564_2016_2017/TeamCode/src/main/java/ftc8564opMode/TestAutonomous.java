@@ -52,11 +52,11 @@ public class TestAutonomous extends LinearOpMode implements DriveBase.AbortTrigg
     public void runOpMode() throws InterruptedException {
         robot = new Robot(this,true);
         waitForStart();
+        robot.driveBase.resetHeading();
 
-        //robot.driveBase.drivePID(15, null);
+        robot.driveBase.drivePID(15, null);
         robot.driveBase.spinPID(45);
-        //robot.driveBase.drivePID(20, null);
-        //robot.shooter.shootBall(-1);
+        robot.driveBase.drivePID(55, null);
 
         robot.shooter.resetMotors();
         robot.pulleySystem.resetMotors();

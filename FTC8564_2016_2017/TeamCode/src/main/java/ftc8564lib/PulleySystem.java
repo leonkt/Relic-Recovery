@@ -35,7 +35,6 @@ public class PulleySystem {
 
     LinearOpMode opMode;
     DcMotor leftPulley, rightPulley;
-    Servo ropeHolder;
     HalDashboard dashboard;
 
     private static final double LIFT_SYNC_KP = 0.002;               //this value needs to be tuned
@@ -52,19 +51,12 @@ public class PulleySystem {
         rightPulley.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         leftPulley.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightPulley.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        ropeHolder = opMode.hardwareMap.servo.get("ropeHolder");
-        ropeHolder.setPosition(1);
     }
 
     public void manualControl(double leftPower, double rightPower)
     {
         leftPulley.setPower(leftPower);
         rightPulley.setPower(rightPower);
-    }
-
-    public void releaseForklift()
-    {
-        ropeHolder.setPosition(0);
     }
 
     public void setSyncMotorPower(double power)
