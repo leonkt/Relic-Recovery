@@ -26,29 +26,56 @@ package ftc8564opMode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import ftc8564lib.Robot;
+import hallib.HalDashboard;
 
 @TeleOp(name="LockdownTeleOp", group="TeleOp")
 public class LockdownTeleOp extends LinearOpMode {
 
     private Robot robot;
     private boolean inProgress;
+    private boolean switchFront;
 
     @Override
     public void runOpMode() throws InterruptedException {
         inProgress = false;
+        switchFront = false;
         robot = new Robot(this,false);
         robot.driveBase.noEncoders();
         waitForStart();
         while (opModeIsActive()) {
             // Drive Train command
-            robot.driveBase.tankDrive(gamepad1.right_stick_y, gamepad1.left_stick_y);
+            if(gamepad1.dpad_up)
+            {
+                switchFront = true;
+            } else if(gamepad1.dpad_down)
+            {
+                switchFront = false;
+            } else if(gamepad1.dpad_left)
+            {
+                robot.driveBase.slowSpeed(true);
+            } else if(gamepad1.dpad_right)
+            {
+                robot.driveBase.slowSpeed(false);
+            }
+            if(switchFront)
+            {
+                robot.driveBase.tankDrive(-gamepad1.right_stick_y, -gamepad1.left_stick_y);
+            } else {
+                robot.driveBase.tankDrive(gamepad1.right_stick_y, gamepad1.left_stick_y);
+            }
             // Pulley System
-            //robot.pulleySystem.setSyncMotorPower(-gamepad2.left_stick_y);
+            if(gamepad2.dpad_up)
+            {
+                robot.pulleySystem.setSlow(true);
+            } else if(gamepad2.dpad_down)
+            {
+                robot.pulleySystem.setSlow(false);
+            }
             if(gamepad2.left_bumper)
             {
-                robot.pulleySystem.manualControl(gamepad2.left_stick_y, gamepad2.left_stick_y);
+                robot.pulleySystem.manualControl(-gamepad2.left_stick_y, -gamepad2.left_stick_y);
             } else {
-                robot.pulleySystem.manualControl(gamepad2.left_stick_y, gamepad2.right_stick_y);
+                robot.pulleySystem.manualControl(-gamepad2.left_stick_y, -gamepad2.right_stick_y);
             }
             //Beacon Push
             if(gamepad1.right_bumper)
@@ -78,15 +105,25 @@ public class LockdownTeleOp extends LinearOpMode {
             {
                 inProgress = true;
                 robot.shooter.shootBall(1);
-            } else if(gamepad2.right_stick_y == 0)
+            }
+            if(gamepad2.dpad_left)
             {
-                robot.shooter.primeBall(gamepad2.right_stick_x);
+                robot.shooter.primeBall(-0.1);
+            } else if(gamepad2.dpad_right)
+            {
+                robot.shooter.primeBall(0.1);
+            } else {
+                robot.shooter.primeBall(0);
             }
             if(!gamepad2.x && !gamepad2.b)
             {
                 inProgress = false;
             }
             //Forklift
+            if(gamepad2.a)
+            {
+                robot.pulleySystem.openForkLift();
+            }
         }
 
         robot.pulleySystem.resetMotors();

@@ -43,8 +43,7 @@ public class Shooter {
         this.opMode = opMode;
         tennisArm = opMode.hardwareMap.dcMotor.get("tennisArm");
         tennisArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        tennisArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        tennisArm.setPower(0.5);
+        tennisArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         highSpeed = opMode.hardwareMap.dcMotor.get("highSpeed");
         highSpeed.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         highSpeed.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -54,13 +53,13 @@ public class Shooter {
 
     public void primeBall(double power)
     {
-        highSpeed.setPower(Range.clip(power,-0.08,0.08));
+        highSpeed.setPower(power);
     }
 
     public void shootBall(double power)
     {
         highSpeed.setPower(power);
-        waitTime(0.4);
+        waitTime(0.35);
         highSpeed.setPower(0);
     }
 
@@ -68,32 +67,13 @@ public class Shooter {
     {
         if(up)
         {
-            tennisArm.setTargetPosition(checkPos(1));
+            tennisArm.setPower(0.4);
         } else {
-            tennisArm.setTargetPosition(checkPos(0));
+            tennisArm.setPower(-0.4);
         }
     }
 
-    public void setTennisArmPower() { tennisArm.setTargetPosition(tennisArm.getCurrentPosition());}
-
-    private int checkPos(int i)
-    {
-        if(i == 0)
-        {
-            if(tennisArm.getCurrentPosition() - 100 < 0)
-            {
-                return 0;
-            }
-            return tennisArm.getCurrentPosition() - 100;
-        } else if(i == 1){
-            if(tennisArm.getCurrentPosition() + 100 > 500)
-            {
-                return 500;
-            }
-            return tennisArm.getCurrentPosition() + 100;
-        }
-        return tennisArm.getCurrentPosition();
-    }
+    public void setTennisArmPower() { tennisArm.setPower(0);}
 
     public void resetMotors()
     {

@@ -31,6 +31,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import java.util.concurrent.locks.Lock;
 
 import ftc8564opMode.LockdownAutonomous;
+import ftc8564opMode.TestAutonomous;
+import hallib.HalDashboard;
 import hallib.HalUtil;
 
 public class BeaconPush {
@@ -38,12 +40,14 @@ public class BeaconPush {
     ColorSensor redColorSensor, blueColorSensor;
     CRServo redRack, blueRack;
     LinearOpMode opMode;
-    STATE state;
+    STATE_RED state_red;
+    STATE_BLUE state_blue;
+    HalDashboard dashboard;
 
     static final double BUTTON_PUSHER_RETRACT_POSITION = 1;
     static final double BUTTON_PUSHER_EXTEND_POSITION = -1;
     static final double BUTTON_PUSHER_REST_POSITION = 0;
-    private double endTime;
+    private double endTimeRed, endTimeBlue;
 
     private ElapsedTime mClock = new ElapsedTime();
 
@@ -53,7 +57,15 @@ public class BeaconPush {
         OTHER
     }
 
-    private enum STATE
+    private enum STATE_RED
+    {
+        EXTENDING,
+        RETRACTING,
+        EXTENDED,
+        RETRACTED
+    }
+
+    private enum STATE_BLUE
     {
         EXTENDING,
         RETRACTING,
@@ -64,14 +76,15 @@ public class BeaconPush {
     public BeaconPush(LinearOpMode opMode)
     {
         this.opMode = opMode;
-        redColorSensor = opMode.hardwareMap.colorSensor.get("colorSensor");
-        redColorSensor.enableLed(false);
-        blueColorSensor = opMode.hardwareMap.colorSensor.get("colorSensor1");
+        blueColorSensor = opMode.hardwareMap.colorSensor.get("colorSensor");
         blueColorSensor.enableLed(false);
-        redRack = opMode.hardwareMap.crservo.get("rack");
-        redRack.setPower(0.1);
-        blueRack = opMode.hardwareMap.crservo.get("rack1");
-        state = STATE.RETRACTED;
+        redColorSensor = opMode.hardwareMap.colorSensor.get("colorSensor1");
+        redColorSensor.enableLed(false);
+        blueRack = opMode.hardwareMap.crservo.get("rack");
+        blueRack.setPower(0.1);
+        redRack = opMode.hardwareMap.crservo.get("rack1");
+        state_red = STATE_RED.RETRACTED;
+        state_blue = STATE_BLUE.RETRACTED;
         mClock.reset();
     }
 
@@ -89,41 +102,55 @@ public class BeaconPush {
     private void setButtonPusherExtendPosition(boolean redAllianceRack)
     {
         // Assuming pusher state is RETRACTED
-        if (state == STATE.RETRACTED && redAllianceRack)
+        if (state_red == STATE_RED.RETRACTED && redAllianceRack)
         {
-            redRack.setPower(BUTTON_PUSHER_EXTEND_POSITION);
-            endTime = HalUtil.getCurrentTime() + 1;
-            changeState(STATE.EXTENDING);
-        } else if(state == STATE.RETRACTED)
+            redRack.setPower(BUTTON_PUSHER_RETRACT_POSITION);
+            endTimeRed = HalUtil.getCurrentTime() + 0.85;
+            changeState(STATE_RED.EXTENDING);
+        } else if(state_blue == STATE_BLUE.RETRACTED && !redAllianceRack)
         {
-            blueRack.setPower(BUTTON_PUSHER_RETRACT_POSITION);
-            endTime = HalUtil.getCurrentTime() + 0.8;
-            changeState(STATE.EXTENDING);
+            blueRack.setPower(BUTTON_PUSHER_EXTEND_POSITION);
+            endTimeBlue = HalUtil.getCurrentTime() + 0.9;
+            changeStateBlue(STATE_BLUE.EXTENDING);
         }
     }
+
     private void setButtonPusherRetractPosition(boolean redAllianceRack)
     {
         // Assuming pusher state is EXTENDED
-        if (state == STATE.EXTENDED && redAllianceRack)
+        if (state_red == STATE_RED.EXTENDED && redAllianceRack)
         {
-            redRack.setPower(BUTTON_PUSHER_RETRACT_POSITION);
-            endTime = HalUtil.getCurrentTime() + 1;
-            changeState(STATE.RETRACTING);
-        } else if(state == STATE.EXTENDED)
+            redRack.setPower(BUTTON_PUSHER_EXTEND_POSITION);
+            endTimeRed = HalUtil.getCurrentTime() + 0.85;
+            changeState(STATE_RED.RETRACTING);
+        } else if(state_blue == STATE_BLUE.EXTENDED && !redAllianceRack)
         {
-            blueRack.setPower(BUTTON_PUSHER_EXTEND_POSITION);
-            endTime = HalUtil.getCurrentTime() + 0.8;
-            changeState(STATE.RETRACTING);
+            blueRack.setPower(BUTTON_PUSHER_RETRACT_POSITION);
+            endTimeBlue = HalUtil.getCurrentTime() + 0.9;
+            changeStateBlue(STATE_BLUE.RETRACTING);
         }
     }
+
+    public void waitUntilPressed()
+    {
+        while((state_red == STATE_RED.EXTENDING || state_red == STATE_RED.RETRACTING) || (state_blue == STATE_BLUE.EXTENDING || state_blue == STATE_BLUE.RETRACTING))
+        {
+            buttonPusherTask();
+        }
+    }
+
     public void buttonPusherTask()
     {
         // If we are extending or retracting, check if the endTime to see if we are done.
-        if ((state == STATE.EXTENDING || state == STATE.RETRACTING) && HalUtil.getCurrentTime() >= endTime)
+        if ((state_red == STATE_RED.EXTENDING || state_red == STATE_RED.RETRACTING) && HalUtil.getCurrentTime() >= endTimeRed)
         {
-            redRack.setPower(0.1);
-            blueRack.setPower(BUTTON_PUSHER_REST_POSITION);
-            changeState(state == STATE.EXTENDING ? STATE.EXTENDED: STATE.RETRACTED);
+            redRack.setPower(BUTTON_PUSHER_REST_POSITION);
+            changeState(state_red == STATE_RED.EXTENDING ? STATE_RED.EXTENDED: STATE_RED.RETRACTED);
+        }
+        if ((state_blue == STATE_BLUE.EXTENDING || state_blue == STATE_BLUE.RETRACTING) && HalUtil.getCurrentTime() >= endTimeBlue)
+        {
+            blueRack.setPower(0.1);
+            changeStateBlue(state_blue == STATE_BLUE.EXTENDING ? STATE_BLUE.EXTENDED: STATE_BLUE.RETRACTED);
         }
     }
 
@@ -151,9 +178,14 @@ public class BeaconPush {
         return Color.OTHER;
     }
 
-    private void changeState(STATE newState)
+    private void changeState(STATE_RED newState)
     {
-        state = newState;
+        state_red = newState;
+    }
+
+    private void changeStateBlue(STATE_BLUE newState)
+    {
+        state_blue = newState;
     }
 
 }

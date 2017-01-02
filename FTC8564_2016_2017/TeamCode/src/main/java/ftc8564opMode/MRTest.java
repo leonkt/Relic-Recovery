@@ -38,12 +38,14 @@ import android.view.View;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.ColorSensor;
+import com.qualcomm.robotcore.hardware.I2cAddr;
 import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 
 @TeleOp(name = "Sensor: MR Color", group = "Sensor")
 public class MRTest extends LinearOpMode {
 
-  ColorSensor colorSensor;    // Hardware Device Object
+  ColorSensor colorSensor, colorSensor1;    // Hardware Device Object
+  I2cAddr newAddress = I2cAddr.create8bit(0x3e);
 
 
   @Override
@@ -51,9 +53,11 @@ public class MRTest extends LinearOpMode {
 
     // hsvValues is an array that will hold the hue, saturation, and value information.
     float hsvValues[] = {0F,0F,0F};
+    float hsvValues1[] = {0F,0F,0F};
 
     // values is a reference to the hsvValues array.
     final float values[] = hsvValues;
+    final float values1[] = hsvValues1;
 
     // get a reference to the RelativeLayout so we can change the background
     // color of the Robot Controller app to match the hue detected by the RGB sensor.
@@ -67,10 +71,13 @@ public class MRTest extends LinearOpMode {
     boolean bLedOn = true;
 
     // get a reference to our ColorSensor object.
-    colorSensor = hardwareMap.colorSensor.get("colorSensor");
+    //colorSensor = hardwareMap.colorSensor.get("colorSensor");
+    colorSensor1 = hardwareMap.colorSensor.get("colorSensor1");
+    colorSensor1.setI2cAddress(newAddress);
 
     // Set the LED in the beginning
-    colorSensor.enableLed(bLedOn);
+    //colorSensor.enableLed(bLedOn);
+    colorSensor1.enableLed(bLedOn);
 
     // wait for the start button to be pressed.
     waitForStart();
@@ -87,29 +94,36 @@ public class MRTest extends LinearOpMode {
 
         // button is transitioning to a pressed state. So Toggle LED
         bLedOn = !bLedOn;
-        colorSensor.enableLed(bLedOn);
+        //colorSensor.enableLed(bLedOn);
+        colorSensor1.enableLed(bLedOn);
       }
 
       // update previous state variable.
       bPrevState = bCurrState;
 
       // convert the RGB values to HSV values.
-      Color.RGBToHSV(colorSensor.red() * 8, colorSensor.green() * 8, colorSensor.blue() * 8, hsvValues);
+      //Color.RGBToHSV(colorSensor.red() * 8, colorSensor.green() * 8, colorSensor.blue() * 8, hsvValues);
+      Color.RGBToHSV(colorSensor1.red() * 8, colorSensor1.green() * 8, colorSensor1.blue() * 8, hsvValues1);
 
       // send the info back to driver station using telemetry function.
       telemetry.addData("LED", bLedOn ? "On" : "Off");
-      telemetry.addData("Clear", colorSensor.alpha());
-      telemetry.addData("Red  ", colorSensor.red());
-      telemetry.addData("Green", colorSensor.green());
-      telemetry.addData("Blue ", colorSensor.blue());
-      telemetry.addData("Hue", hsvValues[0]);
+      //telemetry.addData("Clear", colorSensor.alpha());
+      //telemetry.addData("Red  ", colorSensor.red());
+      //telemetry.addData("Green", colorSensor.green());
+      //telemetry.addData("Blue ", colorSensor.blue());
+      //telemetry.addData("Hue", hsvValues[0]);
+      telemetry.addData("Clear", colorSensor1.alpha());
+      telemetry.addData("Red  ", colorSensor1.red());
+      telemetry.addData("Green", colorSensor1.green());
+      telemetry.addData("Blue ", colorSensor1.blue());
+      telemetry.addData("Hue", hsvValues1[0]);
 
       // change the background color to match the color detected by the RGB sensor.
       // pass a reference to the hue, saturation, and value array as an argument
       // to the HSVToColor method.
       relativeLayout.post(new Runnable() {
         public void run() {
-          relativeLayout.setBackgroundColor(Color.HSVToColor(0xff, values));
+          relativeLayout.setBackgroundColor(Color.HSVToColor(0xff, values1));
         }
       });
 
