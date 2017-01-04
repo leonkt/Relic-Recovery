@@ -84,7 +84,7 @@ public class PulleySystem {
 
     private double scalePowerSlow(double dVal)
     {
-        return -(Math.signum(dVal) * ((Math.pow(dVal, 2) * (.3)) + .1));
+        return -(Math.signum(dVal) * ((Math.pow(dVal, 2) * (.25)) + .1));
     }
 
     public void setSyncMotorPower(double power)

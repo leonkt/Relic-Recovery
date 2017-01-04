@@ -59,7 +59,7 @@ public class LockdownTeleOp extends LinearOpMode {
             }
             if(switchFront)
             {
-                robot.driveBase.tankDrive(-gamepad1.right_stick_y, -gamepad1.left_stick_y);
+                robot.driveBase.tankDrive(-gamepad1.left_stick_y, -gamepad1.right_stick_y);
             } else {
                 robot.driveBase.tankDrive(gamepad1.right_stick_y, gamepad1.left_stick_y);
             }

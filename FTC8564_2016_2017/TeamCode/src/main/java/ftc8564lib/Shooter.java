@@ -39,11 +39,17 @@ public class Shooter {
     ElapsedTime mClock = new ElapsedTime();
     HalDashboard dashboard;
 
-    public Shooter(LinearOpMode opMode) {
+    public Shooter(LinearOpMode opMode, boolean auto) {
         this.opMode = opMode;
         tennisArm = opMode.hardwareMap.dcMotor.get("tennisArm");
         tennisArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        tennisArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        if(auto)
+        {
+            tennisArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            tennisArm.setPower(0.3);
+        } else {
+            tennisArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        }
         highSpeed = opMode.hardwareMap.dcMotor.get("highSpeed");
         highSpeed.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         highSpeed.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -60,6 +66,21 @@ public class Shooter {
     {
         highSpeed.setPower(power);
         waitTime(0.35);
+        highSpeed.setPower(0);
+    }
+
+    public void prepareBall()
+    {
+        tennisArm.setTargetPosition(550);
+        waitTime(0.5);
+        tennisArm.setTargetPosition(0);
+        waitTime(0.6);
+    }
+
+    public void loadBall(double power)
+    {
+        highSpeed.setPower(power);
+        waitTime(0.2);
         highSpeed.setPower(0);
     }
 

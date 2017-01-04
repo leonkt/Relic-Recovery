@@ -41,7 +41,7 @@ public class Robot {
         dashboard = new HalDashboard(opMode.telemetry);
         driveBase = new DriveBase(opMode, auto);
         pulleySystem = new PulleySystem(opMode);
-        shooter = new Shooter(opMode);
+        shooter = new Shooter(opMode, auto);
         beaconPush = new BeaconPush(opMode);
         odsLeft = opMode.hardwareMap.opticalDistanceSensor.get("odsLeft");
         odsRight = opMode.hardwareMap.opticalDistanceSensor.get("odsRight");

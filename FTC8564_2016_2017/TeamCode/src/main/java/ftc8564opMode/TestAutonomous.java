@@ -25,14 +25,12 @@ package ftc8564opMode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.util.ElapsedTime;
 import ftc8564lib.*;
 
 @Autonomous(name="TestAutonomous", group="Autonomous")
 public class TestAutonomous extends LinearOpMode implements DriveBase.AbortTrigger {
 
     Robot robot;
-    private ElapsedTime mClock = new ElapsedTime();
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -40,33 +38,11 @@ public class TestAutonomous extends LinearOpMode implements DriveBase.AbortTrigg
         waitForStart();
         robot.driveBase.resetHeading();
 
-        robot.driveBase.drivePID(23, null);
+        robot.driveBase.drivePID(10, false, null);
         robot.driveBase.spinPID(45);
-        robot.driveBase.drivePID(55, null);
-        robot.driveBase.drivePIDSlow(5, null);
-        robot.driveBase.spinPID(0);
-        robot.driveBase.drivePIDSlow(-5, this);
-        robot.driveBase.drivePIDSlow(-10, null);
-        if(robot.beaconPush.beaconColorIsAlliance(LockdownAutonomous.Alliance.RED_ALLIANCE))
-        {
-            robot.beaconPush.pushBeacon(true);
-            robot.beaconPush.waitUntilPressed();
-            robot.beaconPush.pushBeacon(true);
-            robot.driveBase.drivePID(30, null);
-        } else {
-            if(robot.beaconPush.beaconColorIsAlliance(LockdownAutonomous.Alliance.RED_ALLIANCE))
-            {
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(true);
-                robot.driveBase.drivePID(30, null);
-            } else {
-                robot.driveBase.drivePIDSlow(-5, null);
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(true);
-            }
-        }
+        robot.driveBase.drivePID(25, false, null);
+        robot.driveBase.spinPID(135);
+        robot.driveBase.drivePID(40, false, null);
 
         robot.shooter.resetMotors();
         robot.pulleySystem.resetMotors();

@@ -26,13 +26,9 @@ package ftc8564lib;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
+import com.qualcomm.robotcore.hardware.I2cAddr;
 import com.qualcomm.robotcore.util.ElapsedTime;
-
-import java.util.concurrent.locks.Lock;
-
 import ftc8564opMode.LockdownAutonomous;
-import ftc8564opMode.TestAutonomous;
-import hallib.HalDashboard;
 import hallib.HalUtil;
 
 public class BeaconPush {
@@ -42,7 +38,7 @@ public class BeaconPush {
     LinearOpMode opMode;
     STATE_RED state_red;
     STATE_BLUE state_blue;
-    HalDashboard dashboard;
+    I2cAddr newAddress = I2cAddr.create8bit(0x3e);
 
     static final double BUTTON_PUSHER_RETRACT_POSITION = 1;
     static final double BUTTON_PUSHER_EXTEND_POSITION = -1;
@@ -80,6 +76,7 @@ public class BeaconPush {
         blueColorSensor.enableLed(false);
         redColorSensor = opMode.hardwareMap.colorSensor.get("colorSensor1");
         redColorSensor.enableLed(false);
+        redColorSensor.setI2cAddress(newAddress);
         blueRack = opMode.hardwareMap.crservo.get("rack");
         blueRack.setPower(0.1);
         redRack = opMode.hardwareMap.crservo.get("rack1");
