@@ -25,8 +25,6 @@ package ftc8564opMode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.util.ElapsedTime;
-import ftclib.*;
 import ftc8564lib.*;
 
 @Autonomous(name="TestAutonomous", group="Autonomous")
@@ -34,40 +32,23 @@ public class TestAutonomous extends LinearOpMode implements DriveBase.AbortTrigg
 
     Robot robot;
 
-    private enum Alliance {
-        RED_ALLIANCE,
-        BLUE_ALLIANCE
-    }
-
-    private enum State {
-        INIT,
-        GO_TO_BEACON,
-        ALIGN_WITH_WALL
-    }
-
-    private Alliance alliance = Alliance.RED_ALLIANCE;
-    private State state = State.INIT;
-
     @Override
     public void runOpMode() throws InterruptedException {
         robot = new Robot(this,true);
         waitForStart();
+        robot.driveBase.resetHeading();
 
-        //robot.driveBase.drivePID(15, null);
+        robot.driveBase.drivePID(10, false, null);
         robot.driveBase.spinPID(45);
-        //robot.driveBase.drivePID(20, null);
-        //robot.shooter.shootBall(-1);
+        robot.driveBase.drivePID(25, false, null);
+        robot.driveBase.spinPID(135);
+        robot.driveBase.drivePID(40, false, null);
 
         robot.shooter.resetMotors();
         robot.pulleySystem.resetMotors();
         robot.driveBase.resetMotors();
         robot.driveBase.resetPIDDrive();
 
-    }
-
-    private void newState(State state)
-    {
-        this.state = state;
     }
 
     @Override

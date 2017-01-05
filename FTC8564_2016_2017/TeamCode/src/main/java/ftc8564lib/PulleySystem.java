@@ -38,33 +38,53 @@ public class PulleySystem {
     Servo ropeHolder;
     HalDashboard dashboard;
 
-    private static final double LIFT_SYNC_KP = 0.002;               //this value needs to be tuned
+    private static final double LIFT_SYNC_KP = 0.05;               //this value needs to be tuned
     private static final double LIFT_POSITION_TOLERANCE = 100; //this value needs to be tuned; in ticks
     private static final int MIN_DISTANCE = 0;
     private static final int MAX_DISTANCE = 9336;
+
+    private boolean slow;
 
     public PulleySystem(LinearOpMode opMode) {
         this.opMode = opMode;
         dashboard = Robot.getDashboard();
         leftPulley = opMode.hardwareMap.dcMotor.get("leftPulley");
         rightPulley = opMode.hardwareMap.dcMotor.get("rightPulley");
+        ropeHolder = opMode.hardwareMap.servo.get("ropeHolder");
+        ropeHolder.setPosition(0);
         leftPulley.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightPulley.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         leftPulley.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightPulley.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        ropeHolder = opMode.hardwareMap.servo.get("ropeHolder");
-        ropeHolder.setPosition(1);
+    }
+
+    public void setSlow(boolean slowSpeed)
+    {
+        slow = slowSpeed;
     }
 
     public void manualControl(double leftPower, double rightPower)
     {
+        if(slow)
+        {
+            leftPower = scalePowerSlow(leftPower);
+            rightPower = scalePowerSlow(rightPower);
+        } else {
+            leftPower = scalePower(leftPower);
+            rightPower = scalePower(rightPower);
+        }
         leftPulley.setPower(leftPower);
         rightPulley.setPower(rightPower);
     }
 
-    public void releaseForklift()
+    private double scalePower(double dVal)
     {
-        ropeHolder.setPosition(0);
+        return -(Math.signum(dVal) * ((Math.pow(dVal, 2) * (.9)) + .1));
+    }
+
+    private double scalePowerSlow(double dVal)
+    {
+        return -(Math.signum(dVal) * ((Math.pow(dVal, 2) * (.25)) + .1));
     }
 
     public void setSyncMotorPower(double power)
@@ -96,6 +116,11 @@ public class PulleySystem {
             leftPulley.setPower(0.0);
             rightPulley.setPower(0.0);
         }
+    }
+
+    public void openForkLift()
+    {
+        ropeHolder.setPosition(1);
     }
 
     public void resetMotors()
