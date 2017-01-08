@@ -32,12 +32,10 @@ import hallib.HalDashboard;
 public class LockdownTeleOp extends LinearOpMode {
 
     private Robot robot;
-    private boolean inProgress;
     private boolean switchFront;
 
     @Override
     public void runOpMode() throws InterruptedException {
-        inProgress = false;
         switchFront = false;
         robot = new Robot(this,false);
         robot.driveBase.noEncoders();
@@ -97,27 +95,14 @@ public class LockdownTeleOp extends LinearOpMode {
                 robot.shooter.setTennisArmPower();
             }
             //Shooting Mechanism
-            if(gamepad2.x && !inProgress)
-            {
-                inProgress = true;
-                robot.shooter.shootBall(-1);
-            } else if(gamepad2.b && !inProgress)
-            {
-                inProgress = true;
-                robot.shooter.shootBall(1);
-            }
             if(gamepad2.dpad_left)
             {
-                robot.shooter.primeBall(-0.1);
+                robot.shooter.primeBall(1);
             } else if(gamepad2.dpad_right)
             {
-                robot.shooter.primeBall(0.1);
+                robot.shooter.primeBall(-1);
             } else {
                 robot.shooter.primeBall(0);
-            }
-            if(!gamepad2.x && !gamepad2.b)
-            {
-                inProgress = false;
             }
             //Forklift
             if(gamepad2.a)

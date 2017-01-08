@@ -49,6 +49,8 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         CORNER_VORTEX,
         CAP_BALL,
         SHOOT_BALL,
+        SHOOT_DELAY,
+        HIGH_RISK,
         DEFENSE
     }
 
@@ -73,6 +75,9 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             case TWO_BEACON_ONE_SHOT:
                 runTwoBeaconOneShot();
                 break;
+            case HIGH_RISK:
+                runHighRisk();
+                break;
             case HUNDRED_POINT:
                 runHundredPoint();
                 break;
@@ -85,6 +90,9 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             case CAP_BALL:
                 runCapBall();
                 break;
+            case SHOOT_DELAY:
+                runShootDelay();
+                break;
             case DEFENSE:
                 runDefense();
                 break;
@@ -93,9 +101,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
                 runDoNothing();
                 break;
         }
-
         runCleanUp();
-
     }
 
     private void runSixtyPoint() throws InterruptedException {
@@ -164,7 +170,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         robot.driveBase.drivePID(13, false, null);
         robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 40 : -40);
         robot.driveBase.drivePID(25, false, null);
-        robot.shooter.shootBall(alliance == Alliance.RED_ALLIANCE ? -1 : 1);
+        //robot.shooter.shootBall(alliance == Alliance.RED_ALLIANCE ? -1 : 1);
         robot.driveBase.drivePID(35, false, null);
         robot.driveBase.drivePID(5, true, null);
         robot.driveBase.spinPID(0);
@@ -256,14 +262,14 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         }
     }
 
-    private void runHundredPoint() throws InterruptedException {
+    private void runHighRisk() throws InterruptedException {
         robot.driveBase.drivePID(13, false, null);
         robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 40 : -40);
         robot.driveBase.drivePID(25, false, null);
-        robot.shooter.shootBall(-1);
-        robot.shooter.prepareBall();
-        robot.shooter.loadBall(-1);
-        robot.shooter.shootBall(-1);
+        //robot.shooter.shootBall(-1);
+        //robot.shooter.prepareBall();
+        //robot.shooter.loadBall(-1);
+        //robot.shooter.shootBall(-1);
         robot.driveBase.drivePID(35, false, null);
         robot.driveBase.drivePID(5, true, null);
         robot.driveBase.spinPID(0);
@@ -321,10 +327,79 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
                 robot.beaconPush.waitUntilPressed();
             }
         }
+        //Need to go to center vortex
+    }
+
+    private void runHundredPoint() throws InterruptedException {
+        robot.driveBase.drivePID(13, false, null);
+        robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 40 : -40);
+        robot.driveBase.drivePID(25, false, null);
+        //robot.shooter.shootBall(-1);
+        //robot.shooter.prepareBall();
+        //robot.shooter.loadBall(-1);
+        //robot.shooter.shootBall(-1);
+        robot.driveBase.drivePID(35, false, null);
+        robot.driveBase.drivePID(5, true, null);
+        robot.driveBase.spinPID(0);
+        robot.driveBase.drivePID(-5, true, this);
+        robot.driveBase.drivePID(-10, true, null);
+        if(robot.beaconPush.beaconColorIsAlliance(alliance))
+        {
+            robot.beaconPush.pushBeacon(true);
+            robot.beaconPush.waitUntilPressed();
+            robot.beaconPush.pushBeacon(true);
+            robot.beaconPush.waitUntilPressed();
+            robot.driveBase.drivePID(50, false, null);
+            robot.driveBase.drivePID(10, true, this);
+        } else {
+            robot.driveBase.drivePID(-5, true, null);
+            if(robot.beaconPush.beaconColorIsAlliance(alliance))
+            {
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+                robot.driveBase.drivePID(55, false, null);
+                robot.driveBase.drivePID(10, true, this);
+            } else {
+                robot.driveBase.drivePID(5, true, null);
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+                robot.driveBase.drivePID(50, false, null);
+                robot.driveBase.drivePID(10, true, this);
+            }
+        }
+        //Drives to Second Beacon and Aligns with farther button
+        robot.driveBase.drivePID(-10, true, null);
+        if(robot.beaconPush.beaconColorIsAlliance(alliance))
+        {
+            robot.beaconPush.pushBeacon(true);
+            robot.beaconPush.waitUntilPressed();
+            robot.beaconPush.pushBeacon(true);
+            robot.beaconPush.waitUntilPressed();
+        } else {
+            robot.driveBase.drivePID(-5, true, null);
+            if(robot.beaconPush.beaconColorIsAlliance(alliance))
+            {
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+            } else {
+                robot.driveBase.drivePID(5, true, null);
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+            }
+        }
+        //Need to go to corner vortex
     }
 
     private void runShootBall() throws InterruptedException {
-
+        //Shoot two balls + Cap Ball; Starting pos: Far
     }
 
     private void runCornerVortex() throws InterruptedException {
@@ -342,7 +417,20 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
     }
 
     private void runDefense() throws InterruptedException {
+        //Steal opposing alliance: two beacons; Starting pos: far
+        mClock.reset();
+        mClock.startTime();
+        robot.driveBase.drivePID(25, false, null);
+        while (mClock.time() <= 10.0) {
+        }
+    }
 
+    private void runShootDelay() throws InterruptedException {
+        mClock.reset();
+        mClock.startTime();
+        while (mClock.time() <= 10.0) {
+        }
+        //Wait 10 sec then shoot twice and go to corner
     }
 
     private void runDoNothing() throws InterruptedException {
@@ -393,11 +481,13 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         strategyMenu.addChoice("One Beacon: Close", Strategy.ONE_BEACON);
         strategyMenu.addChoice("2 Beacons: Close", Strategy.SIXTY_POINT);
         strategyMenu.addChoice("2 Beacons + 1 Shot: Close", Strategy.TWO_BEACON_ONE_SHOT);
+        strategyMenu.addChoice("2 Shot + 2 Beacons + Cap Ball + Park: Close", Strategy.HIGH_RISK);
         strategyMenu.addChoice("2 Shot + 2 Beacons + Park: Close", Strategy.HUNDRED_POINT);
         strategyMenu.addChoice("2 Shot + Cap Ball: Far", Strategy.SHOOT_BALL);
+        strategyMenu.addChoice("2 Shot + 10 Sec Delay + Corner Vortex: Close", Strategy.SHOOT_DELAY);
         strategyMenu.addChoice("Corner Vortex: Close", Strategy.CORNER_VORTEX);
         strategyMenu.addChoice("Cap Ball: Tile Seam", Strategy.CAP_BALL);
-        strategyMenu.addChoice("Defense", Strategy.DEFENSE);
+        strategyMenu.addChoice("Defense: Far", Strategy.DEFENSE);
 
         FtcMenu.walkMenuTree(allianceMenu);
         alliance = (Alliance) allianceMenu.getCurrentChoiceObject();
