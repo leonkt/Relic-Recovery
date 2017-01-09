@@ -48,7 +48,7 @@ public class Shooter {
         FIRED,
         MOVING_HOME,
         LOADING,
-        MOVING,
+        READYING,
         FIRING
     }
 
@@ -78,7 +78,7 @@ public class Shooter {
 
     public void waitForShoot()
     {
-        while(shooter == State.MOVING || shooter == State.LOADING || shooter == State.FIRING || shooter == State.MOVING_HOME)
+        while(shooter == State.READYING || shooter == State.LOADING || shooter == State.FIRING || shooter == State.MOVING_HOME)
         {
             shooterTask();
         }
@@ -128,7 +128,7 @@ public class Shooter {
                 highSpeed.setTargetPosition(-100);
             }
             shootTime = HalUtil.getCurrentTime() + 1;
-            changeState(State.MOVING);
+            changeState(State.READYING);
         }
     }
 
@@ -152,7 +152,7 @@ public class Shooter {
         if(shooter == State.FIRING && HalUtil.getCurrentTime() >= shootTime)
         {
             changeState(State.FIRED);
-        } else if(shooter == State.MOVING && HalUtil.getCurrentTime() >= shootTime)
+        } else if(shooter == State.READYING && HalUtil.getCurrentTime() >= shootTime)
         {
             changeState(State.READY);
         } else if(shooter == State.LOADING && HalUtil.getCurrentTime() >= shootTime)
