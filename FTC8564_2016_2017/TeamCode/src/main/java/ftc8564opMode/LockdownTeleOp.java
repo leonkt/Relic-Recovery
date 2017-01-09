@@ -32,11 +32,11 @@ import hallib.HalDashboard;
 public class LockdownTeleOp extends LinearOpMode {
 
     private Robot robot;
-    private boolean switchFront;
+    private boolean invertDrive;
 
     @Override
     public void runOpMode() throws InterruptedException {
-        switchFront = false;
+        invertDrive = false;
         robot = new Robot(this,false);
         robot.driveBase.noEncoders();
         waitForStart();
@@ -44,10 +44,10 @@ public class LockdownTeleOp extends LinearOpMode {
             // Drive Train command
             if(gamepad1.dpad_up)
             {
-                switchFront = true;
+                invertDrive = true;
             } else if(gamepad1.dpad_down)
             {
-                switchFront = false;
+                invertDrive = false;
             } else if(gamepad1.dpad_left)
             {
                 robot.driveBase.slowSpeed(true);
@@ -55,7 +55,7 @@ public class LockdownTeleOp extends LinearOpMode {
             {
                 robot.driveBase.slowSpeed(false);
             }
-            if(switchFront)
+            if(invertDrive)
             {
                 robot.driveBase.tankDrive(-gamepad1.left_stick_y, -gamepad1.right_stick_y);
             } else {

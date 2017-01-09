@@ -38,10 +38,10 @@ public class PulleySystem {
     Servo ropeHolder;
     HalDashboard dashboard;
 
-    private static final double LIFT_SYNC_KP = 0.05;               //this value needs to be tuned
-    private static final double LIFT_POSITION_TOLERANCE = 100; //this value needs to be tuned; in ticks
-    private static final int MIN_DISTANCE = 0;
-    private static final int MAX_DISTANCE = 9336;
+    //private static final double LIFT_SYNC_KP = 0.05;               //this value needs to be tuned
+    //private static final double LIFT_POSITION_TOLERANCE = 100; //this value needs to be tuned; in ticks
+    //private static final int MIN_DISTANCE = 0;
+    //private static final int MAX_DISTANCE = 9336;
 
     private boolean slow;
 
@@ -87,7 +87,18 @@ public class PulleySystem {
         return -(Math.signum(dVal) * ((Math.pow(dVal, 2) * (.25)) + .1));
     }
 
-    public void setSyncMotorPower(double power)
+    public void openForkLift()
+    {
+        ropeHolder.setPosition(1);
+    }
+
+    public void resetMotors()
+    {
+        leftPulley.setPower(0);
+        rightPulley.setPower(0);
+    }
+
+    /*public void setSyncMotorPower(double power)
     {
         if (power != 0.0)
         {
@@ -116,16 +127,5 @@ public class PulleySystem {
             leftPulley.setPower(0.0);
             rightPulley.setPower(0.0);
         }
-    }
-
-    public void openForkLift()
-    {
-        ropeHolder.setPosition(1);
-    }
-
-    public void resetMotors()
-    {
-        leftPulley.setPower(0);
-        rightPulley.setPower(0);
-    }
+    }*/
 }

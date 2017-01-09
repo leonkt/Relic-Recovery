@@ -46,6 +46,8 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         SHOOT_BALL,
         SHOOT_DELAY,
         HIGH_RISK,
+        CORNER_VORTEX,
+        CENTER_VORTEX,
         DEFENSE
     }
 
@@ -69,6 +71,12 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
                 break;
             case SHOOT_BALL:
                 runShootBall();
+                break;
+            case CORNER_VORTEX:
+                runCornerVortex();
+                break;
+            case CENTER_VORTEX:
+                runCenterVortex();
                 break;
             case SHOOT_DELAY:
                 runShootDelay();
@@ -214,6 +222,132 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         //Need to go to corner vortex
     }
 
+    private void runCenterVortex() throws InterruptedException {
+        robot.driveBase.drivePID(13, false, null);
+        robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 40 : -40);
+        robot.driveBase.drivePID(60, false, null);
+        robot.driveBase.drivePID(5, true, null);
+        robot.driveBase.spinPID(0);
+        robot.driveBase.drivePID(-5, true, this);
+        robot.driveBase.drivePID(-10, true, null);
+        if(robot.beaconPush.beaconColorIsAlliance(alliance))
+        {
+            robot.beaconPush.pushBeacon(true);
+            robot.beaconPush.waitUntilPressed();
+            robot.beaconPush.pushBeacon(true);
+            robot.beaconPush.waitUntilPressed();
+            robot.driveBase.drivePID(50, false, null);
+            robot.driveBase.drivePID(10, true, this);
+        } else {
+            robot.driveBase.drivePID(-5, true, null);
+            if(robot.beaconPush.beaconColorIsAlliance(alliance))
+            {
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+                robot.driveBase.drivePID(55, false, null);
+                robot.driveBase.drivePID(10, true, this);
+            } else {
+                robot.driveBase.drivePID(5, true, null);
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+                robot.driveBase.drivePID(50, false, null);
+                robot.driveBase.drivePID(10, true, this);
+            }
+        }
+        //Drives to Second Beacon and Aligns with farther button
+        robot.driveBase.drivePID(-10, true, null);
+        if(robot.beaconPush.beaconColorIsAlliance(alliance))
+        {
+            robot.beaconPush.pushBeacon(true);
+            robot.beaconPush.waitUntilPressed();
+            robot.beaconPush.pushBeacon(true);
+            robot.beaconPush.waitUntilPressed();
+        } else {
+            robot.driveBase.drivePID(-5, true, null);
+            if(robot.beaconPush.beaconColorIsAlliance(alliance))
+            {
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+            } else {
+                robot.driveBase.drivePID(5, true, null);
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+            }
+        }
+        //Need to go to center vortex
+    }
+
+    private void runCornerVortex() throws InterruptedException {
+        robot.driveBase.drivePID(13, false, null);
+        robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 40 : -40);
+        robot.driveBase.drivePID(60, false, null);
+        robot.driveBase.drivePID(5, true, null);
+        robot.driveBase.spinPID(0);
+        robot.driveBase.drivePID(-5, true, this);
+        robot.driveBase.drivePID(-10, true, null);
+        if(robot.beaconPush.beaconColorIsAlliance(alliance))
+        {
+            robot.beaconPush.pushBeacon(true);
+            robot.beaconPush.waitUntilPressed();
+            robot.beaconPush.pushBeacon(true);
+            robot.beaconPush.waitUntilPressed();
+            robot.driveBase.drivePID(50, false, null);
+            robot.driveBase.drivePID(10, true, this);
+        } else {
+            robot.driveBase.drivePID(-5, true, null);
+            if(robot.beaconPush.beaconColorIsAlliance(alliance))
+            {
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+                robot.driveBase.drivePID(55, false, null);
+                robot.driveBase.drivePID(10, true, this);
+            } else {
+                robot.driveBase.drivePID(5, true, null);
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+                robot.driveBase.drivePID(50, false, null);
+                robot.driveBase.drivePID(10, true, this);
+            }
+        }
+        //Drives to Second Beacon and Aligns with farther button
+        robot.driveBase.drivePID(-10, true, null);
+        if(robot.beaconPush.beaconColorIsAlliance(alliance))
+        {
+            robot.beaconPush.pushBeacon(true);
+            robot.beaconPush.waitUntilPressed();
+            robot.beaconPush.pushBeacon(true);
+            robot.beaconPush.waitUntilPressed();
+        } else {
+            robot.driveBase.drivePID(-5, true, null);
+            if(robot.beaconPush.beaconColorIsAlliance(alliance))
+            {
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+            } else {
+                robot.driveBase.drivePID(5, true, null);
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+            }
+        }
+        //Need to go to corner vortex
+    }
+
     private void runShootBall() throws InterruptedException {
         //Shoot two balls + Cap Ball; Starting pos: Far
     }
@@ -282,7 +416,9 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
 
         strategyMenu.addChoice("Do Nothing", Strategy.DO_NOTHING);
         strategyMenu.addChoice("2 Shot + 2 Beacons + Cap Ball + Park: Close", Strategy.HIGH_RISK);
-        strategyMenu.addChoice("2 Shot + 2 Beacons + Center Vortex: Close", Strategy.HUNDRED_POINT);
+        strategyMenu.addChoice("2 Shot + 2 Beacons + Corner Vortex: Close", Strategy.HUNDRED_POINT);
+        strategyMenu.addChoice("2 Beacons + Cap Ball + Park: Close", Strategy.CENTER_VORTEX);
+        strategyMenu.addChoice("2 Beacons + Corner Vortex: Close", Strategy.CORNER_VORTEX);
         strategyMenu.addChoice("2 Shot + 15 Sec Delay + Corner Vortex: Close", Strategy.SHOOT_DELAY);
         strategyMenu.addChoice("2 Shot + Cap Ball: Far", Strategy.SHOOT_BALL);
         strategyMenu.addChoice("Cap Ball + Defense: Far", Strategy.DEFENSE);
