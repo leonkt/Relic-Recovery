@@ -104,6 +104,7 @@ public class LockdownTeleOp extends LinearOpMode {
             } else {
                 robot.shooter.primeBall(0);
             }
+            robot.shooter.shooterTask();
             //Forklift
             if(gamepad2.a)
             {

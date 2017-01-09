@@ -24,12 +24,11 @@
 package ftc8564lib;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.robotcore.util.Range;
 
 import hallib.HalDashboard;
+import hallib.HalUtil;
 
 public class Shooter {
 
@@ -38,6 +37,20 @@ public class Shooter {
     DcMotor highSpeed;
     ElapsedTime mClock = new ElapsedTime();
     HalDashboard dashboard;
+    State shooter;
+
+    private double shootTime;
+
+    private enum State {
+        HOME,
+        LOADED,
+        READY,
+        FIRED,
+        MOVING_HOME,
+        LOADING,
+        MOVING,
+        FIRING
+    }
 
     public Shooter(LinearOpMode opMode, boolean auto) {
         this.opMode = opMode;
@@ -53,6 +66,7 @@ public class Shooter {
         highSpeed = opMode.hardwareMap.dcMotor.get("highSpeed");
         highSpeed.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         highSpeed.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        shooter = State.HOME;
         dashboard = Robot.getDashboard();
         mClock.reset();
     }
@@ -62,26 +76,92 @@ public class Shooter {
         highSpeed.setPower(power);
     }
 
-    public void shootBall(double power)
+    public void waitForShoot()
     {
-        highSpeed.setPower(power);
-        waitTime(0.35);
-        highSpeed.setPower(0);
+        while(shooter == State.MOVING || shooter == State.LOADING || shooter == State.FIRING || shooter == State.MOVING_HOME)
+        {
+            shooterTask();
+        }
     }
 
-    public void prepareBall()
+    public void shootSequence(boolean redSide)
     {
-        tennisArm.setTargetPosition(550);
-        waitTime(0.5);
-        tennisArm.setTargetPosition(0);
-        waitTime(0.6);
+        moveCenter();
+        loadBall(redSide);
+        setBall(redSide);
+        shootBall(redSide);
     }
 
-    public void loadBall(double power)
+    private void moveCenter()
     {
-        highSpeed.setPower(power);
-        waitTime(0.2);
-        highSpeed.setPower(0);
+        if(shooter == State.FIRED)
+        {
+            highSpeed.setTargetPosition(0);
+            shootTime = HalUtil.getCurrentTime() + 1;
+            changeState(State.MOVING_HOME);
+        }
+    }
+
+    private void loadBall(boolean redSide)
+    {
+        if(shooter == State.HOME)
+        {
+            if(redSide)
+            {
+                highSpeed.setTargetPosition(10);
+            } else {
+                highSpeed.setTargetPosition(-10);
+            }
+            shootTime = HalUtil.getCurrentTime() + 1;
+            changeState(State.LOADING);
+        }
+    }
+
+    private void setBall(boolean redSide)
+    {
+        if(shooter == State.LOADED)
+        {
+            if(redSide)
+            {
+                highSpeed.setTargetPosition(100);
+            } else {
+                highSpeed.setTargetPosition(-100);
+            }
+            shootTime = HalUtil.getCurrentTime() + 1;
+            changeState(State.MOVING);
+        }
+    }
+
+    private void shootBall(boolean redSide)
+    {
+        if(shooter == State.READY)
+        {
+            if(redSide)
+            {
+                highSpeed.setTargetPosition(200);
+            } else {
+                highSpeed.setTargetPosition(-200);
+            }
+            shootTime = HalUtil.getCurrentTime() + 1;
+            changeState(State.FIRING);
+        }
+    }
+
+    public void shooterTask()
+    {
+        if(shooter == State.FIRING && HalUtil.getCurrentTime() >= shootTime)
+        {
+            changeState(State.FIRED);
+        } else if(shooter == State.MOVING && HalUtil.getCurrentTime() >= shootTime)
+        {
+            changeState(State.READY);
+        } else if(shooter == State.LOADING && HalUtil.getCurrentTime() >= shootTime)
+        {
+            changeState(State.LOADED);
+        } else if(shooter == State.MOVING_HOME && HalUtil.getCurrentTime() >= shootTime)
+        {
+            changeState(State.HOME);
+        }
     }
 
     public void setTennisArmPower(boolean up)
@@ -101,14 +181,9 @@ public class Shooter {
         tennisArm.setPower(0);
     }
 
-    private void waitTime(double i)
+    private void changeState(State newState)
     {
-        mClock.reset();
-        mClock.startTime();
-        while(mClock.time() <= i)
-        {
-            opMode.idle();
-        }
+        shooter = newState;
     }
 
 }
