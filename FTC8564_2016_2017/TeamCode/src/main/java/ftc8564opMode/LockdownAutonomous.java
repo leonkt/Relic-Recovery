@@ -411,7 +411,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
                 robot.beaconPush.pushBeacon(true);
                 robot.beaconPush.waitUntilPressed();
                 //Goes to Corner Vortex
-                robot.driveBase.spinPID(30);
+                robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 30 : -30);
                 robot.driveBase.drivePID(-20, false, null);
                 robot.driveBase.spinPID(0);
                 robot.driveBase.drivePID(-65, false , null);
@@ -449,7 +449,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         while (mClock.time() <= 15.0) {
         }
         robot.driveBase.drivePID(13, false ,null);
-        robot.driveBase.spinPID(40);
+        robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 40 : -40);
         robot.driveBase.drivePID(25, false, null);
         //Loads and Fires a particle
         robot.shooter.shootSequenceAuto(true);
@@ -465,7 +465,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         robot.shooter.waitForShootAuto();
         robot.shooter.shootSequenceAuto(true);
         robot.shooter.waitForShootAuto();
-        robot.driveBase.spinPID(135);
+        robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 135 : -135);
         robot.driveBase.drivePID(35, false, null);
     }
 
