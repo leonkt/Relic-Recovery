@@ -105,7 +105,7 @@ public class DriveBase implements PIDControl.PidInput {
         pidControl.setTarget(distance);
         pidControlTurn.setTarget(degrees);
         stallStartTime = HalUtil.getCurrentTime();
-        while (!pidControl.isOnTarget() || !pidControlTurn.isOnTarget()) {
+        while ((!pidControl.isOnTarget() || !pidControlTurn.isOnTarget()) && opMode.opModeIsActive()) {
             if (abortTrigger != null && abortTrigger.shouldAbort()) {
                 break;
             }
@@ -141,13 +141,13 @@ public class DriveBase implements PIDControl.PidInput {
             pidControlTurn.setPID(0.05,0,0,0);
         } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 80.0)
         {
-            pidControlTurn.setPID(0.024,0,0.001,0);
+            pidControlTurn.setPID(0.023,0,0,0);
         } else {
             pidControlTurn.setPID(0.015,0,0,0);
         }
         pidControlTurn.setTarget(degrees);
         stallStartTime = HalUtil.getCurrentTime();
-        while (!pidControlTurn.isOnTarget()) {
+        while (!pidControlTurn.isOnTarget() && opMode.opModeIsActive()) {
             int currLeftPos = leftMotor.getCurrentPosition();
             int currRightPos = rightMotor.getCurrentPosition();
             double outputPower = pidControlTurn.getPowerOutput();
@@ -194,8 +194,6 @@ public class DriveBase implements PIDControl.PidInput {
     public void resetMotors() throws InterruptedException {
         leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
     public void resetPIDDrive() {

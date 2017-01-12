@@ -185,4 +185,10 @@ public class BeaconPush {
         state_blue = newState;
     }
 
+    public void resetRacks()
+    {
+        redRack.setPower(BUTTON_PUSHER_REST_POSITION);
+        blueRack.setPower(0.1);
+    }
+
 }

@@ -38,8 +38,18 @@ public class Shooter {
     ElapsedTime mClock = new ElapsedTime();
     HalDashboard dashboard;
     State shooter;
+    State_Autonomous autoShooter;
 
     private double shootTime;
+
+    private enum State_Autonomous {
+        HOME,
+        READY,
+        FIRED,
+        MOVING_HOME,
+        READYING,
+        FIRING
+    }
 
     private enum State {
         HOME,
@@ -65,15 +75,25 @@ public class Shooter {
         }
         highSpeed = opMode.hardwareMap.dcMotor.get("highSpeed");
         highSpeed.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        highSpeed.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        highSpeed.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        highSpeed.setTargetPosition(0);
+        highSpeed.setPower(0.5);
         shooter = State.HOME;
+        autoShooter = State_Autonomous.HOME;
         dashboard = Robot.getDashboard();
         mClock.reset();
     }
 
-    public void primeBall(double power)
+    public void catchBall()
     {
-        highSpeed.setPower(power);
+        tennisArm.setTargetPosition(550);
+        shootTime = HalUtil.getCurrentTime() + 0.55;
+        while(HalUtil.getCurrentTime() <= shootTime) {
+        }
+        tennisArm.setTargetPosition(0);
+        shootTime = HalUtil.getCurrentTime() + 0.8;
+        while(HalUtil.getCurrentTime() <= shootTime) {
+        }
     }
 
     public void waitForShoot()
@@ -81,6 +101,85 @@ public class Shooter {
         while(shooter == State.READYING || shooter == State.LOADING || shooter == State.FIRING || shooter == State.MOVING_HOME)
         {
             shooterTask();
+        }
+    }
+
+    public void waitForShootAuto()
+    {
+        while(autoShooter == State_Autonomous.READYING || autoShooter == State_Autonomous.FIRING || autoShooter == State_Autonomous.MOVING_HOME)
+        {
+            autoShooterTask();
+        }
+    }
+
+    public void shootSequenceAuto(boolean redSide)
+    {
+        moveCenterAuto(redSide);
+        setBallAuto(redSide);
+        shootBallAuto(redSide);
+    }
+
+    private void moveCenterAuto(boolean redSide)
+    {
+        if(autoShooter == State_Autonomous.FIRED)
+        {
+            if(redSide)
+            {
+                highSpeed.setTargetPosition(-1680);
+            } else {
+                highSpeed.setTargetPosition(1680);
+            }
+            highSpeed.setPower(1);
+            shootTime = HalUtil.getCurrentTime() + 1;
+            changeStateAuto(State_Autonomous.MOVING_HOME);
+        }
+    }
+
+    private void setBallAuto(boolean redSide)
+    {
+        if(autoShooter == State_Autonomous.HOME)
+        {
+            highSpeed.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            highSpeed.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            if(redSide)
+            {
+                highSpeed.setTargetPosition(-350);
+            } else {
+                highSpeed.setTargetPosition(350);
+            }
+            shootTime = HalUtil.getCurrentTime() + 0.5;
+            highSpeed.setPower(0.3);
+            changeStateAuto(State_Autonomous.READYING);
+        }
+    }
+
+    private void shootBallAuto(boolean redSide)
+    {
+        if(autoShooter == State_Autonomous.READY)
+        {
+            if(redSide)
+            {
+                highSpeed.setTargetPosition(-700);
+            } else {
+                highSpeed.setTargetPosition(700);
+            }
+            shootTime = HalUtil.getCurrentTime() + 1;
+            highSpeed.setPower(1);
+            changeStateAuto(State_Autonomous.FIRING);
+        }
+    }
+
+    public void autoShooterTask()
+    {
+        if(autoShooter == State_Autonomous.FIRING && HalUtil.getCurrentTime() >= shootTime)
+        {
+            changeStateAuto(State_Autonomous.FIRED);
+        } else if(autoShooter == State_Autonomous.READYING && HalUtil.getCurrentTime() >= shootTime)
+        {
+            changeStateAuto(State_Autonomous.READY);
+        } else if(autoShooter == State_Autonomous.MOVING_HOME && HalUtil.getCurrentTime() >= shootTime)
+        {
+            changeStateAuto(State_Autonomous.HOME);
         }
     }
 
@@ -97,6 +196,7 @@ public class Shooter {
         if(shooter == State.FIRED)
         {
             highSpeed.setTargetPosition(0);
+            highSpeed.setPower(1);
             shootTime = HalUtil.getCurrentTime() + 1;
             changeState(State.MOVING_HOME);
         }
@@ -108,11 +208,12 @@ public class Shooter {
         {
             if(redSide)
             {
-                highSpeed.setTargetPosition(10);
+                highSpeed.setTargetPosition(300);
             } else {
-                highSpeed.setTargetPosition(-10);
+                highSpeed.setTargetPosition(-300);
             }
-            shootTime = HalUtil.getCurrentTime() + 1;
+            shootTime = HalUtil.getCurrentTime() + 0.5;
+            highSpeed.setPower(0.5);
             changeState(State.LOADING);
         }
     }
@@ -123,11 +224,12 @@ public class Shooter {
         {
             if(redSide)
             {
-                highSpeed.setTargetPosition(100);
+                highSpeed.setTargetPosition(-350);
             } else {
-                highSpeed.setTargetPosition(-100);
+                highSpeed.setTargetPosition(350);
             }
-            shootTime = HalUtil.getCurrentTime() + 1;
+            shootTime = HalUtil.getCurrentTime() + 0.25;
+            highSpeed.setPower(0.3);
             changeState(State.READYING);
         }
     }
@@ -138,11 +240,12 @@ public class Shooter {
         {
             if(redSide)
             {
-                highSpeed.setTargetPosition(200);
+                highSpeed.setTargetPosition(-700);
             } else {
-                highSpeed.setTargetPosition(-200);
+                highSpeed.setTargetPosition(700);
             }
             shootTime = HalUtil.getCurrentTime() + 1;
+            highSpeed.setPower(1);
             changeState(State.FIRING);
         }
     }
@@ -178,12 +281,15 @@ public class Shooter {
 
     public void resetMotors()
     {
-        tennisArm.setPower(0);
+        highSpeed.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        tennisArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 
     private void changeState(State newState)
     {
         shooter = newState;
     }
+
+    private void changeStateAuto(State_Autonomous newState) { autoShooter = newState; }
 
 }

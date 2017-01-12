@@ -97,12 +97,10 @@ public class LockdownTeleOp extends LinearOpMode {
             //Shooting Mechanism
             if(gamepad2.dpad_left)
             {
-                robot.shooter.primeBall(1);
+                robot.shooter.shootSequence(false);
             } else if(gamepad2.dpad_right)
             {
-                robot.shooter.primeBall(-1);
-            } else {
-                robot.shooter.primeBall(0);
+                robot.shooter.shootSequence(true);
             }
             robot.shooter.shooterTask();
             //Forklift
@@ -114,6 +112,7 @@ public class LockdownTeleOp extends LinearOpMode {
 
         robot.pulleySystem.resetMotors();
         robot.shooter.resetMotors();
+        robot.beaconPush.resetRacks();
         robot.driveBase.resetMotors();
         robot.driveBase.resetPIDDrive();
 

@@ -51,7 +51,7 @@ public class PulleySystem {
         leftPulley = opMode.hardwareMap.dcMotor.get("leftPulley");
         rightPulley = opMode.hardwareMap.dcMotor.get("rightPulley");
         ropeHolder = opMode.hardwareMap.servo.get("ropeHolder");
-        ropeHolder.setPosition(0);
+        ropeHolder.setPosition(1);
         leftPulley.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightPulley.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         leftPulley.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -89,7 +89,7 @@ public class PulleySystem {
 
     public void openForkLift()
     {
-        ropeHolder.setPosition(1);
+        ropeHolder.setPosition(0);
     }
 
     public void resetMotors()
