@@ -29,6 +29,7 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.I2cAddr;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import ftc8564opMode.LockdownAutonomous;
+import hallib.HalDashboard;
 import hallib.HalUtil;
 
 public class BeaconPush {
@@ -38,6 +39,7 @@ public class BeaconPush {
     LinearOpMode opMode;
     STATE_RED state_red;
     STATE_BLUE state_blue;
+    HalDashboard dashboard;
     I2cAddr newAddress = I2cAddr.create8bit(0x3e);
 
     static final double BUTTON_PUSHER_RETRACT_POSITION = 1;
@@ -82,11 +84,13 @@ public class BeaconPush {
         redRack = opMode.hardwareMap.crservo.get("rack1");
         state_red = STATE_RED.RETRACTED;
         state_blue = STATE_BLUE.RETRACTED;
+        dashboard = Robot.getDashboard();
         mClock.reset();
     }
 
     public boolean beaconColorIsAlliance(LockdownAutonomous.Alliance alliance)
     {
+        dashboard.displayText(3, String.valueOf((alliance == LockdownAutonomous.Alliance.RED_ALLIANCE && getColor(alliance) == Color.RED) || (alliance == LockdownAutonomous.Alliance.BLUE_ALLIANCE && getColor(alliance) == Color.BLUE)));
         return (alliance == LockdownAutonomous.Alliance.RED_ALLIANCE && getColor(alliance) == Color.RED) || (alliance == LockdownAutonomous.Alliance.BLUE_ALLIANCE && getColor(alliance) == Color.BLUE);
     }
 

@@ -92,8 +92,8 @@ public class MRTest extends LinearOpMode {
 
         // button is transitioning to a pressed state. So Toggle LED
         bLedOn = !bLedOn;
-        colorSensor.enableLed(bLedOn);
-        //colorSensor1.enableLed(bLedOn);
+        //colorSensor.enableLed(bLedOn);
+        colorSensor1.enableLed(bLedOn);
       }
 
       // update previous state variable.
@@ -113,7 +113,7 @@ public class MRTest extends LinearOpMode {
       //telemetry.addData("Red  ", colorSensor1.red());
       //telemetry.addData("Green", colorSensor1.green());
       //telemetry.addData("Blue ", colorSensor1.blue());
-      telemetry.addData("Hue", hsvValues[0]);
+      //telemetry.addData("Hue", hsvValues[0]);
 
       // change the background color to match the color detected by the RGB sensor.
       // pass a reference to the hue, saturation, and value array as an argument

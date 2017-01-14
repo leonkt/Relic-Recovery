@@ -93,52 +93,95 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
     }
 
     private void runHighRisk() throws InterruptedException {
-        robot.driveBase.drivePID(13, false, null);
-        robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 40 : -40);
-        robot.driveBase.drivePID(25, false, null);
-        //Loads and Fires a particle
-        robot.shooter.shootSequenceAuto(true);
-        robot.shooter.waitForShootAuto();
-        robot.shooter.shootSequenceAuto(true);
-        robot.shooter.waitForShootAuto();
-        robot.shooter.shootSequenceAuto(true);
-        robot.shooter.waitForShootAuto();
-        //Loads & Fires second ball
-        robot.shooter.shootSequenceAuto(true);
-        robot.shooter.waitForShootAuto();
-        robot.shooter.shootSequenceAuto(true);
-        robot.shooter.waitForShootAuto();
-        robot.shooter.shootSequenceAuto(true);
-        robot.shooter.waitForShootAuto();
-        robot.driveBase.drivePID(35, false, null);
+        if(alliance == Alliance.RED_ALLIANCE)
+        {
+            robot.driveBase.drivePID(13, false, null);
+            robot.driveBase.spinPID(40);
+            robot.driveBase.drivePID(25, false, null);
+            //Loads and Fires a particle
+            robot.shooter.shootSequenceAuto(true);
+            robot.shooter.waitForShootAuto();
+            robot.shooter.shootSequenceAuto(true);
+            robot.shooter.waitForShootAuto();
+            robot.shooter.shootSequenceAuto(true);
+            robot.shooter.waitForShootAuto();
+            //Loads & Fires second ball
+            robot.shooter.shootSequenceAuto(true);
+            robot.shooter.waitForShootAuto();
+            robot.shooter.shootSequenceAuto(true);
+            robot.shooter.waitForShootAuto();
+            robot.shooter.shootSequenceAuto(true);
+        } else {
+            robot.driveBase.drivePID(13, false, null);
+            robot.driveBase.spinPID(-40);
+            robot.driveBase.drivePID(25, false, null);
+            //Loads and Fires a particle
+            robot.shooter.shootSequenceAuto(false);
+            robot.shooter.waitForShootAuto();
+            robot.shooter.shootSequenceAuto(false);
+            robot.shooter.waitForShootAuto();
+            robot.shooter.shootSequenceAuto(false);
+            robot.shooter.waitForShootAuto();
+            //Loads & Fires second ball
+            robot.shooter.shootSequenceAuto(false);
+            robot.shooter.waitForShootAuto();
+            robot.shooter.shootSequenceAuto(false);
+            robot.shooter.waitForShootAuto();
+            robot.shooter.shootSequenceAuto(false);
+        }
+        robot.driveBase.drivePID(alliance == Alliance.RED_ALLIANCE ? 35 : 37, false, null);
         robot.driveBase.drivePID(5, true, null);
         robot.driveBase.spinPID(0);
-        robot.driveBase.drivePID(-5, true, this);
+        robot.driveBase.drivePID(alliance == Alliance.RED_ALLIANCE ? -5 : -7, true, this);
         robot.driveBase.drivePID(-10, true, null);
         if(robot.beaconPush.beaconColorIsAlliance(alliance))
         {
-            robot.beaconPush.pushBeacon(true);
-            robot.beaconPush.waitUntilPressed();
-            robot.beaconPush.pushBeacon(true);
-            robot.beaconPush.waitUntilPressed();
+            if(alliance == Alliance.RED_ALLIANCE)
+            {
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+            } else {
+                robot.beaconPush.pushBeacon(false);
+                robot.beaconPush.waitUntilPressed();
+                robot.beaconPush.pushBeacon(false);
+                robot.beaconPush.waitUntilPressed();
+            }
             robot.driveBase.drivePID(50, false, null);
             robot.driveBase.drivePID(10, true, this);
         } else {
             robot.driveBase.drivePID(-5, true, null);
             if(robot.beaconPush.beaconColorIsAlliance(alliance))
             {
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
+                if(alliance == Alliance.RED_ALLIANCE)
+                {
+                    robot.beaconPush.pushBeacon(true);
+                    robot.beaconPush.waitUntilPressed();
+                    robot.beaconPush.pushBeacon(true);
+                    robot.beaconPush.waitUntilPressed();
+                } else {
+                    robot.beaconPush.pushBeacon(false);
+                    robot.beaconPush.waitUntilPressed();
+                    robot.beaconPush.pushBeacon(false);
+                    robot.beaconPush.waitUntilPressed();
+                }
                 robot.driveBase.drivePID(55, false, null);
                 robot.driveBase.drivePID(10, true, this);
             } else {
                 robot.driveBase.drivePID(5, true, null);
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
+                if(alliance == Alliance.RED_ALLIANCE)
+                {
+                    robot.beaconPush.pushBeacon(true);
+                    robot.beaconPush.waitUntilPressed();
+                    robot.beaconPush.pushBeacon(true);
+                    robot.beaconPush.waitUntilPressed();
+                } else {
+                    robot.beaconPush.pushBeacon(false);
+                    robot.beaconPush.waitUntilPressed();
+                    robot.beaconPush.pushBeacon(false);
+                    robot.beaconPush.waitUntilPressed();
+                }
                 robot.driveBase.drivePID(50, false, null);
                 robot.driveBase.drivePID(10, true, this);
             }
@@ -147,10 +190,18 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         robot.driveBase.drivePID(-10, true, null);
         if(robot.beaconPush.beaconColorIsAlliance(alliance))
         {
-            robot.beaconPush.pushBeacon(true);
-            robot.beaconPush.waitUntilPressed();
-            robot.beaconPush.pushBeacon(true);
-            robot.beaconPush.waitUntilPressed();
+            if(alliance == Alliance.RED_ALLIANCE)
+            {
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+            } else {
+                robot.beaconPush.pushBeacon(false);
+                robot.beaconPush.waitUntilPressed();
+                robot.beaconPush.pushBeacon(false);
+                robot.beaconPush.waitUntilPressed();
+            }
             //Goes to Center Vortex
             robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 30 : -30);
             robot.driveBase.drivePID(-10, false, null);
@@ -160,10 +211,18 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             robot.driveBase.drivePID(-5, true, null);
             if(robot.beaconPush.beaconColorIsAlliance(alliance))
             {
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
+                if(alliance == Alliance.RED_ALLIANCE)
+                {
+                    robot.beaconPush.pushBeacon(true);
+                    robot.beaconPush.waitUntilPressed();
+                    robot.beaconPush.pushBeacon(true);
+                    robot.beaconPush.waitUntilPressed();
+                } else {
+                    robot.beaconPush.pushBeacon(false);
+                    robot.beaconPush.waitUntilPressed();
+                    robot.beaconPush.pushBeacon(false);
+                    robot.beaconPush.waitUntilPressed();
+                }
                 //Goes to Center Vortex
                 robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 30 : -30);
                 robot.driveBase.drivePID(-10, false, null);
@@ -171,10 +230,18 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
                 robot.driveBase.drivePID(-55, false , null);
             } else {
                 robot.driveBase.drivePID(5, true, null);
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
+                if(alliance == Alliance.RED_ALLIANCE)
+                {
+                    robot.beaconPush.pushBeacon(true);
+                    robot.beaconPush.waitUntilPressed();
+                    robot.beaconPush.pushBeacon(true);
+                    robot.beaconPush.waitUntilPressed();
+                } else {
+                    robot.beaconPush.pushBeacon(false);
+                    robot.beaconPush.waitUntilPressed();
+                    robot.beaconPush.pushBeacon(false);
+                    robot.beaconPush.waitUntilPressed();
+                }
                 //Goes to Center Vortex
                 robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 30 : -30);
                 robot.driveBase.drivePID(-10, false, null);
@@ -185,52 +252,95 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
     }
 
     private void runHundredPoint() throws InterruptedException {
-        robot.driveBase.drivePID(13, false, null);
-        robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 40 : -40);
-        robot.driveBase.drivePID(25, false, null);
-        //Loads and Fires a particle
-        robot.shooter.shootSequenceAuto(true);
-        robot.shooter.waitForShootAuto();
-        robot.shooter.shootSequenceAuto(true);
-        robot.shooter.waitForShootAuto();
-        robot.shooter.shootSequenceAuto(true);
-        robot.shooter.waitForShootAuto();
-        //Loads & Fires second ball
-        robot.shooter.shootSequenceAuto(true);
-        robot.shooter.waitForShootAuto();
-        robot.shooter.shootSequenceAuto(true);
-        robot.shooter.waitForShootAuto();
-        robot.shooter.shootSequenceAuto(true);
-        robot.shooter.waitForShootAuto();
-        robot.driveBase.drivePID(35, false, null);
+        if(alliance == Alliance.RED_ALLIANCE)
+        {
+            robot.driveBase.drivePID(13, false, null);
+            robot.driveBase.spinPID(40);
+            robot.driveBase.drivePID(25, false, null);
+            //Loads and Fires a particle
+            robot.shooter.shootSequenceAuto(true);
+            robot.shooter.waitForShootAuto();
+            robot.shooter.shootSequenceAuto(true);
+            robot.shooter.waitForShootAuto();
+            robot.shooter.shootSequenceAuto(true);
+            robot.shooter.waitForShootAuto();
+            //Loads & Fires second ball
+            robot.shooter.shootSequenceAuto(true);
+            robot.shooter.waitForShootAuto();
+            robot.shooter.shootSequenceAuto(true);
+            robot.shooter.waitForShootAuto();
+            robot.shooter.shootSequenceAuto(true);
+        } else {
+            robot.driveBase.drivePID(13, false, null);
+            robot.driveBase.spinPID(-40);
+            robot.driveBase.drivePID(25, false, null);
+            //Loads and Fires a particle
+            robot.shooter.shootSequenceAuto(false);
+            robot.shooter.waitForShootAuto();
+            robot.shooter.shootSequenceAuto(false);
+            robot.shooter.waitForShootAuto();
+            robot.shooter.shootSequenceAuto(false);
+            robot.shooter.waitForShootAuto();
+            //Loads & Fires second ball
+            robot.shooter.shootSequenceAuto(false);
+            robot.shooter.waitForShootAuto();
+            robot.shooter.shootSequenceAuto(false);
+            robot.shooter.waitForShootAuto();
+            robot.shooter.shootSequenceAuto(false);
+        }
+        robot.driveBase.drivePID(alliance == Alliance.RED_ALLIANCE ? 35 : 37, false, null);
         robot.driveBase.drivePID(5, true, null);
         robot.driveBase.spinPID(0);
-        robot.driveBase.drivePID(-5, true, this);
+        robot.driveBase.drivePID(alliance == Alliance.RED_ALLIANCE ? -5 : -7, true, this);
         robot.driveBase.drivePID(-10, true, null);
         if(robot.beaconPush.beaconColorIsAlliance(alliance))
         {
-            robot.beaconPush.pushBeacon(true);
-            robot.beaconPush.waitUntilPressed();
-            robot.beaconPush.pushBeacon(true);
-            robot.beaconPush.waitUntilPressed();
+            if(alliance == Alliance.RED_ALLIANCE)
+            {
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+            } else {
+                robot.beaconPush.pushBeacon(false);
+                robot.beaconPush.waitUntilPressed();
+                robot.beaconPush.pushBeacon(false);
+                robot.beaconPush.waitUntilPressed();
+            }
             robot.driveBase.drivePID(50, false, null);
             robot.driveBase.drivePID(10, true, this);
         } else {
             robot.driveBase.drivePID(-5, true, null);
             if(robot.beaconPush.beaconColorIsAlliance(alliance))
             {
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
+                if(alliance == Alliance.RED_ALLIANCE)
+                {
+                    robot.beaconPush.pushBeacon(true);
+                    robot.beaconPush.waitUntilPressed();
+                    robot.beaconPush.pushBeacon(true);
+                    robot.beaconPush.waitUntilPressed();
+                } else {
+                    robot.beaconPush.pushBeacon(false);
+                    robot.beaconPush.waitUntilPressed();
+                    robot.beaconPush.pushBeacon(false);
+                    robot.beaconPush.waitUntilPressed();
+                }
                 robot.driveBase.drivePID(55, false, null);
                 robot.driveBase.drivePID(10, true, this);
             } else {
                 robot.driveBase.drivePID(5, true, null);
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
+                if(alliance == Alliance.RED_ALLIANCE)
+                {
+                    robot.beaconPush.pushBeacon(true);
+                    robot.beaconPush.waitUntilPressed();
+                    robot.beaconPush.pushBeacon(true);
+                    robot.beaconPush.waitUntilPressed();
+                } else {
+                    robot.beaconPush.pushBeacon(false);
+                    robot.beaconPush.waitUntilPressed();
+                    robot.beaconPush.pushBeacon(false);
+                    robot.beaconPush.waitUntilPressed();
+                }
                 robot.driveBase.drivePID(50, false, null);
                 robot.driveBase.drivePID(10, true, this);
             }
@@ -239,10 +349,18 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         robot.driveBase.drivePID(-10, true, null);
         if(robot.beaconPush.beaconColorIsAlliance(alliance))
         {
-            robot.beaconPush.pushBeacon(true);
-            robot.beaconPush.waitUntilPressed();
-            robot.beaconPush.pushBeacon(true);
-            robot.beaconPush.waitUntilPressed();
+            if(alliance == Alliance.RED_ALLIANCE)
+            {
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+            } else {
+                robot.beaconPush.pushBeacon(false);
+                robot.beaconPush.waitUntilPressed();
+                robot.beaconPush.pushBeacon(false);
+                robot.beaconPush.waitUntilPressed();
+            }
             //Goes to Corner Vortex
             robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 30 : -30);
             robot.driveBase.drivePID(-20, false, null);
@@ -252,21 +370,37 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             robot.driveBase.drivePID(-5, true, null);
             if(robot.beaconPush.beaconColorIsAlliance(alliance))
             {
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
+                if(alliance == Alliance.RED_ALLIANCE)
+                {
+                    robot.beaconPush.pushBeacon(true);
+                    robot.beaconPush.waitUntilPressed();
+                    robot.beaconPush.pushBeacon(true);
+                    robot.beaconPush.waitUntilPressed();
+                } else {
+                    robot.beaconPush.pushBeacon(false);
+                    robot.beaconPush.waitUntilPressed();
+                    robot.beaconPush.pushBeacon(false);
+                    robot.beaconPush.waitUntilPressed();
+                }
                 //Goes to Corner Vortex
-                robot.driveBase.spinPID(30);
+                robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 30 : -30);
                 robot.driveBase.drivePID(-20, false, null);
                 robot.driveBase.spinPID(0);
                 robot.driveBase.drivePID(-65, false , null);
             } else {
                 robot.driveBase.drivePID(5, true, null);
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
+                if(alliance == Alliance.RED_ALLIANCE)
+                {
+                    robot.beaconPush.pushBeacon(true);
+                    robot.beaconPush.waitUntilPressed();
+                    robot.beaconPush.pushBeacon(true);
+                    robot.beaconPush.waitUntilPressed();
+                } else {
+                    robot.beaconPush.pushBeacon(false);
+                    robot.beaconPush.waitUntilPressed();
+                    robot.beaconPush.pushBeacon(false);
+                    robot.beaconPush.waitUntilPressed();
+                }
                 //Goes to Corner Vortex
                 robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 30 : -30);
                 robot.driveBase.drivePID(-20, false, null);
@@ -286,20 +420,36 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         robot.driveBase.drivePID(-10, true, null);
         if(robot.beaconPush.beaconColorIsAlliance(alliance))
         {
-            robot.beaconPush.pushBeacon(true);
-            robot.beaconPush.waitUntilPressed();
-            robot.beaconPush.pushBeacon(true);
-            robot.beaconPush.waitUntilPressed();
+            if(alliance == Alliance.RED_ALLIANCE)
+            {
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+            } else {
+                robot.beaconPush.pushBeacon(false);
+                robot.beaconPush.waitUntilPressed();
+                robot.beaconPush.pushBeacon(false);
+                robot.beaconPush.waitUntilPressed();
+            }
             robot.driveBase.drivePID(50, false, null);
             robot.driveBase.drivePID(10, true, this);
         } else {
             robot.driveBase.drivePID(-5, true, null);
             if(robot.beaconPush.beaconColorIsAlliance(alliance))
             {
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
+                if(alliance == Alliance.RED_ALLIANCE)
+                {
+                    robot.beaconPush.pushBeacon(true);
+                    robot.beaconPush.waitUntilPressed();
+                    robot.beaconPush.pushBeacon(true);
+                    robot.beaconPush.waitUntilPressed();
+                } else {
+                    robot.beaconPush.pushBeacon(false);
+                    robot.beaconPush.waitUntilPressed();
+                    robot.beaconPush.pushBeacon(false);
+                    robot.beaconPush.waitUntilPressed();
+                }
                 robot.driveBase.drivePID(55, false, null);
                 robot.driveBase.drivePID(10, true, this);
             } else {
@@ -316,9 +466,16 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         robot.driveBase.drivePID(-10, true, null);
         if(robot.beaconPush.beaconColorIsAlliance(alliance))
         {
-            robot.beaconPush.pushBeacon(true);
-            robot.beaconPush.waitUntilPressed();
-            robot.beaconPush.pushBeacon(true);
+            if(alliance == Alliance.RED_ALLIANCE)
+            {
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+                robot.beaconPush.pushBeacon(true);
+            } else {
+                robot.beaconPush.pushBeacon(false);
+                robot.beaconPush.waitUntilPressed();
+                robot.beaconPush.pushBeacon(false);
+            }
             robot.beaconPush.waitUntilPressed();
             //Goes to Center Vortex
             robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 30 : -30);
@@ -329,9 +486,16 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             robot.driveBase.drivePID(-5, true, null);
             if(robot.beaconPush.beaconColorIsAlliance(alliance))
             {
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(true);
+                if(alliance == Alliance.RED_ALLIANCE)
+                {
+                    robot.beaconPush.pushBeacon(true);
+                    robot.beaconPush.waitUntilPressed();
+                    robot.beaconPush.pushBeacon(true);
+                } else {
+                    robot.beaconPush.pushBeacon(false);
+                    robot.beaconPush.waitUntilPressed();
+                    robot.beaconPush.pushBeacon(false);
+                }
                 robot.beaconPush.waitUntilPressed();
                 //Goes to Center Vortex
                 robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 30 : -30);
@@ -340,9 +504,16 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
                 robot.driveBase.drivePID(-55, false , null);
             } else {
                 robot.driveBase.drivePID(5, true, null);
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(true);
+                if(alliance == Alliance.RED_ALLIANCE)
+                {
+                    robot.beaconPush.pushBeacon(true);
+                    robot.beaconPush.waitUntilPressed();
+                    robot.beaconPush.pushBeacon(true);
+                } else {
+                    robot.beaconPush.pushBeacon(false);
+                    robot.beaconPush.waitUntilPressed();
+                    robot.beaconPush.pushBeacon(false);
+                }
                 robot.beaconPush.waitUntilPressed();
                 //Goes to Center Vortex
                 robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 30 : -30);
@@ -363,9 +534,16 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         robot.driveBase.drivePID(-10, true, null);
         if(robot.beaconPush.beaconColorIsAlliance(alliance))
         {
-            robot.beaconPush.pushBeacon(true);
-            robot.beaconPush.waitUntilPressed();
-            robot.beaconPush.pushBeacon(true);
+            if(alliance == Alliance.RED_ALLIANCE)
+            {
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+                robot.beaconPush.pushBeacon(true);
+            } else {
+                robot.beaconPush.pushBeacon(false);
+                robot.beaconPush.waitUntilPressed();
+                robot.beaconPush.pushBeacon(false);
+            }
             robot.beaconPush.waitUntilPressed();
             robot.driveBase.drivePID(50, false, null);
             robot.driveBase.drivePID(10, true, this);
@@ -373,17 +551,31 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             robot.driveBase.drivePID(-5, true, null);
             if(robot.beaconPush.beaconColorIsAlliance(alliance))
             {
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(true);
+                if(alliance == Alliance.RED_ALLIANCE)
+                {
+                    robot.beaconPush.pushBeacon(true);
+                    robot.beaconPush.waitUntilPressed();
+                    robot.beaconPush.pushBeacon(true);
+                } else {
+                    robot.beaconPush.pushBeacon(false);
+                    robot.beaconPush.waitUntilPressed();
+                    robot.beaconPush.pushBeacon(false);
+                }
                 robot.beaconPush.waitUntilPressed();
                 robot.driveBase.drivePID(55, false, null);
                 robot.driveBase.drivePID(10, true, this);
             } else {
                 robot.driveBase.drivePID(5, true, null);
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(true);
+                if(alliance == Alliance.RED_ALLIANCE)
+                {
+                    robot.beaconPush.pushBeacon(true);
+                    robot.beaconPush.waitUntilPressed();
+                    robot.beaconPush.pushBeacon(true);
+                } else {
+                    robot.beaconPush.pushBeacon(false);
+                    robot.beaconPush.waitUntilPressed();
+                    robot.beaconPush.pushBeacon(false);
+                }
                 robot.beaconPush.waitUntilPressed();
                 robot.driveBase.drivePID(50, false, null);
                 robot.driveBase.drivePID(10, true, this);
@@ -393,9 +585,16 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         robot.driveBase.drivePID(-10, true, null);
         if(robot.beaconPush.beaconColorIsAlliance(alliance))
         {
-            robot.beaconPush.pushBeacon(true);
-            robot.beaconPush.waitUntilPressed();
-            robot.beaconPush.pushBeacon(true);
+            if(alliance == Alliance.RED_ALLIANCE)
+            {
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+                robot.beaconPush.pushBeacon(true);
+            } else {
+                robot.beaconPush.pushBeacon(false);
+                robot.beaconPush.waitUntilPressed();
+                robot.beaconPush.pushBeacon(false);
+            }
             robot.beaconPush.waitUntilPressed();
             //Goes to Corner Vortex
             robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 30 : -30);
@@ -406,9 +605,16 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             robot.driveBase.drivePID(-5, true, null);
             if(robot.beaconPush.beaconColorIsAlliance(alliance))
             {
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(true);
+                if(alliance == Alliance.RED_ALLIANCE)
+                {
+                    robot.beaconPush.pushBeacon(true);
+                    robot.beaconPush.waitUntilPressed();
+                    robot.beaconPush.pushBeacon(true);
+                } else {
+                    robot.beaconPush.pushBeacon(false);
+                    robot.beaconPush.waitUntilPressed();
+                    robot.beaconPush.pushBeacon(false);
+                }
                 robot.beaconPush.waitUntilPressed();
                 //Goes to Corner Vortex
                 robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 30 : -30);
@@ -417,9 +623,16 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
                 robot.driveBase.drivePID(-65, false , null);
             } else {
                 robot.driveBase.drivePID(5, true, null);
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(true);
+                if(alliance == Alliance.RED_ALLIANCE)
+                {
+                    robot.beaconPush.pushBeacon(true);
+                    robot.beaconPush.waitUntilPressed();
+                    robot.beaconPush.pushBeacon(true);
+                } else {
+                    robot.beaconPush.pushBeacon(false);
+                    robot.beaconPush.waitUntilPressed();
+                    robot.beaconPush.pushBeacon(false);
+                }
                 robot.beaconPush.waitUntilPressed();
                 //Goes to Corner Vortex
                 robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 30 : -30);
@@ -451,20 +664,36 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         robot.driveBase.drivePID(13, false ,null);
         robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 40 : -40);
         robot.driveBase.drivePID(25, false, null);
-        //Loads and Fires a particle
-        robot.shooter.shootSequenceAuto(true);
-        robot.shooter.waitForShootAuto();
-        robot.shooter.shootSequenceAuto(true);
-        robot.shooter.waitForShootAuto();
-        robot.shooter.shootSequenceAuto(true);
-        robot.shooter.waitForShootAuto();
-        //Loads & Fires second ball
-        robot.shooter.shootSequenceAuto(true);
-        robot.shooter.waitForShootAuto();
-        robot.shooter.shootSequenceAuto(true);
-        robot.shooter.waitForShootAuto();
-        robot.shooter.shootSequenceAuto(true);
-        robot.shooter.waitForShootAuto();
+        if(alliance == Alliance.RED_ALLIANCE)
+        {
+            //Loads and Fires a particle
+            robot.shooter.shootSequenceAuto(true);
+            robot.shooter.waitForShootAuto();
+            robot.shooter.shootSequenceAuto(true);
+            robot.shooter.waitForShootAuto();
+            robot.shooter.shootSequenceAuto(true);
+            robot.shooter.waitForShootAuto();
+            //Loads & Fires second ball
+            robot.shooter.shootSequenceAuto(true);
+            robot.shooter.waitForShootAuto();
+            robot.shooter.shootSequenceAuto(true);
+            robot.shooter.waitForShootAuto();
+            robot.shooter.shootSequenceAuto(true);
+        } else {
+            //Loads and Fires a particle
+            robot.shooter.shootSequenceAuto(false);
+            robot.shooter.waitForShootAuto();
+            robot.shooter.shootSequenceAuto(false);
+            robot.shooter.waitForShootAuto();
+            robot.shooter.shootSequenceAuto(false);
+            robot.shooter.waitForShootAuto();
+            //Loads & Fires second ball
+            robot.shooter.shootSequenceAuto(false);
+            robot.shooter.waitForShootAuto();
+            robot.shooter.shootSequenceAuto(false);
+            robot.shooter.waitForShootAuto();
+            robot.shooter.shootSequenceAuto(false);
+        }
         robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 135 : -135);
         robot.driveBase.drivePID(35, false, null);
     }

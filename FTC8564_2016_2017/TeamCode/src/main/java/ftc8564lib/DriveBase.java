@@ -122,9 +122,9 @@ public class DriveBase implements PIDControl.PidInput {
                 prevLeftPos = currLeftPos;
                 prevRightPos = currRightPos;
             }
-            else if (currTime > stallStartTime + 0.5)
+            else if (currTime > stallStartTime + 0.35)
             {
-                // The motors are stalled for more than 0.5 seconds.
+                // The motors are stalled for more than 0.45 seconds.
                 break;
             }
             pidControl.displayPidInfo(0);
@@ -141,7 +141,7 @@ public class DriveBase implements PIDControl.PidInput {
             pidControlTurn.setPID(0.05,0,0,0);
         } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 80.0)
         {
-            pidControlTurn.setPID(0.023,0,0,0);
+            pidControlTurn.setPID(0.0235,0,0,0);
         } else {
             pidControlTurn.setPID(0.015,0,0,0);
         }
@@ -160,9 +160,9 @@ public class DriveBase implements PIDControl.PidInput {
                 prevLeftPos = currLeftPos;
                 prevRightPos = currRightPos;
             }
-            else if (currTime > stallStartTime + 0.5)
+            else if (currTime > stallStartTime + 0.35)
             {
-                // The motors are stalled for more than 0.5 seconds.
+                // The motors are stalled for more than 0.35 seconds.
                 break;
             }
             pidControlTurn.displayPidInfo(0);

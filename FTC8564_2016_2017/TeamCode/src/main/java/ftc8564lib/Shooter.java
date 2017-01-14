@@ -84,26 +84,6 @@ public class Shooter {
         mClock.reset();
     }
 
-    public void catchBall()
-    {
-        tennisArm.setTargetPosition(550);
-        shootTime = HalUtil.getCurrentTime() + 0.55;
-        while(HalUtil.getCurrentTime() <= shootTime) {
-        }
-        tennisArm.setTargetPosition(0);
-        shootTime = HalUtil.getCurrentTime() + 0.8;
-        while(HalUtil.getCurrentTime() <= shootTime) {
-        }
-    }
-
-    public void waitForShoot()
-    {
-        while(shooter == State.READYING || shooter == State.LOADING || shooter == State.FIRING || shooter == State.MOVING_HOME)
-        {
-            shooterTask();
-        }
-    }
-
     public void waitForShootAuto()
     {
         while(autoShooter == State_Autonomous.READYING || autoShooter == State_Autonomous.FIRING || autoShooter == State_Autonomous.MOVING_HOME)
@@ -130,7 +110,7 @@ public class Shooter {
                 highSpeed.setTargetPosition(1680);
             }
             highSpeed.setPower(1);
-            shootTime = HalUtil.getCurrentTime() + 1;
+            shootTime = HalUtil.getCurrentTime() + 0.75;
             changeStateAuto(State_Autonomous.MOVING_HOME);
         }
     }
@@ -163,13 +143,13 @@ public class Shooter {
             } else {
                 highSpeed.setTargetPosition(700);
             }
-            shootTime = HalUtil.getCurrentTime() + 1;
+            shootTime = HalUtil.getCurrentTime() + 0.5;
             highSpeed.setPower(1);
             changeStateAuto(State_Autonomous.FIRING);
         }
     }
 
-    public void autoShooterTask()
+    private void autoShooterTask()
     {
         if(autoShooter == State_Autonomous.FIRING && HalUtil.getCurrentTime() >= shootTime)
         {
@@ -185,19 +165,24 @@ public class Shooter {
 
     public void shootSequence(boolean redSide)
     {
-        moveCenter();
+        moveCenter(redSide);
         loadBall(redSide);
         setBall(redSide);
         shootBall(redSide);
     }
 
-    private void moveCenter()
+    private void moveCenter(boolean redSide)
     {
         if(shooter == State.FIRED)
         {
-            highSpeed.setTargetPosition(0);
+            if(redSide)
+            {
+                highSpeed.setTargetPosition(-1680);
+            } else {
+                highSpeed.setTargetPosition(1680);
+            }
             highSpeed.setPower(1);
-            shootTime = HalUtil.getCurrentTime() + 1;
+            shootTime = HalUtil.getCurrentTime() + 0.75;
             changeState(State.MOVING_HOME);
         }
     }
@@ -206,6 +191,8 @@ public class Shooter {
     {
         if(shooter == State.HOME)
         {
+            highSpeed.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            highSpeed.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             if(redSide)
             {
                 highSpeed.setTargetPosition(300);
@@ -244,7 +231,7 @@ public class Shooter {
             } else {
                 highSpeed.setTargetPosition(700);
             }
-            shootTime = HalUtil.getCurrentTime() + 1;
+            shootTime = HalUtil.getCurrentTime() + 0.5;
             highSpeed.setPower(1);
             changeState(State.FIRING);
         }
