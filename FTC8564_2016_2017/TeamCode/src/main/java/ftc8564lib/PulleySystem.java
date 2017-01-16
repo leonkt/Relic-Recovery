@@ -38,11 +38,6 @@ public class PulleySystem {
     Servo ropeHolder;
     HalDashboard dashboard;
 
-    //private static final double LIFT_SYNC_KP = 0.05;               //this value needs to be tuned
-    //private static final double LIFT_POSITION_TOLERANCE = 100; //this value needs to be tuned; in ticks
-    //private static final int MIN_DISTANCE = 0;
-    //private static final int MAX_DISTANCE = 9336;
-
     private boolean slow;
 
     public PulleySystem(LinearOpMode opMode) {

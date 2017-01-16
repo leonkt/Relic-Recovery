@@ -41,18 +41,22 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
     }
 
     private enum Strategy {
-        DO_NOTHING,
-        HUNDRED_POINT,
         SHOOT_BALL,
         SHOOT_DELAY,
         HIGH_RISK,
-        CORNER_VORTEX,
-        CENTER_VORTEX,
         DEFENSE
     }
 
+    private enum ParkOption {
+        NOTHING,
+        CENTER_VORTEX,
+        CORNER_VORTEX
+    }
+
     private Alliance alliance = Alliance.RED_ALLIANCE;
-    private Strategy strategy = Strategy.DO_NOTHING;
+    private Strategy strategy = Strategy.DEFENSE;
+    private ParkOption parkOption = ParkOption.NOTHING;
+    private int numParticles = 2;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -66,580 +70,68 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             case HIGH_RISK:
                 runHighRisk();
                 break;
-            case HUNDRED_POINT:
-                runHundredPoint();
-                break;
-            case SHOOT_BALL:
-                runShootBall();
-                break;
-            case CORNER_VORTEX:
-                runCornerVortex();
-                break;
-            case CENTER_VORTEX:
-                runCenterVortex();
-                break;
             case SHOOT_DELAY:
                 runShootDelay();
                 break;
             case DEFENSE:
                 runDefense();
                 break;
-            default:
-            case DO_NOTHING:
-                runDoNothing();
-                break;
         }
         runCleanUp();
     }
 
     private void runHighRisk() throws InterruptedException {
-        if(alliance == Alliance.RED_ALLIANCE)
+        robot.driveBase.drivePID(13, false, null);
+        robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 40 : -40);
+        robot.driveBase.drivePID(25, false, null);
+        // Loads and fires numParticles
+        for(int i = 0; i < numParticles; i++)
         {
-            robot.driveBase.drivePID(13, false, null);
-            robot.driveBase.spinPID(40);
-            robot.driveBase.drivePID(25, false, null);
-            //Loads and Fires a particle
-            robot.shooter.shootSequenceAuto(true);
+            robot.shooter.shootSequenceAuto(alliance == Alliance.RED_ALLIANCE);
             robot.shooter.waitForShootAuto();
-            robot.shooter.shootSequenceAuto(true);
+            robot.shooter.shootSequenceAuto(alliance == Alliance.RED_ALLIANCE);
             robot.shooter.waitForShootAuto();
-            robot.shooter.shootSequenceAuto(true);
-            robot.shooter.waitForShootAuto();
-            //Loads & Fires second ball
-            robot.shooter.shootSequenceAuto(true);
-            robot.shooter.waitForShootAuto();
-            robot.shooter.shootSequenceAuto(true);
-            robot.shooter.waitForShootAuto();
-            robot.shooter.shootSequenceAuto(true);
-        } else {
-            robot.driveBase.drivePID(13, false, null);
-            robot.driveBase.spinPID(-40);
-            robot.driveBase.drivePID(25, false, null);
-            //Loads and Fires a particle
-            robot.shooter.shootSequenceAuto(false);
-            robot.shooter.waitForShootAuto();
-            robot.shooter.shootSequenceAuto(false);
-            robot.shooter.waitForShootAuto();
-            robot.shooter.shootSequenceAuto(false);
-            robot.shooter.waitForShootAuto();
-            //Loads & Fires second ball
-            robot.shooter.shootSequenceAuto(false);
-            robot.shooter.waitForShootAuto();
-            robot.shooter.shootSequenceAuto(false);
-            robot.shooter.waitForShootAuto();
-            robot.shooter.shootSequenceAuto(false);
+            robot.shooter.shootSequenceAuto(alliance == Alliance.RED_ALLIANCE);
+            if(i != numParticles-1) robot.shooter.waitForShootAuto();
         }
-        robot.driveBase.drivePID(alliance == Alliance.RED_ALLIANCE ? 35 : 37, false, null);
+        robot.driveBase.drivePID(35, false, null);
         robot.driveBase.drivePID(5, true, null);
         robot.driveBase.spinPID(0);
-        robot.driveBase.drivePID(alliance == Alliance.RED_ALLIANCE ? -5 : -7, true, this);
-        robot.driveBase.drivePID(-10, true, null);
+        robot.driveBase.drivePID(-7, true, this);
         if(robot.beaconPush.beaconColorIsAlliance(alliance))
         {
-            if(alliance == Alliance.RED_ALLIANCE)
-            {
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
-            } else {
-                robot.beaconPush.pushBeacon(false);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(false);
-                robot.beaconPush.waitUntilPressed();
-            }
+            robot.beaconPush.pushBeacon(alliance == Alliance.RED_ALLIANCE);
+            robot.beaconPush.waitUntilPressed();
+            robot.beaconPush.pushBeacon(alliance == Alliance.RED_ALLIANCE);
+            robot.beaconPush.waitUntilPressed();
             robot.driveBase.drivePID(50, false, null);
             robot.driveBase.drivePID(10, true, this);
         } else {
-            robot.driveBase.drivePID(-5, true, null);
-            if(robot.beaconPush.beaconColorIsAlliance(alliance))
-            {
-                if(alliance == Alliance.RED_ALLIANCE)
-                {
-                    robot.beaconPush.pushBeacon(true);
-                    robot.beaconPush.waitUntilPressed();
-                    robot.beaconPush.pushBeacon(true);
-                    robot.beaconPush.waitUntilPressed();
-                } else {
-                    robot.beaconPush.pushBeacon(false);
-                    robot.beaconPush.waitUntilPressed();
-                    robot.beaconPush.pushBeacon(false);
-                    robot.beaconPush.waitUntilPressed();
-                }
-                robot.driveBase.drivePID(55, false, null);
-                robot.driveBase.drivePID(10, true, this);
-            } else {
-                robot.driveBase.drivePID(5, true, null);
-                if(alliance == Alliance.RED_ALLIANCE)
-                {
-                    robot.beaconPush.pushBeacon(true);
-                    robot.beaconPush.waitUntilPressed();
-                    robot.beaconPush.pushBeacon(true);
-                    robot.beaconPush.waitUntilPressed();
-                } else {
-                    robot.beaconPush.pushBeacon(false);
-                    robot.beaconPush.waitUntilPressed();
-                    robot.beaconPush.pushBeacon(false);
-                    robot.beaconPush.waitUntilPressed();
-                }
-                robot.driveBase.drivePID(50, false, null);
-                robot.driveBase.drivePID(10, true, this);
-            }
+            // Needs to check second button
         }
         //Drives to Second Beacon and Aligns with farther button
-        robot.driveBase.drivePID(-10, true, null);
         if(robot.beaconPush.beaconColorIsAlliance(alliance))
         {
-            if(alliance == Alliance.RED_ALLIANCE)
-            {
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
-            } else {
-                robot.beaconPush.pushBeacon(false);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(false);
-                robot.beaconPush.waitUntilPressed();
-            }
-            //Goes to Center Vortex
+            robot.beaconPush.pushBeacon(alliance == Alliance.RED_ALLIANCE);
+            robot.beaconPush.waitUntilPressed();
+            robot.beaconPush.pushBeacon(alliance == Alliance.RED_ALLIANCE);
+            robot.beaconPush.waitUntilPressed();
+        } else {
+            // Needs to check second button
+        }
+        //Determines Parking Option
+        if(parkOption == ParkOption.CENTER_VORTEX)
+        {
             robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 30 : -30);
             robot.driveBase.drivePID(-10, false, null);
             robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 45 : -45);
             robot.driveBase.drivePID(-55, false, null);
-        } else {
-            robot.driveBase.drivePID(-5, true, null);
-            if(robot.beaconPush.beaconColorIsAlliance(alliance))
-            {
-                if(alliance == Alliance.RED_ALLIANCE)
-                {
-                    robot.beaconPush.pushBeacon(true);
-                    robot.beaconPush.waitUntilPressed();
-                    robot.beaconPush.pushBeacon(true);
-                    robot.beaconPush.waitUntilPressed();
-                } else {
-                    robot.beaconPush.pushBeacon(false);
-                    robot.beaconPush.waitUntilPressed();
-                    robot.beaconPush.pushBeacon(false);
-                    robot.beaconPush.waitUntilPressed();
-                }
-                //Goes to Center Vortex
-                robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 30 : -30);
-                robot.driveBase.drivePID(-10, false, null);
-                robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 50 : -50);
-                robot.driveBase.drivePID(-55, false , null);
-            } else {
-                robot.driveBase.drivePID(5, true, null);
-                if(alliance == Alliance.RED_ALLIANCE)
-                {
-                    robot.beaconPush.pushBeacon(true);
-                    robot.beaconPush.waitUntilPressed();
-                    robot.beaconPush.pushBeacon(true);
-                    robot.beaconPush.waitUntilPressed();
-                } else {
-                    robot.beaconPush.pushBeacon(false);
-                    robot.beaconPush.waitUntilPressed();
-                    robot.beaconPush.pushBeacon(false);
-                    robot.beaconPush.waitUntilPressed();
-                }
-                //Goes to Center Vortex
-                robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 30 : -30);
-                robot.driveBase.drivePID(-10, false, null);
-                robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 45 : -45);
-                robot.driveBase.drivePID(-60, false, null);
-            }
-        }
-    }
-
-    private void runHundredPoint() throws InterruptedException {
-        if(alliance == Alliance.RED_ALLIANCE)
+        } else if(parkOption == ParkOption.CORNER_VORTEX)
         {
-            robot.driveBase.drivePID(13, false, null);
-            robot.driveBase.spinPID(40);
-            robot.driveBase.drivePID(25, false, null);
-            //Loads and Fires a particle
-            robot.shooter.shootSequenceAuto(true);
-            robot.shooter.waitForShootAuto();
-            robot.shooter.shootSequenceAuto(true);
-            robot.shooter.waitForShootAuto();
-            robot.shooter.shootSequenceAuto(true);
-            robot.shooter.waitForShootAuto();
-            //Loads & Fires second ball
-            robot.shooter.shootSequenceAuto(true);
-            robot.shooter.waitForShootAuto();
-            robot.shooter.shootSequenceAuto(true);
-            robot.shooter.waitForShootAuto();
-            robot.shooter.shootSequenceAuto(true);
-        } else {
-            robot.driveBase.drivePID(13, false, null);
-            robot.driveBase.spinPID(-40);
-            robot.driveBase.drivePID(25, false, null);
-            //Loads and Fires a particle
-            robot.shooter.shootSequenceAuto(false);
-            robot.shooter.waitForShootAuto();
-            robot.shooter.shootSequenceAuto(false);
-            robot.shooter.waitForShootAuto();
-            robot.shooter.shootSequenceAuto(false);
-            robot.shooter.waitForShootAuto();
-            //Loads & Fires second ball
-            robot.shooter.shootSequenceAuto(false);
-            robot.shooter.waitForShootAuto();
-            robot.shooter.shootSequenceAuto(false);
-            robot.shooter.waitForShootAuto();
-            robot.shooter.shootSequenceAuto(false);
-        }
-        robot.driveBase.drivePID(alliance == Alliance.RED_ALLIANCE ? 35 : 37, false, null);
-        robot.driveBase.drivePID(5, true, null);
-        robot.driveBase.spinPID(0);
-        robot.driveBase.drivePID(alliance == Alliance.RED_ALLIANCE ? -5 : -7, true, this);
-        robot.driveBase.drivePID(-10, true, null);
-        if(robot.beaconPush.beaconColorIsAlliance(alliance))
-        {
-            if(alliance == Alliance.RED_ALLIANCE)
-            {
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
-            } else {
-                robot.beaconPush.pushBeacon(false);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(false);
-                robot.beaconPush.waitUntilPressed();
-            }
-            robot.driveBase.drivePID(50, false, null);
-            robot.driveBase.drivePID(10, true, this);
-        } else {
-            robot.driveBase.drivePID(-5, true, null);
-            if(robot.beaconPush.beaconColorIsAlliance(alliance))
-            {
-                if(alliance == Alliance.RED_ALLIANCE)
-                {
-                    robot.beaconPush.pushBeacon(true);
-                    robot.beaconPush.waitUntilPressed();
-                    robot.beaconPush.pushBeacon(true);
-                    robot.beaconPush.waitUntilPressed();
-                } else {
-                    robot.beaconPush.pushBeacon(false);
-                    robot.beaconPush.waitUntilPressed();
-                    robot.beaconPush.pushBeacon(false);
-                    robot.beaconPush.waitUntilPressed();
-                }
-                robot.driveBase.drivePID(55, false, null);
-                robot.driveBase.drivePID(10, true, this);
-            } else {
-                robot.driveBase.drivePID(5, true, null);
-                if(alliance == Alliance.RED_ALLIANCE)
-                {
-                    robot.beaconPush.pushBeacon(true);
-                    robot.beaconPush.waitUntilPressed();
-                    robot.beaconPush.pushBeacon(true);
-                    robot.beaconPush.waitUntilPressed();
-                } else {
-                    robot.beaconPush.pushBeacon(false);
-                    robot.beaconPush.waitUntilPressed();
-                    robot.beaconPush.pushBeacon(false);
-                    robot.beaconPush.waitUntilPressed();
-                }
-                robot.driveBase.drivePID(50, false, null);
-                robot.driveBase.drivePID(10, true, this);
-            }
-        }
-        //Drives to Second Beacon and Aligns with farther button
-        robot.driveBase.drivePID(-10, true, null);
-        if(robot.beaconPush.beaconColorIsAlliance(alliance))
-        {
-            if(alliance == Alliance.RED_ALLIANCE)
-            {
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
-            } else {
-                robot.beaconPush.pushBeacon(false);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(false);
-                robot.beaconPush.waitUntilPressed();
-            }
-            //Goes to Corner Vortex
             robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 30 : -30);
             robot.driveBase.drivePID(-20, false, null);
             robot.driveBase.spinPID(0);
             robot.driveBase.drivePID(-70, false , null);
-        } else {
-            robot.driveBase.drivePID(-5, true, null);
-            if(robot.beaconPush.beaconColorIsAlliance(alliance))
-            {
-                if(alliance == Alliance.RED_ALLIANCE)
-                {
-                    robot.beaconPush.pushBeacon(true);
-                    robot.beaconPush.waitUntilPressed();
-                    robot.beaconPush.pushBeacon(true);
-                    robot.beaconPush.waitUntilPressed();
-                } else {
-                    robot.beaconPush.pushBeacon(false);
-                    robot.beaconPush.waitUntilPressed();
-                    robot.beaconPush.pushBeacon(false);
-                    robot.beaconPush.waitUntilPressed();
-                }
-                //Goes to Corner Vortex
-                robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 30 : -30);
-                robot.driveBase.drivePID(-20, false, null);
-                robot.driveBase.spinPID(0);
-                robot.driveBase.drivePID(-65, false , null);
-            } else {
-                robot.driveBase.drivePID(5, true, null);
-                if(alliance == Alliance.RED_ALLIANCE)
-                {
-                    robot.beaconPush.pushBeacon(true);
-                    robot.beaconPush.waitUntilPressed();
-                    robot.beaconPush.pushBeacon(true);
-                    robot.beaconPush.waitUntilPressed();
-                } else {
-                    robot.beaconPush.pushBeacon(false);
-                    robot.beaconPush.waitUntilPressed();
-                    robot.beaconPush.pushBeacon(false);
-                    robot.beaconPush.waitUntilPressed();
-                }
-                //Goes to Corner Vortex
-                robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 30 : -30);
-                robot.driveBase.drivePID(-20, false, null);
-                robot.driveBase.spinPID(0);
-                robot.driveBase.drivePID(-70, false , null);
-            }
-        }
-    }
-
-    private void runCenterVortex() throws InterruptedException {
-        robot.driveBase.drivePID(13, false, null);
-        robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 40 : -40);
-        robot.driveBase.drivePID(60, false, null);
-        robot.driveBase.drivePID(5, true, null);
-        robot.driveBase.spinPID(0);
-        robot.driveBase.drivePID(-5, true, this);
-        robot.driveBase.drivePID(-10, true, null);
-        if(robot.beaconPush.beaconColorIsAlliance(alliance))
-        {
-            if(alliance == Alliance.RED_ALLIANCE)
-            {
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
-            } else {
-                robot.beaconPush.pushBeacon(false);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(false);
-                robot.beaconPush.waitUntilPressed();
-            }
-            robot.driveBase.drivePID(50, false, null);
-            robot.driveBase.drivePID(10, true, this);
-        } else {
-            robot.driveBase.drivePID(-5, true, null);
-            if(robot.beaconPush.beaconColorIsAlliance(alliance))
-            {
-                if(alliance == Alliance.RED_ALLIANCE)
-                {
-                    robot.beaconPush.pushBeacon(true);
-                    robot.beaconPush.waitUntilPressed();
-                    robot.beaconPush.pushBeacon(true);
-                    robot.beaconPush.waitUntilPressed();
-                } else {
-                    robot.beaconPush.pushBeacon(false);
-                    robot.beaconPush.waitUntilPressed();
-                    robot.beaconPush.pushBeacon(false);
-                    robot.beaconPush.waitUntilPressed();
-                }
-                robot.driveBase.drivePID(55, false, null);
-                robot.driveBase.drivePID(10, true, this);
-            } else {
-                robot.driveBase.drivePID(5, true, null);
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
-                robot.driveBase.drivePID(50, false, null);
-                robot.driveBase.drivePID(10, true, this);
-            }
-        }
-        //Drives to Second Beacon and Aligns with farther button
-        robot.driveBase.drivePID(-10, true, null);
-        if(robot.beaconPush.beaconColorIsAlliance(alliance))
-        {
-            if(alliance == Alliance.RED_ALLIANCE)
-            {
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(true);
-            } else {
-                robot.beaconPush.pushBeacon(false);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(false);
-            }
-            robot.beaconPush.waitUntilPressed();
-            //Goes to Center Vortex
-            robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 30 : -30);
-            robot.driveBase.drivePID(-10, false, null);
-            robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 45 : -45);
-            robot.driveBase.drivePID(-55, false, null);
-        } else {
-            robot.driveBase.drivePID(-5, true, null);
-            if(robot.beaconPush.beaconColorIsAlliance(alliance))
-            {
-                if(alliance == Alliance.RED_ALLIANCE)
-                {
-                    robot.beaconPush.pushBeacon(true);
-                    robot.beaconPush.waitUntilPressed();
-                    robot.beaconPush.pushBeacon(true);
-                } else {
-                    robot.beaconPush.pushBeacon(false);
-                    robot.beaconPush.waitUntilPressed();
-                    robot.beaconPush.pushBeacon(false);
-                }
-                robot.beaconPush.waitUntilPressed();
-                //Goes to Center Vortex
-                robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 30 : -30);
-                robot.driveBase.drivePID(-10, false, null);
-                robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 50 : -50);
-                robot.driveBase.drivePID(-55, false , null);
-            } else {
-                robot.driveBase.drivePID(5, true, null);
-                if(alliance == Alliance.RED_ALLIANCE)
-                {
-                    robot.beaconPush.pushBeacon(true);
-                    robot.beaconPush.waitUntilPressed();
-                    robot.beaconPush.pushBeacon(true);
-                } else {
-                    robot.beaconPush.pushBeacon(false);
-                    robot.beaconPush.waitUntilPressed();
-                    robot.beaconPush.pushBeacon(false);
-                }
-                robot.beaconPush.waitUntilPressed();
-                //Goes to Center Vortex
-                robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 30 : -30);
-                robot.driveBase.drivePID(-10, false, null);
-                robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 45 : -45);
-                robot.driveBase.drivePID(-55, false, null);
-            }
-        }
-    }
-
-    private void runCornerVortex() throws InterruptedException {
-        robot.driveBase.drivePID(13, false, null);
-        robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 40 : -40);
-        robot.driveBase.drivePID(60, false, null);
-        robot.driveBase.drivePID(5, true, null);
-        robot.driveBase.spinPID(0);
-        robot.driveBase.drivePID(-5, true, this);
-        robot.driveBase.drivePID(-10, true, null);
-        if(robot.beaconPush.beaconColorIsAlliance(alliance))
-        {
-            if(alliance == Alliance.RED_ALLIANCE)
-            {
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(true);
-            } else {
-                robot.beaconPush.pushBeacon(false);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(false);
-            }
-            robot.beaconPush.waitUntilPressed();
-            robot.driveBase.drivePID(50, false, null);
-            robot.driveBase.drivePID(10, true, this);
-        } else {
-            robot.driveBase.drivePID(-5, true, null);
-            if(robot.beaconPush.beaconColorIsAlliance(alliance))
-            {
-                if(alliance == Alliance.RED_ALLIANCE)
-                {
-                    robot.beaconPush.pushBeacon(true);
-                    robot.beaconPush.waitUntilPressed();
-                    robot.beaconPush.pushBeacon(true);
-                } else {
-                    robot.beaconPush.pushBeacon(false);
-                    robot.beaconPush.waitUntilPressed();
-                    robot.beaconPush.pushBeacon(false);
-                }
-                robot.beaconPush.waitUntilPressed();
-                robot.driveBase.drivePID(55, false, null);
-                robot.driveBase.drivePID(10, true, this);
-            } else {
-                robot.driveBase.drivePID(5, true, null);
-                if(alliance == Alliance.RED_ALLIANCE)
-                {
-                    robot.beaconPush.pushBeacon(true);
-                    robot.beaconPush.waitUntilPressed();
-                    robot.beaconPush.pushBeacon(true);
-                } else {
-                    robot.beaconPush.pushBeacon(false);
-                    robot.beaconPush.waitUntilPressed();
-                    robot.beaconPush.pushBeacon(false);
-                }
-                robot.beaconPush.waitUntilPressed();
-                robot.driveBase.drivePID(50, false, null);
-                robot.driveBase.drivePID(10, true, this);
-            }
-        }
-        //Drives to Second Beacon and Aligns with farther button
-        robot.driveBase.drivePID(-10, true, null);
-        if(robot.beaconPush.beaconColorIsAlliance(alliance))
-        {
-            if(alliance == Alliance.RED_ALLIANCE)
-            {
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(true);
-            } else {
-                robot.beaconPush.pushBeacon(false);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(false);
-            }
-            robot.beaconPush.waitUntilPressed();
-            //Goes to Corner Vortex
-            robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 30 : -30);
-            robot.driveBase.drivePID(-20, false, null);
-            robot.driveBase.spinPID(0);
-            robot.driveBase.drivePID(-70, false , null);
-        } else {
-            robot.driveBase.drivePID(-5, true, null);
-            if(robot.beaconPush.beaconColorIsAlliance(alliance))
-            {
-                if(alliance == Alliance.RED_ALLIANCE)
-                {
-                    robot.beaconPush.pushBeacon(true);
-                    robot.beaconPush.waitUntilPressed();
-                    robot.beaconPush.pushBeacon(true);
-                } else {
-                    robot.beaconPush.pushBeacon(false);
-                    robot.beaconPush.waitUntilPressed();
-                    robot.beaconPush.pushBeacon(false);
-                }
-                robot.beaconPush.waitUntilPressed();
-                //Goes to Corner Vortex
-                robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 30 : -30);
-                robot.driveBase.drivePID(-20, false, null);
-                robot.driveBase.spinPID(0);
-                robot.driveBase.drivePID(-65, false , null);
-            } else {
-                robot.driveBase.drivePID(5, true, null);
-                if(alliance == Alliance.RED_ALLIANCE)
-                {
-                    robot.beaconPush.pushBeacon(true);
-                    robot.beaconPush.waitUntilPressed();
-                    robot.beaconPush.pushBeacon(true);
-                } else {
-                    robot.beaconPush.pushBeacon(false);
-                    robot.beaconPush.waitUntilPressed();
-                    robot.beaconPush.pushBeacon(false);
-                }
-                robot.beaconPush.waitUntilPressed();
-                //Goes to Corner Vortex
-                robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 30 : -30);
-                robot.driveBase.drivePID(-20, false, null);
-                robot.driveBase.spinPID(0);
-                robot.driveBase.drivePID(-70, false , null);
-            }
         }
     }
 
@@ -661,48 +153,21 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         mClock.startTime();
         while (mClock.time() <= 15.0) {
         }
-        robot.driveBase.drivePID(13, false ,null);
+        robot.driveBase.drivePID(13, false, null);
         robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 40 : -40);
         robot.driveBase.drivePID(25, false, null);
-        if(alliance == Alliance.RED_ALLIANCE)
+        // Loads and fires numParticles
+        for(int i = 0; i < numParticles; i++)
         {
-            //Loads and Fires a particle
-            robot.shooter.shootSequenceAuto(true);
+            robot.shooter.shootSequenceAuto(alliance == Alliance.RED_ALLIANCE);
             robot.shooter.waitForShootAuto();
-            robot.shooter.shootSequenceAuto(true);
+            robot.shooter.shootSequenceAuto(alliance == Alliance.RED_ALLIANCE);
             robot.shooter.waitForShootAuto();
-            robot.shooter.shootSequenceAuto(true);
-            robot.shooter.waitForShootAuto();
-            //Loads & Fires second ball
-            robot.shooter.shootSequenceAuto(true);
-            robot.shooter.waitForShootAuto();
-            robot.shooter.shootSequenceAuto(true);
-            robot.shooter.waitForShootAuto();
-            robot.shooter.shootSequenceAuto(true);
-        } else {
-            //Loads and Fires a particle
-            robot.shooter.shootSequenceAuto(false);
-            robot.shooter.waitForShootAuto();
-            robot.shooter.shootSequenceAuto(false);
-            robot.shooter.waitForShootAuto();
-            robot.shooter.shootSequenceAuto(false);
-            robot.shooter.waitForShootAuto();
-            //Loads & Fires second ball
-            robot.shooter.shootSequenceAuto(false);
-            robot.shooter.waitForShootAuto();
-            robot.shooter.shootSequenceAuto(false);
-            robot.shooter.waitForShootAuto();
-            robot.shooter.shootSequenceAuto(false);
+            robot.shooter.shootSequenceAuto(alliance == Alliance.RED_ALLIANCE);
+            if(i != numParticles-1) robot.shooter.waitForShootAuto();
         }
         robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 135 : -135);
         robot.driveBase.drivePID(35, false, null);
-    }
-
-    private void runDoNothing() throws InterruptedException {
-        mClock.reset();
-        mClock.startTime();
-        while (mClock.time() <= 29.9) {
-        }
     }
 
     private void runCleanUp() throws InterruptedException {
@@ -713,9 +178,8 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         robot.driveBase.resetPIDDrive();
     }
 
-
     @Override
-    public boolean shouldAbort() { return robot.odsLeft.getLightDetected() >= 0.2 || robot.odsRight.getLightDetected() >= 0.2; }
+    public boolean shouldAbort() { return robot.odsLeft.getRawLightDetected() >= 2.5 || robot.odsRight.getRawLightDetected() >= 2.5; }
 
     @Override
     public boolean isMenuUpButton() {
@@ -739,22 +203,28 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
 
     private void doMenus() throws InterruptedException {
         FtcChoiceMenu allianceMenu = new FtcChoiceMenu("Alliance:", null, this);
-        FtcChoiceMenu strategyMenu = new FtcChoiceMenu("Strategy:", allianceMenu, this);
+        FtcValueMenu numParticlesMenu = new FtcValueMenu("Shoot Particles:", allianceMenu, this, 0.0, 2.0, 1.0, 2.0, " %.0f");
+        FtcChoiceMenu parkOptionMenu = new FtcChoiceMenu("Park Option:", numParticlesMenu, this);
+        FtcChoiceMenu strategyMenu = new FtcChoiceMenu("Strategy:", parkOptionMenu, this);
 
-        allianceMenu.addChoice("Red", Alliance.RED_ALLIANCE, strategyMenu);
-        allianceMenu.addChoice("Blue", Alliance.BLUE_ALLIANCE, strategyMenu);
+        numParticlesMenu.setChildMenu(parkOptionMenu);
 
-        strategyMenu.addChoice("Do Nothing", Strategy.DO_NOTHING);
-        strategyMenu.addChoice("2 Shot + 2 Beacons + Cap Ball + Park: Close", Strategy.HIGH_RISK);
-        strategyMenu.addChoice("2 Shot + 2 Beacons + Corner Vortex: Close", Strategy.HUNDRED_POINT);
-        strategyMenu.addChoice("2 Beacons + Cap Ball + Park: Close", Strategy.CENTER_VORTEX);
-        strategyMenu.addChoice("2 Beacons + Corner Vortex: Close", Strategy.CORNER_VORTEX);
+        allianceMenu.addChoice("Red", Alliance.RED_ALLIANCE, numParticlesMenu);
+        allianceMenu.addChoice("Blue", Alliance.BLUE_ALLIANCE, numParticlesMenu);
+
+        parkOptionMenu.addChoice("Do Nothing", ParkOption.NOTHING, strategyMenu);
+        parkOptionMenu.addChoice("Park Center", ParkOption.CENTER_VORTEX, strategyMenu);
+        parkOptionMenu.addChoice("Park Corner", ParkOption.CORNER_VORTEX, strategyMenu);
+
+        strategyMenu.addChoice("100 Point: Close", Strategy.HIGH_RISK);
         strategyMenu.addChoice("2 Shot + 15 Sec Delay + Corner Vortex: Close", Strategy.SHOOT_DELAY);
         strategyMenu.addChoice("2 Shot + Cap Ball: Far", Strategy.SHOOT_BALL);
-        strategyMenu.addChoice("Cap Ball + Defense: Far", Strategy.DEFENSE);
+        strategyMenu.addChoice("Defense: Far", Strategy.DEFENSE);
 
         FtcMenu.walkMenuTree(allianceMenu);
         alliance = (Alliance) allianceMenu.getCurrentChoiceObject();
+        numParticles = (int) numParticlesMenu.getCurrentValue();
+        parkOption = (ParkOption) parkOptionMenu.getCurrentChoiceObject();
         strategy = (Strategy) strategyMenu.getCurrentChoiceObject();
     }
 

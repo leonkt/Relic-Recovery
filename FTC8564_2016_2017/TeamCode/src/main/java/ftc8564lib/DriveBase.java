@@ -48,7 +48,6 @@ public class DriveBase implements PIDControl.PidInput {
     private HalDashboard dashboard;
     private ElapsedTime mRunTime;
 
-
     public interface AbortTrigger
     {
         boolean shouldAbort();
@@ -106,7 +105,8 @@ public class DriveBase implements PIDControl.PidInput {
         pidControlTurn.setTarget(degrees);
         stallStartTime = HalUtil.getCurrentTime();
         while ((!pidControl.isOnTarget() || !pidControlTurn.isOnTarget()) && opMode.opModeIsActive()) {
-            if (abortTrigger != null && abortTrigger.shouldAbort()) {
+            if(abortTrigger != null && abortTrigger.shouldAbort())
+            {
                 break;
             }
             int currLeftPos = leftMotor.getCurrentPosition();
@@ -139,6 +139,9 @@ public class DriveBase implements PIDControl.PidInput {
         if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 15.0)
         {
             pidControlTurn.setPID(0.05,0,0,0);
+        } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 45.0)
+        {
+            pidControlTurn.setPID(0.03,0,0,0);
         } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 80.0)
         {
             pidControlTurn.setPID(0.0235,0,0,0);
