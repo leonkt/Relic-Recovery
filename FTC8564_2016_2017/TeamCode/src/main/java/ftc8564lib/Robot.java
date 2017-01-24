@@ -25,7 +25,6 @@ package ftc8564lib;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
-
 import hallib.*;
 
 public class Robot {

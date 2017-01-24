@@ -90,7 +90,6 @@ public class BeaconPush {
 
     public boolean beaconColorIsAlliance(LockdownAutonomous.Alliance alliance)
     {
-        dashboard.displayText(3, String.valueOf((alliance == LockdownAutonomous.Alliance.RED_ALLIANCE && getColor(alliance) == Color.RED) || (alliance == LockdownAutonomous.Alliance.BLUE_ALLIANCE && getColor(alliance) == Color.BLUE)));
         return (alliance == LockdownAutonomous.Alliance.RED_ALLIANCE && getColor(alliance) == Color.RED) || (alliance == LockdownAutonomous.Alliance.BLUE_ALLIANCE && getColor(alliance) == Color.BLUE);
     }
 
@@ -106,12 +105,12 @@ public class BeaconPush {
         if (state_red == STATE_RED.RETRACTED && redAllianceRack)
         {
             redRack.setPower(BUTTON_PUSHER_RETRACT_POSITION);
-            endTimeRed = HalUtil.getCurrentTime() + 0.85;
+            endTimeRed = HalUtil.getCurrentTime() + 0.86;
             changeState(STATE_RED.EXTENDING);
         } else if(state_blue == STATE_BLUE.RETRACTED && !redAllianceRack)
         {
             blueRack.setPower(BUTTON_PUSHER_EXTEND_POSITION);
-            endTimeBlue = HalUtil.getCurrentTime() + 0.9;
+            endTimeBlue = HalUtil.getCurrentTime() + 0.91;
             changeStateBlue(STATE_BLUE.EXTENDING);
         }
     }
@@ -122,12 +121,12 @@ public class BeaconPush {
         if (state_red == STATE_RED.EXTENDED && redAllianceRack)
         {
             redRack.setPower(BUTTON_PUSHER_EXTEND_POSITION);
-            endTimeRed = HalUtil.getCurrentTime() + 0.85;
+            endTimeRed = HalUtil.getCurrentTime() + 0.86;
             changeState(STATE_RED.RETRACTING);
         } else if(state_blue == STATE_BLUE.EXTENDED && !redAllianceRack)
         {
             blueRack.setPower(BUTTON_PUSHER_RETRACT_POSITION);
-            endTimeBlue = HalUtil.getCurrentTime() + 0.9;
+            endTimeBlue = HalUtil.getCurrentTime() + 0.91;
             changeStateBlue(STATE_BLUE.RETRACTING);
         }
     }

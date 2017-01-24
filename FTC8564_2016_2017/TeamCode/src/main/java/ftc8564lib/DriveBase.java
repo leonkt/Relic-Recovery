@@ -43,7 +43,7 @@ public class DriveBase implements PIDControl.PidInput {
     private int prevRightPos = 0;
     private boolean slowSpeed;
 
-    private DcMotor leftMotor, rightMotor;
+    public DcMotor leftMotor, rightMotor;
     private ModernRoboticsI2cGyro gyroSensor;
     private HalDashboard dashboard;
     private ElapsedTime mRunTime;
@@ -76,8 +76,8 @@ public class DriveBase implements PIDControl.PidInput {
             dashboard.displayPrintf(1, "Gyro : Done Calibrating");
         }
         //Sets up PID Drive: kP, kI, kD, kF, Tolerance, Settling Time
-        pidControl = new PIDControl(0.03,0,0,0,2.0,0.2,this);
-        pidControlTurn = new PIDControl(0.02,0,0,0,2.0,0.2,this);
+        pidControl = new PIDControl(0.03,0,0,0,0.5,0.2,this);
+        pidControlTurn = new PIDControl(0.02,0,0,0,0.5,0.2,this);
         pidControlTurn.setAbsoluteSetPoint(true);
         dashboard.clearDisplay();
     }
@@ -86,9 +86,9 @@ public class DriveBase implements PIDControl.PidInput {
     public void drivePID(double distance, boolean slow, AbortTrigger abortTrigger) throws InterruptedException {
         if(slow)
         {
-            pidControl.setOutputRange(-0.4, 0.4);
+            pidControl.setOutputRange(-0.25, 0.25);
         } else {
-            pidControl.setOutputRange(-0.5,0.5);
+            pidControl.setOutputRange(-0.55,0.55);
         }
         if (Math.abs(distance) < 5)
         {
@@ -122,31 +122,36 @@ public class DriveBase implements PIDControl.PidInput {
                 prevLeftPos = currLeftPos;
                 prevRightPos = currRightPos;
             }
-            else if (currTime > stallStartTime + 0.35)
+            else if (currTime > stallStartTime + 0.1)
             {
-                // The motors are stalled for more than 0.45 seconds.
+                // The motors are stalled for more than 0.1 seconds.
                 break;
             }
-            pidControl.displayPidInfo(0);
+            pidControlTurn.displayPidInfo(0);
             opMode.idle();
         }
+        leftMotor.setPower(0);
+        rightMotor.setPower(0);
         resetPIDDrive();
     }
 
     public void spinPID(double degrees) throws InterruptedException {
         pidControlTurn.setOutputRange(-0.5,0.5);
         this.degrees = degrees;
-        if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 15.0)
+        if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 10.0)
         {
-            pidControlTurn.setPID(0.05,0,0,0);
+            pidControlTurn.setPID(0.075,0,0,0);
+        } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 15.0)
+        {
+            pidControlTurn.setPID(0.05,0,0.0008,0);
         } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 45.0)
         {
-            pidControlTurn.setPID(0.03,0,0,0);
-        } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 80.0)
+            pidControlTurn.setPID(0.024,0,0.00027,0);
+        } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 90.0)
         {
-            pidControlTurn.setPID(0.0235,0,0,0);
+            pidControlTurn.setPID(0.024,0,0.0005,0);
         } else {
-            pidControlTurn.setPID(0.015,0,0,0);
+            pidControlTurn.setPID(0.023,0,0,0);
         }
         pidControlTurn.setTarget(degrees);
         stallStartTime = HalUtil.getCurrentTime();
@@ -163,15 +168,26 @@ public class DriveBase implements PIDControl.PidInput {
                 prevLeftPos = currLeftPos;
                 prevRightPos = currRightPos;
             }
-            else if (currTime > stallStartTime + 0.35)
+            else if (currTime > stallStartTime + 0.2)
             {
-                // The motors are stalled for more than 0.35 seconds.
+                // The motors are stalled for more than 0.2 seconds.
                 break;
             }
             pidControlTurn.displayPidInfo(0);
             opMode.idle();
         }
+        leftMotor.setPower(0);
+        rightMotor.setPower(0);
         resetPIDDrive();
+    }
+
+    public void sleep(double seconds)
+    {
+        double startTime = HalUtil.getCurrentTime();
+        while(startTime + seconds > HalUtil.getCurrentTime())
+        {
+
+        }
     }
 
     public void slowSpeed(boolean slow)

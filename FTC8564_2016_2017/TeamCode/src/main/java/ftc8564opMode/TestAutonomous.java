@@ -40,41 +40,12 @@ public class TestAutonomous extends LinearOpMode implements DriveBase.AbortTrigg
         waitForStart();
         robot.driveBase.resetHeading();
 
-        /*robot.driveBase.drivePID(5, false, null);
-        robot.driveBase.spinPID(30);
-        robot.driveBase.drivePID(30, false, null);
-        for(int i = 0; i < numParticles; i++)
-        {
-            robot.shooter.shootSequenceAuto(true);
-            robot.shooter.waitForShootAuto();
-            robot.shooter.shootSequenceAuto(true);
-            robot.shooter.waitForShootAuto();
-            robot.shooter.shootSequenceAuto(true);
-            if(i != numParticles-1) robot.shooter.waitForShootAuto();
-        }
-
+        robot.driveBase.drivePID(9, false, null);
+        //Wait 10 Seconds
+        robot.driveBase.drivePID(75, false, null);
+        robot.driveBase.spinPID(-60);
         robot.driveBase.drivePID(50, false, null);
-        robot.driveBase.drivePID(7, true, null);
-        robot.driveBase.spinPID(0);
-        robot.driveBase.drivePID(-25, false, null);
-        robot.driveBase.drivePID(-10, true, this);
 
-        if(robot.beaconPush.beaconColorIsAlliance(LockdownAutonomous.Alliance.RED_ALLIANCE))
-        {
-            robot.beaconPush.pushBeacon(true);
-            robot.beaconPush.waitUntilPressed();
-            robot.beaconPush.pushBeacon(true);
-            robot.beaconPush.waitUntilPressed();
-        } else {
-            robot.driveBase.drivePID(5, true, null, null);
-            if(robot.beaconPush.beaconColorIsAlliance(LockdownAutonomous.Alliance.RED_ALLIANCE))
-            {
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(true);
-                robot.beaconPush.waitUntilPressed();
-            }
-        }*/
 
         robot.shooter.resetMotors();
         robot.beaconPush.resetRacks();
@@ -85,6 +56,6 @@ public class TestAutonomous extends LinearOpMode implements DriveBase.AbortTrigg
     }
 
     @Override
-    public boolean shouldAbort() { return robot.odsLeft.getRawLightDetected() >= 2.5 || robot.odsRight.getRawLightDetected() >= 2.5; }
+    public boolean shouldAbort() { return robot.odsLeft.getRawLightDetected() >= 0.6 || robot.odsRight.getRawLightDetected() >= 0.6; }
 
 }
