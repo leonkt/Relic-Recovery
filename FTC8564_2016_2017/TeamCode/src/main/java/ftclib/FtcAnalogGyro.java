@@ -34,8 +34,9 @@ public class FtcAnalogGyro
     private int numAxes = 1;
     private int numCalSamples = 100;
     private int calInterval = 10; //in msec
-    private double[] zeroOffsets;
-    private double[] deadbands;
+    private double zeroOffset;
+    private double deadband;
+    private double heading;
 
     /**
      * Constructor: Creates an instance of the object.
@@ -48,66 +49,46 @@ public class FtcAnalogGyro
     {
         this.voltPerDegPerSec = voltPerDegPerSec;
         gyro = hardwareMap.analogInput.get(instanceName);
-        zeroOffsets = new double[1];
-        deadbands = new double[1];
-    }
-
-    public void isCalibrating()
-    {
-
     }
 
     public void calibrate()
     {
-        double[] minValues = new double[numAxes];
-        double[] maxValues = new double[numAxes];
-        double[] sums = new double[numAxes];
+        double minValues;
+        double maxValues;
+        double sums = 0.0;
 
-        for (int i = 0; i < numAxes; i++)
-        {
-            minValues[i] = maxValues[i] = gyro.getVoltage();
-            sums[i] = 0.0;
-        }
+        minValues = maxValues = gyro.getVoltage();
 
         for (int n = 0; n < numCalSamples; n++)
         {
             for (int i = 0; i < numAxes; i++)
             {
                 double value = gyro.getVoltage();
-                sums[i] += value;
+                sums += value;
 
-                if (value < minValues[i])
+                if (value < minValues)
                 {
-                    minValues[i] = value;
+                    minValues = value;
                 }
-                else if (value > maxValues[i])
+                else if (value > maxValues)
                 {
-                    maxValues[i] = value;
+                    maxValues = value;
                 }
             }
             HalUtil.sleep(calInterval);
         }
+        zeroOffset = sums/numCalSamples;
+        deadband = maxValues - minValues;
+    }
 
-        for (int i = 0; i < numAxes; i++)
-        {
-            zeroOffsets[i] = sums[i]/numCalSamples;
-            deadbands[i] = maxValues[i] - minValues[i];
-        }
+    private double applyDeadband(double value)
+    {
+        return Math.abs(value) >= deadband ? value: 0.0;
     }
 
     public void resetZAxisIntegrator()
     {
-
-    }
-
-    private double getCalibratedData(int index, double data)
-    {
-        return applyDeadband(data - zeroOffsets[index], deadbands[index]);
-    }
-
-    private double applyDeadband(double value, double deadband)
-    {
-        return Math.abs(value) >= deadband ? value: 0.0;
+        heading = 0;
     }
 
     public double getRawZData()
@@ -118,14 +99,16 @@ public class FtcAnalogGyro
         return gyro.getVoltage()/voltPerDegPerSec;
     }
 
-    public double getIntegratedZValue()
+    public void integrationTask()
     {
-        return 0;
+        double prevTime = HalUtil.getCurrentTime();
+        double value = applyDeadband(getRawZData() - zeroOffset);
+        heading += value * (HalUtil.getCurrentTime() - prevTime);
     }
 
-    public double getZRotationRate()
+    public double getIntegratedZValue()
     {
-        return 0;
+        return heading;
     }
 
 }
