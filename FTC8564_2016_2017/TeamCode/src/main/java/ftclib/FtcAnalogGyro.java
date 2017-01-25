@@ -29,14 +29,14 @@ import hallib.HalUtil;
 public class FtcAnalogGyro
 {
 
-    private double voltPerDegPerSec;
-    private AnalogInput gyro;
-    private int numAxes = 1;
     private int numCalSamples = 100;
     private int calInterval = 10; //in msec
+    private double voltPerDegPerSec;
+    private AnalogInput gyro;
     private double zeroOffset;
     private double deadband;
     private double heading;
+    private double prevTime;
 
     /**
      * Constructor: Creates an instance of the object.
@@ -49,61 +49,43 @@ public class FtcAnalogGyro
     {
         this.voltPerDegPerSec = voltPerDegPerSec;
         gyro = hardwareMap.analogInput.get(instanceName);
+        zeroOffset = gyro.getMaxVoltage()/2;
+        deadband = 0.0;
+        heading = 0.0;
     }
 
     public void calibrate()
     {
-        double minValues;
-        double maxValues;
-        double sums = 0.0;
-
-        minValues = maxValues = gyro.getVoltage();
-
+        double minValue = gyro.getVoltage();
+        double maxValue = gyro.getVoltage();
+        double sum = 0.0;
         for (int n = 0; n < numCalSamples; n++)
         {
-            for (int i = 0; i < numAxes; i++)
-            {
-                double value = gyro.getVoltage();
-                sums += value;
-
-                if (value < minValues)
-                {
-                    minValues = value;
-                }
-                else if (value > maxValues)
-                {
-                    maxValues = value;
-                }
-            }
+            double value = gyro.getVoltage();
+            sum += value;
+            if (value < minValue) minValue = value;
+            if (value > maxValue) maxValue = value;
             HalUtil.sleep(calInterval);
         }
-        zeroOffset = sums/numCalSamples;
-        deadband = maxValues - minValues;
-    }
-
-    private double applyDeadband(double value)
-    {
-        return Math.abs(value) >= deadband ? value: 0.0;
+        zeroOffset = sum/numCalSamples;
+        deadband = maxValue - minValue;
+        resetZAxisIntegrator();
     }
 
     public void resetZAxisIntegrator()
     {
-        heading = 0;
+        heading = 0.0;
+        prevTime = HalUtil.getCurrentTime();
     }
 
-    public double getRawZData()
+    public double getRotationRate()
     {
-        //
-        // Analog gyro supports only rotation rate.
-        //
-        return gyro.getVoltage()/voltPerDegPerSec;
+        return applyDeadband(gyro.getVoltage() - zeroOffset, deadband)/voltPerDegPerSec;
     }
 
-    public void integrationTask()
+    private double applyDeadband(double value, double deadband)
     {
-        double prevTime = HalUtil.getCurrentTime();
-        double value = applyDeadband(getRawZData() - zeroOffset);
-        heading += value * (HalUtil.getCurrentTime() - prevTime);
+        return Math.abs(value) >= deadband ? value: 0.0;
     }
 
     public double getIntegratedZValue()
@@ -111,4 +93,11 @@ public class FtcAnalogGyro
         return heading;
     }
 
+    public void integrationTask()
+    {
+        double currTime = HalUtil.getCurrentTime();
+        double rate = getRotationRate();
+        heading += rate*(currTime - prevTime);
+        prevTime = currTime;
+    }
 }
