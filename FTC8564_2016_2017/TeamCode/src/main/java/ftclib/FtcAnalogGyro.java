@@ -22,42 +22,44 @@
 
 package ftclib;
 
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.AnalogInput;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import hallib.HalUtil;
 
-public class FtcAnalogGyro
+public class FtcAnalogGyro implements Runnable
 {
-
     private int numCalSamples = 100;
     private int calInterval = 10; //in msec
+    private LinearOpMode opmode;
     private double voltPerDegPerSec;
     private AnalogInput gyro;
     private double zeroOffset;
     private double deadband;
+    private Thread integrationTask;
     private double heading;
     private double prevTime;
-
     /**
      * Constructor: Creates an instance of the object.
      *
-     * @param hardwareMap specifies the global hardware map.
+     * @param opmode specifies the LinearOpMode object.
      * @param instanceName specifies the instance name.
      * @param voltPerDegPerSec specifies the rotation rate scale.
      */
-    public FtcAnalogGyro(HardwareMap hardwareMap, String instanceName, double voltPerDegPerSec)
+    public FtcAnalogGyro(LinearOpMode opmode, String instanceName, double voltPerDegPerSec)
     {
+        this.opmode = opmode;
         this.voltPerDegPerSec = voltPerDegPerSec;
-        gyro = hardwareMap.analogInput.get(instanceName);
+        gyro = opmode.hardwareMap.analogInput.get(instanceName);
         zeroOffset = gyro.getMaxVoltage()/2;
         deadband = 0.0;
-        heading = 0.0;
+        integrationTask = new Thread(this, "GyroIntegrationTask");
+        integrationTask.start();
     }
 
-    public void calibrate()
+    public synchronized void calibrate()
     {
         double minValue = gyro.getVoltage();
-        double maxValue = gyro.getVoltage();
+        double maxValue = minValue;
         double sum = 0.0;
         for (int n = 0; n < numCalSamples; n++)
         {
@@ -69,35 +71,45 @@ public class FtcAnalogGyro
         }
         zeroOffset = sum/numCalSamples;
         deadband = maxValue - minValue;
-        resetZAxisIntegrator();
+        resetIntegrator();
     }
 
-    public void resetZAxisIntegrator()
+    public synchronized void resetIntegrator()
     {
         heading = 0.0;
         prevTime = HalUtil.getCurrentTime();
     }
 
-    public double getRotationRate()
+    public synchronized double getRotationRate()
     {
         return applyDeadband(gyro.getVoltage() - zeroOffset, deadband)/voltPerDegPerSec;
     }
 
-    private double applyDeadband(double value, double deadband)
-    {
-        return Math.abs(value) >= deadband ? value: 0.0;
-    }
-
-    public double getIntegratedZValue()
+    public synchronized double getHeading()
     {
         return heading;
     }
 
-    public void integrationTask()
+    private synchronized void integrationTask()
     {
         double currTime = HalUtil.getCurrentTime();
         double rate = getRotationRate();
         heading += rate*(currTime - prevTime);
         prevTime = currTime;
+    }
+
+    public void run()
+    {
+        resetIntegrator();
+        while (!opmode.isStopRequested())
+        {
+            integrationTask();
+            opmode.idle();
+        }
+    }
+
+    private double applyDeadband(double value, double deadband)
+    {
+        return Math.abs(value) >= deadband ? value: 0.0;
     }
 }
