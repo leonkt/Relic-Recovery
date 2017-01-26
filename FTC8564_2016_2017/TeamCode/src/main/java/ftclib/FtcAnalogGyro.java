@@ -28,8 +28,8 @@ import hallib.HalUtil;
 
 public class FtcAnalogGyro implements Runnable
 {
-    private int numCalSamples = 100;
-    private int calInterval = 10; //in msec
+    private static final int numCalSamples = 100;
+    private static final int calInterval = 10; //in msec
     private LinearOpMode opmode;
     private double voltPerDegPerSec;
     private AnalogInput gyro;
@@ -38,6 +38,7 @@ public class FtcAnalogGyro implements Runnable
     private Thread integrationTask;
     private double heading;
     private double prevTime;
+
     /**
      * Constructor: Creates an instance of the object.
      *
@@ -52,6 +53,7 @@ public class FtcAnalogGyro implements Runnable
         gyro = opmode.hardwareMap.analogInput.get(instanceName);
         zeroOffset = gyro.getMaxVoltage()/2;
         deadband = 0.0;
+
         integrationTask = new Thread(this, "GyroIntegrationTask");
         integrationTask.start();
     }
@@ -61,6 +63,7 @@ public class FtcAnalogGyro implements Runnable
         double minValue = gyro.getVoltage();
         double maxValue = minValue;
         double sum = 0.0;
+
         for (int n = 0; n < numCalSamples; n++)
         {
             double value = gyro.getVoltage();
@@ -69,6 +72,7 @@ public class FtcAnalogGyro implements Runnable
             if (value > maxValue) maxValue = value;
             HalUtil.sleep(calInterval);
         }
+
         zeroOffset = sum/numCalSamples;
         deadband = maxValue - minValue;
         resetIntegrator();
@@ -90,26 +94,29 @@ public class FtcAnalogGyro implements Runnable
         return heading;
     }
 
-    private synchronized void integrationTask()
+    private synchronized void integrate()
     {
         double currTime = HalUtil.getCurrentTime();
         double rate = getRotationRate();
+
         heading += rate*(currTime - prevTime);
         prevTime = currTime;
     }
 
+    @Override
     public void run()
     {
         resetIntegrator();
         while (!opmode.isStopRequested())
         {
-            integrationTask();
+            integrate();
             opmode.idle();
         }
-    }
+    }   //run
 
     private double applyDeadband(double value, double deadband)
     {
         return Math.abs(value) >= deadband ? value: 0.0;
     }
+
 }
