@@ -82,7 +82,7 @@ public class CalibrateColorSensor extends OpMode implements I2cPortReadyCallback
         else if(gamepad1.dpad_left && !isWorking)
         {
             color_sensor_name = "colorSensor1";
-            telemetry.addData("Color Sensor:", "Left");
+            telemetry.addData("Color Sensor:", "Red");
             // Remember to change the name of the color sensor in get().
             color_sensor = (ModernRoboticsI2cColorSensor) hardwareMap.colorSensor.get(color_sensor_name);
 
@@ -96,7 +96,7 @@ public class CalibrateColorSensor extends OpMode implements I2cPortReadyCallback
         else if(gamepad1.dpad_right && !isWorking)
         {
             color_sensor_name = "colorSensor";
-            telemetry.addData("Color Sensor:", "Right");
+            telemetry.addData("Color Sensor:", "Blue");
             // Remember to change the name of the color sensor in get().
             color_sensor = (ModernRoboticsI2cColorSensor) hardwareMap.colorSensor.get(color_sensor_name);
 

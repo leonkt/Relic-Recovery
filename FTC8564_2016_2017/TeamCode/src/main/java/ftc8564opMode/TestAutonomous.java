@@ -40,13 +40,6 @@ public class TestAutonomous extends LinearOpMode implements DriveBase.AbortTrigg
         waitForStart();
         robot.driveBase.resetHeading();
 
-        robot.driveBase.drivePID(9, false, null);
-        //Wait 10 Seconds
-        robot.driveBase.drivePID(75, false, null);
-        robot.driveBase.spinPID(-60);
-        robot.driveBase.drivePID(50, false, null);
-
-
         robot.shooter.resetMotors();
         robot.beaconPush.resetRacks();
         robot.pulleySystem.resetMotors();

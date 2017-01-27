@@ -76,10 +76,10 @@ public class LockdownTeleOp extends LinearOpMode {
                 robot.pulleySystem.manualControl(-gamepad2.left_stick_y, -gamepad2.right_stick_y);
             }
             //Beacon Push
-            if(gamepad1.right_bumper)
+            if(gamepad2.left_trigger != 0)
             {
                 robot.beaconPush.pushBeacon(true);
-            } else if(gamepad1.right_trigger == 1)
+            } else if(gamepad2.right_trigger != 0)
             {
                 robot.beaconPush.pushBeacon(false);
             }
@@ -88,7 +88,7 @@ public class LockdownTeleOp extends LinearOpMode {
             if(gamepad1.left_bumper)
             {
                 robot.shooter.setTennisArmPower(true);
-            } else if(gamepad1.left_trigger == 1)
+            } else if(gamepad1.left_trigger != 0)
             {
                 robot.shooter.setTennisArmPower(false);
             } else {
