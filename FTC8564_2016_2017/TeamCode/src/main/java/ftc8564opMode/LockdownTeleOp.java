@@ -32,7 +32,7 @@ import hallib.HalDashboard;
 public class LockdownTeleOp extends LinearOpMode {
 
     private Robot robot;
-    private boolean invertDrive;
+    private boolean invertDrive, useForklift;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -69,10 +69,10 @@ public class LockdownTeleOp extends LinearOpMode {
             {
                 robot.pulleySystem.setSlow(false);
             }
-            if(gamepad2.left_bumper)
+            if(gamepad2.left_bumper && useForklift)
             {
                 robot.pulleySystem.manualControl(-gamepad2.left_stick_y, -gamepad2.left_stick_y);
-            } else {
+            } else if(useForklift) {
                 robot.pulleySystem.manualControl(-gamepad2.left_stick_y, -gamepad2.right_stick_y);
             }
             //Beacon Push
@@ -107,6 +107,7 @@ public class LockdownTeleOp extends LinearOpMode {
             if(gamepad2.a)
             {
                 robot.pulleySystem.openForkLift();
+                useForklift = true;
             }
         }
 

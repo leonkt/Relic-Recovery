@@ -94,7 +94,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             if(i != numParticles-1) robot.shooter.waitForShootAuto();
         }
         robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 27 : -27);
-        robot.driveBase.drivePID(45, false, null);
+        robot.driveBase.drivePID(50, false, null);
         robot.driveBase.drivePID(10, true, null);
         robot.driveBase.spinPID(0);
         robot.driveBase.drivePID(-20, false, null);
@@ -197,7 +197,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         while (mClock.time() <= 10.0) {
         }
         robot.driveBase.drivePID(75, false, null);
-        robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? -60 : 60);
+        robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 60 : -60);
         robot.driveBase.drivePID(50, false, null);
     }
 
@@ -210,7 +210,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
     }
 
     @Override
-    public boolean shouldAbort() { return robot.odsLeft.getLightDetected() >= 0.2 || robot.odsRight.getLightDetected() >= 0.2; }
+    public boolean shouldAbort() { return robot.odsLeft.getRawLightDetected() >= 0.6 || robot.odsRight.getRawLightDetected() >= 0.6; }
 
     @Override
     public boolean isMenuUpButton() {

@@ -86,9 +86,9 @@ public class DriveBase implements PIDControl.PidInput {
     public void drivePID(double distance, boolean slow, AbortTrigger abortTrigger) throws InterruptedException {
         if(slow)
         {
-            pidControl.setOutputRange(-0.25, 0.25);
+            pidControl.setOutputRange(-0.35, 0.35);
         } else {
-            pidControl.setOutputRange(-0.55,0.55);
+            pidControl.setOutputRange(-0.6,0.6);
         }
         if (Math.abs(distance) < 5)
         {
@@ -233,7 +233,7 @@ public class DriveBase implements PIDControl.PidInput {
 
     private double scalePowerSlow(double dVal)
     {
-        return -(Math.signum(dVal) * ((Math.pow(dVal, 2) * (.25)) + .1));
+        return -(Math.signum(dVal) * ((Math.pow(dVal, 2) * (.35)) + .1));
     }
 
     public void resetHeading()
