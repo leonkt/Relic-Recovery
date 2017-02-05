@@ -93,11 +93,11 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             robot.shooter.shootSequenceAuto(alliance == Alliance.RED_ALLIANCE);
             if(i != numParticles-1) robot.shooter.waitForShootAuto();
         }
-        robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 27 : -27);
+        robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 35 : -35);
         robot.driveBase.drivePID(50, false, null);
         robot.driveBase.drivePID(10, true, null);
         robot.driveBase.spinPID(0);
-        robot.driveBase.drivePID(-20, false, null);
+        robot.driveBase.drivePID(-30, false, null);
         robot.driveBase.drivePID(-5, true, this);
         //At First Beacon
         robot.driveBase.sleep(0.25);

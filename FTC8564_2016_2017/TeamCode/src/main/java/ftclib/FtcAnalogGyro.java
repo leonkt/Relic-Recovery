@@ -22,9 +22,11 @@
 
 package ftclib;
 
+import android.util.Log;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.AnalogInput;
 import hallib.HalUtil;
+
 
 public class FtcAnalogGyro implements Runnable
 {
@@ -98,7 +100,7 @@ public class FtcAnalogGyro implements Runnable
     {
         double currTime = HalUtil.getCurrentTime();
         double rate = getRotationRate();
-
+        Log.i("Debug", String.format("deltaTime=%.3f ms, rate=%.3f, heading=%.3f\n", (currTime - prevTime)*1000.0, rate, heading));
         heading += rate*(currTime - prevTime);
         prevTime = currTime;
     }

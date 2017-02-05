@@ -65,14 +65,20 @@ public class DriveBase implements PIDControl.PidInput {
         rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        gyro = new FtcAnalogGyro(opMode, "gyro", 0.0067);
-        //gyroSensor = (ModernRoboticsI2cGyro)opMode.hardwareMap.gyroSensor.get("gyro");
+        //gyro = new FtcAnalogGyro(opMode, "gyro", 0.00067);
+        gyroSensor = (ModernRoboticsI2cGyro)opMode.hardwareMap.gyroSensor.get("gyro");
         mRunTime = new ElapsedTime();
         mRunTime.reset();
         dashboard = Robot.getDashboard();
         if(auto)
         {
-            gyro.calibrate();
+            gyroSensor.calibrate();
+            dashboard.displayPrintf(0, "Gyro : Calibrating");
+            while(gyroSensor.isCalibrating()) {
+                opMode.idle();
+            }
+            dashboard.displayPrintf(1, "Gyro : Done Calibrating");
+            //gyro.calibrate();
         }
         //Sets up PID Drive: kP, kI, kD, kF, Tolerance, Settling Time
         pidControl = new PIDControl(0.03,0,0,0,0.5,0.2,this);
@@ -111,14 +117,14 @@ public class DriveBase implements PIDControl.PidInput {
             int currLeftPos = leftMotor.getCurrentPosition();
             int currRightPos = rightMotor.getCurrentPosition();
             double drivePower = pidControl.getPowerOutput();
-            double turnPower = pidControlTurn.getPowerOutput();
-            leftMotor.setPower(drivePower + turnPower);
-            rightMotor.setPower(drivePower - turnPower);
             double currTime = HalUtil.getCurrentTime();
             if (currLeftPos != prevLeftPos || currRightPos != prevRightPos)
             {
                 stallStartTime = currTime;
                 prevLeftPos = currLeftPos;
+                double turnPower = pidControlTurn.getPowerOutput();
+                leftMotor.setPower(drivePower + turnPower);
+                rightMotor.setPower(drivePower - turnPower);
                 prevRightPos = currRightPos;
             }
             else if (currTime > stallStartTime + 0.1)
@@ -137,16 +143,16 @@ public class DriveBase implements PIDControl.PidInput {
     public void spinPID(double degrees) throws InterruptedException {
         pidControlTurn.setOutputRange(-0.5,0.5);
         this.degrees = degrees;
-        if(Math.abs(degrees - gyro.getHeading()) < 10.0)
+        if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 10.0)
         {
             pidControlTurn.setPID(0.075,0,0,0);
-        } else if(Math.abs(degrees - gyro.getHeading()) < 15.0)
+        } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 15.0)
         {
             pidControlTurn.setPID(0.05,0,0.0008,0);
-        } else if(Math.abs(degrees - gyro.getHeading()) < 45.0)
+        } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 45.0)
         {
             pidControlTurn.setPID(0.024,0,0.00027,0);
-        } else if(Math.abs(degrees - gyro.getHeading()) < 90.0)
+        } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 90.0)
         {
             pidControlTurn.setPID(0.024,0,0.0005,0);
         } else {
@@ -170,7 +176,7 @@ public class DriveBase implements PIDControl.PidInput {
             else if (currTime > stallStartTime + 0.2)
             {
                 // The motors are stalled for more than 0.2 seconds.
-                //break;
+                break;
             }
             pidControlTurn.displayPidInfo(0);
             opMode.idle();
@@ -237,8 +243,8 @@ public class DriveBase implements PIDControl.PidInput {
 
     public void resetHeading()
     {
-        gyro.resetIntegrator();
-        //gyroSensor.resetZAxisIntegrator();
+        //gyro.resetIntegrator();
+        gyroSensor.resetZAxisIntegrator();
     }
 
     @Override
@@ -251,8 +257,8 @@ public class DriveBase implements PIDControl.PidInput {
         }
         else if (pidCtrl == pidControlTurn)
         {
-            input = gyro.getHeading();
-            //nput = gyroSensor.getIntegratedZValue();
+            //input = gyro.getHeading();
+            input = gyroSensor.getIntegratedZValue();
         }
         return input;
     }
