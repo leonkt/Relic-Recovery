@@ -40,7 +40,7 @@ public class TestAutonomous extends LinearOpMode implements DriveBase.AbortTrigg
         waitForStart();
         robot.driveBase.resetHeading();
 
-        /*robot.driveBase.drivePID(5, false, null);
+        robot.driveBase.drivePID(5, false, null);
         robot.driveBase.spinPID(40);
         robot.driveBase.drivePID(35, false, null);
         // Loads and fires numParticles
@@ -59,10 +59,7 @@ public class TestAutonomous extends LinearOpMode implements DriveBase.AbortTrigg
         robot.driveBase.spinPID(17);
         robot.driveBase.drivePID(17.66, false, null);
         robot.driveBase.drivePID(10, false, null);  // 5.2 in away from wall
-        robot.driveBase.drivePID(5, true, this);*/
-
-        robot.driveBase.drivePID(10, false, null);
-        robot.driveBase.spinPID(40);
+        robot.driveBase.drivePID(5, true, this);
 
         robot.shooter.resetMotors();
         robot.beaconPush.resetRacks();

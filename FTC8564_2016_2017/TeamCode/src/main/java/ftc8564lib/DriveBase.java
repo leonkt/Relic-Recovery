@@ -91,9 +91,9 @@ public class DriveBase implements PIDControl.PidInput {
     public void drivePID(double distance, boolean slow, AbortTrigger abortTrigger) throws InterruptedException {
         if(slow)
         {
-            pidControl.setOutputRange(-0.35, 0.35);
+            pidControl.setOutputRange(-0.4, 0.4);
         } else {
-            pidControl.setOutputRange(-0.6,0.6);
+            pidControl.setOutputRange(-0.65,0.65);
         }
         if (Math.abs(distance) < 5)
         {
@@ -117,22 +117,22 @@ public class DriveBase implements PIDControl.PidInput {
             int currLeftPos = leftMotor.getCurrentPosition();
             int currRightPos = rightMotor.getCurrentPosition();
             double drivePower = pidControl.getPowerOutput();
+            double turnPower = pidControlTurn.getPowerOutput();
+            leftMotor.setPower(drivePower + turnPower);
+            rightMotor.setPower(drivePower - turnPower);
             double currTime = HalUtil.getCurrentTime();
             if (currLeftPos != prevLeftPos || currRightPos != prevRightPos)
             {
                 stallStartTime = currTime;
                 prevLeftPos = currLeftPos;
-                double turnPower = pidControlTurn.getPowerOutput();
-                leftMotor.setPower(drivePower + turnPower);
-                rightMotor.setPower(drivePower - turnPower);
                 prevRightPos = currRightPos;
             }
-            else if (currTime > stallStartTime + 0.1)
+            else if (currTime > stallStartTime + 0.2)
             {
-                // The motors are stalled for more than 0.1 seconds.
-                break;
+                // The motors are stalled for more than 0.2 seconds.
+                //break;
             }
-            pidControlTurn.displayPidInfo(0);
+            pidControl.displayPidInfo(0);
             opMode.idle();
         }
         leftMotor.setPower(0);
