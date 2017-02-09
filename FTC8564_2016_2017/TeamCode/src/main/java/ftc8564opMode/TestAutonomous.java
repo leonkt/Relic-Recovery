@@ -54,12 +54,59 @@ public class TestAutonomous extends LinearOpMode implements DriveBase.AbortTrigg
             if(i != numParticles-1) robot.shooter.waitForShootAuto();
         }
         robot.driveBase.spinPID(35);
-        robot.driveBase.drivePID(50, false, null);
-        robot.driveBase.drivePID(10, true, null);
-        robot.driveBase.spinPID(17);
-        robot.driveBase.drivePID(17.66, false, null);
-        robot.driveBase.drivePID(10, false, null);  // 5.2 in away from wall
-        robot.driveBase.drivePID(5, true, this);
+        robot.driveBase.drivePID(35, false, null);
+        robot.driveBase.drivePID(5, true, null);
+        robot.driveBase.spinPID(13);                    // 2.6 in away from wall
+        robot.driveBase.drivePID(8.5, false, null);
+        robot.driveBase.spinPID(0);
+        robot.driveBase.drivePID(-17, true, null);
+        robot.driveBase.drivePID(-7, true, this);
+        //At First Beacon
+        robot.driveBase.sleep(0.25);
+        if(robot.beaconPush.beaconColorIsAlliance(LockdownAutonomous.Alliance.RED_ALLIANCE))
+        {
+            robot.beaconPush.pushBeacon(true);
+            robot.beaconPush.waitUntilPressed();
+            robot.beaconPush.pushBeacon(true);
+            robot.beaconPush.waitUntilPressed();
+            robot.driveBase.drivePID(30, false, null);
+            robot.driveBase.spinPID(-2);
+            robot.driveBase.drivePID(15, true, this);
+            robot.driveBase.drivePID(7, true, this);
+        } else {
+            robot.driveBase.drivePID(7, false, null);
+            robot.driveBase.sleep(0.25);
+            if(robot.beaconPush.beaconColorIsAlliance(LockdownAutonomous.Alliance.RED_ALLIANCE))
+            {
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+            }
+            robot.driveBase.drivePID(23, false, null);
+            robot.driveBase.spinPID(-2);
+            robot.driveBase.drivePID(15, true, this);
+            robot.driveBase.drivePID(7, true, this);
+        }
+        //At Second Beacon
+        robot.driveBase.sleep(0.25);
+        if(robot.beaconPush.beaconColorIsAlliance(LockdownAutonomous.Alliance.RED_ALLIANCE))
+        {
+            robot.beaconPush.pushBeacon(true);
+            robot.beaconPush.waitUntilPressed();
+            robot.beaconPush.pushBeacon(true);
+            robot.beaconPush.waitUntilPressed();
+        } else {
+            robot.driveBase.drivePID(7, false, null);
+            robot.driveBase.sleep(0.25);
+            if(robot.beaconPush.beaconColorIsAlliance(LockdownAutonomous.Alliance.RED_ALLIANCE))
+            {
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+            }
+        }
 
         robot.shooter.resetMotors();
         robot.beaconPush.resetRacks();

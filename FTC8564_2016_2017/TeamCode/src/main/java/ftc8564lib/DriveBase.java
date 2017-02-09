@@ -65,20 +65,20 @@ public class DriveBase implements PIDControl.PidInput {
         rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        //gyro = new FtcAnalogGyro(opMode, "gyro", 0.00067);
+        //gyro = new FtcAnalogGyro(opMode, "gyro1", 0.00067);
         gyroSensor = (ModernRoboticsI2cGyro)opMode.hardwareMap.gyroSensor.get("gyro");
         mRunTime = new ElapsedTime();
         mRunTime.reset();
         dashboard = Robot.getDashboard();
         if(auto)
         {
+            //gyro.calibrate();
             gyroSensor.calibrate();
             dashboard.displayPrintf(0, "Gyro : Calibrating");
             while(gyroSensor.isCalibrating()) {
                 opMode.idle();
             }
             dashboard.displayPrintf(1, "Gyro : Done Calibrating");
-            //gyro.calibrate();
         }
         //Sets up PID Drive: kP, kI, kD, kF, Tolerance, Settling Time
         pidControl = new PIDControl(0.03,0,0,0,0.5,0.2,this);
@@ -91,20 +91,20 @@ public class DriveBase implements PIDControl.PidInput {
     public void drivePID(double distance, boolean slow, AbortTrigger abortTrigger) throws InterruptedException {
         if(slow)
         {
-            pidControl.setOutputRange(-0.4, 0.4);
+            pidControl.setOutputRange(-0.55, 0.55);
         } else {
-            pidControl.setOutputRange(-0.65,0.65);
+            pidControl.setOutputRange(-0.85,0.85);
         }
-        if (Math.abs(distance) < 5)
+        if (Math.abs(distance) <= 5)
         {
-            pidControl.setPID(0.08,0,0,0);
+            pidControl.setPID(0.081,0,0,0);
         }
-        else if(Math.abs(distance) < 10)
+        else if(Math.abs(distance) <= 10)
         {
             pidControl.setPID(0.05,0,0,0);
         } else
         {
-            pidControl.setPID(0.03,0,0,0);
+            pidControl.setPID(0.0345,0,0.0005,0);
         }
         pidControl.setTarget(distance);
         pidControlTurn.setTarget(degrees);
@@ -130,7 +130,7 @@ public class DriveBase implements PIDControl.PidInput {
             else if (currTime > stallStartTime + 0.2)
             {
                 // The motors are stalled for more than 0.2 seconds.
-                //break;
+                break;
             }
             pidControl.displayPidInfo(0);
             opMode.idle();
@@ -141,17 +141,17 @@ public class DriveBase implements PIDControl.PidInput {
     }
 
     public void spinPID(double degrees) throws InterruptedException {
-        pidControlTurn.setOutputRange(-0.5,0.5);
+        pidControlTurn.setOutputRange(-0.7,0.7);
         this.degrees = degrees;
         if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 10.0)
         {
-            pidControlTurn.setPID(0.075,0,0,0);
-        } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 15.0)
+            pidControlTurn.setPID(0.11,0,0.0015,0);
+        } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 20.0)
         {
-            pidControlTurn.setPID(0.05,0,0.0008,0);
+            pidControlTurn.setPID(0.042,0,0.0005,0);
         } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 45.0)
         {
-            pidControlTurn.setPID(0.024,0,0.00027,0);
+            pidControlTurn.setPID(0.03,0,0.0005,0);
         } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 90.0)
         {
             pidControlTurn.setPID(0.024,0,0.0005,0);

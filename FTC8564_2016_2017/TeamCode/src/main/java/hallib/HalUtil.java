@@ -28,13 +28,13 @@ package hallib;
 public class HalUtil
 {
     /**
-     * This method returns the current time in seconds.
+     * This method returns the current time in seconds with nano-second precision.
      *
      * @return current time in seconds.
      */
     public static double getCurrentTime()
     {
-        return System.currentTimeMillis()/1000.0;
+        return System.nanoTime()/1000000000.0;
     }   //getCurrentTime
 
     /**

@@ -100,7 +100,7 @@ public class FtcAnalogGyro implements Runnable
     {
         double currTime = HalUtil.getCurrentTime();
         double rate = getRotationRate();
-        Log.i("Debug", String.format("deltaTime=%.3f ms, rate=%.3f, heading=%.3f\n", (currTime - prevTime)*1000.0, rate, heading));
+        Log.i("Debug", String.format("deltaTime=%.3f ms, volt=%.3f, rate=%.3f, heading=%.3fn", (currTime - prevTime)*1000.0, gyro.getVoltage(), rate, heading));
         heading += rate*(currTime - prevTime);
         prevTime = currTime;
     }

@@ -4,6 +4,7 @@ import android.util.Log;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.AnalogInput;
 import com.qualcomm.robotcore.hardware.DcMotor;
 @TeleOp(name="Test: Simple Sensor Sample Time", group="TestSamples")
 public class SensorSampleTimeTest extends LinearOpMode
@@ -21,7 +22,7 @@ public class SensorSampleTimeTest extends LinearOpMode
     private static final DcMotor.Direction RIGHTWHEEL_DIRECTION = DcMotor.Direction.REVERSE;
     private DcMotor lfWheel;
     private DcMotor rfWheel;
-    private ModernRoboticsI2cGyro gyro;
+    private AnalogInput gyro;
     public void runOpMode()
     {
         initRobot();
@@ -89,8 +90,7 @@ public class SensorSampleTimeTest extends LinearOpMode
         rfWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         lfWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rfWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        gyro = (ModernRoboticsI2cGyro)hardwareMap.gyroSensor.get("gyro");
-        gyro.resetZAxisIntegrator();
+        gyro = hardwareMap.analogInput.get("gyro1");
     }   //initRobot
     private int getSensorValue()
     {
@@ -101,7 +101,7 @@ public class SensorSampleTimeTest extends LinearOpMode
                 value = (lfWheel.getCurrentPosition() + rfWheel.getCurrentPosition())/2;
                 break;
             case GYRO:
-                value = -gyro.getIntegratedZValue();
+                value = (int)(gyro.getVoltage()*1000);
                 break;
         }
         return value;
@@ -126,7 +126,7 @@ public class SensorSampleTimeTest extends LinearOpMode
                 //
                 lfWheel.setPower(TURN_POWER);
                 rfWheel.setPower(-TURN_POWER);
-                Log.i(TAG, prefix + String.format("heading=%d", -gyro.getIntegratedZValue()));
+                Log.i(TAG, prefix + String.format("voltage=%.3f", gyro.getVoltage()));
                 break;
         }
     }   //runRobot
