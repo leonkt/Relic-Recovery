@@ -40,6 +40,53 @@ public class TestAutonomous extends LinearOpMode implements DriveBase.AbortTrigg
         waitForStart();
         robot.driveBase.resetHeading();
 
+        robot.driveBase.drivePID(6, false, null);
+        robot.driveBase.spinPID(40);
+        robot.driveBase.drivePID(35, false, null);
+        // Loads and fires numParticles
+        for(int i = 0; i < numParticles; i++)
+        {
+            robot.shooter.shootSequenceAuto(true);
+            robot.shooter.waitForShootAuto();
+            robot.shooter.shootSequenceAuto(true);
+            robot.shooter.waitForShootAuto();
+            robot.shooter.shootSequenceAuto(true);
+            if(i != numParticles-1) robot.shooter.waitForShootAuto();
+        }
+        robot.driveBase.spinPID(35);
+        robot.driveBase.drivePID(38, false, null);
+        //robot.driveBase.spinPID(13);                    // 2.6 in away from wall
+        //robot.driveBase.drivePID(5, false, null);
+        robot.driveBase.spinPID(0);
+        //robot.driveBase.drivePID(-22, false, this);
+        robot.driveBase.drivePID(-15, false, this);
+
+        //At First Beacon
+        robot.driveBase.sleep(0.2);
+        if(robot.beaconPush.beaconColorIsAlliance(LockdownAutonomous.Alliance.RED_ALLIANCE))
+        {
+            robot.beaconPush.pushBeacon(true);
+            robot.beaconPush.waitUntilPressed();
+            robot.beaconPush.pushBeacon(true);
+            robot.beaconPush.waitUntilPressed();
+            robot.driveBase.drivePID(30, false, null);
+            robot.driveBase.spinPID(-2);
+            robot.driveBase.drivePID(22, true, this);
+        } else {
+            robot.driveBase.drivePID(7, false, null);
+            robot.driveBase.sleep(0.2);
+            if(robot.beaconPush.beaconColorIsAlliance(LockdownAutonomous.Alliance.RED_ALLIANCE))
+            {
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.waitUntilPressed();
+            }
+            robot.driveBase.drivePID(23, false, null);
+            robot.driveBase.spinPID(-2);
+            robot.driveBase.drivePID(22, true, this);
+        }
+
         robot.shooter.resetMotors();
         robot.beaconPush.resetRacks();
         robot.pulleySystem.resetMotors();

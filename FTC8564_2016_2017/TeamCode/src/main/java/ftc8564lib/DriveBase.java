@@ -101,7 +101,7 @@ public class DriveBase implements PIDControl.PidInput {
         }
         else if(Math.abs(distance) <= 10)
         {
-            pidControl.setPID(0.05,0,0,0);
+            pidControl.setPID(0.0485,0,0,0);
         } else
         {
             pidControl.setPID(0.0345,0,0.0005,0);
@@ -127,12 +127,12 @@ public class DriveBase implements PIDControl.PidInput {
                 prevLeftPos = currLeftPos;
                 prevRightPos = currRightPos;
             }
-            else if (currTime > stallStartTime + 0.2)
+            else if (currTime > stallStartTime + 0.15)
             {
-                // The motors are stalled for more than 0.2 seconds.
+                // The motors are stalled for more than 0.15 seconds.
                 break;
             }
-            pidControl.displayPidInfo(0);
+            pidControlTurn.displayPidInfo(0);
             opMode.idle();
         }
         leftMotor.setPower(0);
@@ -141,17 +141,22 @@ public class DriveBase implements PIDControl.PidInput {
     }
 
     public void spinPID(double degrees) throws InterruptedException {
-        pidControlTurn.setOutputRange(-0.7,0.7);
+        if(Math.abs(degrees) < 15.0)
+        {
+            pidControlTurn.setOutputRange(-0.9,0.9);
+        } else {
+            pidControlTurn.setOutputRange(-0.7,0.7);
+        }
         this.degrees = degrees;
         if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 10.0)
         {
-            pidControlTurn.setPID(0.11,0,0.0015,0);
+            pidControlTurn.setPID(0.1,0,0,0);
         } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 20.0)
         {
-            pidControlTurn.setPID(0.042,0,0.0005,0);
+            pidControlTurn.setPID(0.05,0,0.003,0);
         } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 45.0)
         {
-            pidControlTurn.setPID(0.03,0,0.0005,0);
+            pidControlTurn.setPID(0.03,0,0.0011,0);
         } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 90.0)
         {
             pidControlTurn.setPID(0.024,0,0.0005,0);

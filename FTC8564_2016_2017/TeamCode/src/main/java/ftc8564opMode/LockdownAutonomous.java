@@ -28,6 +28,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import ftclib.*;
 import ftc8564lib.*;
+import hallib.HalUtil;
 
 @Autonomous(name="LockdownAutonomous", group="Autonomous")
 public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButtons, DriveBase.AbortTrigger {
@@ -94,15 +95,14 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             if(i != numParticles-1) robot.shooter.waitForShootAuto();
         }
         robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 35 : -35);
-        robot.driveBase.drivePID(40, false, null);
+        robot.driveBase.drivePID(38, false, null);
         robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 13 : -13);                    // 2.6 in away from wall
-        robot.driveBase.drivePID(8.5, false, null);
+        robot.driveBase.drivePID(5, false, null);
         robot.driveBase.spinPID(0);
-        robot.driveBase.drivePID(-17, true, null);
-        robot.driveBase.drivePID(-7, true, this);
+        robot.driveBase.drivePID(-22, false, this);
         //At First Beacon
-        robot.driveBase.sleep(0.25);
-        if(robot.beaconPush.beaconColorIsAlliance(LockdownAutonomous.Alliance.RED_ALLIANCE))
+        robot.driveBase.sleep(0.2);
+        if(robot.beaconPush.beaconColorIsAlliance(alliance))
         {
             robot.beaconPush.pushBeacon(alliance == Alliance.RED_ALLIANCE);
             robot.beaconPush.waitUntilPressed();
@@ -110,12 +110,11 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             robot.beaconPush.waitUntilPressed();
             robot.driveBase.drivePID(30, false, null);
             robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? -2 : 2);
-            robot.driveBase.drivePID(15, true, this);
-            robot.driveBase.drivePID(7, true, this);
+            robot.driveBase.drivePID(22, true, this);
         } else {
             robot.driveBase.drivePID(7, false, null);
-            robot.driveBase.sleep(0.25);
-            if(robot.beaconPush.beaconColorIsAlliance(LockdownAutonomous.Alliance.RED_ALLIANCE))
+            robot.driveBase.sleep(0.2);
+            if(robot.beaconPush.beaconColorIsAlliance(alliance))
             {
                 robot.beaconPush.pushBeacon(alliance == Alliance.RED_ALLIANCE);
                 robot.beaconPush.waitUntilPressed();
@@ -124,12 +123,11 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             }
             robot.driveBase.drivePID(23, false, null);
             robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? -2 : 2);
-            robot.driveBase.drivePID(15, true, this);
-            robot.driveBase.drivePID(7, true, this);
+            robot.driveBase.drivePID(22, true, this);
         }
         //At Second Beacon
-        robot.driveBase.sleep(0.25);
-        if(robot.beaconPush.beaconColorIsAlliance(LockdownAutonomous.Alliance.RED_ALLIANCE))
+        robot.driveBase.sleep(0.2);
+        if(robot.beaconPush.beaconColorIsAlliance(alliance))
         {
             robot.beaconPush.pushBeacon(alliance == Alliance.RED_ALLIANCE);
             robot.beaconPush.waitUntilPressed();
@@ -137,8 +135,8 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             robot.beaconPush.waitUntilPressed();
         } else {
             robot.driveBase.drivePID(7, false, null);
-            robot.driveBase.sleep(0.25);
-            if(robot.beaconPush.beaconColorIsAlliance(LockdownAutonomous.Alliance.RED_ALLIANCE))
+            robot.driveBase.sleep(0.2);
+            if(robot.beaconPush.beaconColorIsAlliance(alliance))
             {
                 robot.beaconPush.pushBeacon(alliance == Alliance.RED_ALLIANCE);
                 robot.beaconPush.waitUntilPressed();
@@ -163,10 +161,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
     }
 
     private void runShootBall() throws InterruptedException {
-        mClock.reset();
-        mClock.startTime();
-        while (mClock.time() <= 10.0) {
-        }
+        HalUtil.sleep(10000);
         robot.driveBase.drivePID(7, false ,null);
         robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 45 : -45);
         robot.driveBase.drivePID(15, false, null);
