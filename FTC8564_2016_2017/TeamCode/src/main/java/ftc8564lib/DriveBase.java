@@ -243,7 +243,7 @@ public class DriveBase implements PIDControl.PidInput {
 
     private double scalePowerSlow(double dVal)
     {
-        return -(Math.signum(dVal) * ((Math.pow(dVal, 2) * (.35)) + .1));
+        return -(Math.signum(dVal) * ((Math.pow(dVal, 2) * (.55)) + .1));
     }
 
     public void resetHeading()

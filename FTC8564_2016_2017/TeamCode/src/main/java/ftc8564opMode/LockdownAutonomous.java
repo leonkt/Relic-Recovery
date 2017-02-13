@@ -95,11 +95,11 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             if(i != numParticles-1) robot.shooter.waitForShootAuto();
         }
         robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 35 : -35);
-        robot.driveBase.drivePID(38, false, null);
+        robot.driveBase.drivePID(43, false, null);
         robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 13 : -13);                    // 2.6 in away from wall
-        robot.driveBase.drivePID(5, false, null);
+        robot.driveBase.drivePID(6, false, null);
         robot.driveBase.spinPID(0);
-        robot.driveBase.drivePID(-22, false, this);
+        robot.driveBase.drivePID(alliance == Alliance.RED_ALLIANCE ? -22 : -24, false, this);
         //At First Beacon
         robot.driveBase.sleep(0.2);
         if(robot.beaconPush.beaconColorIsAlliance(alliance))
@@ -109,7 +109,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             robot.beaconPush.pushBeacon(alliance == Alliance.RED_ALLIANCE);
             robot.beaconPush.waitUntilPressed();
             robot.driveBase.drivePID(30, false, null);
-            robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? -2 : 2);
+            robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? -2.5 : 1.5);
             robot.driveBase.drivePID(22, true, this);
         } else {
             robot.driveBase.drivePID(7, false, null);
@@ -122,7 +122,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
                 robot.beaconPush.waitUntilPressed();
             }
             robot.driveBase.drivePID(23, false, null);
-            robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? -2 : 2);
+            robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? -2.5 : 1.5);
             robot.driveBase.drivePID(22, true, this);
         }
         //At Second Beacon
@@ -149,12 +149,12 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             robot.driveBase.drivePID(10, false, null);
             robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 15 : -15);
             robot.driveBase.drivePID(-25, false, null);
-            robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 50 : -50);
+            robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 55 : -55);
             robot.driveBase.drivePID(-60, false, null);
         } else if(parkOption == ParkOption.CORNER_VORTEX) {
             robot.driveBase.drivePID(10, false, null);
             robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 15 : -15);
-            robot.driveBase.drivePID(-35, false, null);
+            robot.driveBase.drivePID(-40, false, null);
             robot.driveBase.spinPID(0);
             robot.driveBase.drivePID(-65, false, null);
         }
