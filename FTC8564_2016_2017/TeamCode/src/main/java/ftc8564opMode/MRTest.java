@@ -92,8 +92,8 @@ public class MRTest extends LinearOpMode {
 
         // button is transitioning to a pressed state. So Toggle LED
         bLedOn = !bLedOn;
-        //colorSensor.enableLed(bLedOn);
-        colorSensor1.enableLed(bLedOn);
+        colorSensor.enableLed(bLedOn);
+        //colorSensor1.enableLed(bLedOn);
       }
 
       // update previous state variable.

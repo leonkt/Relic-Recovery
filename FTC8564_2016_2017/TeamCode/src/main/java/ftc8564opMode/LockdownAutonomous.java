@@ -83,7 +83,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
     private void runHighRisk() throws InterruptedException {
         robot.driveBase.drivePID(6, false, null);
         robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 40 : -40);
-        robot.driveBase.drivePID(35, false, null);
+        robot.driveBase.drivePID(34, false, null);
         // Loads and fires numParticles
         for(int i = 0; i < numParticles; i++)
         {
@@ -95,11 +95,12 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             if(i != numParticles-1) robot.shooter.waitForShootAuto();
         }
         robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 35 : -35);
-        robot.driveBase.drivePID(43, false, null);
+        robot.driveBase.drivePID(42, false, null);
         robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 13 : -13);                    // 2.6 in away from wall
         robot.driveBase.drivePID(6, false, null);
+        robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? -2 : 0);
+        robot.driveBase.drivePID(alliance == Alliance.RED_ALLIANCE ? -26 : -25, false, this);
         robot.driveBase.spinPID(0);
-        robot.driveBase.drivePID(alliance == Alliance.RED_ALLIANCE ? -22 : -24, false, this);
         //At First Beacon
         robot.driveBase.sleep(0.2);
         if(robot.beaconPush.beaconColorIsAlliance(alliance))
@@ -109,7 +110,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             robot.beaconPush.pushBeacon(alliance == Alliance.RED_ALLIANCE);
             robot.beaconPush.waitUntilPressed();
             robot.driveBase.drivePID(30, false, null);
-            robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? -2.5 : 1.5);
+            robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? -2.5 : 0);
             robot.driveBase.drivePID(22, true, this);
         } else {
             robot.driveBase.drivePID(7, false, null);
@@ -122,7 +123,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
                 robot.beaconPush.waitUntilPressed();
             }
             robot.driveBase.drivePID(23, false, null);
-            robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? -2.5 : 1.5);
+            robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? -2.5 : 0);
             robot.driveBase.drivePID(22, true, this);
         }
         //At Second Beacon
@@ -162,7 +163,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
 
     private void runShootBall() throws InterruptedException {
         HalUtil.sleep(10000);
-        robot.driveBase.drivePID(7, false ,null);
+        robot.driveBase.drivePID(8, false ,null);
         robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 45 : -45);
         robot.driveBase.drivePID(15, false, null);
         robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 90 : -90);

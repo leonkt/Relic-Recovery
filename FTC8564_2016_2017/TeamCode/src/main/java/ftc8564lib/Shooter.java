@@ -211,9 +211,9 @@ public class Shooter {
         {
             if(redSide)
             {
-                highSpeed.setTargetPosition(-350);
+                highSpeed.setTargetPosition(-325);
             } else {
-                highSpeed.setTargetPosition(350);
+                highSpeed.setTargetPosition(325);
             }
             shootTime = HalUtil.getCurrentTime() + 0.25;
             highSpeed.setPower(0.3);

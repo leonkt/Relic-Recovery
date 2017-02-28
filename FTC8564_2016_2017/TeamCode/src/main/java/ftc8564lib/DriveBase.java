@@ -141,25 +141,25 @@ public class DriveBase implements PIDControl.PidInput {
     }
 
     public void spinPID(double degrees) throws InterruptedException {
-        if(Math.abs(degrees) < 15.0)
+        if(Math.abs(degrees) < 10.0)
         {
-            pidControlTurn.setOutputRange(-0.9,0.9);
+            pidControlTurn.setOutputRange(-0.45,0.45);
         } else {
-            pidControlTurn.setOutputRange(-0.7,0.7);
+            pidControlTurn.setOutputRange(-0.65,0.65);
         }
         this.degrees = degrees;
         if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 10.0)
         {
-            pidControlTurn.setPID(0.1,0,0,0);
+            pidControlTurn.setPID(0.07,0,0.0005,0);
         } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 20.0)
         {
-            pidControlTurn.setPID(0.05,0,0.003,0);
+            pidControlTurn.setPID(0.038,0,0.003,0);
         } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 45.0)
         {
-            pidControlTurn.setPID(0.03,0,0.0011,0);
+            pidControlTurn.setPID(0.026,0,0.0011,0);
         } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 90.0)
         {
-            pidControlTurn.setPID(0.024,0,0.0005,0);
+            pidControlTurn.setPID(0.023,0,0.0005,0);
         } else {
             pidControlTurn.setPID(0.023,0,0,0);
         }
@@ -189,6 +189,99 @@ public class DriveBase implements PIDControl.PidInput {
         leftMotor.setPower(0);
         rightMotor.setPower(0);
         resetPIDDrive();
+    }
+
+    /**
+     * This method drives the motors at "magnitude" and "curve". Both magnitude and curve are -1.0 to +1.0 values,
+     * where 0.0 represents stopped and not turning. curve < 0 will turn left and curve > 0 will turn right. The
+     * algorithm for steering provides a constant turn radius for any normal speed range, both forward and backward.
+     * Increasing sensitivity causes sharper turns for fixed values of curve.
+     *
+     * @param magnitude specifies the speed setting for the outside wheel in a turn, forward or backwards, +1 to -1.
+     * @param curve specifies the rate of turn, constant for different forward speeds. Set curve < 0 for left turn or
+     *              curve > 0 for right turn. Set curve = e^(-r/w) to get a turn radius r for wheelbase w of your
+     *              robot. Conversely, turn radius r = -ln(curve)*w for a given value of curve and wheelbase w.
+     * @param inverted specifies true to invert control (i.e. robot front becomes robot back).
+     */
+    public void curve(double magnitude, double curve, boolean inverted, boolean gyroAssist)
+    {
+        double leftOutput;
+        double rightOutput;
+        double sensitivity = 0.5;
+
+        if (curve < 0.0)
+        {
+            double value = Math.log(-curve);
+            double ratio = (value - sensitivity)/(value + sensitivity);
+            if (ratio == 0.0)
+            {
+                ratio = 0.0000000001;
+            }
+            leftOutput = magnitude/ratio;
+            rightOutput = magnitude;
+        }
+        else if (curve > 0.0)
+        {
+            double value = Math.log(curve);
+            double ratio = (value - sensitivity)/(value + sensitivity);
+            if (ratio == 0.0)
+            {
+                ratio = 0.0000000001;
+            }
+            leftOutput = magnitude;
+            rightOutput = magnitude/ratio;
+        }
+        else
+        {
+            leftOutput = magnitude;
+            rightOutput = magnitude;
+        }
+
+        curveDrive(leftOutput, rightOutput, inverted, gyroAssist);
+    }
+
+    /**
+     * This method implements tank drive where leftPower controls the left motors and right power controls the right
+     * motors.
+     *
+     * @param leftPower specifies left power value.
+     * @param rightPower specifies right power value.
+     * @param inverted specifies true to invert control (i.e. robot front becomes robot back).
+     */
+    private void curveDrive(double leftPower, double rightPower, boolean inverted, boolean gyroAssist)
+    {
+        leftPower = HalUtil.clipRange(leftPower);
+        rightPower = HalUtil.clipRange(rightPower);
+
+        double gyroRateScale = 0.0;
+        double gyroAssistKp = 1.0;
+
+        if (inverted)
+        {
+            double swap = leftPower;
+            leftPower = -rightPower;
+            rightPower = -swap;
+        }
+
+        if(gyroAssist)
+        {
+            double diffPower = (leftPower - rightPower)/2.0;
+            double assistPower = HalUtil.clipRange(gyroAssistKp*(diffPower - gyroRateScale*gyroSensor.getRotationFraction()));
+            leftPower += assistPower;
+            rightPower -= assistPower;
+            double maxMag = Math.max(Math.abs(leftPower), Math.abs(rightPower));
+            if (maxMag > 1.0)
+            {
+                leftPower /= maxMag;
+                rightPower /= maxMag;
+            }
+        }
+
+        leftPower = HalUtil.clipRange(leftPower, -1.0, 1.0);
+        rightPower = HalUtil.clipRange(rightPower, -1.0, 1.0);
+
+        leftMotor.setPower(leftPower);
+        rightMotor.setPower(rightPower);
     }
 
     public void sleep(double seconds)
