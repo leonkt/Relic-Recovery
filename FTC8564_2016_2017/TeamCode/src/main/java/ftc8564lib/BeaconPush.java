@@ -105,12 +105,12 @@ public class BeaconPush {
         if (state_red == STATE_RED.RETRACTED && redAllianceRack)
         {
             redRack.setPower(BUTTON_PUSHER_RETRACT_POSITION);
-            endTimeRed = HalUtil.getCurrentTime() + 0.86;
+            endTimeRed = HalUtil.getCurrentTime() + 0.7;
             changeState(STATE_RED.EXTENDING);
         } else if(state_blue == STATE_BLUE.RETRACTED && !redAllianceRack)
         {
             blueRack.setPower(BUTTON_PUSHER_EXTEND_POSITION);
-            endTimeBlue = HalUtil.getCurrentTime() + 0.91;
+            endTimeBlue = HalUtil.getCurrentTime() + 0.7;
             changeStateBlue(STATE_BLUE.EXTENDING);
         }
     }
@@ -121,12 +121,12 @@ public class BeaconPush {
         if (state_red == STATE_RED.EXTENDED && redAllianceRack)
         {
             redRack.setPower(BUTTON_PUSHER_EXTEND_POSITION);
-            endTimeRed = HalUtil.getCurrentTime() + 0.86;
+            endTimeRed = HalUtil.getCurrentTime() + 0.67;
             changeState(STATE_RED.RETRACTING);
         } else if(state_blue == STATE_BLUE.EXTENDED && !redAllianceRack)
         {
             blueRack.setPower(BUTTON_PUSHER_RETRACT_POSITION);
-            endTimeBlue = HalUtil.getCurrentTime() + 0.91;
+            endTimeBlue = HalUtil.getCurrentTime() + 0.67;
             changeStateBlue(STATE_BLUE.RETRACTING);
         }
     }

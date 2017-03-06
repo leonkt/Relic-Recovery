@@ -41,6 +41,7 @@ public class DriveBase implements PIDControl.PidInput {
     private final static double SCALE = (144.5/12556.5);    // INCHES_PER_COUNT
     private double degrees = 0.0;
     private double stallStartTime = 0.0;
+    private double prevTime = 0.0;
     private int prevLeftPos = 0;
     private int prevRightPos = 0;
     private boolean slowSpeed;
@@ -91,9 +92,9 @@ public class DriveBase implements PIDControl.PidInput {
     public void drivePID(double distance, boolean slow, AbortTrigger abortTrigger) throws InterruptedException {
         if(slow)
         {
-            pidControl.setOutputRange(-0.55, 0.55);
+            pidControl.setOutputRange(-0.5, 0.5);
         } else {
-            pidControl.setOutputRange(-0.85,0.85);
+            pidControl.setOutputRange(-0.8,0.8);
         }
         if (Math.abs(distance) <= 5)
         {
@@ -150,7 +151,7 @@ public class DriveBase implements PIDControl.PidInput {
         this.degrees = degrees;
         if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 10.0)
         {
-            pidControlTurn.setPID(0.07,0,0.0005,0);
+            pidControlTurn.setPID(0.065,0,0.0005,0);
         } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 20.0)
         {
             pidControlTurn.setPID(0.038,0,0.003,0);
@@ -248,8 +249,11 @@ public class DriveBase implements PIDControl.PidInput {
      * @param rightPower specifies right power value.
      * @param inverted specifies true to invert control (i.e. robot front becomes robot back).
      */
-    private void curveDrive(double leftPower, double rightPower, boolean inverted, boolean gyroAssist)
+    public void curveDrive(double leftPower, double rightPower, boolean inverted, boolean gyroAssist)
     {
+
+        double currTime = HalUtil.getCurrentTime();
+
         leftPower = HalUtil.clipRange(leftPower);
         rightPower = HalUtil.clipRange(rightPower);
 
@@ -266,7 +270,7 @@ public class DriveBase implements PIDControl.PidInput {
         if(gyroAssist)
         {
             double diffPower = (leftPower - rightPower)/2.0;
-            double assistPower = HalUtil.clipRange(gyroAssistKp*(diffPower - gyroRateScale*gyroSensor.getRotationFraction()));
+            double assistPower = HalUtil.clipRange(gyroAssistKp*(diffPower - gyroRateScale*(gyroSensor.getIntegratedZValue()/(currTime-prevTime))));
             leftPower += assistPower;
             rightPower -= assistPower;
             double maxMag = Math.max(Math.abs(leftPower), Math.abs(rightPower));
@@ -282,6 +286,9 @@ public class DriveBase implements PIDControl.PidInput {
 
         leftMotor.setPower(leftPower);
         rightMotor.setPower(rightPower);
+
+        prevTime = currTime;
+
     }
 
     public void sleep(double seconds)

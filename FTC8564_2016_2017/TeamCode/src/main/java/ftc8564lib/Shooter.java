@@ -62,17 +62,11 @@ public class Shooter {
         FIRING
     }
 
-    public Shooter(LinearOpMode opMode, boolean auto) {
+    public Shooter(LinearOpMode opMode) {
         this.opMode = opMode;
         tennisArm = opMode.hardwareMap.dcMotor.get("tennisArm");
         tennisArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        if(auto)
-        {
-            tennisArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            tennisArm.setPower(0.3);
-        } else {
-            tennisArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        }
+        tennisArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         highSpeed = opMode.hardwareMap.dcMotor.get("highSpeed");
         highSpeed.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         highSpeed.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -258,9 +252,9 @@ public class Shooter {
     {
         if(up)
         {
-            tennisArm.setPower(0.4);
+            tennisArm.setPower(-1);
         } else {
-            tennisArm.setPower(-0.4);
+            tennisArm.setPower(1);
         }
     }
 
