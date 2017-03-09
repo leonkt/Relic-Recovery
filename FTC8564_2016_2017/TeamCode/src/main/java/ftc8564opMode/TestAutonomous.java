@@ -41,9 +41,9 @@ public class TestAutonomous extends LinearOpMode implements DriveBase.AbortTrigg
         waitForStart();
         robot.driveBase.resetHeading();
 
-        /*robot.driveBase.drivePID(6, false, null);
-        robot.driveBase.spinPID(40);
-        robot.driveBase.drivePID(34, false, null);
+        robot.driveBase.drivePID(6, false, null);
+        robot.driveBase.spinPID(38);
+        robot.driveBase.drivePID(32, false, null);
         // Loads and fires numParticles
         for(int i = 0; i < numParticles; i++)
         {
@@ -54,13 +54,12 @@ public class TestAutonomous extends LinearOpMode implements DriveBase.AbortTrigg
             robot.shooter.shootSequenceAuto(true);
             if(i != numParticles-1) robot.shooter.waitForShootAuto();
         }
-        robot.driveBase.spinPID(28);
-        robot.driveBase.drivePID(48.5, false, null);
-        //robot.driveBase.curve(0.6, -0.5698,false, true);
+        robot.driveBase.spinPID(27);
+        robot.driveBase.drivePID(49, false, null);
         robot.driveBase.curveDrive(0.45,0.7,false,true);
         HalUtil.sleep(875);
         robot.driveBase.spinPID(0);
-        robot.driveBase.drivePID(8, true, this);
+        robot.driveBase.drivePID(5, true, this);
 
         //At First Beacon
         robot.driveBase.sleep(0.25);
@@ -70,6 +69,7 @@ public class TestAutonomous extends LinearOpMode implements DriveBase.AbortTrigg
             robot.beaconPush.waitUntilPressed();
             robot.beaconPush.pushBeacon(true);
             robot.beaconPush.waitUntilPressed();
+            robot.driveBase.spinPID(-1);
             robot.driveBase.drivePID(-40, false, null);
             robot.driveBase.drivePID(-10, true, this);
         } else {
@@ -82,6 +82,7 @@ public class TestAutonomous extends LinearOpMode implements DriveBase.AbortTrigg
                 robot.beaconPush.pushBeacon(true);
                 robot.beaconPush.waitUntilPressed();
             }
+            robot.driveBase.spinPID(-1);
             robot.driveBase.drivePID(-47, false, null);
             robot.driveBase.drivePID(-10, true, this);
         }
@@ -104,10 +105,23 @@ public class TestAutonomous extends LinearOpMode implements DriveBase.AbortTrigg
                 robot.beaconPush.pushBeacon(true);
                 robot.beaconPush.waitUntilPressed();
             }
-        }*/
+        }
 
-        robot.driveBase.curveDrive(0.2,0.7,false,true);
-        HalUtil.sleep(3000);
+        /*
+        //Red Side Center
+        robot.driveBase.curve(0.6, -0.5698,false, true);
+        HalUtil.sleep(800);
+        robot.driveBase.spinPID(-45);
+        robot.driveBase.drivePID(40, false, null);
+        robot.driveBase.spinPID(-135);
+        robot.driveBase.drivePID(25, false, null);*/
+
+
+        //Red Side Corner
+        robot.driveBase.curve(0.6, -0.5698,false, true);
+        HalUtil.sleep(2800);
+        robot.driveBase.spinPID(-180);
+        robot.driveBase.drivePID(30, false, null);
 
         robot.shooter.resetMotors();
         robot.beaconPush.resetRacks();
