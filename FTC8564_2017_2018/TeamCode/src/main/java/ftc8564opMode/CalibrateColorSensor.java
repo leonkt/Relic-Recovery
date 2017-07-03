@@ -57,10 +57,10 @@ public class CalibrateColorSensor extends OpMode implements I2cPortReadyCallback
         color_sensor = (ModernRoboticsI2cColorSensor) hardwareMap.colorSensor.get(color_sensor_name);
 
         // Get a handle on the color sensor's controller.
-        controller = color_sensor.getI2cController();
+        //controller = color_sensor.getI2cController();
 
         // Register the callback for portIsReady().
-        controller.registerForI2cPortReadyCallback(this, color_sensor.getPort());
+        //controller.registerForI2cPortReadyCallback(this, color_sensor.getPort());
     }
 
 
@@ -87,10 +87,10 @@ public class CalibrateColorSensor extends OpMode implements I2cPortReadyCallback
             color_sensor = (ModernRoboticsI2cColorSensor) hardwareMap.colorSensor.get(color_sensor_name);
 
             // Get a handle on the color sensor's controller.
-            controller = color_sensor.getI2cController();
+            //controller = color_sensor.getI2cController();
 
             // Register the callback for portIsReady().
-            controller.registerForI2cPortReadyCallback(this, color_sensor.getPort());
+            //controller.registerForI2cPortReadyCallback(this, color_sensor.getPort());
         }
 
         else if(gamepad1.dpad_right && !isWorking)
@@ -101,10 +101,10 @@ public class CalibrateColorSensor extends OpMode implements I2cPortReadyCallback
             color_sensor = (ModernRoboticsI2cColorSensor) hardwareMap.colorSensor.get(color_sensor_name);
 
             // Get a handle on the color sensor's controller.
-            controller = color_sensor.getI2cController();
+            //controller = color_sensor.getI2cController();
 
             // Register the callback for portIsReady().
-            controller.registerForI2cPortReadyCallback(this, color_sensor.getPort());
+            //controller.registerForI2cPortReadyCallback(this, color_sensor.getPort());
         }
         // Button A should begin a black calibration.
         else if (gamepad1.a && !isWorking) {
@@ -177,26 +177,26 @@ public class CalibrateColorSensor extends OpMode implements I2cPortReadyCallback
     public synchronized void sendCommand(byte command) {
 
         // Get a handle on the write cache and lock.
-        int port = color_sensor.getPort();
-        Lock wLock = controller.getI2cWriteCacheLock(port);
-        byte[] wCache = controller.getI2cWriteCache(port);
+        //int port = color_sensor.getPort();
+        //Lock wLock = controller.getI2cWriteCacheLock(port);
+        //byte[] wCache = controller.getI2cWriteCache(port);
 
         // Do the locking in a try/catch, in case a lock can't be made.
         try {
 
             // Lock the cache before anything.
-            wLock.lock();
+            //wLock.lock();
 
             // Enable write mode on the controller.
-            controller.enableI2cWriteMode(port, I2cAddr.create7bit(COLOR_SENSOR_ADDR), 0x03, 1);
+            //controller.enableI2cWriteMode(port, I2cAddr.create7bit(COLOR_SENSOR_ADDR), 0x03, 1);
 
             // Write the supplied command to the relevant register.
-            wCache[WRITE_CACHE_OFFSET] = command;
+            //wCache[WRITE_CACHE_OFFSET] = command;
 
         } finally {
 
             // Ensure the cache is unlocked.
-            wLock.unlock();
+            //wLock.unlock();
 
             // Signal portIsReady() to enable read mode when we're done.
             controller_mode = I2CMode.WRITE;
@@ -237,7 +237,7 @@ public class CalibrateColorSensor extends OpMode implements I2cPortReadyCallback
 
         // Allow the ModernRoboticsI2cColorSensor class to handle the rest of
         // the portIsReady read/write cycle.
-        color_sensor.portIsReady(port);
+        //color_sensor.portIsReady(port);
     }
 
 
