@@ -56,7 +56,7 @@ public class TestAutonomous extends LinearOpMode implements DriveBase.AbortTrigg
         }
         robot.driveBase.spinPID(27);
         robot.driveBase.drivePID(49, false, null);
-        robot.driveBase.curveDrive(0.45,0.7,false,true);
+        robot.driveBase.curveDrive(0.4,0.7,false,true);
         HalUtil.sleep(875);
         robot.driveBase.spinPID(0);
         robot.driveBase.drivePID(5, true, this);
@@ -83,7 +83,7 @@ public class TestAutonomous extends LinearOpMode implements DriveBase.AbortTrigg
                 robot.beaconPush.waitUntilPressed();
             }
             robot.driveBase.spinPID(-1);
-            robot.driveBase.drivePID(-47, false, null);
+            robot.driveBase.drivePID(-45, false, null);
             robot.driveBase.drivePID(-10, true, this);
         }
 
@@ -114,14 +114,16 @@ public class TestAutonomous extends LinearOpMode implements DriveBase.AbortTrigg
         robot.driveBase.spinPID(-45);
         robot.driveBase.drivePID(40, false, null);
         robot.driveBase.spinPID(-135);
-        robot.driveBase.drivePID(25, false, null);*/
+        robot.driveBase.drivePID(25, false, null);
 
 
         //Red Side Corner
         robot.driveBase.curve(0.6, -0.5698,false, true);
         HalUtil.sleep(2800);
         robot.driveBase.spinPID(-180);
-        robot.driveBase.drivePID(30, false, null);
+        robot.driveBase.drivePID(30, false, null);*/
+
+        robot.driveBase.spinPID(-25);
 
         robot.shooter.resetMotors();
         robot.beaconPush.resetRacks();

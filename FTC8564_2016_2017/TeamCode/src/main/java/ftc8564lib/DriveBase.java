@@ -151,13 +151,13 @@ public class DriveBase implements PIDControl.PidInput {
         this.degrees = degrees;
         if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 10.0)
         {
-            pidControlTurn.setPID(0.065,0,0.0005,0);
+            pidControlTurn.setPID(0.05,0,0.0005,0);
         } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 20.0)
         {
-            pidControlTurn.setPID(0.038,0,0.003,0);
+            pidControlTurn.setPID(0.03,0,0.002,0);
         } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 45.0)
         {
-            pidControlTurn.setPID(0.026,0,0.0011,0);
+            pidControlTurn.setPID(0.022,0,0.0011,0);
         } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 90.0)
         {
             pidControlTurn.setPID(0.023,0,0.0005,0);

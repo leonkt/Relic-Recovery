@@ -121,12 +121,12 @@ public class BeaconPush {
         if (state_red == STATE_RED.EXTENDED && redAllianceRack)
         {
             redRack.setPower(BUTTON_PUSHER_EXTEND_POSITION);
-            endTimeRed = HalUtil.getCurrentTime() + 0.69;
+            endTimeRed = HalUtil.getCurrentTime() + 0.73;
             changeState(STATE_RED.RETRACTING);
         } else if(state_blue == STATE_BLUE.EXTENDED && !redAllianceRack)
         {
             blueRack.setPower(BUTTON_PUSHER_RETRACT_POSITION);
-            endTimeBlue = HalUtil.getCurrentTime() + 0.69;
+            endTimeBlue = HalUtil.getCurrentTime() + 0.73;
             changeStateBlue(STATE_BLUE.RETRACTING);
         }
     }

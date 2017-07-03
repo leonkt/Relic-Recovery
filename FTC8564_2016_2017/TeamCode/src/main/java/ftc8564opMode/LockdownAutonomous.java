@@ -83,7 +83,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
     private void runHighRisk() throws InterruptedException {
         robot.driveBase.drivePID(6, false, null);
         robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 38 : -38);
-        robot.driveBase.drivePID(32, false, null);
+        robot.driveBase.drivePID(31, false, null);
         // Loads and fires numParticles
         for(int i = 0; i < numParticles; i++)
         {
@@ -95,18 +95,18 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             if(i != numParticles-1) robot.shooter.waitForShootAuto();
         }
         robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 27 : -27);
-        robot.driveBase.drivePID(49, false, null);
-        robot.driveBase.curveDrive(alliance == Alliance.RED_ALLIANCE ? 0.45 : 0.7, alliance == Alliance.RED_ALLIANCE ? 0.7 : 0.45,false,true);
+        robot.driveBase.drivePID(45, false, null);
+        robot.driveBase.curveDrive(alliance == Alliance.RED_ALLIANCE ? 0.4 : 0.7, alliance == Alliance.RED_ALLIANCE ? 0.7 : 0.4,false,true);
         HalUtil.sleep(875);
         robot.driveBase.spinPID(0);
-        robot.driveBase.drivePID(5, true, this);
+        robot.driveBase.drivePID(10, true, this);
         //At First Beacon
         robot.driveBase.sleep(0.25);
-        if(robot.beaconPush.beaconColorIsAlliance(LockdownAutonomous.Alliance.RED_ALLIANCE))
+        if(robot.beaconPush.beaconColorIsAlliance(alliance))
         {
-            robot.beaconPush.pushBeacon(true);
+            robot.beaconPush.pushBeacon(alliance == Alliance.RED_ALLIANCE);
             robot.beaconPush.waitUntilPressed();
-            robot.beaconPush.pushBeacon(true);
+            robot.beaconPush.pushBeacon(alliance == Alliance.RED_ALLIANCE);
             robot.beaconPush.waitUntilPressed();
             robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? -1 : 1);
             robot.driveBase.drivePID(-40, false, null);
@@ -114,15 +114,15 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         } else {
             robot.driveBase.drivePID(5, false, null);
             robot.driveBase.sleep(0.25);
-            if(robot.beaconPush.beaconColorIsAlliance(LockdownAutonomous.Alliance.RED_ALLIANCE))
+            if(robot.beaconPush.beaconColorIsAlliance(alliance))
             {
-                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.pushBeacon(alliance == Alliance.RED_ALLIANCE);
                 robot.beaconPush.waitUntilPressed();
-                robot.beaconPush.pushBeacon(true);
+                robot.beaconPush.pushBeacon(alliance == Alliance.RED_ALLIANCE);
                 robot.beaconPush.waitUntilPressed();
             }
             robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? -1 : 1);
-            robot.driveBase.drivePID(-47, false, null);
+            robot.driveBase.drivePID(-45, false, null);
             robot.driveBase.drivePID(-10, true, this);
         }
         //At Second Beacon
@@ -166,7 +166,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 45 : -45);
         robot.driveBase.drivePID(15, false, null);
         robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 90 : -90);
-        robot.driveBase.drivePID(33, false, null);
+        robot.driveBase.drivePID(30, false, null);
         for(int i = 0; i < numParticles; i++)
         {
             robot.shooter.shootSequenceAuto(alliance == Alliance.RED_ALLIANCE);
@@ -184,7 +184,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             robot.driveBase.spinPID(alliance == Alliance.RED_ALLIANCE ? 45 : -45);
             robot.driveBase.drivePID(30, false, null);
         } else if(parkOption == ParkOption.CORNER_VORTEX) {
-            robot.driveBase.drivePID(40, false, null);
+            robot.driveBase.drivePID(43, false, null);
         }
     }
 
