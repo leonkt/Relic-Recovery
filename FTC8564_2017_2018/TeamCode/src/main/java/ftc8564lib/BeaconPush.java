@@ -144,13 +144,13 @@ public class BeaconPush {
         // If we are extending or retracting, check if the endTime to see if we are done.
         if ((state_red == STATE_RED.EXTENDING || state_red == STATE_RED.RETRACTING) && HalUtil.getCurrentTime() >= endTimeRed)
         {
-            redRack.setPower(BUTTON_PUSHER_REST_POSITION);
-            changeState(state_red == STATE_RED.EXTENDING ? STATE_RED.EXTENDED: STATE_RED.RETRACTED);
+            redRack.setPower(0.1);
+            changeState(state_red == STATE_RED.EXTENDING ? STATE_RED.EXTENDED : STATE_RED.RETRACTED);
         }
         if ((state_blue == STATE_BLUE.EXTENDING || state_blue == STATE_BLUE.RETRACTING) && HalUtil.getCurrentTime() >= endTimeBlue)
         {
-            blueRack.setPower(0.1);
-            changeStateBlue(state_blue == STATE_BLUE.EXTENDING ? STATE_BLUE.EXTENDED: STATE_BLUE.RETRACTED);
+            blueRack.setPower(BUTTON_PUSHER_REST_POSITION);
+            changeStateBlue(state_blue == STATE_BLUE.EXTENDING ? STATE_BLUE.EXTENDED : STATE_BLUE.RETRACTED);
         }
     }
 
@@ -190,8 +190,8 @@ public class BeaconPush {
 
     public void resetRacks()
     {
-        redRack.setPower(BUTTON_PUSHER_REST_POSITION);
-        blueRack.setPower(0.1);
+        redRack.setPower(0.1);
+        blueRack.setPower(BUTTON_PUSHER_REST_POSITION);
     }
 
 }
