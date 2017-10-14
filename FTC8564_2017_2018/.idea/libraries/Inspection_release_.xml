@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Inspection-release-">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.android/build-cache/c47788db30b62711a560cae6771b7decbabdb4a1/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/c47788db30b62711a560cae6771b7decbabdb4a1/output/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/libs/Inspection-release-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
