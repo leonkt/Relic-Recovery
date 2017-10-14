@@ -1,0 +1,46 @@
+[
+    {
+        "merged": "C:\\Users\\Wesley Chou\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\TeamCode\\build\\intermediates\\res\\merged\\debug\\raw\\cube_mesh_vertex_shader.glsl",
+        "source": "C:\\Users\\Wesley Chou\\.android\\build-cache\\c4cdc8d1b43d703f78c7e9ece4be24bee91aacba\\output\\res\\raw\\cube_mesh_vertex_shader.glsl"
+    },
+    {
+        "merged": "C:\\Users\\Wesley Chou\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\TeamCode\\build\\intermediates\\res\\merged\\debug\\raw\\cube_mesh_fragment_shader.glsl",
+        "source": "C:\\Users\\Wesley Chou\\.android\\build-cache\\c4cdc8d1b43d703f78c7e9ece4be24bee91aacba\\output\\res\\raw\\cube_mesh_fragment_shader.glsl"
+    },
+    {
+        "merged": "C:\\Users\\Wesley Chou\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\TeamCode\\build\\intermediates\\res\\merged\\debug\\raw\\errormessage.wav",
+        "source": "C:\\Users\\Wesley Chou\\.android\\build-cache\\52b75d95701d7c04a1559f92d109acc11c18737f\\output\\res\\raw\\errormessage.wav"
+    },
+    {
+        "merged": "C:\\Users\\Wesley Chou\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\TeamCode\\build\\intermediates\\res\\merged\\debug\\raw\\color_fragment_shader.glsl",
+        "source": "C:\\Users\\Wesley Chou\\.android\\build-cache\\c4cdc8d1b43d703f78c7e9ece4be24bee91aacba\\output\\res\\raw\\color_fragment_shader.glsl"
+    },
+    {
+        "merged": "C:\\Users\\Wesley Chou\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\TeamCode\\build\\intermediates\\res\\merged\\debug\\raw\\texture_fragment_shader.glsl",
+        "source": "C:\\Users\\Wesley Chou\\.android\\build-cache\\c4cdc8d1b43d703f78c7e9ece4be24bee91aacba\\output\\res\\raw\\texture_fragment_shader.glsl"
+    },
+    {
+        "merged": "C:\\Users\\Wesley Chou\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\TeamCode\\build\\intermediates\\res\\merged\\debug\\raw\\chimedisconnect.wav",
+        "source": "C:\\Users\\Wesley Chou\\.android\\build-cache\\52b75d95701d7c04a1559f92d109acc11c18737f\\output\\res\\raw\\chimedisconnect.wav"
+    },
+    {
+        "merged": "C:\\Users\\Wesley Chou\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\TeamCode\\build\\intermediates\\res\\merged\\debug\\raw\\simple_vertex_shader.glsl",
+        "source": "C:\\Users\\Wesley Chou\\.android\\build-cache\\c4cdc8d1b43d703f78c7e9ece4be24bee91aacba\\output\\res\\raw\\simple_vertex_shader.glsl"
+    },
+    {
+        "merged": "C:\\Users\\Wesley Chou\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\TeamCode\\build\\intermediates\\res\\merged\\debug\\raw\\nxtstartupsound.wav",
+        "source": "C:\\Users\\Wesley Chou\\.android\\build-cache\\52b75d95701d7c04a1559f92d109acc11c18737f\\output\\res\\raw\\nxtstartupsound.wav"
+    },
+    {
+        "merged": "C:\\Users\\Wesley Chou\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\TeamCode\\build\\intermediates\\res\\merged\\debug\\raw\\chimeconnect.wav",
+        "source": "C:\\Users\\Wesley Chou\\.android\\build-cache\\52b75d95701d7c04a1559f92d109acc11c18737f\\output\\res\\raw\\chimeconnect.wav"
+    },
+    {
+        "merged": "C:\\Users\\Wesley Chou\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\TeamCode\\build\\intermediates\\res\\merged\\debug\\raw\\texture_vertex_shader.glsl",
+        "source": "C:\\Users\\Wesley Chou\\.android\\build-cache\\c4cdc8d1b43d703f78c7e9ece4be24bee91aacba\\output\\res\\raw\\texture_vertex_shader.glsl"
+    },
+    {
+        "merged": "C:\\Users\\Wesley Chou\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\TeamCode\\build\\intermediates\\res\\merged\\debug\\raw\\warningmessage.wav",
+        "source": "C:\\Users\\Wesley Chou\\.android\\build-cache\\52b75d95701d7c04a1559f92d109acc11c18737f\\output\\res\\raw\\warningmessage.wav"
+    }
+]
