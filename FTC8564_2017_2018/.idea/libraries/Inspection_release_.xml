@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Inspection-release-">
     <CLASSES>
-      <root url="file://$USER_HOME$/.android/build-cache/c47788db30b62711a560cae6771b7decbabdb4a1/output/res" />
-      <root url="jar://$USER_HOME$/.android/build-cache/c47788db30b62711a560cae6771b7decbabdb4a1/output/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.android/build-cache/85e15247d524ae90dc9ca5ac75b999298619ee06/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/85e15247d524ae90dc9ca5ac75b999298619ee06/output/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
