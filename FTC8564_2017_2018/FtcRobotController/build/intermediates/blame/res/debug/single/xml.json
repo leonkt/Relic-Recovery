@@ -1,23 +1,67 @@
 [
     {
-        "merged": "C:\\Users\\Wesley Chou\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\pushbotsens.xml",
-        "source": "C:\\Users\\Wesley Chou\\.android\\build-cache\\52b75d95701d7c04a1559f92d109acc11c18737f\\output\\res\\xml\\pushbotsens.xml"
+        "merged": "C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\advanced_rc_settings.xml",
+        "source": "C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\xml\\advanced_rc_settings.xml"
     },
     {
-        "merged": "C:\\Users\\Wesley Chou\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\advanced_rc_settings.xml",
-        "source": "C:\\Users\\Wesley Chou\\.android\\build-cache\\52b75d95701d7c04a1559f92d109acc11c18737f\\output\\res\\xml\\advanced_rc_settings.xml"
+        "merged": "C:\\Users\\Wesley Chou\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\pushbotsens.xml",
+        "source": "C:\\Users\\Wesley Chou\\.android\\build-cache\\52b75d95701d7c04a1559f92d109acc11c18737f\\output\\res\\xml\\pushbotsens.xml"
     },
     {
         "merged": "C:\\Users\\ACtheGreat\\Documents\\Github\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\k9legacybot.xml",
         "source": "C:\\Users\\ACtheGreat\\.android\\build-cache\\1d63743e80deb5fe0a4d4e01379744dd2096329f\\output\\res\\xml\\k9legacybot.xml"
     },
     {
-        "merged": "C:\\Users\\ACtheGreat\\Documents\\Github\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\squarebot.xml",
-        "source": "C:\\Users\\ACtheGreat\\.android\\build-cache\\1d63743e80deb5fe0a4d4e01379744dd2096329f\\output\\res\\xml\\squarebot.xml"
+        "merged": "C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\k9usbbot.xml",
+        "source": "C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\xml\\k9usbbot.xml"
     },
     {
         "merged": "C:\\Users\\Wesley Chou\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\rev_scoot.xml",
         "source": "C:\\Users\\Wesley Chou\\.android\\build-cache\\52b75d95701d7c04a1559f92d109acc11c18737f\\output\\res\\xml\\rev_scoot.xml"
+    },
+    {
+        "merged": "C:\\Users\\ACtheGreat\\Documents\\Github\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\advanced_rc_settings.xml",
+        "source": "C:\\Users\\ACtheGreat\\.android\\build-cache\\1d63743e80deb5fe0a4d4e01379744dd2096329f\\output\\res\\xml\\advanced_rc_settings.xml"
+    },
+    {
+        "merged": "C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\k9legacybot.xml",
+        "source": "C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\xml\\k9legacybot.xml"
+    },
+    {
+        "merged": "C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\pushbot.xml",
+        "source": "C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\xml\\pushbot.xml"
+    },
+    {
+        "merged": "C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\app_settings.xml",
+        "source": "C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\src\\main\\res\\xml\\app_settings.xml"
+    },
+    {
+        "merged": "C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\device_filter.xml",
+        "source": "C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\src\\main\\res\\xml\\device_filter.xml"
+    },
+    {
+        "merged": "C:\\Users\\ACtheGreat\\Documents\\Github\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\maxmodules.xml",
+        "source": "C:\\Users\\ACtheGreat\\.android\\build-cache\\1d63743e80deb5fe0a4d4e01379744dd2096329f\\output\\res\\xml\\maxmodules.xml"
+    },
+    {
+        "merged": "C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\squarebot.xml",
+        "source": "C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\xml\\squarebot.xml"
+    },
+    {
+        "merged": "C:\\Users\\Wesley Chou\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\advanced_rc_settings.xml",
+        "source": "C:\\Users\\Wesley Chou\\.android\\build-cache\\52b75d95701d7c04a1559f92d109acc11c18737f\\output\\res\\xml\\advanced_rc_settings.xml"
+    },
+    {
+        "merged": "C:\\Users\\ACtheGreat\\Documents\\Github\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\squarebot.xml",
+        "source": "C:\\Users\\ACtheGreat\\.android\\build-cache\\1d63743e80deb5fe0a4d4e01379744dd2096329f\\output\\res\\xml\\squarebot.xml"
+    },
+    {
+        "merged": "C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\pushbotsens.xml",
+        "source": "C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\xml\\pushbotsens.xml"
+    },
+    {
+        "merged": "C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\maxmodules.xml",
+        "source": "C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\xml\\maxmodules.xml"
     },
     {
         "merged": "C:\\Users\\Wesley Chou\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\device_filter.xml",
@@ -40,10 +84,6 @@
         "source": "C:\\Users\\Wesley Chou\\.android\\build-cache\\52b75d95701d7c04a1559f92d109acc11c18737f\\output\\res\\xml\\pushbot.xml"
     },
     {
-        "merged": "C:\\Users\\ACtheGreat\\Documents\\Github\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\advanced_rc_settings.xml",
-        "source": "C:\\Users\\ACtheGreat\\.android\\build-cache\\1d63743e80deb5fe0a4d4e01379744dd2096329f\\output\\res\\xml\\advanced_rc_settings.xml"
-    },
-    {
         "merged": "C:\\Users\\Wesley Chou\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\squarebot.xml",
         "source": "C:\\Users\\Wesley Chou\\.android\\build-cache\\52b75d95701d7c04a1559f92d109acc11c18737f\\output\\res\\xml\\squarebot.xml"
     },
@@ -60,8 +100,8 @@
         "source": "C:\\Users\\Wesley Chou\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\src\\main\\res\\xml\\app_settings.xml"
     },
     {
-        "merged": "C:\\Users\\ACtheGreat\\Documents\\Github\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\maxmodules.xml",
-        "source": "C:\\Users\\ACtheGreat\\.android\\build-cache\\1d63743e80deb5fe0a4d4e01379744dd2096329f\\output\\res\\xml\\maxmodules.xml"
+        "merged": "C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\rev_scoot.xml",
+        "source": "C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\xml\\rev_scoot.xml"
     },
     {
         "merged": "C:\\Users\\Wesley Chou\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\maxmodules.xml",
