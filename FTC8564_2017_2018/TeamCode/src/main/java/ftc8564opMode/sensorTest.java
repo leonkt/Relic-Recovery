@@ -41,6 +41,7 @@ public class sensorTest extends OpMode{
     *  Sensors: standard color sensor (not the Modern Robotics I2C one)
     *  Vuforia
     *
+    *  These are only for outputting infos. Further development is required.
     */
     ColorSensor colorSensor, colorSensor1;    // Hardware Device Object
     I2cAddr newAddress = I2cAddr.create8bit(0x3e);
