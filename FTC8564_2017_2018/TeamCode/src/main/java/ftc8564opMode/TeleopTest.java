@@ -118,6 +118,10 @@ public class TeleopTest extends OpMode{
             liftleft.setPower(gamepad2.right_stick_y * -1);
             liftright.setPower(gamepad2.right_stick_y);
         }
+        else{
+            liftleft.setPower(0);
+            liftright.setPower(0);
+        }
 
 
         if (abs(gamepad1.left_trigger) > 0.6 && abs(gamepad1.right_trigger) > 0.6){
