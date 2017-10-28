@@ -8,13 +8,12 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
  */
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import static java.lang.Math.abs;
 
-@TeleOp(name = "Debug: TeleOp", group = "TeleOp")
+@TeleOp(name = "Debug: TeleOp", group = "Debug")
 /*@Disabled*/
 
 public class TeleopTest extends OpMode{
