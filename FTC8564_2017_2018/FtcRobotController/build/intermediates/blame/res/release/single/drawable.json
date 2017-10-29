@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/drawable/icon_menu.png",
+        "source": "/Users/margaretli/.android/build-cache/d821d2e67a6ff47d965e0affb62a05edcc0a73db/output/res/drawable/icon_menu.png"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/drawable/icon_robotcontroller.png",
+        "source": "/Users/margaretli/.android/build-cache/d821d2e67a6ff47d965e0affb62a05edcc0a73db/output/res/drawable/icon_robotcontroller.png"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/drawable/button_shape.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/drawable/button_shape.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/drawable/feedback_shape_orange.xml",
+        "source": "/Users/margaretli/.android/build-cache/5ea9fc7dc5cc21749e1655537373429222e9d341/output/res/drawable/feedback_shape_orange.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/drawable/black_border.xml",
+        "source": "/Users/margaretli/.android/build-cache/334e27bf4e3903455f56e965f07ef441f7b79b9e/output/res/drawable/black_border.xml"
+    }
+]

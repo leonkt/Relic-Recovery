@@ -82,8 +82,12 @@ public class TeleopTest extends OpMode{
     @Override
     public void init_loop() {
         /*sets servo position */
-        clampleft.setPosition(0);
-        /*clampright.setPosition(90);*/
+        clampleft.setPosition(.9);
+        //.9 close
+        //.75
+        clampright.setPosition(.15);
+        //.15 close
+        //.3
 
     }
 
@@ -176,6 +180,14 @@ public class TeleopTest extends OpMode{
             liftright.setPower(0);
         }
 
+        if (gamepad2.left_bumper){
+            clampleft.setPosition(.9);
+            clampright.setPosition(.15);
+        }
+        else if (gamepad2.right_bumper){
+            clampleft.setPosition(.75);
+            clampright.setPosition(.3);
+        }
         /*
         * Intake - Intake portion.
         *
@@ -187,24 +199,28 @@ public class TeleopTest extends OpMode{
         */
 
         if (abs(gamepad1.left_trigger) > 0.6 && abs(gamepad1.right_trigger) > 0.6){
-            intakeleft.setPower(1 );
+            intakeleft.setPower(1);
             intakeright.setPower(1 * reverseFactor);
         }
+        //ejaculate
         else if (abs(gamepad1.left_trigger) > 0.6) {
-            intakeleft.setPower(1);
-            intakeright.setPower(0.6 * -1);
+            intakeleft.setPower(1 * reverseFactor);
+            intakeright.setPower(0.6);
         }
+        //swallow
         else if (abs(gamepad1.right_trigger) > 0.6) {
             intakeleft.setPower(0.6);
             intakeright.setPower(1 * reverseFactor);
         }
+        //left out right in
         else if (gamepad1.left_bumper){
-            intakeleft.setPower(1);
-            intakeright.setPower(-1*reverseFactor);
-        }
-        else if (gamepad1.right_bumper){
-            intakeleft.setPower(-1);
+            intakeleft.setPower(1 * reverseFactor);
             intakeright.setPower(1 * reverseFactor);
+        }
+        //left in right out
+        else if (gamepad1.right_bumper){
+            intakeleft.setPower(1);
+            intakeright.setPower(1);
         }
         else {
             intakeleft.setPower(0);

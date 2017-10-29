@@ -1,14 +1,18 @@
 [
     {
-        "merged": "C:\\Users\\Wesley Chou\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\TeamCode\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\ic_launcher.png",
-        "source": "C:\\Users\\Wesley Chou\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\bundles\\default\\res\\drawable-xxhdpi-v4\\ic_launcher.png"
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\Wesley Chou\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\TeamCode\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\ic_launcher.png",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\Wesley Chou\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\bundles\\default\\res\\drawable-xxhdpi-v4\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\ACtheGreat\\Documents\\Github\\LockdownPrograms\\FTC8564_2017_2018\\TeamCode\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\ic_launcher.png",
-        "source": "C:\\Users\\ACtheGreat\\Documents\\Github\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\bundles\\default\\res\\drawable-xxhdpi-v4\\ic_launcher.png"
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\Github\\LockdownPrograms\\FTC8564_2017_2018\\TeamCode\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\ic_launcher.png",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\Github\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\bundles\\default\\res\\drawable-xxhdpi-v4\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\TeamCode\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\ic_launcher.png",
-        "source": "C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\bundles\\default\\res\\drawable-xxhdpi-v4\\ic_launcher.png"
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\TeamCode\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\ic_launcher.png",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\bundles\\default\\res\\drawable-xxhdpi-v4\\ic_launcher.png"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/res/merged/debug/drawable-xxhdpi-v4/ic_launcher.png",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/bundles/default/res/drawable-xxhdpi-v4/ic_launcher.png"
     }
 ]
