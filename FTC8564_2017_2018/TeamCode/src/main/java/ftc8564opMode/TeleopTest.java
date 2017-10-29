@@ -94,7 +94,7 @@ public class TeleopTest extends OpMode{
     @Override
     public void start() {
 
-        clampleft.setPosition(20);
+        /*clampleft.setPosition(20);*/
         /*clampright.setPosition(75);*/
     }
 
@@ -198,28 +198,11 @@ public class TeleopTest extends OpMode{
             intakeleft.setPower(0.6);
             intakeright.setPower(1 * reverseFactor);
         }
-        else {
-            intakeleft.setPower(0);
-            intakeright.setPower(0 * reverseFactor);
-        }
-
-        /*
-        * Intake -> slant cube adjustment
-        * By using bumpers, the corresponded bumper side will go IN while the other side will go OUT
-        *
-        * Player 1 Control: Left bumper/Right Bumper: corresponding side rolls in while other goes
-        * reverse
-        */
-        if (gamepad1.left_bumper){
+        else if (gamepad1.left_bumper){
             intakeleft.setPower(1);
             intakeright.setPower(-1*reverseFactor);
         }
-        else {
-            intakeleft.setPower(0);
-            intakeright.setPower(0 * reverseFactor);
-        }
-
-        if (gamepad1.right_bumper){
+        else if (gamepad1.right_bumper){
             intakeleft.setPower(-1);
             intakeright.setPower(1 * reverseFactor);
         }
@@ -227,6 +210,18 @@ public class TeleopTest extends OpMode{
             intakeleft.setPower(0);
             intakeright.setPower(0 * reverseFactor);
         }
+        /*
+        *
+        * Intake -> slant cube adjustment
+        * By using bumpers, the corresponded bumper side will go IN while the other side will go OUT
+        *
+        * Player 1 Control: Left bumper/Right Bumper: corresponding side rolls in while other goes
+        * reverse
+        */
+        
+       
+        
+        
 
 
 
