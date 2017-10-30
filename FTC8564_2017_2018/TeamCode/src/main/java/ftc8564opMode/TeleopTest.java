@@ -83,11 +83,8 @@ public class TeleopTest extends OpMode{
     public void init_loop() {
         /*sets servo position */
         clampleft.setPosition(.9);
-        //.9 close
-        //.75
         clampright.setPosition(.15);
-        //.15 close
-        //.3
+
 
     }
 
@@ -179,11 +176,12 @@ public class TeleopTest extends OpMode{
             liftleft.setPower(0);
             liftright.setPower(0);
         }
-
+        //open clamps
         if (gamepad2.left_bumper){
             clampleft.setPosition(.9);
             clampright.setPosition(.15);
         }
+        //close clamps
         else if (gamepad2.right_bumper){
             clampleft.setPosition(.75);
             clampright.setPosition(.3);
