@@ -24,8 +24,10 @@
 package ftc8564opMode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
@@ -47,9 +49,11 @@ import ftclib.FtcChoiceMenu;
 import ftclib.FtcMenu;
 
 @Autonomous(name="LockdownAutonomous", group="Autonomous")
+@Disabled
 public class AutonomousTest extends LinearOpMode implements FtcMenu.MenuButtons, DriveBase.AbortTrigger {
 
     Robot robot;
+    ColorSensor colorSensor;
     private ElapsedTime mClock = new ElapsedTime();
 
     public enum Alliance {
@@ -88,13 +92,26 @@ public class AutonomousTest extends LinearOpMode implements FtcMenu.MenuButtons,
 
     @Override
     public void runOpMode() throws InterruptedException {
-        robot = new Robot(this,true); // need this to run menu test
+        robot = new Robot(this,true);// need this to run menu test
+        colorSensor = hardwareMap.colorSensor.get("colorSensor");
         doMenus();
         waitForStart();
 
         // robot.driveBase.resetHeading();
 
         if (alliance == Alliance_Position.BLUE_RIGHT) {
+            //servo.setPostion(?)
+            if (colorSensor.red() < colorSensor.blue()) {
+                //crserveo.setPosition(0)
+            }
+            else {
+                //crservo.setPosition(1)
+            }
+            //servo.setPosition(?)
+
+
+
+
             ;
         } else if (alliance == Alliance_Position.BLUE_LEFT) {
             ;

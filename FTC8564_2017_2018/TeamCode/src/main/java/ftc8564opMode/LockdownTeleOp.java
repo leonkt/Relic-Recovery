@@ -23,12 +23,14 @@
 
 package ftc8564opMode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import ftc8564lib.Robot;
 
 @TeleOp(name="LockdownTeleOp", group="TeleOp")
+@Disabled
 public class LockdownTeleOp extends LinearOpMode {
 
     private Robot robot;
