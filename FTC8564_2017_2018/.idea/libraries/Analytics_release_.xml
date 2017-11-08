@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Analytics-release-">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.android/build-cache/f4144131363bd6aac4cc4ffeac1ba82c05a03049/output/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.android/build-cache/f4144131363bd6aac4cc4ffeac1ba82c05a03049/output/res" />
+      <root url="file://$USER_HOME$/.android/build-cache/66773aa425f70f694a936b3e3dd4cb63b3ce0ed6/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/66773aa425f70f694a936b3e3dd4cb63b3ce0ed6/output/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

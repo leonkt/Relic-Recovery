@@ -35,11 +35,24 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
-import ftclib.FtcAnalogGyro;
+//import ftclib.FtcAnalogGyro;
 import hallib.HalDashboard;
 import hallib.HalUtil;
-
+/** Lockdown Drive Base Framework.
+ * (c) Copyright CA Works. All Rights Reserved.
+ * For First Tech Challenge 2017-2018 Relic Recovery
+ *
+ * Codes imported from last year's library.
+ * Main programmer: Margaret
+ * Code Advisor: C.A.
+ * Coach: Mr. Lee
+ *
+ * In honor of mr. Aaron Lee, a formal member of team Lockdown.
+ *
+ **/
 public class DriveBase implements PIDControl.PidInput {
+
+// Variable Declaration Section --------------------------------------------------------------------
 
     private LinearOpMode opMode;
     private PIDControl pidControl, pidControlTurn;
@@ -64,8 +77,14 @@ public class DriveBase implements PIDControl.PidInput {
     {
         boolean shouldAbort();
     }
+    //--------------------------------------------------------------------------------------------
+
+//Self Declaration: ---------------------------------------------------------------------------
 
     public DriveBase(LinearOpMode opMode, boolean auto) throws InterruptedException {
+
+        //Variable Declaration section --------------------------------------------------------
+
         this.opMode = opMode;
         rightMotor = opMode.hardwareMap.dcMotor.get("right");
         rightMotor.setDirection(DcMotor.Direction.REVERSE);
@@ -80,6 +99,9 @@ public class DriveBase implements PIDControl.PidInput {
         mRunTime = new ElapsedTime();
         mRunTime.reset();
         dashboard = Robot.getDashboard();
+        //---------------------------------------------------------------------------------------
+
+        //auto Gyro Calibration every init (not required)
         /*if(auto)
         {
             //gyro.calibrate();
@@ -90,21 +112,37 @@ public class DriveBase implements PIDControl.PidInput {
             }
             dashboard.displayPrintf(1, "Gyro : Done Calibrating");
         } */
+
+        //Extended: variable Declaration -------------------------------------------------------
         //Sets up PID Drive: kP, kI, kD, kF, Tolerance, Settling Time
         pidControl = new PIDControl(0.03,0,0,0,0.5,0.2,this);
         pidControlTurn = new PIDControl(0.02,0,0,0,0.5,0.2,this);
         pidControlTurn.setAbsoluteSetPoint(true);
         dashboard.clearDisplay();
+        //--------------------------------------------------------------------------------------
     }
 
-    //Input distance in inches and power with decimal to hundredth place
+
+    /**
+     * void: drivePID(dist, "slow"(T/F), AbortTrigger (object) )
+     *
+     * This is a command block that gets called when driving.
+     *
+     * PID implemented -> see PIDControl for details of how PID works.
+     *
+     * Assuming this is running in a loop
+     */
+    //Tip: Input distance in inches and power with decimal to hundredth place
     public void drivePID(double distance, boolean slow, AbortTrigger abortTrigger) throws InterruptedException {
+        //Slow Mode check-----------------------------------------------------------------------
         if(slow)
         {
             pidControl.setOutputRange(-0.5, 0.5);
         } else {
             pidControl.setOutputRange(-0.8,0.8);
         }
+
+        //Distance Check. Checked every tick.
         if (Math.abs(distance) <= 5)
         {
             pidControl.setPID(0.081,0,0,0);
@@ -116,20 +154,33 @@ public class DriveBase implements PIDControl.PidInput {
         {
             pidControl.setPID(0.0345,0,0.0005,0);
         }
-        pidControl.setTarget(distance);
-        pidControlTurn.setTarget(degrees);
-        stallStartTime = HalUtil.getCurrentTime();
+        //-------------------------------------------------------------------------
+
+        pidControl.setTarget(distance);//ref drivePID (dist, T/F slow, AbortTrigger)
+        pidControlTurn.setTarget(degrees);//WARNING: Must be defined if needed. Not provided.
+        stallStartTime = HalUtil.getCurrentTime();//using HalUtil time.
+
+        //While loop -----------------------------------------------------------------------------
+        //while: pidControl is not on target or pidControlTurn is not on target, and OpMode is active
         while ((!pidControl.isOnTarget() || !pidControlTurn.isOnTarget()) && opMode.opModeIsActive()) {
+
+            //safety: abort when needed. Please uncomment when in actual competition.
+
             /*if(abortTrigger != null && abortTrigger.shouldAbort())
             {
                 break;
             }*/
+
+            //Variable Definition and Assignment -----------------------------------------------
             int currLeftPos = leftMotor.getCurrentPosition();//this is an encoder output
             int currRightPos = rightMotor.getCurrentPosition();//another encoder output
+            //-----------------------------------------------------------------------------------
             double drivePower = pidControl.getPowerOutput();//technically a curve, treat as variable (0-1)
             double turnPower = pidControlTurn.getPowerOutput();//same here (-1 - 1) (1 means left)(-1 means right)
+            //----------------------------------------------------------------------------
             leftMotor.setPower(drivePower + turnPower);
             rightMotor.setPower(drivePower - turnPower);
+            //--------------------------------------------------------------------------------
             double currTime = HalUtil.getCurrentTime();
             if (currLeftPos != prevLeftPos || currRightPos != prevRightPos)
             {
@@ -142,47 +193,81 @@ public class DriveBase implements PIDControl.PidInput {
                 // The motors are stalled for more than 0.15 seconds.
                 break;
             }
+            //---------------------------------------------------------------------------
             pidControlTurn.displayPidInfo(0);
             opMode.idle();
         }
+        //------------------------------------------------------------------------------------
+        //When it is done, or aborted, or anything, it will auto reset motors to 0
         leftMotor.setPower(0);
         rightMotor.setPower(0);
         resetPIDDrive();
     }
+//---------------------------------------------------------------------------------------------
 
+    /**
+     * Void: spinPID (deg)
+     * Uses PIDControlTurn and the IMU module (gyro sensor)
+     *
+     * Using orientation (first angle, second angle, third angle
+     *
+     * Spin the robot to a certain degree, instead of making it going forward or curve
+     *
+     * Gyro: first angle is Z (heading) second angle is Y (pitch) third angle is X (roll)
+     * Imagining flying an airplane, heading is if ur going N/S, Pitch is if ur going up/down,
+     * Roll would be how tilted you are.
+     *
+     * */
     public void spinPID(double degrees) throws InterruptedException {
+        //calling in the angle measurements from the gyro
+        //usage: angles.firstAngle......etc
         angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+
+        //lowering output range for 10 degs angles. so that it turns more accurately.
         if(Math.abs(degrees) < 10.0)
         {
             pidControlTurn.setOutputRange(-0.45,0.45);
         } else {
             pidControlTurn.setOutputRange(-0.65,0.65);
         }
+        //------------------------------------------------------------------------------------
+        //calling in the degrees for spinning
         this.degrees = degrees;
-        if(Math.abs(degrees - angles.firstAngle) < 10.0)
+        if(Math.abs(degrees - angles.firstAngle) < 10.0)      //<10 deg PID dial
         {
             pidControlTurn.setPID(0.05,0,0.0005,0);
-        } else if(Math.abs(degrees - angles.firstAngle) < 20.0)
+        } else if(Math.abs(degrees - angles.firstAngle) < 20.0)//<20deg PID dial
         {
             pidControlTurn.setPID(0.03,0,0.002,0);
-        } else if(Math.abs(degrees - angles.firstAngle) < 45.0)
+        } else if(Math.abs(degrees - angles.firstAngle) < 45.0)//<40deg PID dial
         {
             pidControlTurn.setPID(0.022,0,0.0011,0);
-        } else if(Math.abs(degrees - angles.firstAngle) < 90.0)
+        } else if(Math.abs(degrees - angles.firstAngle) < 90.0)//<90deg PID dial
         {
             pidControlTurn.setPID(0.023,0,0.0005,0);
-        } else {
+        } else {                                       //More than 90deg PID dial
             pidControlTurn.setPID(0.023,0,0,0);
         }
-        pidControlTurn.setTarget(degrees);
-        stallStartTime = HalUtil.getCurrentTime();
+        //-----------------------------------------------------------------------------------
+        pidControlTurn.setTarget(degrees);//sets target degrees.
+        stallStartTime = HalUtil.getCurrentTime();//check time
+        //----------------------------------------------------------------------------------
+        //While: pidControlTurn not on target and OpMode is Active
         while (!pidControlTurn.isOnTarget() && opMode.opModeIsActive()) {
+
+            //-----------------------------------------------------------------------------
+            //Encoder Position Check
             int currLeftPos = leftMotor.getCurrentPosition();
             int currRightPos = rightMotor.getCurrentPosition();
+            //Output Check generated from PID (results)
             double outputPower = pidControlTurn.getPowerOutput();
+            //set Power
             leftMotor.setPower(outputPower);
             rightMotor.setPower(-outputPower);
-            double currTime = HalUtil.getCurrentTime();
+            //------------------------------------------------------------------------------
+
+            //Stall Check--------------------------------------------------------------------
+            double currTime = HalUtil.getCurrentTime();//time check
             if (currLeftPos != prevLeftPos || currRightPos != prevRightPos)
             {
                 stallStartTime = currTime;
@@ -194,12 +279,15 @@ public class DriveBase implements PIDControl.PidInput {
                 // The motors are stalled for more than 0.2 seconds.
                 break;
             }
+            //---------------------------------------------------------------------------------
+
             pidControlTurn.displayPidInfo(0);
             opMode.idle();
         }
+        //sets it to 0 when done.
         leftMotor.setPower(0);
         rightMotor.setPower(0);
-        resetPIDDrive();
+        resetPIDDrive();//reset
     }
 
     /**
