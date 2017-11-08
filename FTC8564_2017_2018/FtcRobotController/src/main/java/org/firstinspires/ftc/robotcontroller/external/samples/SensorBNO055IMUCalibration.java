@@ -204,6 +204,7 @@ public class SensorBNO055IMUCalibration extends LinearOpMode
             .addData("heading", new Func<String>() {
                 @Override public String value() {
                     return formatAngle(angles.angleUnit, angles.firstAngle);
+
                     }
                 })
             .addData("roll", new Func<String>() {

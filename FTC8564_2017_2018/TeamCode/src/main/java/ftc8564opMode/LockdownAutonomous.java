@@ -43,6 +43,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefau
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import com.qualcomm.robotcore.hardware.Servo;
@@ -66,6 +67,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
     DcMotor motorRight;
     Servo clampleft;
     Servo clampright;
+    Servo colorServo;
 
     private ElapsedTime mClock = new ElapsedTime();
 
@@ -101,6 +103,8 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         clampleft = hardwareMap.servo.get("clampleft");
         //right clamp servo
         clampright = hardwareMap.servo.get("clampright");
+
+        colorServo = hardwareMap.servo.get("colorServo");
         // New instance of VuMarkIdentification object
         vuMarkDecode = new VuMarkIdentification();
 
@@ -109,8 +113,9 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
 
         double power = .5;
 
-        clampleft.setPosition(.75);
-        clampright.setPosition(.3);
+        clampleft.setPosition(.5);
+        clampright.setPosition(.4);
+        colorServo.setPosition(.7);
 
         switch (alliancePosition) {
             case BLUE_RIGHT:
@@ -135,10 +140,11 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
 
         waitForStart();
 
-        vuMarkDecode.init(hardwareMap); // calls activate method at end
-        vuMarkDecode.decodePictograph();
-        curVuMark = vuMarkDecode.getCryptoboxKey();
-        vuMarkDecode.fini(); // calls deactivate method on relicTrackables object
+       // vuMarkDecode.init(hardwareMap); // calls activate method at end
+        //vuMarkDecode.decodePictograph();
+        //curVuMark = vuMarkDecode.getCryptoboxKey();
+        //vuMarkDecode.fini(); // calls deactivate method on relicTrackables object
+        motorRight.setDirection(DcMotor.Direction.REVERSE);
 
         telemetry.addData("Detected:","%s",curVuMark);
         telemetry.update();
@@ -146,13 +152,13 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         // robot.driveBase.resetHeading();
 
         // Drop Jewel Arm
-        //servo.setPosition(?)
+        //colorServo.setPosition(.1);
 
         // Detect Color of Ball
         // Color sensor is facing fwd in direction of Robot
-        colorSensor.enableLed(true);
+        //colorSensor.enableLed(true);
 
-        if (alliance == Alliance.BLUE_ALLIANCE) {
+        /*if (alliance == Alliance.BLUE_ALLIANCE) {
             if(colorSensor.red() > colorSensor.blue()){
                 //crservo.setPosition(.3)
             }
@@ -170,15 +176,98 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
                 //crservo.setPosition(.3)
             }
         }
-        sleep(500);
+        sleep(500);*/
         //crservo.setPosition(.5)
-        //servo.setPosition(?)
+        //colorServo.setPosition(.7);
 
         switch (alliancePosition) {
             case BLUE_RIGHT:
                 //go forward
-                motorLeft.setPower(-power);
+                motorLeft.setPower(power);
                 motorRight.setPower(power);
+                if (curVuMark == RelicRecoveryVuMark.RIGHT) {
+                    sleep(1000);
+                }
+                else if (curVuMark == RelicRecoveryVuMark.CENTER){
+                    sleep(1500);
+                }
+                else {
+                    sleep(2000);
+                }
+                //turn left
+                motorRight.setPower(power);
+                motorLeft.setPower(-power);
+                sleep(2000);
+                //move forward
+                motorLeft.setPower(power);
+                motorRight.setPower(power);
+                sleep(500);
+                motorLeft.setPower(0);
+                motorRight.setPower(0);
+                //release block
+                clampleft.setPosition(1);
+                clampright.setPosition(0);
+                // Robot is facing left, Cryptobox is on left of robot
+                // Need to go forward and then spin 90 to face Cryptobox
+                break;
+            case BLUE_LEFT:
+                //go forward
+                motorLeft.setPower(power);
+                motorRight.setPower(power);
+                sleep(2000);
+                motorLeft.setPower(0);
+                motorRight.setPower(0);
+                //turn right
+                motorLeft.setPower(power);
+                motorRight.setPower(-power);
+                sleep(2000);
+                //go forward
+                motorRight.setPower(power);
+                motorLeft.setPower(power);
+                if (curVuMark == RelicRecoveryVuMark.LEFT) {
+                    sleep(500);
+                }
+                else if (curVuMark == RelicRecoveryVuMark.CENTER){
+                    sleep(1000);
+                }
+                else {
+                    sleep(1500);
+                }
+                //turn left
+                motorLeft.setPower(0);
+                motorRight.setPower(power);
+                sleep(2000);
+                //go forward
+                motorLeft.setPower(power);
+                motorRight.setPower(power);
+                sleep(500);
+                motorLeft.setPower(0);
+                motorRight.setPower(0);
+                clampleft.setPosition(1);
+                clampright.setPosition(0);
+
+                // Robot is facing left, Cryptobox is straight ahead of robot
+                // Need to go forward and then face Cryptobox
+                break;
+            case RED_RIGHT:
+                //go backward
+                motorRight.setPower(-power);
+                motorLeft.setPower(-power);
+                sleep(2000);
+                //turn right
+                motorRight.setPower(-power);
+                motorLeft.setPower(power);
+                sleep(2000);
+                //forward
+                motorLeft.setPower(power);
+                motorRight.setPower(power);
+                // Robot is facing left, Cryptobox is straight behind robot
+                // Need to go backward and then spin 180 to face Cryptobox
+                break;
+            case RED_LEFT:
+                //go backward
+                motorRight.setPower(-power);
+                motorLeft.setPower(-power);
                 if (curVuMark == RelicRecoveryVuMark.RIGHT) {
                     sleep(2000);
                 }
@@ -189,46 +278,9 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
                     sleep(3000);
                 }
                 //turn left
+                motorLeft.setPower(-power);
                 motorRight.setPower(power);
-                motorLeft.setPower(power);
                 sleep(2000);
-                //move forward
-                motorLeft.setPower(-power);
-                motorRight.setPower(power);
-                sleep(500);
-                //release block
-                clampleft.setPosition(.9);
-                clampright.setPosition(.15);
-                // Robot is facing left, Cryptobox is on left of robot
-                // Need to go forward and then spin 90 to face Cryptobox
-                break;
-            case BLUE_LEFT:
-                //go forward
-                motorLeft.setPower(-power);
-                motorRight.setPower(power);
-
-                // Robot is facing left, Cryptobox is straight ahead of robot
-                // Need to go forward and then face Cryptobox
-                break;
-            case RED_RIGHT:
-                //go backward
-                motorRight.setPower(-power);
-                motorLeft.setPower(power);
-                sleep(2000);
-                //turn 180
-                motorRight.setPower(power);
-                motorLeft.setPower(power);
-                sleep(4000);
-                // Robot is facing left, Cryptobox is straight behind robot
-                // Need to go backward and then spin 180 to face Cryptobox
-                break;
-            case RED_LEFT:
-                //go backward
-                motorRight.setPower(-power);
-                motorLeft.setPower(power);
-                //turn left
-                motorLeft.setPower(-power);
-                motorRight.setPower(power);
                 // Robot is facing left, Cryptobox is behind, on left of robot
                 // Need to go backward and then spin 90 to face Cryptobox
                 break;

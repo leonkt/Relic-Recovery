@@ -34,6 +34,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
@@ -51,15 +52,17 @@ import com.qualcomm.robotcore.util.Range;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name="Basic: Linear OpMode", group="Linear Opmode")
+@TeleOp(name="ServoTest", group="Linear Opmode")
 //@Disabled
 public class ServoTest extends LinearOpMode {
 
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
-    double position = -1;
+    double position = .4;
 
-    Servo colorServo;
+    Servo clampleft;
+    Servo clampright;
+    Servo stopper;
 
     @Override
     public void runOpMode() {
@@ -67,10 +70,13 @@ public class ServoTest extends LinearOpMode {
         telemetry.update();
 
         // get servos
-        colorServo = hardwareMap.servo.get("colorServo");
+        clampleft = hardwareMap.servo.get("clampleft");
+        clampright = hardwareMap.servo.get("clampright");
+        stopper = hardwareMap.servo.get("stopper");
+
 
         //set position to -1
-        colorServo.setPosition(position);
+        stopper.setPosition(.5);
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
@@ -79,21 +85,29 @@ public class ServoTest extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
 
+            stopper.setPosition(.58);
+            sleep(1000);
+            stopper.setPosition(.48);
+            sleep(1000);
+            stopper.setPosition(.5);
+
+
             //loop 20 times
-            for ( int i = 0;  i < 20; i++){
+            /*for ( int i = 0;  i < 5; i++){
 
                 //increase position by .1 every second
                 position = position + .1;
 
-                colorServo.setPosition(position);
+                stopper.setPosition(position);
 
                 telemetry.addData("Position: ", position);
                 telemetry.update();
 
 
-                sleep(1000);
+                sleep(3000);
 
             }
+            */
 
 
             // Show the elapsed game time and wheel power.

@@ -28,6 +28,12 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
+import com.qualcomm.hardware.bosch.BNO055IMU;
+
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
+import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 import ftclib.FtcAnalogGyro;
 import hallib.HalDashboard;
@@ -37,6 +43,7 @@ public class DriveBase implements PIDControl.PidInput {
 
     private LinearOpMode opMode;
     private PIDControl pidControl, pidControlTurn;
+    private Orientation angles;
 
     private final static double SCALE = (144.5/12556.5);    // INCHES_PER_COUNT
     private double degrees = 0.0;
@@ -47,7 +54,8 @@ public class DriveBase implements PIDControl.PidInput {
     private boolean slowSpeed;
 
     public DcMotor leftMotor, rightMotor;
-    private FtcAnalogGyro gyro;
+    //private FtcAnalogGyro gyro;
+    private BNO055IMU imu;
     private ModernRoboticsI2cGyro gyroSensor;
     private HalDashboard dashboard;
     private ElapsedTime mRunTime;
@@ -59,19 +67,20 @@ public class DriveBase implements PIDControl.PidInput {
 
     public DriveBase(LinearOpMode opMode, boolean auto) throws InterruptedException {
         this.opMode = opMode;
-        rightMotor = opMode.hardwareMap.dcMotor.get("rightMotor");
+        rightMotor = opMode.hardwareMap.dcMotor.get("right");
         rightMotor.setDirection(DcMotor.Direction.REVERSE);
-        leftMotor = opMode.hardwareMap.dcMotor.get("leftMotor");
+        leftMotor = opMode.hardwareMap.dcMotor.get("left");
+        imu = opMode.hardwareMap.get(BNO055IMU.class, "imu");
         leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         //gyro = new FtcAnalogGyro(opMode, "gyro1", 0.00067);
-        gyroSensor = (ModernRoboticsI2cGyro)opMode.hardwareMap.gyroSensor.get("gyro");
+        //gyroSensor = (ModernRoboticsI2cGyro)opMode.hardwareMap.gyroSensor.get("gyro");
         mRunTime = new ElapsedTime();
         mRunTime.reset();
         dashboard = Robot.getDashboard();
-        if(auto)
+        /*if(auto)
         {
             //gyro.calibrate();
             gyroSensor.calibrate();
@@ -80,7 +89,7 @@ public class DriveBase implements PIDControl.PidInput {
                 opMode.idle();
             }
             dashboard.displayPrintf(1, "Gyro : Done Calibrating");
-        }
+        } */
         //Sets up PID Drive: kP, kI, kD, kF, Tolerance, Settling Time
         pidControl = new PIDControl(0.03,0,0,0,0.5,0.2,this);
         pidControlTurn = new PIDControl(0.02,0,0,0,0.5,0.2,this);
@@ -111,14 +120,14 @@ public class DriveBase implements PIDControl.PidInput {
         pidControlTurn.setTarget(degrees);
         stallStartTime = HalUtil.getCurrentTime();
         while ((!pidControl.isOnTarget() || !pidControlTurn.isOnTarget()) && opMode.opModeIsActive()) {
-            if(abortTrigger != null && abortTrigger.shouldAbort())
+            /*if(abortTrigger != null && abortTrigger.shouldAbort())
             {
                 break;
-            }
-            int currLeftPos = leftMotor.getCurrentPosition();
-            int currRightPos = rightMotor.getCurrentPosition();
-            double drivePower = pidControl.getPowerOutput();
-            double turnPower = pidControlTurn.getPowerOutput();
+            }*/
+            int currLeftPos = leftMotor.getCurrentPosition();//this is an encoder output
+            int currRightPos = rightMotor.getCurrentPosition();//another encoder output
+            double drivePower = pidControl.getPowerOutput();//technically a curve, treat as variable (0-1)
+            double turnPower = pidControlTurn.getPowerOutput();//same here (-1 - 1) (1 means left)(-1 means right)
             leftMotor.setPower(drivePower + turnPower);
             rightMotor.setPower(drivePower - turnPower);
             double currTime = HalUtil.getCurrentTime();
@@ -142,6 +151,7 @@ public class DriveBase implements PIDControl.PidInput {
     }
 
     public void spinPID(double degrees) throws InterruptedException {
+        angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
         if(Math.abs(degrees) < 10.0)
         {
             pidControlTurn.setOutputRange(-0.45,0.45);
@@ -149,16 +159,16 @@ public class DriveBase implements PIDControl.PidInput {
             pidControlTurn.setOutputRange(-0.65,0.65);
         }
         this.degrees = degrees;
-        if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 10.0)
+        if(Math.abs(degrees - angles.firstAngle) < 10.0)
         {
             pidControlTurn.setPID(0.05,0,0.0005,0);
-        } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 20.0)
+        } else if(Math.abs(degrees - angles.firstAngle) < 20.0)
         {
             pidControlTurn.setPID(0.03,0,0.002,0);
-        } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 45.0)
+        } else if(Math.abs(degrees - angles.firstAngle) < 45.0)
         {
             pidControlTurn.setPID(0.022,0,0.0011,0);
-        } else if(Math.abs(degrees - gyroSensor.getIntegratedZValue()) < 90.0)
+        } else if(Math.abs(degrees - angles.firstAngle) < 90.0)
         {
             pidControlTurn.setPID(0.023,0,0.0005,0);
         } else {
@@ -269,8 +279,9 @@ public class DriveBase implements PIDControl.PidInput {
 
         if(gyroAssist)
         {
+            angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
             double diffPower = (leftPower - rightPower)/2.0;
-            double assistPower = HalUtil.clipRange(gyroAssistKp*(diffPower - gyroRateScale*(gyroSensor.getIntegratedZValue()/(currTime-prevTime))));
+            double assistPower = HalUtil.clipRange(gyroAssistKp*(diffPower - gyroRateScale*(angles.firstAngle/(currTime-prevTime))));
             leftPower += assistPower;
             rightPower -= assistPower;
             double maxMag = Math.max(Math.abs(leftPower), Math.abs(rightPower));
@@ -362,8 +373,9 @@ public class DriveBase implements PIDControl.PidInput {
         }
         else if (pidCtrl == pidControlTurn)
         {
+            angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
             //input = gyro.getHeading();
-            input = gyroSensor.getIntegratedZValue();
+            input = angles.firstAngle;
         }
         return input;
     }

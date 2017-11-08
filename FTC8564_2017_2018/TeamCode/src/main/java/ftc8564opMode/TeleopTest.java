@@ -42,6 +42,8 @@ public class TeleopTest extends OpMode{
     /*intake motors*/
     DcMotor intakeleft;
     DcMotor intakeright;
+    /*stopper*/
+    Servo stopper;
     /*
     * Special values definition:
     * reverseFactor: multiplying with this to reverse the directon of the motor
@@ -51,6 +53,7 @@ public class TeleopTest extends OpMode{
     */
     private int reverseFactor = -1;
     private double threshold = 0.1;
+    private double slow = 1;
 
 
     @Override
@@ -70,7 +73,10 @@ public class TeleopTest extends OpMode{
         /*intake motors*/
         intakeleft = hardwareMap.dcMotor.get("intakeleft");
         intakeright = hardwareMap.dcMotor.get("intakeright");
-
+        /*stopper*/
+        stopper = hardwareMap.servo.get("stopper");
+        motorleft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        motorright.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
     }
 
@@ -82,8 +88,9 @@ public class TeleopTest extends OpMode{
     @Override
     public void init_loop() {
         /*sets servo position */
-        clampleft.setPosition(.9);
-        clampright.setPosition(.15);
+        //clampleft.setPosition(1);
+        //clampright.setPosition(0);
+        //stopper.setPosition(.5);
 
 
     }
@@ -97,6 +104,9 @@ public class TeleopTest extends OpMode{
 
         /*clampleft.setPosition(20);*/
         /*clampright.setPosition(75);*/
+        clampleft.setPosition(1);
+        clampright.setPosition(0);
+        stopper.setPosition(.5);
     }
 
     /*
@@ -145,18 +155,24 @@ public class TeleopTest extends OpMode{
         *
         */
         if (abs(gamepad1.left_stick_y) > threshold){
-            motorleft.setPower(gamepad1.left_stick_y *reverseFactor);
+            motorleft.setPower(gamepad1.left_stick_y *reverseFactor * slow);
         }
         else{
-                motorleft.setPower(0 );
+                motorleft.setPower(0);
         }
         if (abs(gamepad1.right_stick_y) > threshold){
-            motorright.setPower(gamepad1.right_stick_y );
+            motorright.setPower(gamepad1.right_stick_y * slow);
         }
         else {
             motorright.setPower(0);
         }
 
+        if (gamepad1.b){
+            slow = .5;
+        }
+        else if (gamepad1.a){
+            slow = 1;
+        }
 
         /* Lifting
         *  The lift is done by moving two motors simultaniously.
@@ -168,23 +184,30 @@ public class TeleopTest extends OpMode{
         * Player 2 controls: Right Joystick up/down -> lift up/down
         *
         */
-        if (abs(gamepad2.right_stick_y) > threshold){
+        if (gamepad2.dpad_down && ((abs(gamepad2.right_stick_y)) > threshold)){
             liftleft.setPower(gamepad2.right_stick_y * reverseFactor);
             liftright.setPower(gamepad2.right_stick_y);
         }
-        else{
+        else if ((abs(gamepad2.right_stick_y)) > threshold){
+            liftright.setPower((gamepad2.right_stick_y) * .75);
+        }
+        else if ((abs(gamepad2.left_stick_y)) > threshold){
+            liftleft.setPower((gamepad2.left_stick_y * reverseFactor) * .75);
+        }
+        else {
             liftleft.setPower(0);
             liftright.setPower(0);
         }
+        //down lft joystck down
         //open clamps
         if (gamepad2.left_bumper){
-            clampleft.setPosition(.9);
-            clampright.setPosition(.15);
+            clampleft.setPosition(1);
+            clampright.setPosition(0);
         }
         //close clamps
         else if (gamepad2.right_bumper){
-            clampleft.setPosition(.75);
-            clampright.setPosition(.3);
+            clampleft.setPosition(.5);
+            clampright.setPosition(.4);
         }
         /*
         * Intake - Intake portion.
@@ -197,28 +220,28 @@ public class TeleopTest extends OpMode{
         */
 
         if (abs(gamepad1.left_trigger) > 0.6 && abs(gamepad1.right_trigger) > 0.6){
-            intakeleft.setPower(1);
-            intakeright.setPower(1 * reverseFactor);
+            intakeleft.setPower(.8);
+            intakeright.setPower(.8 * reverseFactor);
         }
         //ejaculate
         else if (abs(gamepad1.left_trigger) > 0.6) {
-            intakeleft.setPower(1 * reverseFactor);
-            intakeright.setPower(0.6);
+            intakeleft.setPower(.8 * reverseFactor);
+            intakeright.setPower(0.8);
         }
         //swallow
         else if (abs(gamepad1.right_trigger) > 0.6) {
-            intakeleft.setPower(0.6);
-            intakeright.setPower(1 * reverseFactor);
+            intakeleft.setPower(0.8);
+            intakeright.setPower(.8 * reverseFactor);
         }
         //left out right in
         else if (gamepad1.left_bumper){
-            intakeleft.setPower(1 * reverseFactor);
-            intakeright.setPower(1 * reverseFactor);
+            intakeleft.setPower(.8 * reverseFactor);
+            intakeright.setPower(.8 * reverseFactor);
         }
         //left in right out
         else if (gamepad1.right_bumper){
-            intakeleft.setPower(1);
-            intakeright.setPower(1);
+            intakeleft.setPower(.8);
+            intakeright.setPower(.8);
         }
         else {
             intakeleft.setPower(0);
@@ -232,6 +255,17 @@ public class TeleopTest extends OpMode{
         * Player 1 Control: Left bumper/Right Bumper: corresponding side rolls in while other goes
         * reverse
         */
+
+        //stopper
+        if (gamepad2.dpad_right){
+            stopper.setPosition(.58);
+        }
+        else if (gamepad2.dpad_left){
+            stopper.setPosition(.48);
+        }
+        else {
+            stopper.setPosition(.5);
+        }
         
        
         

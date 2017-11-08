@@ -31,7 +31,7 @@ import ftc8564lib.DriveBase;
 import ftc8564lib.Robot;
 import hallib.HalUtil;
 
-@Autonomous(name="TestAutonomous", group="Autonomous")
+/*@Autonomous(name="TestAutonomous", group="Autonomous")
 @Disabled
 public class TestAutonomous extends LinearOpMode implements DriveBase.AbortTrigger {
 
@@ -127,7 +127,7 @@ public class TestAutonomous extends LinearOpMode implements DriveBase.AbortTrigg
         robot.driveBase.spinPID(-180);
         robot.driveBase.drivePID(30, false, null);*/
 
-        robot.driveBase.spinPID(-25);
+    /*    robot.driveBase.spinPID(-25);
 
         robot.shooter.resetMotors();
         robot.beaconPush.resetRacks();
@@ -141,3 +141,4 @@ public class TestAutonomous extends LinearOpMode implements DriveBase.AbortTrigg
     public boolean shouldAbort() { return robot.odsLeft.getRawLightDetected() >= 0.6 || robot.odsRight.getRawLightDetected() >= 0.6; }
 
 }
+*/
