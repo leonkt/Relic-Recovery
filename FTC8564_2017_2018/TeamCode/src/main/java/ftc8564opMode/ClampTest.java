@@ -4,6 +4,7 @@ package ftc8564opMode;
  * Created by ACtheGreat on 2017/10/27.
  */
 
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -15,7 +16,7 @@ import static java.lang.Math.abs;
 /*import com.qualcomm.robotcore.eventloop.opmode.Disabled;
  */
 
-@TeleOp(name = "ClampTest", group = "Debug")
+@TeleOp(name = "ClampTest", group = "LinearOpMode")
 /*@Disabled*/
 
 public class ClampTest extends OpMode{
@@ -67,8 +68,8 @@ public class ClampTest extends OpMode{
     @Override
     public void start() {
 
-        //clampleft.setPosition(-1);
-        clampright.setPosition(clamp);
+        clampleft.setPosition(.75);
+        clampright.setPosition(.25);
 
     }
 
@@ -77,15 +78,19 @@ public class ClampTest extends OpMode{
         runtime.reset();
 
         if (gamepad2.left_bumper){
-            //clampleft.setPosition(-1);
-            clamp = clamp + .1;
-            clampright.setPosition(clamp);
+            clampleft.setPosition(1);
+            clampright.setPosition(0);
         }
         //close clamps
-        /*else if (gamepad2.right_bumper){
-            clampleft.setPosition(-.5);
-            clampright.setPosition(-.5);
-        }*/
+        else if (gamepad2.right_bumper){
+            clampleft.setPosition(.75);
+            clampright.setPosition(.25);
+        }
+
+        if (gamepad2.right_trigger > .6){
+            clampleft.setPosition(.70);
+            clampright.setPosition(.30);
+        }
 
 
 
