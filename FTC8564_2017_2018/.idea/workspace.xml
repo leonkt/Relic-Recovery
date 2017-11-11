@@ -2,7 +2,430 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="484f57f6-5cde-4aaa-bf17-acd9cdd9ca98" name="Default" comment="">
+<<<<<<< HEAD
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+=======
+      <change type="DELETED" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/classes/debug/ftc8564opMode/sensorTest$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/incremental/packageDebug/zip-cache/icxLfl_0b5NesFWiTKUTr9lA4hg=" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/incremental/packageDebug/zip-cache/lVtIUWhwjx5p3hW+7JQQPN5vSgM=" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/pre-dexed/debug/Vuforia_05456a47aa654dc243c56f8c7a308490c40be339.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/pre-dexed/debug/classes_300895e27a88f7a9f0a72bd62a8bb8940abad1da.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/pre-dexed/debug/classes_39ef41c2facb98bcd2640204f93dcdf058fad499.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/pre-dexed/debug/classes_39ef4ed66d73d3dae35a7067d7c345a2d909ee03.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/pre-dexed/debug/classes_4c12b9d58baf2bc78a467bbdd27a233739d7c309.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/pre-dexed/debug/classes_67221df666d54f243df6216262a8824126fc8831.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/pre-dexed/debug/classes_a0948c3182b8e1484dc396a53d8ed11e6ccc2680.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/pre-dexed/debug/classes_b192f22bc563d6075fc0ad44ab268e125ec4d555.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/pre-dexed/debug/classes_e6b74b0e5f9356f6c646b6f0237fcfcde472bd76.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/pre-dexed/debug/debug_31ccd10773e7489a30a2f7b1f6f8dc58957d9955.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/pre-dexed/debug/gson-2.8.0_453c22802ea8e27ccf0023345fee721a4b75d410.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/pre-dexed/debug/gson-extras-0.2.1_254a1a03a31ed42592c464fe9aa9fd24c8849dd6.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/pre-dexed/debug/javac_fa59fcd7ff0bd120d2c9274a20921c0f69a049ba.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/pre-dexed/debug/support-annotations-23.4.0_e2c6f051025dc11161559d40d5b44e0414a75ac6.jar" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.5/fileContent/annotation-processors.bin" afterPath="$PROJECT_DIR$/.gradle/3.5/fileContent/annotation-processors.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.5/fileContent/fileContent.lock" afterPath="$PROJECT_DIR$/.gradle/3.5/fileContent/fileContent.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.5/javaCompile/classAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/3.5/javaCompile/classAnalysis.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.5/javaCompile/jarAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/3.5/javaCompile/jarAnalysis.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.5/javaCompile/javaCompile.lock" afterPath="$PROJECT_DIR$/.gradle/3.5/javaCompile/javaCompile.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.5/javaCompile/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/3.5/javaCompile/taskHistory.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.5/javaCompile/taskJars.bin" afterPath="$PROJECT_DIR$/.gradle/3.5/javaCompile/taskJars.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.5/taskHistory/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/3.5/taskHistory/fileHashes.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.5/taskHistory/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.5/taskHistory/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.5/taskHistory/jvmClassSignatures.bin" afterPath="$PROJECT_DIR$/.gradle/3.5/taskHistory/jvmClassSignatures.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.5/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/3.5/taskHistory/taskHistory.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.5/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/3.5/taskHistory/taskHistory.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/bundles/default/classes.jar" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/bundles/default/classes.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/classes/release/org/firstinspires/ftc/robotcontroller/external/samples/SensorBNO055IMUCalibration$4.class" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/classes/release/org/firstinspires/ftc/robotcontroller/external/samples/SensorBNO055IMUCalibration$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/classes/release/org/firstinspires/ftc/robotcontroller/external/samples/SensorBNO055IMUCalibration$5.class" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/classes/release/org/firstinspires/ftc/robotcontroller/external/samples/SensorBNO055IMUCalibration$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/classes/release/org/firstinspires/ftc/robotcontroller/external/samples/SensorBNO055IMUCalibration.class" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/classes/release/org/firstinspires/ftc/robotcontroller/external/samples/SensorBNO055IMUCalibration.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/outputs/aar/FtcRobotController-release.aar" afterPath="$PROJECT_DIR$/FtcRobotController/build/outputs/aar/FtcRobotController-release.aar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/classes/debug/ftc8564lib/DriveBase.class" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/classes/debug/ftc8564lib/DriveBase.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/classes/debug/ftc8564opMode/JewelTest.class" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/classes/debug/ftc8564opMode/JewelTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/classes/debug/ftc8564opMode/PIDTuning.class" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/classes/debug/ftc8564opMode/PIDTuning.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/classes/debug/ftc8564opMode/sensorTest.class" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/classes/debug/ftc8564opMode/sensorTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/res/resources-debug.ap_" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/res/resources-debug.ap_" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/outputs/apk/TeamCode-debug.apk" afterPath="$PROJECT_DIR$/TeamCode/build/outputs/apk/TeamCode-debug.apk" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/generated/source/buildConfig/release/com/qualcomm/ftcrobotcontroller/BuildConfig.java" afterPath="$PROJECT_DIR$/FtcRobotController/build/generated/source/buildConfig/release/com/qualcomm/ftcrobotcontroller/BuildConfig.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/blame/res/release/multi/values-sw720dp-land-v13.json" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/blame/res/release/multi/values-sw720dp-land-v13.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/blame/res/release/multi/values-v11.json" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/blame/res/release/multi/values-v11.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/blame/res/release/multi/values-v14.json" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/blame/res/release/multi/values-v14.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/blame/res/release/multi/values-w820dp-v13.json" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/blame/res/release/multi/values-w820dp-v13.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/blame/res/release/multi/values.json" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/blame/res/release/multi/values.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/blame/res/release/single/drawable-hdpi-v4.json" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/blame/res/release/single/drawable-hdpi-v4.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/blame/res/release/single/drawable-mdpi-v4.json" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/blame/res/release/single/drawable-mdpi-v4.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/blame/res/release/single/drawable-xhdpi-v4.json" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/blame/res/release/single/drawable-xhdpi-v4.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/blame/res/release/single/drawable-xxhdpi-v4.json" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/blame/res/release/single/drawable-xxhdpi-v4.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/blame/res/release/single/drawable.json" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/blame/res/release/single/drawable.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/blame/res/release/single/layout.json" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/blame/res/release/single/layout.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/blame/res/release/single/menu.json" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/blame/res/release/single/menu.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/blame/res/release/single/raw.json" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/blame/res/release/single/raw.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/blame/res/release/single/xml.json" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/blame/res/release/single/xml.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/incremental/mergeReleaseJniLibFolders/merger.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/incremental/mergeReleaseJniLibFolders/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/incremental/mergeReleaseResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/incremental/mergeReleaseResources/compile-file-map.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-sw720dp-land-v13/values-sw720dp-land-v13.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-sw720dp-land-v13/values-sw720dp-land-v13.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-v11/values-v11.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-v11/values-v11.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-v14/values-v14.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-v14/values-v14.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-w820dp-v13/values-w820dp-v13.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-w820dp-v13/values-w820dp-v13.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/incremental/mergeReleaseResources/merged.dir/values/values.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/incremental/mergeReleaseResources/merged.dir/values/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/incremental/mergeReleaseResources/merger.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/incremental/mergeReleaseResources/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/drawable-hdpi-v4/button_shape.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/drawable-hdpi-v4/button_shape.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/drawable/black_border.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/drawable/black_border.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/drawable/button_shape.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/drawable/button_shape.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/drawable/feedback_shape_orange.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/drawable/feedback_shape_orange.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/activity_about.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/activity_about.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/activity_blocks.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/activity_blocks.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/activity_config_wifi_direct.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/activity_config_wifi_direct.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/activity_configure_from_template.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/activity_configure_from_template.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/activity_ftc_configuration.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/activity_ftc_configuration.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/activity_ftc_lynx_address_update.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/activity_ftc_lynx_address_update.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/activity_ftc_lynx_fw_update.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/activity_ftc_lynx_fw_update.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/activity_ftc_wifi_channel_selector.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/activity_ftc_wifi_channel_selector.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/activity_ftc_wifi_remembered_groups.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/activity_ftc_wifi_remembered_groups.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/activity_generic_settings.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/activity_generic_settings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/activity_inspection.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/activity_inspection.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/activity_load.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/activity_load.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/activity_program_and_manage.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/activity_program_and_manage.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/activity_programming_mode.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/activity_programming_mode.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/activity_swap_usb_devices.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/activity_swap_usb_devices.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/activity_view_logs.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/activity_view_logs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/analog_input_device.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/analog_input_device.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/analog_inputs.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/analog_inputs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/analog_output_device.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/analog_output_device.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/analog_outputs.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/analog_outputs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/banner_parent.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/banner_parent.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/button_list.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/button_list.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/color_list_preference_line_item.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/color_list_preference_line_item.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/device_interface_module.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/device_interface_module.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/digital_device.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/digital_device.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/digital_device_lynx.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/digital_device_lynx.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/digital_devices.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/digital_devices.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/feedback.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/feedback.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/file_info.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/file_info.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/gray_line.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/gray_line.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/header.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/header.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/i2c_device.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/i2c_device.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/i2cs.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/i2cs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/info_button.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/info_button.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/item_list_parent.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/item_list_parent.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/legacy.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/legacy.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/loading_indicator_overlay.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/loading_indicator_overlay.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/lynx_module.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/lynx_module.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/lynx_module_configure_address.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/lynx_module_configure_address.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/lynx_module_configure_address_spin_item.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/lynx_module_configure_address_spin_item.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/lynx_usb_device.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/lynx_usb_device.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/matrices.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/matrices.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/matrix_devices.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/matrix_devices.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/motor.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/motor.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/motor_controller_banner.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/motor_controller_banner.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/motor_list.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/motor_list.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/port_attached_row.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/port_attached_row.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/pwm_device.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/pwm_device.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/pwms.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/pwms.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/red_line.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/red_line.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/servo.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/servo.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/servo_controller_banner.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/servo_controller_banner.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/servo_list.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/servo_list.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/simple_device.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/simple_device.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/template_info.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/layout/template_info.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/menu/main_menu.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/menu/main_menu.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/menu/menu_server.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/menu/menu_server.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/raw/color_fragment_shader.glsl" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/raw/color_fragment_shader.glsl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/raw/cube_mesh_fragment_shader.glsl" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/raw/cube_mesh_fragment_shader.glsl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/raw/cube_mesh_vertex_shader.glsl" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/raw/cube_mesh_vertex_shader.glsl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/raw/simple_vertex_shader.glsl" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/raw/simple_vertex_shader.glsl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/raw/texture_fragment_shader.glsl" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/raw/texture_fragment_shader.glsl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/raw/texture_vertex_shader.glsl" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/raw/texture_vertex_shader.glsl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/values-sw720dp-land-v13/values-sw720dp-land-v13.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/values-sw720dp-land-v13/values-sw720dp-land-v13.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/values-v11/values-v11.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/values-v11/values-v11.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/values-v14/values-v14.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/values-v14/values-v14.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/values-w820dp-v13/values-w820dp-v13.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/values-w820dp-v13/values-w820dp-v13.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/values/values.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/values/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/xml/advanced_rc_settings.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/xml/advanced_rc_settings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/xml/k9legacybot.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/xml/k9legacybot.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/xml/k9usbbot.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/xml/k9usbbot.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/xml/maxmodules.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/xml/maxmodules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/xml/pushbot.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/xml/pushbot.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/xml/pushbotsens.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/xml/pushbotsens.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/xml/rev_scoot.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/xml/rev_scoot.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/xml/squarebot.xml" afterPath="$PROJECT_DIR$/FtcRobotController/build/intermediates/res/merged/release/xml/squarebot.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/Buildings.txt" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/Buildings.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/CzechWolf" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/CzechWolf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/FtcBlocks.html" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/FtcBlocks.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/FtcBlocksProjects.html" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/FtcBlocksProjects.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/FtcSounds.html" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/FtcSounds.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/RobotConfig.xsd" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/RobotConfig.xsd" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/RobotConfigDescriptionGenerate.xslt" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/RobotConfigDescriptionGenerate.xslt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/RobotConfigTaxonomy.xml" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/RobotConfigTaxonomy.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/RobotConfigTaxonomy.xsd" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/RobotConfigTaxonomy.xsd" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blockly/LICENSE" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blockly/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blockly/blockly_compressed.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blockly/blockly_compressed.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blockly/blocks_compressed.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blockly/blocks_compressed.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blockly/javascript_compressed.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blockly/javascript_compressed.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blockly/media/sprites.svg" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blockly/media/sprites.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blockly/msg/messages.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blockly/msg/messages.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/acceleration.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/acceleration.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/acceleration_sensor.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/acceleration_sensor.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/analog_input.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/analog_input.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/analog_output.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/analog_output.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/android_accelerometer.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/android_accelerometer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/android_gyroscope.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/android_gyroscope.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/android_orientation.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/android_orientation.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/android_sound_pool.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/android_sound_pool.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/android_text_to_speech.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/android_text_to_speech.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/angular_velocity.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/angular_velocity.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/bno055imu.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/bno055imu.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/bno055imu_parameters.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/bno055imu_parameters.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/clipboard_util.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/clipboard_util.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/color.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/color.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/color_sensor.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/color_sensor.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/compass_sensor.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/compass_sensor.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/cr_servo.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/cr_servo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/dbg_log.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/dbg_log.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/dc_motor.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/dc_motor.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/digital_channel.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/digital_channel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/elapsed_time.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/elapsed_time.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/elapsed_time2.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/elapsed_time2.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/gamepad.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/gamepad.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/gyro_sensor.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/gyro_sensor.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/hardware_util.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/hardware_util.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/ir_seeker_sensor.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/ir_seeker_sensor.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/led.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/led.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/light_sensor.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/light_sensor.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/linear_op_mode.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/linear_op_mode.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/lynx_i2c_color_range_sensor.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/lynx_i2c_color_range_sensor.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/magnetic_flux.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/magnetic_flux.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/matrix_f.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/matrix_f.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/misc.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/misc.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/mr_i2c_compass_sensor.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/mr_i2c_compass_sensor.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/mr_i2c_range_sensor.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/mr_i2c_range_sensor.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/navigation.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/navigation.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/open_gl_matrix.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/open_gl_matrix.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/optical_distance_sensor.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/optical_distance_sensor.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/orientation.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/orientation.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/position.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/position.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/project_util.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/project_util.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/quaternion.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/quaternion.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/range.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/range.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/samples/BasicPOVDrive.blk" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/samples/BasicPOVDrive.blk" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/samples/BasicTankDrive.blk" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/samples/BasicTankDrive.blk" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/samples/ConceptDeviceInteraction.blk" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/samples/ConceptDeviceInteraction.blk" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/samples/ConceptSmoothServo.blk" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/samples/ConceptSmoothServo.blk" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/samples/ConceptTextToSpeech.blk" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/samples/ConceptTextToSpeech.blk" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/samples/ConceptVuMarkDetection.blk" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/samples/ConceptVuMarkDetection.blk" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/samples/SensorDigitalTouch.blk" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/samples/SensorDigitalTouch.blk" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/samples/SensorIMU.blk" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/samples/SensorIMU.blk" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/samples/SensorREVColorDistance.blk" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/samples/SensorREVColorDistance.blk" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/samples/default.blk" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/samples/default.blk" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/servo.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/servo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/servo_controller.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/servo_controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/sound_util.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/sound_util.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/system.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/system.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/telemetry.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/telemetry.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/temperature.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/temperature.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/toolbox_util.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/toolbox_util.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/touch_sensor.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/touch_sensor.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/ultrasonic_sensor.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/ultrasonic_sensor.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/vars.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/vars.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/vector_f.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/vector_f.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/velocity.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/velocity.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/voltage_sensor.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/voltage_sensor.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/vuforia.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/vuforia.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/vuforia_localizer.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/vuforia_localizer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/vuforia_localizer_parameters.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/vuforia_localizer_parameters.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/vuforia_trackable.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/vuforia_trackable.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/vuforia_trackable_default_listener.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/vuforia_trackable_default_listener.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/vuforia_trackables.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/blocks/vuforia_trackables.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/connection.html" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/connection.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/css/FtcBlocks.less" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/css/FtcBlocks.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/css/FtcBlocksProjects.less" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/css/FtcBlocksProjects.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/css/FtcSounds.less" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/css/FtcSounds.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/css/SourceCodePro.css" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/css/SourceCodePro.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/css/base.css" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/css/base.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/css/bootstrap-theme.css" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/css/bootstrap-theme.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/css/bootstrap-theme.min.css" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/css/bootstrap-theme.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/css/bootstrap.css" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/css/bootstrap.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/css/bootstrap.min.css" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/css/bootstrap.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/css/connection.less" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/css/connection.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/css/core.less" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/css/core.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/css/font-awesome.min.css" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/css/font-awesome.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/css/frame.less" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/css/frame.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/css/manage.less" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/css/manage.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/fonts/fontawesome-webfont.svg" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/fonts/fontawesome-webfont.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/fonts/glyphicons-halflings-regular.svg" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/fonts/glyphicons-halflings-regular.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/frame.html" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/frame.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/help.html" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/help.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/css/angular-resizable.css" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/css/angular-resizable.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/css/jquery.contextmenu.css" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/css/jquery.contextmenu.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/css/main.less" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/css/main.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/css/perfect-scrollbar.css" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/css/perfect-scrollbar.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/css/tether.css" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/css/tether.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/editor.html" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/editor.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/ace.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/ace.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/angular-messages.min.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/angular-messages.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/angular.min.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/angular.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/BufferedTokenStream.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/BufferedTokenStream.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/CharStreams.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/CharStreams.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/CommonTokenFactory.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/CommonTokenFactory.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/CommonTokenStream.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/CommonTokenStream.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/FileStream.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/FileStream.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/InputStream.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/InputStream.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/IntervalSet.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/IntervalSet.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/LL1Analyzer.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/LL1Analyzer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/Lexer.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/Lexer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/Parser.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/Parser.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/ParserRuleContext.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/ParserRuleContext.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/PredictionContext.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/PredictionContext.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/README.md" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/Recognizer.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/Recognizer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/RuleContext.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/RuleContext.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/Token.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/Token.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/Utils.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/Utils.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/atn/ATN.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/atn/ATN.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/atn/ATNConfig.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/atn/ATNConfig.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/atn/ATNConfigSet.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/atn/ATNConfigSet.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/atn/ATNDeserializationOptions.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/atn/ATNDeserializationOptions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/atn/ATNDeserializer.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/atn/ATNDeserializer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/atn/ATNSimulator.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/atn/ATNSimulator.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/atn/ATNState.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/atn/ATNState.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/atn/ATNType.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/atn/ATNType.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/atn/LexerATNSimulator.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/atn/LexerATNSimulator.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/atn/LexerAction.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/atn/LexerAction.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/atn/LexerActionExecutor.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/atn/LexerActionExecutor.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/atn/ParserATNSimulator.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/atn/ParserATNSimulator.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/atn/PredictionMode.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/atn/PredictionMode.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/atn/SemanticContext.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/atn/SemanticContext.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/atn/Transition.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/atn/Transition.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/atn/index.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/atn/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/dfa/DFA.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/dfa/DFA.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/dfa/DFASerializer.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/dfa/DFASerializer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/dfa/DFAState.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/dfa/DFAState.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/dfa/index.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/dfa/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/error/DiagnosticErrorListener.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/error/DiagnosticErrorListener.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/error/ErrorListener.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/error/ErrorListener.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/error/ErrorStrategy.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/error/ErrorStrategy.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/error/Errors.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/error/Errors.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/error/index.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/error/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/index.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/package.json" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/polyfills/codepointat.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/polyfills/codepointat.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/polyfills/fromcodepoint.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/polyfills/fromcodepoint.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/tree/Tree.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/tree/Tree.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/tree/Trees.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/tree/Trees.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/tree/index.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/antlr4/tree/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/app.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/es5-shim.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/es5-shim.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/es6-shim.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/es6-shim.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/ext-language_tools.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/ext-language_tools.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/ext-spellcheck.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/ext-spellcheck.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/ext-whitespace.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/ext-whitespace.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/flowtype.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/flowtype.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/ftclangtools.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/ftclangtools.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/java/JavaLexer.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/java/JavaLexer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/java/JavaListener.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/java/JavaListener.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/java/JavaParser.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/java/JavaParser.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/java/index.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/java/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/jquery.contextmenu.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/jquery.contextmenu.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/jquery.position.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/jquery.position.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/keybinding-emacs.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/keybinding-emacs.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/keybinding-vim.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/keybinding-vim.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/main.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/mode-java.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/mode-java.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/mode-markdown.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/mode-markdown.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/mode-text.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/mode-text.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/perfect-scrollbar.jquery.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/perfect-scrollbar.jquery.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/polyfills.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/polyfills.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/require.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/require.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/snippets/java.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/snippets/java.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/snippets/markdown.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/snippets/markdown.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/snippets/text.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/snippets/text.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/theme-chaos.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/theme-chaos.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/theme-chrome.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/theme-chrome.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/theme-github.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/theme-github.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/theme-monokai.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/theme-monokai.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/theme-solarized-dark.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/theme-solarized-dark.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/theme-solarized-light.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/theme-solarized-light.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/toe.min.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/toe.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/ui-ace.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/ui-ace.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/worker-base.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/worker-base.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/worker-java.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/worker-java.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/worker-javascript.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/js/worker-javascript.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/BasicOpMode_Iterative" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/BasicOpMode_Iterative" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/BasicOpMode_Linear" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/BasicOpMode_Linear" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/BlankIterativeOpMode" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/BlankIterativeOpMode" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/BlankLinearOpMode" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/BlankLinearOpMode" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/ConceptCompassCalibration" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/ConceptCompassCalibration" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/ConceptDIMAsIndicator" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/ConceptDIMAsIndicator" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/ConceptI2cAddressChange" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/ConceptI2cAddressChange" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/ConceptNullOp" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/ConceptNullOp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/ConceptRampMotorSpeed" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/ConceptRampMotorSpeed" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/ConceptRegisterOpModes" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/ConceptRegisterOpModes" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/ConceptScanServo" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/ConceptScanServo" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/ConceptTelemetry" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/ConceptTelemetry" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/ConceptVuMarkIdentification" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/ConceptVuMarkIdentification" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/ConceptVuforiaNavigation" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/ConceptVuforiaNavigation" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/HardwareK9bot" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/HardwareK9bot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/HardwarePushbot" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/HardwarePushbot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/HardwarePushbotMatrix" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/HardwarePushbotMatrix" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/K9botTeleopTank_Linear" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/K9botTeleopTank_Linear" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/PushbotAutoDriveByEncoder_Linear" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/PushbotAutoDriveByEncoder_Linear" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/PushbotAutoDriveByGyro_Linear" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/PushbotAutoDriveByGyro_Linear" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/PushbotAutoDriveByTime_Linear" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/PushbotAutoDriveByTime_Linear" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/PushbotAutoDriveToLine_Linear" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/PushbotAutoDriveToLine_Linear" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/PushbotTeleopPOV_Linear" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/PushbotTeleopPOV_Linear" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/PushbotTeleopTank_Iterative" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/PushbotTeleopTank_Iterative" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorAdafruitRGB" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorAdafruitRGB" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorBNO055IMU" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorBNO055IMU" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorBNO055IMUCalibration" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorBNO055IMUCalibration" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorColor" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorColor" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorDIO" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorDIO" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorDigitalTouch" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorDigitalTouch" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorHTColor" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorHTColor" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorHTGyro" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorHTGyro" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorKLNavxMicro" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorKLNavxMicro" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorLEGOLight" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorLEGOLight" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorLEGOTouch" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorLEGOTouch" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorMRColor" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorMRColor" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorMRCompass" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorMRCompass" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorMRGyro" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorMRGyro" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorMRIrSeeker" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorMRIrSeeker" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorMROpticalDistance" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorMROpticalDistance" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorMRRangeSensor" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorMRRangeSensor" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorREVColorDistance" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/SensorREVColorDistance" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/TemplateOpMode_Iterative" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/TemplateOpMode_Iterative" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/TemplateOpMode_Linear" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/java/templates/TemplateOpMode_Linear" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/js/URI.min.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/js/URI.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/js/bootstrap.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/js/bootstrap.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/js/bootstrap.min.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/js/bootstrap.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/js/jquery-3.1.1.min.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/js/jquery-3.1.1.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/js/less.min.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/js/less.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/js/npm.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/js/npm.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/js/util.js" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/js/util.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/manage.html" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/manage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/toolbox/android_accelerometer.xml" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/toolbox/android_accelerometer.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/toolbox/android_gyroscope.xml" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/toolbox/android_gyroscope.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/toolbox/android_orientation.xml" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/toolbox/android_orientation.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/toolbox/android_sound_pool.xml" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/toolbox/android_sound_pool.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/toolbox/android_text_to_speech.xml" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/toolbox/android_text_to_speech.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/toolbox/bno055imu_parameters.xml" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/toolbox/bno055imu_parameters.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/toolbox/color.xml" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/toolbox/color.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/toolbox/dbg_log.xml" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/toolbox/dbg_log.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/toolbox/elapsed_time.xml" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/toolbox/elapsed_time.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/toolbox/gamepad.xml" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/toolbox/gamepad.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/toolbox/images.css" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/toolbox/images.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/toolbox/linear_op_mode.xml" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/toolbox/linear_op_mode.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/toolbox/misc.xml" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/toolbox/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/toolbox/navigation.xml" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/toolbox/navigation.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/toolbox/range.xml" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/toolbox/range.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/toolbox/telemetry.xml" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/assets/debug/toolbox/telemetry.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/incremental/mergeDebugAssets/merger.xml" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/incremental/mergeDebugAssets/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/incremental/mergeDebugShaders/merger.xml" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/incremental/mergeDebugShaders/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/incremental/packageDebug/dex-renamer-state.txt" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/incremental/packageDebug/dex-renamer-state.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/build/intermediates/incremental/packageDebug/file-input-save-data.txt" afterPath="$PROJECT_DIR$/TeamCode/build/intermediates/incremental/packageDebug/file-input-save-data.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamCode/src/main/java/ftc8564opMode/JewelTest.java" afterPath="$PROJECT_DIR$/TeamCode/src/main/java/ftc8564opMode/JewelTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
+>>>>>>> 3016a7f848e16e9dc9dd62930eb0b2ff7127612e
     </list>
     <ignored path="FTC8564_2017_2018.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,6 +459,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< HEAD
       <file leaf-file-name="AutonomousTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TeamCode/src/main/java/ftc8564opMode/AutonomousTest.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -150,6 +574,13 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="15">
               <caret line="46" column="5" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
+=======
+      <file leaf-file-name="JewelTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/TeamCode/src/main/java/ftc8564opMode/JewelTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="755">
+              <caret line="100" column="13" selection-start-line="100" selection-start-column="13" selection-end-line="100" selection-end-column="13" />
+>>>>>>> 3016a7f848e16e9dc9dd62930eb0b2ff7127612e
               <folding>
                 <element signature="e#0#6730#0" expanded="true" />
                 <element signature="imports" expanded="true" />
@@ -2775,12 +3206,12 @@
         <option value="$PROJECT_DIR$/TeamCode/src/main/java/ftc8564lib/VuMarkIdentification.java" />
         <option value="$PROJECT_DIR$/TeamCode/src/main/java/ftc8564opMode/LockdownTeleOp.java" />
         <option value="$PROJECT_DIR$/TeamCode/src/main/java/ftc8564opMode/gyroTest.java" />
-        <option value="$PROJECT_DIR$/TeamCode/src/main/java/ftc8564opMode/JewelTest.java" />
         <option value="$PROJECT_DIR$/TeamCode/src/main/java/ftc8564opMode/ServoTest.java" />
         <option value="$PROJECT_DIR$/TeamCode/src/main/java/ftc8564opMode/TeleopTest.java" />
         <option value="$PROJECT_DIR$/FtcRobotController/src/main/java/org/firstinspires/ftc/robotcontroller/external/samples/SensorBNO055IMUCalibration.java" />
         <option value="$PROJECT_DIR$/TeamCode/src/main/java/ftc8564opMode/PIDTuning.java" />
         <option value="$PROJECT_DIR$/TeamCode/src/main/java/ftc8564lib/DriveBase.java" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/TeamCode/src/main/java/ftc8564lib/BeaconPush.java" />
         <option value="$PROJECT_DIR$/TeamCode/src/main/java/ftc8564opMode/TestAutonomous.java" />
         <option value="$PROJECT_DIR$/TeamCode/src/main/java/ftc8564lib/Shooter.java" />
@@ -2791,6 +3222,9 @@
         <option value="$PROJECT_DIR$/TeamCode/src/main/java/ftc8564lib/Robot.java" />
         <option value="$PROJECT_DIR$/TeamCode/src/main/java/ftc8564lib/Clamps.java" />
         <option value="$PROJECT_DIR$/TeamCode/src/main/java/ftc8564opMode/LockdownAutonomous.java" />
+=======
+        <option value="$PROJECT_DIR$/TeamCode/src/main/java/ftc8564opMode/JewelTest.java" />
+>>>>>>> 3016a7f848e16e9dc9dd62930eb0b2ff7127612e
       </list>
     </option>
   </component>
@@ -2851,9 +3285,19 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+<<<<<<< HEAD
               <option name="myItemId" value="FtcRobotController" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
+=======
+              <option name="myItemId" value="TeamCode" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+>>>>>>> 3016a7f848e16e9dc9dd62930eb0b2ff7127612e
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -2861,7 +3305,11 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+<<<<<<< HEAD
               <option name="myItemId" value="FtcRobotController" />
+=======
+              <option name="myItemId" value="TeamCode" />
+>>>>>>> 3016a7f848e16e9dc9dd62930eb0b2ff7127612e
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -2869,7 +3317,11 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+<<<<<<< HEAD
               <option name="myItemId" value="robotcontroller" />
+=======
+              <option name="myItemId" value="ftc8564opMode" />
+>>>>>>> 3016a7f848e16e9dc9dd62930eb0b2ff7127612e
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2883,7 +3335,11 @@
     <property name="settings.editor.selected.configurable" value="android.sdk-updates" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/VuMarkIdentification.java" />
+<<<<<<< HEAD
     <property name="device.picker.selection" value="3a2f15a" />
+=======
+    <property name="device.picker.selection" value="2a21509" />
+>>>>>>> 3016a7f848e16e9dc9dd62930eb0b2ff7127612e
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -3234,10 +3690,17 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998565" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20600858" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+=======
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20574887" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+>>>>>>> 3016a7f848e16e9dc9dd62930eb0b2ff7127612e
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -3349,6 +3812,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3517,6 +3981,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/FtcRobotController/src/main/java/org/firstinspires/ftc/robotcontroller/external/samples/BasicOpMode_Linear.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="206">
           <caret line="20" column="35" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="35" />
         </state>
@@ -3530,6 +3995,15 @@
         </state>
       </provider>
     </entry>
+=======
+        <state relative-caret-position="225">
+          <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TeamCode/src/main/java/ftc8564lib/VuMarkIdentification.java" />
+>>>>>>> 3016a7f848e16e9dc9dd62930eb0b2ff7127612e
     <entry file="file://$PROJECT_DIR$/TeamCode/src/main/java/ftc8564lib/PulleySystem.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
@@ -3556,6 +4030,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/FtcRobotController/src/main/java/org/firstinspires/ftc/robotcontroller/external/samples/ConceptVuforiaNavigation.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="-2835">
           <caret line="84" column="13" selection-start-line="84" selection-start-column="13" selection-end-line="84" selection-end-column="13" />
         </state>
@@ -3565,6 +4040,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-210">
           <caret line="73" column="49" selection-start-line="73" selection-start-column="49" selection-end-line="73" selection-end-column="49" />
+=======
+        <state relative-caret-position="105">
+          <caret line="43" column="13" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
+          <folding />
+>>>>>>> 3016a7f848e16e9dc9dd62930eb0b2ff7127612e
         </state>
       </provider>
     </entry>
@@ -3678,10 +4158,17 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/TeamCode/src/main/java/ftc8564opMode/TeleopTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1185">
           <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/TeamCode/src/main/java/ftc8564lib/DriveBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3914">
+          <caret line="227" column="9" selection-start-line="227" selection-start-column="9" selection-end-line="227" selection-end-column="9" />
+>>>>>>> 3016a7f848e16e9dc9dd62930eb0b2ff7127612e
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -3690,6 +4177,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TeamCode/src/main/java/ftc8564lib/DriveBase.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="600">
           <caret line="61" column="22" selection-start-line="61" selection-start-column="22" selection-end-line="61" selection-end-column="22" />
           <folding>
@@ -3702,12 +4190,25 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
           <caret line="29" column="21" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
+=======
+        <state relative-caret-position="19">
+          <caret line="237" column="48" selection-start-line="237" selection-start-column="48" selection-end-line="237" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TeamCode/src/main/java/ftc8564lib/Robot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="36" column="34" selection-start-line="36" selection-start-column="34" selection-end-line="36" selection-end-column="34" />
+>>>>>>> 3016a7f848e16e9dc9dd62930eb0b2ff7127612e
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/TeamCode/src/main/java/ftc8564opMode/LockdownAutonomous.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -3723,6 +4224,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="23" column="19" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
+=======
+    <entry file="file://$PROJECT_DIR$/TeamCode/src/main/java/ftc8564opMode/JewelTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="755">
+          <caret line="100" column="13" selection-start-line="100" selection-start-column="13" selection-end-line="100" selection-end-column="13" />
+>>>>>>> 3016a7f848e16e9dc9dd62930eb0b2ff7127612e
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
