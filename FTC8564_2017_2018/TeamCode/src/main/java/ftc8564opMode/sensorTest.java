@@ -2,15 +2,13 @@ package ftc8564opMode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import android.app.Activity;
+
 import android.graphics.Color;
-import android.view.View;
 
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cColorSensor;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.I2cAddr;
-import com.qualcomm.robotcore.hardware.I2cController;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
@@ -43,7 +41,7 @@ public class sensorTest extends OpMode{
     *
     *  These are only for outputting infos. Further development is required.
     */
-    ColorSensor colorSensor, colorSensor1;    // Hardware Device Object
+    ColorSensor colorSensor;  // Hardware Device Object
     I2cAddr newAddress = I2cAddr.create8bit(0x3e);
 
 
@@ -55,7 +53,7 @@ public class sensorTest extends OpMode{
 
     // get a reference to the RelativeLayout so we can change the background
     // color of the Robot Controller app to match the hue detected by the RGB sensor.
-    final View relativeLayout = ((Activity) hardwareMap.appContext).findViewById(com.qualcomm.ftcrobotcontroller.R.id.RelativeLayout);
+    //final View relativeLayout = ((Activity) hardwareMap.appContext).findViewById(com.qualcomm.ftcrobotcontroller.R.id.RelativeLayout);
 
     // bPrevState and bCurrState represent the previous and current state of the button.
     boolean bPrevState = false;
@@ -77,11 +75,11 @@ public class sensorTest extends OpMode{
         * To start up Vuforia, tell it the view that we wish to use for camera monitor (on the RC phone);
         * If no camera monitor is desired, use the parameterless constructor instead (commented out below).
         */
-    int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-    VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
+    int cameraMonitorViewId ;
+
 
     // OR...  Do Not Activate the Camera Monitor View, to save power
-    // VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
+     //VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
 
         /*
          * IMPORTANT: You need to obtain your own license key to use Vuforia. The string below with which
@@ -97,10 +95,16 @@ public class sensorTest extends OpMode{
          */
         VuforiaTrackables relicTrackables;
         VuforiaTrackable relicTemplate;
+    String format(OpenGLMatrix transformationMatrix) {
+        return (transformationMatrix != null) ? transformationMatrix.formatAsTransform() : "null";
+    }
 
 
     @Override
-    public void init() {
+    public void init(){}
+
+    @Override
+    public void init_loop() {
         // get a reference to our ColorSensor object.
         colorSensor = hardwareMap.colorSensor.get("colorSensor");
         //colorSensor1 = hardwareMap.colorSensor.get("colorSensor1");
@@ -113,7 +117,9 @@ public class sensorTest extends OpMode{
 
         //seperation line
 
-        parameters.vuforiaLicenseKey = "ATsODcD/////AAAAAVw2lR...d45oGpdljdOh5LuFB9nDNfckoxb8COxKSFX";
+        cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+        VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
+        parameters.vuforiaLicenseKey = "AUgbT0j/////AAAAGTj0axLoDUvmo1PWo4YoBxkeKIG99PQSTrgFoQVymuq7TMc3OGQozLZo6d+dLt0EiQwR87XKW4aXt/7BZr95khAoylxKP02Vh5PmZbp18YDa5g9gWiYUGUvHqLUbNgMKotFhGgE9noRvWbiP2RxgOCy+HoT39NaFXiLiH69cLGbCzpz1tzuvRPce/EVkWBBomcS2yC/hl1hTlBjvzTHN1lKMv59s9gYhC69DNODQeNg2JMOv3ggMlRDTjOpbNZUZAQkHfqS/2w0W8d0+krzVBD129juhL2r6u4mWVhXFq2FOZoUTezbkaFTxKCRadl3v5ot5aPmuEU4mSFtmrw15J6R9XtRAg/U8/I1k7zpRpVTg";
 
         /*
          * We also indicate which camera on the RC that we wish to use.
@@ -132,6 +138,7 @@ public class sensorTest extends OpMode{
         relicTrackables = this.vuforia.loadTrackablesFromAsset("RelicVuMark");
          relicTemplate = relicTrackables.get(0);
         relicTemplate.setName("relicVuMarkTemplate"); // can help in debugging; otherwise not necessary
+        relicTrackables.activate();
 
 
 
@@ -178,11 +185,13 @@ public class sensorTest extends OpMode{
         // change the background color to match the color detected by the RGB sensor.
         // pass a reference to the hue, saturation, and value array as an argument
         // to the HSVToColor method.
+        /*
         relativeLayout.post(new Runnable() {
             public void run() {
                 relativeLayout.setBackgroundColor(Color.HSVToColor(0xff, values));
             }
         });
+        */
 
         //seperation line
 
@@ -205,6 +214,7 @@ public class sensorTest extends OpMode{
                  * it is perhaps unlikely that you will actually need to act on this pose information, but
                  * we illustrate it nevertheless, for completeness. */
             OpenGLMatrix pose = ((VuforiaTrackableDefaultListener)relicTemplate.getListener()).getPose();
+
             telemetry.addData("Pose", format(pose));
 
                 /* We further illustrate how to decompose the pose into useful rotational and
