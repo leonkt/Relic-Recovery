@@ -5,8 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import android.graphics.Color;
 
-import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cColorSensor;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+
+
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.I2cAddr;
 
