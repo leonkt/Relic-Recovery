@@ -1,90 +1,134 @@
 [
     {
-        "merged": "C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\cube_mesh_fragment_shader.glsl",
-        "source": "C:\\Users\\margaretli\\.android\\build-cache\\5ea9fc7dc5cc21749e1655537373429222e9d341\\output\\res\\raw\\cube_mesh_fragment_shader.glsl"
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\texture_fragment_shader.glsl",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\5ea9fc7dc5cc21749e1655537373429222e9d341\\output\\res\\raw\\texture_fragment_shader.glsl"
     },
     {
-        "merged": "C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\texture_vertex_shader.glsl",
-        "source": "C:\\Users\\margaretli\\.android\\build-cache\\5ea9fc7dc5cc21749e1655537373429222e9d341\\output\\res\\raw\\texture_vertex_shader.glsl"
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\texture_vertex_shader.glsl",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\9e270d4adc7596f5bf4fd918c816977fd3466d9c\\output\\res\\raw\\texture_vertex_shader.glsl"
     },
     {
-        "merged": "C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\texture_fragment_shader.glsl",
-        "source": "C:\\Users\\ACtheGreat\\.android\\build-cache\\9e270d4adc7596f5bf4fd918c816977fd3466d9c\\output\\res\\raw\\texture_fragment_shader.glsl"
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\nxtstartupsound.wav",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\raw\\nxtstartupsound.wav"
     },
     {
-        "merged": "C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\errormessage.wav",
-        "source": "C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\raw\\errormessage.wav"
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\warningmessage.wav",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\raw\\warningmessage.wav"
     },
     {
-        "merged": "C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\texture_vertex_shader.glsl",
-        "source": "C:\\Users\\ACtheGreat\\.android\\build-cache\\9e270d4adc7596f5bf4fd918c816977fd3466d9c\\output\\res\\raw\\texture_vertex_shader.glsl"
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/raw/chimeconnect.wav",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/raw/chimeconnect.wav"
     },
     {
-        "merged": "C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\cube_mesh_vertex_shader.glsl",
-        "source": "C:\\Users\\margaretli\\.android\\build-cache\\5ea9fc7dc5cc21749e1655537373429222e9d341\\output\\res\\raw\\cube_mesh_vertex_shader.glsl"
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\chimeconnect.wav",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\raw\\chimeconnect.wav"
     },
     {
-        "merged": "C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\nxtstartupsound.wav",
-        "source": "C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\raw\\nxtstartupsound.wav"
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/raw/texture_vertex_shader.glsl",
+        "source": "/Users/margaretli/.android/build-cache/5ea9fc7dc5cc21749e1655537373429222e9d341/output/res/raw/texture_vertex_shader.glsl"
     },
     {
-        "merged": "C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\color_fragment_shader.glsl",
-        "source": "C:\\Users\\margaretli\\.android\\build-cache\\5ea9fc7dc5cc21749e1655537373429222e9d341\\output\\res\\raw\\color_fragment_shader.glsl"
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\cube_mesh_fragment_shader.glsl",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\9e270d4adc7596f5bf4fd918c816977fd3466d9c\\output\\res\\raw\\cube_mesh_fragment_shader.glsl"
     },
     {
-        "merged": "C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\errormessage.wav",
-        "source": "C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\raw\\errormessage.wav"
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/raw/warningmessage.wav",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/raw/warningmessage.wav"
     },
     {
-        "merged": "C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\simple_vertex_shader.glsl",
-        "source": "C:\\Users\\margaretli\\.android\\build-cache\\5ea9fc7dc5cc21749e1655537373429222e9d341\\output\\res\\raw\\simple_vertex_shader.glsl"
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\warningmessage.wav",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\raw\\warningmessage.wav"
     },
     {
-        "merged": "C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\cube_mesh_fragment_shader.glsl",
-        "source": "C:\\Users\\ACtheGreat\\.android\\build-cache\\9e270d4adc7596f5bf4fd918c816977fd3466d9c\\output\\res\\raw\\cube_mesh_fragment_shader.glsl"
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/raw/errormessage.wav",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/raw/errormessage.wav"
     },
     {
-        "merged": "C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\cube_mesh_vertex_shader.glsl",
-        "source": "C:\\Users\\ACtheGreat\\.android\\build-cache\\9e270d4adc7596f5bf4fd918c816977fd3466d9c\\output\\res\\raw\\cube_mesh_vertex_shader.glsl"
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/raw/nxtstartupsound.wav",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/raw/nxtstartupsound.wav"
     },
     {
-        "merged": "C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\texture_fragment_shader.glsl",
-        "source": "C:\\Users\\margaretli\\.android\\build-cache\\5ea9fc7dc5cc21749e1655537373429222e9d341\\output\\res\\raw\\texture_fragment_shader.glsl"
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\chimedisconnect.wav",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\raw\\chimedisconnect.wav"
     },
     {
-        "merged": "C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\chimedisconnect.wav",
-        "source": "C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\raw\\chimedisconnect.wav"
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\cube_mesh_vertex_shader.glsl",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\5ea9fc7dc5cc21749e1655537373429222e9d341\\output\\res\\raw\\cube_mesh_vertex_shader.glsl"
     },
     {
-        "merged": "C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\warningmessage.wav",
-        "source": "C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\raw\\warningmessage.wav"
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\simple_vertex_shader.glsl",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\9e270d4adc7596f5bf4fd918c816977fd3466d9c\\output\\res\\raw\\simple_vertex_shader.glsl"
     },
     {
-        "merged": "C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\warningmessage.wav",
-        "source": "C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\raw\\warningmessage.wav"
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\cube_mesh_fragment_shader.glsl",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\5ea9fc7dc5cc21749e1655537373429222e9d341\\output\\res\\raw\\cube_mesh_fragment_shader.glsl"
     },
     {
-        "merged": "C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\chimedisconnect.wav",
-        "source": "C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\raw\\chimedisconnect.wav"
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\texture_fragment_shader.glsl",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\9e270d4adc7596f5bf4fd918c816977fd3466d9c\\output\\res\\raw\\texture_fragment_shader.glsl"
     },
     {
-        "merged": "C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\nxtstartupsound.wav",
-        "source": "C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\raw\\nxtstartupsound.wav"
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\errormessage.wav",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\raw\\errormessage.wav"
     },
     {
-        "merged": "C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\color_fragment_shader.glsl",
-        "source": "C:\\Users\\ACtheGreat\\.android\\build-cache\\9e270d4adc7596f5bf4fd918c816977fd3466d9c\\output\\res\\raw\\color_fragment_shader.glsl"
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\chimedisconnect.wav",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\raw\\chimedisconnect.wav"
     },
     {
-        "merged": "C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\chimeconnect.wav",
-        "source": "C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\raw\\chimeconnect.wav"
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/raw/cube_mesh_vertex_shader.glsl",
+        "source": "/Users/margaretli/.android/build-cache/5ea9fc7dc5cc21749e1655537373429222e9d341/output/res/raw/cube_mesh_vertex_shader.glsl"
     },
     {
-        "merged": "C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\chimeconnect.wav",
-        "source": "C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\raw\\chimeconnect.wav"
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\errormessage.wav",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\raw\\errormessage.wav"
     },
     {
-        "merged": "C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\simple_vertex_shader.glsl",
-        "source": "C:\\Users\\ACtheGreat\\.android\\build-cache\\9e270d4adc7596f5bf4fd918c816977fd3466d9c\\output\\res\\raw\\simple_vertex_shader.glsl"
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/raw/cube_mesh_fragment_shader.glsl",
+        "source": "/Users/margaretli/.android/build-cache/5ea9fc7dc5cc21749e1655537373429222e9d341/output/res/raw/cube_mesh_fragment_shader.glsl"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\simple_vertex_shader.glsl",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\5ea9fc7dc5cc21749e1655537373429222e9d341\\output\\res\\raw\\simple_vertex_shader.glsl"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\color_fragment_shader.glsl",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\5ea9fc7dc5cc21749e1655537373429222e9d341\\output\\res\\raw\\color_fragment_shader.glsl"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\cube_mesh_vertex_shader.glsl",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\9e270d4adc7596f5bf4fd918c816977fd3466d9c\\output\\res\\raw\\cube_mesh_vertex_shader.glsl"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/raw/texture_fragment_shader.glsl",
+        "source": "/Users/margaretli/.android/build-cache/5ea9fc7dc5cc21749e1655537373429222e9d341/output/res/raw/texture_fragment_shader.glsl"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/raw/simple_vertex_shader.glsl",
+        "source": "/Users/margaretli/.android/build-cache/5ea9fc7dc5cc21749e1655537373429222e9d341/output/res/raw/simple_vertex_shader.glsl"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/raw/chimedisconnect.wav",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/raw/chimedisconnect.wav"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\color_fragment_shader.glsl",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\9e270d4adc7596f5bf4fd918c816977fd3466d9c\\output\\res\\raw\\color_fragment_shader.glsl"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\chimeconnect.wav",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\raw\\chimeconnect.wav"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/raw/color_fragment_shader.glsl",
+        "source": "/Users/margaretli/.android/build-cache/5ea9fc7dc5cc21749e1655537373429222e9d341/output/res/raw/color_fragment_shader.glsl"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\texture_vertex_shader.glsl",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\5ea9fc7dc5cc21749e1655537373429222e9d341\\output\\res\\raw\\texture_vertex_shader.glsl"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\raw\\nxtstartupsound.wav",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\raw\\nxtstartupsound.wav"
     }
 ]

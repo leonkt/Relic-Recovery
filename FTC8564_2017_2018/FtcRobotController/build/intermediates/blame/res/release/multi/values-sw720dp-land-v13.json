@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-sw720dp-land-v13\\values-sw720dp-land-v13.xml",
+        "outputFile": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-sw720dp-land-v13\\values-sw720dp-land-v13.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 109
                 },
                 "from": {
-                    "file": "C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\src\\main\\res\\values-sw720dp-land\\dimens.xml",
+                    "file": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\src\\main\\res\\values-sw720dp-land\\dimens.xml",
                     "position": {
                         "startLine": 39,
                         "startColumn": 4,
@@ -24,7 +24,7 @@
         ]
     },
     {
-        "outputFile": "C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-sw720dp-land-v13\\values-sw720dp-land-v13.xml",
+        "outputFile": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-sw720dp-land-v13/values-sw720dp-land-v13.xml",
         "map": [
             {
                 "to": {
@@ -35,7 +35,31 @@
                     "endOffset": 109
                 },
                 "from": {
-                    "file": "C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\src\\main\\res\\values-sw720dp-land\\dimens.xml",
+                    "file": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/src/main/res/values-sw720dp-land/dimens.xml",
+                    "position": {
+                        "startLine": 39,
+                        "startColumn": 4,
+                        "startOffset": 1849,
+                        "endColumn": 58,
+                        "endOffset": 1903
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-sw720dp-land-v13\\values-sw720dp-land-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 58,
+                    "endOffset": 109
+                },
+                "from": {
+                    "file": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\src\\main\\res\\values-sw720dp-land\\dimens.xml",
                     "position": {
                         "startLine": 39,
                         "startColumn": 4,

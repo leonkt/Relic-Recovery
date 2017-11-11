@@ -42,6 +42,8 @@ import com.qualcomm.robotcore.util.Range;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.CRServo;
 
+import ftc8564lib.Robot;
+
 
 /**
  * This file contains an minimal example of a Linear "OpMode". An OpMode is a 'program' that runs in either
@@ -58,63 +60,30 @@ import com.qualcomm.robotcore.hardware.CRServo;
 
 @TeleOp(name="JewelTest", group="Linear Opmode")
 //@Disabled
-public class JewelTest extends LinearOpMode {
+public class JewelTest extends LinearOpMode{
 
     Servo colorServo;
     CRServo crServo;
     ColorSensor colorSensor;
+    Robot robot;
 
     // Declare OpMode members.
-    private ElapsedTime runtime = new ElapsedTime();
 
 
 
     @Override
     public void runOpMode() {
-        telemetry.addData("Status", "Initialized");
-        telemetry.update();
-
-        colorServo = hardwareMap.servo.get("colorServo");
-        crServo = hardwareMap.crservo.get("crServo");
-        colorSensor = hardwareMap.colorSensor.get("colorSensor");
-
-        colorServo.setPosition(0.4);
-
-
+        ElapsedTime runtime = new ElapsedTime();
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
         runtime.reset();
 
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
-            crServo.setPower(-0.1);
-            sleep(1000);
-            crServo.setPower(0);
-            colorSensor.enableLed(true);
-            telemetry.addData("Status", "Run Time: " + runtime.toString());
-            telemetry.addData("Red  ", colorSensor.red());
-            telemetry.addData("Blue ", colorSensor.blue());
-            telemetry.update();
-            //knock off blue
-            if(colorSensor.red() > colorSensor.blue()){
-                colorServo.setPosition(0);
-            }
-            else if (colorSensor.blue() > colorSensor.red()) {
-                colorServo.setPosition(1);
-            }
-            sleep(1000);
-            colorServo.setPosition(.5);
-            crServo.setPower(.5);
-            sleep(2500);
-            crServo.setPower(0);
-            colorSensor.enableLed(false);
-
-            // Show the elapsed game time and wheel power.
-
-            colorServo.setPosition(0);
-            sleep(3000);
-
-            break;
+            colorServo.setPosition(0.4);
+            robot.jewelArm.armDown();
+            robot.jewelArm.pushJewels(true);
+            robot.jewelArm.armUp();
         }
     }
 }

@@ -3,16 +3,12 @@
 
     <item
         is-multidex="false"
-        jar="C:\Users\ACtheGreat\Documents\GitHub\LockdownPrograms\FTC8564_2017_2018\FtcRobotController\build\intermediates\bundles\default\classes.jar"
+        jar="/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/bundles/default/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.3"
         sha1="3410ed2163d43827237038659c41c587c90f3814">
-<<<<<<< HEAD
         <dex dex="/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/pre-dexed/debug/classes_39ef4ed66d73d3dae35a7067d7c345a2d909ee03.jar" />
-=======
-        <dex dex="C:\Users\ACtheGreat\Documents\GitHub\LockdownPrograms\FTC8564_2017_2018\TeamCode\build\intermediates\pre-dexed\debug\classes_04150213647a4faa21fa5ae028aecbfa51860eed.jar" />
->>>>>>> 3016a7f848e16e9dc9dd62930eb0b2ff7127612e
     </item>
 
 </items>

@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.hardware.CRServo;
 import hallib.HalUtil;
 import ftc8564opMode.LockdownAutonomous;
 
@@ -15,13 +16,13 @@ import ftc8564opMode.LockdownAutonomous;
 public class JewelArm {
     ColorSensor colorSensor;
     Servo colorServo;
-    Servo crServo;
+    CRServo crServo;
     LinearOpMode opMode;
     ElapsedTime mClock = new ElapsedTime();
 
-    double servoForward = 1;
-    double servoBackward = 0;
-    double servoRest = .5;
+    double servoForward = -.1;
+    double servoBackward = .1;
+    double servoRest = 0;
 
     private enum Color{
         RED,
@@ -34,44 +35,46 @@ public class JewelArm {
         this.opMode = opMode;
         colorSensor = opMode.hardwareMap.colorSensor.get("colorSensor");
         colorServo = opMode.hardwareMap.servo.get("colorServo");
-        crServo = opMode.hardwareMap.servo.get("crServo");
+        crServo = opMode.hardwareMap.crservo.get("crServo");
         mClock.reset();
     }
 
     public void pushJewels (boolean blueAlliance){
+        colorSensor.enableLed(true);
         if(true){
             if(getColor(LockdownAutonomous.Alliance.BLUE_ALLIANCE) == Color.BLUE){
                 colorServo.setPosition(1);
             }
             else if (getColor(LockdownAutonomous.Alliance.BLUE_ALLIANCE) == Color.RED){
-                colorServo.setPosition(-1);
+                colorServo.setPosition(0);
             }
             else {
-                colorServo.setPosition(0);
+                colorServo.setPosition(.4);
             }
 
         }
         if(false) {
             if (getColor(LockdownAutonomous.Alliance.BLUE_ALLIANCE) == Color.BLUE) {
-                colorServo.setPosition(-1);
+                colorServo.setPosition(0);
             } else if (getColor(LockdownAutonomous.Alliance.BLUE_ALLIANCE) == Color.RED) {
                 colorServo.setPosition(1);
             } else {
-                colorServo.setPosition(0);
+                colorServo.setPosition(.4);
             }
         }
+        colorSensor.enableLed(false);
     }
 
     public void armDown() {
-        crServo.setPosition(servoForward);
-        HalUtil.sleep(500);
-        crServo.setPosition(servoRest);
+        crServo.setPower(servoForward);
+        HalUtil.sleep(1000);
+        crServo.setPower(servoRest);
     }
 
     public void armUp(){
-        crServo.setPosition(servoBackward);
-        HalUtil.sleep(500);
-        crServo.setPosition(servoRest);
+        crServo.setPower(servoBackward);
+        HalUtil.sleep(1000);
+        crServo.setPower(servoRest);
     }
 
     public Color getColor (LockdownAutonomous.Alliance alliance){

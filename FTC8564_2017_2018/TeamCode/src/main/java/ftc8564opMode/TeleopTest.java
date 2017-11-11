@@ -202,12 +202,12 @@ public class TeleopTest extends OpMode{
         //open clamps
         if (gamepad2.left_bumper){
             clampleft.setPosition(1);
-            clampright.setPosition(0);
+            clampright.setPosition(-1);
         }
         //close clamps
         else if (gamepad2.right_bumper){
             clampleft.setPosition(.5);
-            clampright.setPosition(.4);
+            clampright.setPosition(-.5);
         }
         /*
         * Intake - Intake portion.
