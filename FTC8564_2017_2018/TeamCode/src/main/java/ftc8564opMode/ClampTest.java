@@ -88,8 +88,8 @@ public class ClampTest extends OpMode{
         }
 
         if (gamepad2.right_trigger > .6){
-            clampleft.setPosition(.70);
-            clampright.setPosition(.30);
+            clampleft.setPosition(.65);
+            clampright.setPosition(.35);
         }
 
 

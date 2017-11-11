@@ -41,6 +41,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import ftc8564lib.Robot;
 
@@ -58,32 +59,23 @@ import ftc8564lib.Robot;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name="JewelTest", group="Linear Opmode")
+
+@Autonomous(name="JewelTest", group="Linear Opmode")
 //@Disabled
 public class JewelTest extends LinearOpMode{
 
-    Servo colorServo;
-    CRServo crServo;
-    ColorSensor colorSensor;
+
     Robot robot;
-
     // Declare OpMode members.
-
-
-
     @Override
-    public void runOpMode() {
+    public void runOpMode() throws InterruptedException {
         ElapsedTime runtime = new ElapsedTime();
-        // Wait for the game to start (driver presses PLAY)
+        robot = new Robot(this,true);
         waitForStart();
-        runtime.reset();
-
-        // run until the end of the match (driver presses STOP)
-        while (opModeIsActive()) {
-            colorServo.setPosition(0.4);
-            robot.jewelArm.armDown();
-            robot.jewelArm.pushJewels(true);
-            robot.jewelArm.armUp();
-        }
+        robot.jewelArm.resetServo();
+        robot.jewelArm.armDown();
+        robot.jewelArm.pushJewels(false);
+        robot.jewelArm.resetServo();
+        robot.jewelArm.armUp();
     }
 }

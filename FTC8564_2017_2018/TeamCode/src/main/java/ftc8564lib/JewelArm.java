@@ -21,8 +21,9 @@ public class JewelArm {
     ElapsedTime mClock = new ElapsedTime();
 
     double servoForward = -.1;
-    double servoBackward = .1;
+    double servoBackward = .4;
     double servoRest = 0;
+    private boolean blueAlliance = true;
 
     private enum Color{
         RED,
@@ -43,10 +44,10 @@ public class JewelArm {
         colorSensor.enableLed(true);
         if(true){
             if(getColor(LockdownAutonomous.Alliance.BLUE_ALLIANCE) == Color.BLUE){
-                colorServo.setPosition(1);
+                colorServo.setPosition(0);
             }
             else if (getColor(LockdownAutonomous.Alliance.BLUE_ALLIANCE) == Color.RED){
-                colorServo.setPosition(0);
+                colorServo.setPosition(1);
             }
             else {
                 colorServo.setPosition(.4);
@@ -55,9 +56,9 @@ public class JewelArm {
         }
         if(false) {
             if (getColor(LockdownAutonomous.Alliance.BLUE_ALLIANCE) == Color.BLUE) {
-                colorServo.setPosition(0);
-            } else if (getColor(LockdownAutonomous.Alliance.BLUE_ALLIANCE) == Color.RED) {
                 colorServo.setPosition(1);
+            } else if (getColor(LockdownAutonomous.Alliance.BLUE_ALLIANCE) == Color.RED) {
+                colorServo.setPosition(0);
             } else {
                 colorServo.setPosition(.4);
             }
@@ -99,6 +100,12 @@ public class JewelArm {
         }
         return Color.OTHER;
 
+    }
+
+    public void resetServo()
+    {
+        colorServo.setPosition(0.4);
+        crServo.setPower(0);
     }
 
 }

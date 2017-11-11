@@ -30,7 +30,6 @@ import hallib.HalDashboard;
 
 public class Robot {
 
-    public OpticalDistanceSensor odsLeft, odsRight;
     private static HalDashboard dashboard = null;
     public DriveBase driveBase = null;
     public PulleySystem pulleySystem = null;
@@ -42,6 +41,7 @@ public class Robot {
 
     public Robot(LinearOpMode opMode, boolean auto) throws InterruptedException {
         dashboard = new HalDashboard(opMode.telemetry);
+        jewelArm = new JewelArm(opMode);
         //driveBase = new DriveBase(opMode, auto);
         // pulleySystem = new PulleySystem(opMode);
         // shooter = new Shooter(opMode);
