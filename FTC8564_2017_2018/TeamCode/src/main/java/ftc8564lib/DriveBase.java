@@ -290,8 +290,6 @@ public class DriveBase implements PIDControl.PidInput {
         resetPIDDrive();//reset
     }
 
-
-
     /**
      * This method drives the motors at "magnitude" and "curve". Both magnitude and curve are -1.0 to +1.0 values,
      * where 0.0 represents stopped and not turning. curve < 0 will turn left and curve > 0 will turn right. The
@@ -447,11 +445,10 @@ public class DriveBase implements PIDControl.PidInput {
         return -(Math.signum(dVal) * ((Math.pow(dVal, 2) * (.55)) + .1));
     }
 
-    public void resetHeading()//WARNING NEEDS FIXING AND INTEGRATION
+    public void resetHeading()
     {
         //gyro.resetIntegrator();
         gyroSensor.resetZAxisIntegrator();
-
     }
 
     @Override
