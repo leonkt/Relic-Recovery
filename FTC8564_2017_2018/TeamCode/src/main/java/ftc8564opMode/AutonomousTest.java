@@ -48,9 +48,9 @@ import ftc8564lib.Robot;
 import ftclib.FtcChoiceMenu;
 import ftclib.FtcMenu;
 
-@Autonomous(name="LockdownAutonomous", group="Autonomous")
+/*@Autonomous(name="LockdownAutonomous", group="Autonomous")
 @Disabled
-public class AutonomousTest extends LinearOpMode implements FtcMenu.MenuButtons, DriveBase.AbortTrigger {
+public class AutonomousTest extends LinearOpMode implements FtcMenu.MenuButtons {
 
     Robot robot;
     ColorSensor colorSensor;
@@ -83,7 +83,7 @@ public class AutonomousTest extends LinearOpMode implements FtcMenu.MenuButtons,
      * {@link #vuforia} is the variable we will use to store our instance of the Vuforia
      * localization engine.
      */
-    VuforiaLocalizer vuforia;
+   /* VuforiaLocalizer vuforia;
 
 
     private Alliance_Position alliance = Alliance_Position.BLUE_RIGHT;
@@ -145,7 +145,7 @@ public class AutonomousTest extends LinearOpMode implements FtcMenu.MenuButtons,
          * To start up Vuforia, tell it the view that we wish to use for camera monitor (on the RC phone);
          * If no camera monitor is desired, use the parameterless constructor instead (commented out below).
          */
-            int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+            /*int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
             VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
 
             // OR...  Do Not Activate the Camera Monitor View, to save power
@@ -163,14 +163,14 @@ public class AutonomousTest extends LinearOpMode implements FtcMenu.MenuButtons,
          * Once you've obtained a license key, copy the string from the Vuforia web site
          * and paste it in to your code onthe next line, between the double quotes.
          */
-            parameters.vuforiaLicenseKey = "AUgbT0j/////AAAAGTj0axLoDUvmo1PWo4YoBxkeKIG99PQSTrgFoQVymuq7TMc3OGQozLZo6d+dLt0EiQwR87XKW4aXt/7BZr95khAoylxKP02Vh5PmZbp18YDa5g9gWiYUGUvHqLUbNgMKotFhGgE9noRvWbiP2RxgOCy+HoT39NaFXiLiH69cLGbCzpz1tzuvRPce/EVkWBBomcS2yC/hl1hTlBjvzTHN1lKMv59s9gYhC69DNODQeNg2JMOv3ggMlRDTjOpbNZUZAQkHfqS/2w0W8d0+krzVBD129juhL2r6u4mWVhXFq2FOZoUTezbkaFTxKCRadl3v5ot5aPmuEU4mSFtmrw15J6R9XtRAg/U8/I1k7zpRpVTg";
+            /*parameters.vuforiaLicenseKey = "AUgbT0j/////AAAAGTj0axLoDUvmo1PWo4YoBxkeKIG99PQSTrgFoQVymuq7TMc3OGQozLZo6d+dLt0EiQwR87XKW4aXt/7BZr95khAoylxKP02Vh5PmZbp18YDa5g9gWiYUGUvHqLUbNgMKotFhGgE9noRvWbiP2RxgOCy+HoT39NaFXiLiH69cLGbCzpz1tzuvRPce/EVkWBBomcS2yC/hl1hTlBjvzTHN1lKMv59s9gYhC69DNODQeNg2JMOv3ggMlRDTjOpbNZUZAQkHfqS/2w0W8d0+krzVBD129juhL2r6u4mWVhXFq2FOZoUTezbkaFTxKCRadl3v5ot5aPmuEU4mSFtmrw15J6R9XtRAg/U8/I1k7zpRpVTg";
 
         /*
          * We also indicate which camera on the RC that we wish to use.
          * Here we chose the back (HiRes) camera (for greater range), but
          * for a competition robot, the front camera might be more convenient.
          */
-            parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
+            /*parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
             this.vuforia = ClassFactory.createVuforiaLocalizer(parameters);
 
             /**
@@ -179,7 +179,7 @@ public class AutonomousTest extends LinearOpMode implements FtcMenu.MenuButtons,
              * but differ in their instance id information.
              * @see VuMarkInstanceId
              */
-            VuforiaTrackables relicTrackables = this.vuforia.loadTrackablesFromAsset("RelicVuMark");
+            /*VuforiaTrackables relicTrackables = this.vuforia.loadTrackablesFromAsset("RelicVuMark");
             VuforiaTrackable relicTemplate = relicTrackables.get(0);
             relicTemplate.setName("relicVuMarkTemplate"); // can help in debugging; otherwise not necessary
 
@@ -197,23 +197,23 @@ public class AutonomousTest extends LinearOpMode implements FtcMenu.MenuButtons,
                  * UNKNOWN, LEFT, CENTER, and RIGHT. When a VuMark is visible, something other than
                  * UNKNOWN will be returned by {@link RelicRecoveryVuMark#from(VuforiaTrackable)}.
                  */
-                RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
+               /* RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
                 if (vuMark != RelicRecoveryVuMark.UNKNOWN) {
 
                 /* Found an instance of the template. In the actual game, you will probably
                  * loop until this condition occurs, then move on to act accordingly depending
                  * on which VuMark was visible. */
-                    telemetry.addData("VuMark", "%s visible", vuMark);
+                   // telemetry.addData("VuMark", "%s visible", vuMark);
 
                 /* For fun, we also exhibit the navigational pose. In the Relic Recovery game,
                  * it is perhaps unlikely that you will actually need to act on this pose information, but
                  * we illustrate it nevertheless, for completeness. */
-                    OpenGLMatrix pose = ((VuforiaTrackableDefaultListener)relicTemplate.getListener()).getPose();
-                    telemetry.addData("Pose", format(pose));
+                    //OpenGLMatrix pose = ((VuforiaTrackableDefaultListener)relicTemplate.getListener()).getPose();
+                    //telemetry.addData("Pose", format(pose));
 
                 /* We further illustrate how to decompose the pose into useful rotational and
                  * translational components */
-                    if (pose != null) {
+                   /* if (pose != null) {
                         VectorF trans = pose.getTranslation();
                         Orientation rot = Orientation.getOrientation(pose, AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.DEGREES);
 
@@ -249,8 +249,8 @@ public class AutonomousTest extends LinearOpMode implements FtcMenu.MenuButtons,
         //robot.driveBase.resetPIDDrive();
     }
 
-    @Override
-    public boolean shouldAbort() { return true; }
+   //@Override
+    //public boolean shouldAbort() { return true; }
 
     @Override
     public boolean isMenuUpButton() {
@@ -284,5 +284,5 @@ public class AutonomousTest extends LinearOpMode implements FtcMenu.MenuButtons,
         alliance = (Alliance_Position) alliancePositionMenu.getCurrentChoiceObject();
     }
 
-}
+}*/
 

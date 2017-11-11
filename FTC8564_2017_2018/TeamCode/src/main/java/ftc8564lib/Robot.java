@@ -36,10 +36,13 @@ public class Robot {
     public PulleySystem pulleySystem = null;
     public Shooter shooter = null;
     public BeaconPush beaconPush = null;
+    public JewelArm jewelArm = null;
+    public VuMark VuMark = null;
+    public Clamps clamps = null;
 
     public Robot(LinearOpMode opMode, boolean auto) throws InterruptedException {
         dashboard = new HalDashboard(opMode.telemetry);
-        // driveBase = new DriveBase(opMode, auto);
+        //driveBase = new DriveBase(opMode, auto);
         // pulleySystem = new PulleySystem(opMode);
         // shooter = new Shooter(opMode);
         // beaconPush = new BeaconPush(opMode);

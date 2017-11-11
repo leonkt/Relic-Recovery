@@ -33,7 +33,7 @@ import hallib.HalUtil;
 
 @Autonomous(name="PIDTuning", group="Autonomous")
 //@Disabled
-public class PIDTuning extends LinearOpMode implements DriveBase.AbortTrigger {
+public class PIDTuning extends LinearOpMode {
 
     Robot robot;
 
@@ -43,12 +43,8 @@ public class PIDTuning extends LinearOpMode implements DriveBase.AbortTrigger {
         robot = new Robot(this,true);
         waitForStart();
         robot.driveBase.resetHeading();
-        robot.driveBase.drivePID(60, false, null);
+        robot.driveBase.drivePID(60, false);
     }
 
-    @Override
-    public boolean shouldAbort() {
-        return robot.odsLeft.getRawLightDetected() >= 0.6 || robot.odsRight.getRawLightDetected() >= 0.6;
-        }
 
 }

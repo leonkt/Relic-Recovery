@@ -21,7 +21,7 @@
  * SOFTWARE.
  */
 
-package ftc8564opMode;
+/*package ftc8564opMode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
@@ -31,7 +31,7 @@ import ftc8564lib.DriveBase;
 import ftc8564lib.Robot;
 import hallib.HalUtil;
 
-/*@Autonomous(name="TestAutonomous", group="Autonomous")
+@Autonomous(name="TestAutonomous", group="Autonomous")
 @Disabled
 public class TestAutonomous extends LinearOpMode implements DriveBase.AbortTrigger {
 

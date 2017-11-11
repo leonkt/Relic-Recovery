@@ -73,10 +73,10 @@ public class DriveBase implements PIDControl.PidInput {
     private HalDashboard dashboard;
     private ElapsedTime mRunTime;
 
-    public interface AbortTrigger
+    /*public interface AbortTrigger
     {
         boolean shouldAbort();
-    }
+    }*/
     //--------------------------------------------------------------------------------------------
 
 //Self Declaration: ---------------------------------------------------------------------------
@@ -133,7 +133,7 @@ public class DriveBase implements PIDControl.PidInput {
      * Assuming this is running in a loop
      */
     //Tip: Input distance in inches and power with decimal to hundredth place
-    public void drivePID(double distance, boolean slow, AbortTrigger abortTrigger) throws InterruptedException {
+    public void drivePID(double distance, boolean slow) throws InterruptedException {
         //Slow Mode check-----------------------------------------------------------------------
         if(slow)
         {
