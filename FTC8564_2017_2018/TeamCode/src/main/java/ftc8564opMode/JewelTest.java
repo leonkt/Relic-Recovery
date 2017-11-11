@@ -91,6 +91,11 @@ public class JewelTest extends LinearOpMode {
             sleep(1000);
             crServo.setPower(0);
             colorSensor.enableLed(true);
+            telemetry.addData("Status", "Run Time: " + runtime.toString());
+            telemetry.addData("Red  ", colorSensor.red());
+            telemetry.addData("Blue ", colorSensor.blue());
+            telemetry.update();
+            //knock off blue
             if(colorSensor.red() > colorSensor.blue()){
                 colorServo.setPosition(0);
             }
@@ -98,16 +103,18 @@ public class JewelTest extends LinearOpMode {
                 colorServo.setPosition(1);
             }
             sleep(1000);
+            colorServo.setPosition(.5);
             crServo.setPower(.5);
-            sleep(2000);
+            sleep(2500);
             crServo.setPower(0);
             colorSensor.enableLed(false);
 
             // Show the elapsed game time and wheel power.
-            telemetry.addData("Status", "Run Time: " + runtime.toString());
-            telemetry.addData("Red  ", colorSensor.red());
-            telemetry.addData("Blue ", colorSensor.blue());
-            telemetry.update();
+
+            colorServo.setPosition(0);
+            sleep(3000);
+
+            break;
         }
     }
 }
