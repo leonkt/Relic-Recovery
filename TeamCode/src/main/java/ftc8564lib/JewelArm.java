@@ -73,13 +73,7 @@ public class JewelArm {
             else {
                 colorServo.setPosition(.4);
             }
-<<<<<<< HEAD:FTC8564_2017_2018/TeamCode/src/main/java/ftc8564lib/JewelArm.java
-
-        }
-        if(!blueAlliance) {
-=======
         } else {
->>>>>>> c827f276de3fe3838c65d51b28658fda90a51170:TeamCode/src/main/java/ftc8564lib/JewelArm.java
             if (getColor(LockdownAutonomous.Alliance.BLUE_ALLIANCE) == Color.BLUE) {
                 colorServo.setPosition(1);
                 HalUtil.sleep(500);

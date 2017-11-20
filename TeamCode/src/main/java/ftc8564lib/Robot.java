@@ -42,13 +42,9 @@ public class Robot {
     public Robot(LinearOpMode opMode, boolean auto) throws InterruptedException {
         dashboard = new HalDashboard(opMode.telemetry);
         jewelArm = new JewelArm(opMode);
-<<<<<<< HEAD:FTC8564_2017_2018/TeamCode/src/main/java/ftc8564lib/Robot.java
         driveBase = new DriveBase(opMode);
         clamps = new Clamps(opMode);
         VuMark = new VuMark(opMode);
-=======
-        // driveBase = new DriveBase(opMode, auto);
->>>>>>> c827f276de3fe3838c65d51b28658fda90a51170:TeamCode/src/main/java/ftc8564lib/Robot.java
         // pulleySystem = new PulleySystem(opMode);
         // shooter = new Shooter(opMode);
         // beaconPush = new BeaconPush(opMode);
