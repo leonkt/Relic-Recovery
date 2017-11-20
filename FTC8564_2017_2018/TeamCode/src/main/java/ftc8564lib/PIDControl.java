@@ -128,6 +128,7 @@ public class PIDControl {
             //
             setPoint = input + target;
             prevError = target;
+            displayPidInfo(0);
         }
         else
         {
@@ -136,6 +137,7 @@ public class PIDControl {
             //
             setPoint = target;
             prevError = setPoint - input;
+            displayPidInfo(0);
         }
         setPointSign = Math.signum(prevError);
         //
@@ -151,6 +153,7 @@ public class PIDControl {
             {
                 setPoint = minTarget;
             }
+            displayPidInfo(0);
         }
 
         prevTime = HalUtil.getCurrentTime();

@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Fri Nov 10 20:58:05 PST 2017
+#Sun Nov 19 20:00:18 PST 2017
 20.base=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/res/resources-debug.ap_
 143.base=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/assets/debug
 439.set=ANDROID_RESOURCE
@@ -319,7 +319,7 @@
 330.set=ANDROID_RESOURCE
 213.base=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/assets/debug
 253.set=ASSET
-410.file=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/res/resources-debug.ap_/res/layout/servo_controller_banner.xml
+410.file=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/res/resources-debug.ap_/res/layout/lynx_module.xml
 131.set=ASSET
 246.base=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/assets/debug
 443.file=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/assets/debug/blocks/samples/ConceptTextToSpeech.blk
@@ -435,7 +435,7 @@
 226.set=ASSET
 104.set=ASSET
 114.base=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/assets/debug
-311.file=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/res/resources-debug.ap_/res/layout/banner_parent.xml
+311.file=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/res/resources-debug.ap_/res/layout/template_info.xml
 24.base=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/assets/debug
 173.file=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/assets/debug/images/ftcCRServo.png
 344.file=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/assets/debug/blockly/media/click.wav
@@ -523,7 +523,7 @@
 438.base=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/assets/debug
 296.set=ASSET
 15.file=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/assets/debug/CzechWolf
-147.file=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/res/resources-debug.ap_/resources.arsc
+147.file=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/res/resources-debug.ap_/res/layout/motor_controller_banner.xml
 318.file=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/res/resources-debug.ap_/res/layout/info_button.xml
 181.base=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/assets/debug
 352.base=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/assets/debug
@@ -688,7 +688,7 @@
 254.set=ASSET
 129.base=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/assets/debug
 23.file=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/assets/debug/java/js/antlr4/atn/PredictionMode.js
-146.file=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/res/resources-debug.ap_/res/layout/motor_controller_banner.xml
+146.file=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/res/resources-debug.ap_/resources.arsc
 132.set=ASSET
 56.file=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/res/resources-debug.ap_/res/layout/analog_input_device.xml
 177.set=ASSET
@@ -1101,7 +1101,7 @@
 90.base=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/assets/debug
 214.base=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/assets/debug
 263.set=ASSET
-411.file=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/res/resources-debug.ap_/res/layout/lynx_module.xml
+411.file=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/res/resources-debug.ap_/res/layout/servo_controller_banner.xml
 141.set=ANDROID_RESOURCE
 247.base=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/assets/debug
 273.file=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/assets/debug/js/less.min.js
@@ -1209,7 +1209,7 @@ count=447
 236.set=ASSET
 114.set=ASSET
 115.base=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/res/resources-debug.ap_
-312.file=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/res/resources-debug.ap_/res/layout/template_info.xml
+312.file=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/res/resources-debug.ap_/res/layout/banner_parent.xml
 25.base=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/assets/debug
 174.file=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/assets/debug/java/templates/SensorBNO055IMU
 345.file=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/assets/debug/java/js/antlr4/CharStreams.js

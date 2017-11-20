@@ -26,6 +26,7 @@ package ftc8564opMode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import ftc8564lib.DriveBase;
 import ftc8564lib.Robot;
@@ -41,9 +42,13 @@ public class PIDTuning extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         robot = new Robot(this,true);
+        ElapsedTime runtime = new ElapsedTime();
         waitForStart();
-        robot.driveBase.resetHeading();
-        robot.driveBase.drivePID(60, false);
+        robot.driveBase.setRange(-48,48);
+        robot.driveBase.drivePID(24, false);
+        robot.driveBase.drivePID(-24, false);
+        robot.driveBase.spinPID(90);
+
     }
 
 

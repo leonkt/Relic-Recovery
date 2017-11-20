@@ -75,7 +75,7 @@ public class JewelTest extends LinearOpMode{
         robot.jewelArm.resetServo();
         robot.jewelArm.armDown();
         robot.jewelArm.pushJewels(false);
-        robot.jewelArm.resetServo();
         robot.jewelArm.armUp();
+        robot.jewelArm.resetServo();
     }
 }

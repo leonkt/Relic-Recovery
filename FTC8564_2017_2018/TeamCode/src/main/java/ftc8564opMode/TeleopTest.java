@@ -13,7 +13,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import static java.lang.Math.abs;
 
-@TeleOp(name = "Debug: TeleOp", group = "Debug")
+@TeleOp(name = "LockdownTeleop", group = "Debug")
 /*@Disabled*/
 
 public class TeleopTest extends OpMode{
@@ -37,8 +37,7 @@ public class TeleopTest extends OpMode{
     Servo clampleft;
     Servo clampright;
     /*lift motors*/
-    DcMotor liftleft;
-    DcMotor liftright;
+    DcMotor lift;
     /*intake motors*/
     DcMotor intakeleft;
     DcMotor intakeright;
@@ -54,7 +53,7 @@ public class TeleopTest extends OpMode{
     private int reverseFactor = -1;
     private double threshold = 0.1;
     private double slow = 1;
-
+    private int liftPosition = 0;
 
     @Override
     public void init() {
@@ -68,8 +67,7 @@ public class TeleopTest extends OpMode{
         clampleft = hardwareMap.servo.get("clampleft");
         clampright = hardwareMap.servo.get("clampright");
         /*lift motors*/
-        liftleft = hardwareMap.dcMotor.get("liftleft");
-        liftright = hardwareMap.dcMotor.get("liftright");
+        lift = hardwareMap.dcMotor.get("liftleft");
         /*intake motors*/
         intakeleft = hardwareMap.dcMotor.get("intakeleft");
         intakeright = hardwareMap.dcMotor.get("intakeright");
@@ -175,7 +173,7 @@ public class TeleopTest extends OpMode{
         }
 
         /* Lifting
-        *  The lift is done by moving two motors simultaniously.
+        *
         *  Additional movements (in case one motor overspun, etc will be added soon.
         *
         *  WARNING: fragile lift.
@@ -184,30 +182,63 @@ public class TeleopTest extends OpMode{
         * Player 2 controls: Right Joystick up/down -> lift up/down
         *
         */
-        if (gamepad2.dpad_down && ((abs(gamepad2.right_stick_y)) > threshold)){
-            liftleft.setPower(gamepad2.right_stick_y * reverseFactor);
-            liftright.setPower(gamepad2.right_stick_y);
-        }
-        else if ((abs(gamepad2.right_stick_y)) > threshold){
-            liftright.setPower((gamepad2.right_stick_y) * .75);
-        }
-        else if ((abs(gamepad2.left_stick_y)) > threshold){
-            liftleft.setPower((gamepad2.left_stick_y * reverseFactor) * .75);
+        if ((abs(gamepad2.right_stick_y)) > threshold){
+            lift.setPower(gamepad2.right_stick_y * reverseFactor);
         }
         else {
-            liftleft.setPower(0);
-            liftright.setPower(0);
+            lift.setPower(0);
         }
-        //down lft joystck down
-        //open clamps
+        if ((liftPosition == 0) && (gamepad2.right_stick_y > .6)){
+            lift.setTargetPosition(200);
+            liftPosition = 1;
+        }
+        else if ((liftPosition == 1) && (gamepad2.right_stick_y > .6)){
+            lift.setTargetPosition(400);
+            liftPosition = 2;
+        }
+        else if ((liftPosition == 2) && (gamepad2.right_stick_y > .6)) {
+            lift.setTargetPosition(600);
+            liftPosition = 3;
+        }
+        else if ((liftPosition == 3) && (gamepad2.right_stick_y > .6)) {
+            lift.setTargetPosition(800);
+            liftPosition = 4;
+        }
+        if ((liftPosition == 1) && (gamepad2.right_stick_y < .4)){
+            lift.setTargetPosition(0);
+            liftPosition = 0;
+        }
+        else if ((liftPosition == 2) && (gamepad2.right_stick_y < .4)){
+            lift.setTargetPosition(200);
+            liftPosition = 1;
+        }
+        else if ((liftPosition == 3) && (gamepad2.right_stick_y < .4)) {
+            lift.setTargetPosition(400);
+            liftPosition = 2;
+        }
+        else if ((liftPosition == 4) && (gamepad2.right_stick_y < .4)) {
+            lift.setTargetPosition(600);
+            liftPosition = 3;
+        }
+        /* Grips
+        * If right bumper is pressed, the grips will open
+        * if left bumper is pressed, the grips will close
+        * if right trigger is pressed, the grips will tighten to pick up the block
+         */
+        //open
         if (gamepad2.left_bumper){
             clampleft.setPosition(1);
-            clampright.setPosition(-1);
+            clampright.setPosition(0);
         }
-        //close clamps
+        //close
         else if (gamepad2.right_bumper){
-            clampleft.setPosition(.5);
-            clampright.setPosition(-.5);
+            clampleft.setPosition(.75);
+            clampright.setPosition(.25);
+        }
+        //close
+        if (gamepad2.right_trigger > .6){
+            clampleft.setPosition(.65);
+            clampright.setPosition(.35);
         }
         /*
         * Intake - Intake portion.

@@ -23,6 +23,7 @@
 
 package ftc8564lib;
 
+import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -30,10 +31,13 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 
+import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
+import org.firstinspires.ftc.robotcore.external.navigation.Position;
+import org.firstinspires.ftc.robotcore.external.navigation.Velocity;
 
 //import ftclib.FtcAnalogGyro;
 import hallib.HalDashboard;
@@ -57,21 +61,25 @@ public class DriveBase implements PIDControl.PidInput {
     private LinearOpMode opMode;
     private PIDControl pidControl, pidControlTurn;
     private Orientation angles;
+    private Acceleration gravity;
 
-    private final static double SCALE = (144.5/12556.5);    // INCHES_PER_COUNT
+    //private final static double SCALE = (144.5/12556.5);    // INCHES_PER_COUNT
+    private final static double SCALE = (.0436111);
     private double degrees = 0.0;
     private double stallStartTime = 0.0;
     private double prevTime = 0.0;
     private int prevLeftPos = 0;
     private int prevRightPos = 0;
     private boolean slowSpeed;
+    private double minTarget, maxTarget;
 
     public DcMotor leftMotor, rightMotor;
     //private FtcAnalogGyro gyro;
     private BNO055IMU imu;
-    private ModernRoboticsI2cGyro gyroSensor;
+    //private ModernRoboticsI2cGyro gyroSensor;
     private HalDashboard dashboard;
     private ElapsedTime mRunTime;
+    private boolean slow = true;
 
     /*public interface AbortTrigger
     {
@@ -81,7 +89,7 @@ public class DriveBase implements PIDControl.PidInput {
 
 //Self Declaration: ---------------------------------------------------------------------------
 
-    public DriveBase(LinearOpMode opMode, boolean auto) throws InterruptedException {
+    public DriveBase(LinearOpMode opMode) throws InterruptedException {
 
         //Variable Declaration section --------------------------------------------------------
 
@@ -94,6 +102,15 @@ public class DriveBase implements PIDControl.PidInput {
         rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+        parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
+        parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
+        parameters.calibrationDataFile = "BNO055IMUCalibration.json"; // see the calibration sample opmode
+        parameters.loggingEnabled      = true;
+        parameters.loggingTag          = "IMU";
+        parameters.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
+        imu.initialize(parameters);
+        imu.startAccelerationIntegration(new Position(), new Velocity(), 1000);
         //gyro = new FtcAnalogGyro(opMode, "gyro1", 0.00067);
         //gyroSensor = (ModernRoboticsI2cGyro)opMode.hardwareMap.gyroSensor.get("gyro");
         mRunTime = new ElapsedTime();
@@ -115,7 +132,7 @@ public class DriveBase implements PIDControl.PidInput {
 
         //Extended: variable Declaration -------------------------------------------------------
         //Sets up PID Drive: kP, kI, kD, kF, Tolerance, Settling Time
-        pidControl = new PIDControl(0.03,0,0,0,0.5,0.2,this);
+        pidControl = new PIDControl(0.03,0,0,0,0.8,0.2,this);
         pidControlTurn = new PIDControl(0.02,0,0,0,0.5,0.2,this);
         pidControlTurn.setAbsoluteSetPoint(true);
         dashboard.clearDisplay();
@@ -133,6 +150,10 @@ public class DriveBase implements PIDControl.PidInput {
      * Assuming this is running in a loop
      */
     //Tip: Input distance in inches and power with decimal to hundredth place
+
+    public void setRange(double minTarget, double maxTarget) {
+        pidControl.setTargetRange(minTarget, maxTarget);
+    }
     public void drivePID(double distance, boolean slow) throws InterruptedException {
         //Slow Mode check-----------------------------------------------------------------------
         if(slow)
@@ -152,7 +173,7 @@ public class DriveBase implements PIDControl.PidInput {
             pidControl.setPID(0.0485,0,0,0);
         } else
         {
-            pidControl.setPID(0.0345,0,0.0005,0);
+            pidControl.setPID(0.0345,0,.0005,0);
         }
         //-------------------------------------------------------------------------
 
@@ -195,6 +216,7 @@ public class DriveBase implements PIDControl.PidInput {
             }
             //---------------------------------------------------------------------------
             pidControlTurn.displayPidInfo(0);
+            pidControl.displayPidInfo(5);
             opMode.idle();
         }
         //------------------------------------------------------------------------------------
@@ -448,9 +470,8 @@ public class DriveBase implements PIDControl.PidInput {
     public void resetHeading()
     {
         //gyro.resetIntegrator();
-        gyroSensor.resetZAxisIntegrator();
+       // gyroSensor.resetZAxisIntegrator();
     }
-
     @Override
     public double getInput(PIDControl pidCtrl)
     {

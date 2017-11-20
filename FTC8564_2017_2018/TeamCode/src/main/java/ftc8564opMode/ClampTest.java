@@ -1,7 +1,7 @@
 package ftc8564opMode;
 
 /**
- * Created by ACtheGreat on 2017/10/27.
+ * Created by margaretli on 2017/10/27.
  */
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -67,9 +67,8 @@ public class ClampTest extends OpMode{
      */
     @Override
     public void start() {
-
-        clampleft.setPosition(.75);
-        clampright.setPosition(.25);
+        clampleft.setPosition(0);
+        clampright.setPosition(1);
 
     }
 
@@ -78,23 +77,19 @@ public class ClampTest extends OpMode{
         runtime.reset();
 
         if (gamepad2.left_bumper){
-            clampleft.setPosition(1);
-            clampright.setPosition(0);
+            clampleft.setPosition(0);
+            clampright.setPosition(1);
         }
         //close clamps
         else if (gamepad2.right_bumper){
-            clampleft.setPosition(.75);
-            clampright.setPosition(.25);
+            clampleft.setPosition(.25);
+            clampright.setPosition(.75);
         }
 
         if (gamepad2.right_trigger > .6){
-            clampleft.setPosition(.65);
-            clampright.setPosition(.35);
+            clampleft.setPosition(.325);
+            clampright.setPosition(.675);
         }
-
-
-
-        telemetry.addData("Status", "Run Time: " + runtime.toString());
 
     }
 }

@@ -42,23 +42,27 @@ public class JewelArm {
 
     public void pushJewels (boolean blueAlliance){
         colorSensor.enableLed(true);
-        if(true){
+        if(blueAlliance){
             if(getColor(LockdownAutonomous.Alliance.BLUE_ALLIANCE) == Color.BLUE){
                 colorServo.setPosition(0);
+                HalUtil.sleep(500);
             }
             else if (getColor(LockdownAutonomous.Alliance.BLUE_ALLIANCE) == Color.RED){
                 colorServo.setPosition(1);
+                HalUtil.sleep(500);
             }
             else {
                 colorServo.setPosition(.4);
             }
 
         }
-        if(false) {
+        if(!blueAlliance) {
             if (getColor(LockdownAutonomous.Alliance.BLUE_ALLIANCE) == Color.BLUE) {
                 colorServo.setPosition(1);
+                HalUtil.sleep(500);
             } else if (getColor(LockdownAutonomous.Alliance.BLUE_ALLIANCE) == Color.RED) {
                 colorServo.setPosition(0);
+                HalUtil.sleep(500);
             } else {
                 colorServo.setPosition(.4);
             }
@@ -74,7 +78,10 @@ public class JewelArm {
 
     public void armUp(){
         crServo.setPower(servoBackward);
-        HalUtil.sleep(1000);
+        HalUtil.sleep(500);
+        colorServo.setPosition(0.4);
+        crServo.setPower(servoBackward);
+        HalUtil.sleep(1500);
         crServo.setPower(servoRest);
     }
 
@@ -105,7 +112,9 @@ public class JewelArm {
     public void resetServo()
     {
         colorServo.setPosition(0.4);
-        crServo.setPower(0);
+        crServo.setPower(servoRest);
+        HalUtil.sleep(500);
+        colorSensor.enableLed(false);
     }
 
 }

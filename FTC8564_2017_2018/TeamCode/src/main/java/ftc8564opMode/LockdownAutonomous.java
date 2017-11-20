@@ -28,6 +28,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
+import org.firstinspires.ftc.robotcore.internal.android.dx.dex.file.StringDataItem;
 
 import java.util.concurrent.locks.Lock;
 
@@ -40,6 +41,12 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
     Robot robot;
 
     private ElapsedTime mClock = new ElapsedTime();
+
+    private enum Position{
+        RIGHT,
+        LEFT,
+        CENTER
+    }
 
     public enum Alliance {
         RED_ALLIANCE,
@@ -54,6 +61,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
     }
 
     private Alliance_Position alliance = Alliance_Position.BLUE_RIGHT;
+    private Position position = Position.CENTER;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -64,27 +72,20 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         // robot.driveBase.resetHeading();
 
         if (alliance == Alliance_Position.BLUE_RIGHT) {
+            robot.jewelArm.resetServo();
             robot.jewelArm.armDown();
             robot.jewelArm.pushJewels(true);
             robot.jewelArm.armUp();
-            if(robot.VuMark.getCryptoboxKey() == RelicRecoveryVuMark.LEFT){
-                robot.driveBase.drivePID(2,false);
-            }
-            else if (robot.VuMark.getCryptoboxKey() == RelicRecoveryVuMark.CENTER){
-                robot.driveBase.drivePID(3,false);
-            }
-            else if (robot.VuMark.getCryptoboxKey() == RelicRecoveryVuMark.RIGHT){
-                robot.driveBase.drivePID(4,false);
-            }
+            robot.jewelArm.resetServo();
+            robot.driveBase.drivePID(6,false);
             robot.driveBase.spinPID(90);
-            robot.driveBase.drivePID(1,true);
             robot.clamps.open();
         } else if (alliance == Alliance_Position.BLUE_LEFT) {
             robot.jewelArm.armDown();
             robot.jewelArm.pushJewels(true);
             robot.jewelArm.armUp();
             if(robot.VuMark.getCryptoboxKey() == RelicRecoveryVuMark.LEFT){
-                robot.driveBase.drivePID(2,false);
+                robot.driveBase.drivePID(24,false);
             }
             else if (robot.VuMark.getCryptoboxKey() == RelicRecoveryVuMark.CENTER){
                 robot.driveBase.drivePID(3,false);
