@@ -1,40 +1,22 @@
-/*
- * Lockdown Framework Library
- * Copyright (c) 2015 Lockdown Team 8564 (lockdown8564.weebly.com)
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
 package ftc8564lib;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.Servo;
 
-public class Clamps {
+/**
+ * Created by margaretli on 11/10/17.
+ */
 
+public class Clamps {
     Servo clampleft;
     Servo clampright;
     LinearOpMode opMode;
-    private double openL = 1;
-    private double openR = 0;
-    private double closeL = .5;
-    private double closeR = .4;
+    private double openL = 0;
+    private double openR = 1;
+    private double closeL = .25;
+    private double closeR = .75;
+    private double gripL = .325;
+    private double gripR = .675;
 
     public Clamps (LinearOpMode opMode) {
         this.opMode = opMode;
@@ -52,4 +34,8 @@ public class Clamps {
         clampright.setPosition(closeR);
     }
 
+    public void grip(){
+        clampleft.setPosition(gripL);
+        clampright.setPosition(gripR);
+    }
 }
