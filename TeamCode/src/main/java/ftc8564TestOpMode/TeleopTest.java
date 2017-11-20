@@ -1,4 +1,4 @@
-package ftc8564opMode;
+package ftc8564TestOpMode;
 
 /**
  * Created by ACtheGreat on 2017/10/27.

@@ -86,11 +86,13 @@ public class DriveBase implements PIDControl.PidInput {
         rightMotor = opMode.hardwareMap.dcMotor.get("right");
         rightMotor.setDirection(DcMotor.Direction.REVERSE);
         leftMotor = opMode.hardwareMap.dcMotor.get("left");
-        imu = opMode.hardwareMap.get(BNO055IMU.class, "imu");
         leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        // IMU init
+        imu = opMode.hardwareMap.get(BNO055IMU.class, "imu");
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
         parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
@@ -100,6 +102,7 @@ public class DriveBase implements PIDControl.PidInput {
         parameters.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
         imu.initialize(parameters);
         imu.startAccelerationIntegration(new Position(), new Velocity(), 1000);
+
         //gyro = new FtcAnalogGyro(opMode, "gyro1", 0.00067);
         //gyroSensor = (ModernRoboticsI2cGyro)opMode.hardwareMap.gyroSensor.get("gyro");
         mRunTime = new ElapsedTime();
@@ -140,9 +143,6 @@ public class DriveBase implements PIDControl.PidInput {
      */
     //Tip: Input distance in inches and power with decimal to hundredth place
 
-    public void setRange(double minTarget, double maxTarget) {
-        pidControl.setTargetRange(minTarget, maxTarget);
-    }
     public void drivePID(double distance, boolean slow) throws InterruptedException {
         //Slow Mode check-----------------------------------------------------------------------
         if(slow)
@@ -167,7 +167,7 @@ public class DriveBase implements PIDControl.PidInput {
         //-------------------------------------------------------------------------
 
         pidControl.setTarget(distance);//ref drivePID (dist, T/F slow, AbortTrigger)
-        pidControlTurn.setTarget(degrees);//WARNING: Must be defined if needed. Not provided.
+        pidControlTurn.setTarget(this.degrees);//WARNING: Must be defined if needed. Not provided.
         stallStartTime = HalUtil.getCurrentTime();//using HalUtil time.
 
         //While loop -----------------------------------------------------------------------------
@@ -461,6 +461,7 @@ public class DriveBase implements PIDControl.PidInput {
         //gyro.resetIntegrator();
        // gyroSensor.resetZAxisIntegrator();
     }
+
     @Override
     public double getInput(PIDControl pidCtrl)
     {

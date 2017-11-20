@@ -1,4 +1,4 @@
-package ftc8564opMode;
+package ftc8564TestOpMode;
 
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cColorSensor;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;

@@ -1,4 +1,4 @@
-package ftc8564opMode;
+package ftc8564TestOpMode;
 
 import android.util.Log;
 
