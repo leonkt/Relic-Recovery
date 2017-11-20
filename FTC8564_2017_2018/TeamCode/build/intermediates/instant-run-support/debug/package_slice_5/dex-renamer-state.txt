@@ -1,4 +1,0 @@
-#Fri Nov 10 15:49:42 PST 2017
-base.0=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/transforms/dex/debug/folders/1000/5/slice_5
-renamed.0=classes.dex
-file.0=/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/TeamCode/build/intermediates/transforms/dex/debug/folders/1000/5/slice_5/classes.dex
