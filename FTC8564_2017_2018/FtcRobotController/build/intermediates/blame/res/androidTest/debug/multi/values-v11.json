@@ -1,0 +1,158 @@
+[
+    {
+        "outputFile": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\C:\\Users\\Wesley Chou\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-v11\\values-v11.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endLine": 4,
+                    "endColumn": 12,
+                    "endOffset": 187
+                },
+                "from": {
+                    "file": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\C:\\Users\\Wesley Chou\\.android\\build-cache\\c4cdc8d1b43d703f78c7e9ece4be24bee91aacba\\output\\res\\values-v11\\values-v11.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endLine": 4,
+                        "endColumn": 12,
+                        "endOffset": 187
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-v11\\values-v11.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endLine": 4,
+                    "endColumn": 12,
+                    "endOffset": 187
+                },
+                "from": {
+                    "file": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\5ea9fc7dc5cc21749e1655537373429222e9d341\\output\\res\\values-v11\\values-v11.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endLine": 4,
+                        "endColumn": 12,
+                        "endOffset": 187
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-v11\\values-v11.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endLine": 4,
+                    "endColumn": 12,
+                    "endOffset": 187
+                },
+                "from": {
+                    "file": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\C:\\Users\\ACtheGreat\\.android\\build-cache\\9e270d4adc7596f5bf4fd918c816977fd3466d9c\\output\\res\\values-v11\\values-v11.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endLine": 4,
+                        "endColumn": 12,
+                        "endOffset": 187
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-v11/values-v11.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endLine": 4,
+                    "endColumn": 12,
+                    "endOffset": 187
+                },
+                "from": {
+                    "file": "/Users/margaretli/.android/build-cache/5ea9fc7dc5cc21749e1655537373429222e9d341/output/res/values-v11/values-v11.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endLine": 4,
+                        "endColumn": 12,
+                        "endOffset": 187
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\Github\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-v11\\values-v11.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endLine": 4,
+                    "endColumn": 12,
+                    "endOffset": 187
+                },
+                "from": {
+                    "file": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\0e88e5b7a28c78aa2bb0332c7ecc31bab5f8fe66\\output\\res\\values-v11\\values-v11.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endLine": 4,
+                        "endColumn": 12,
+                        "endOffset": 187
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\C:\\Users\\ACtheGreat\\Documents\\Github\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-v11\\values-v11.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endLine": 4,
+                    "endColumn": 12,
+                    "endOffset": 187
+                },
+                "from": {
+                    "file": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\C:\\Users\\ACtheGreat\\.android\\build-cache\\979c42526ce381f566ef4936f4e655cb5654603b\\output\\res\\values-v11\\values-v11.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endLine": 4,
+                        "endColumn": 12,
+                        "endOffset": 187
+                    }
+                }
+            }
+        ]
+    }
+]

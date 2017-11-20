@@ -1,0 +1,674 @@
+[
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_inspection.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\2f6c622a75243a359791efb5125210804fa3f162\\output\\res\\layout\\activity_inspection.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\gray_line.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\gray_line.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_about.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\activity_about.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/device_interface_module.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/device_interface_module.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/pwm_device.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/pwm_device.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\port_attached_row.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\port_attached_row.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\analog_output_device.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\analog_output_device.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_blocks.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\334e27bf4e3903455f56e965f07ef441f7b79b9e\\output\\res\\layout\\activity_blocks.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\lynx_module.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\lynx_module.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\analog_input_device.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\analog_input_device.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/activity_about.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/activity_about.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/activity_configure_from_template.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/activity_configure_from_template.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\matrix_devices.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\matrix_devices.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\pwms.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\pwms.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\i2cs.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\i2cs.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\servo_list.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\servo_list.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_load.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\activity_load.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\simple_device.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\simple_device.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/lynx_usb_device.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/lynx_usb_device.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/activity_generic_settings.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/activity_generic_settings.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\servo_controller_banner.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\servo_controller_banner.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\legacy.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\legacy.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/servo_controller_banner.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/servo_controller_banner.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_ftc_controller.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\src\\main\\res\\layout\\activity_ftc_controller.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\loading_indicator_overlay.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\5ea9fc7dc5cc21749e1655537373429222e9d341\\output\\res\\layout\\loading_indicator_overlay.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\pwms.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\pwms.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/digital_device.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/digital_device.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\file_info.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\file_info.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_configure_from_template.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\activity_configure_from_template.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/activity_ftc_wifi_remembered_groups.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/activity_ftc_wifi_remembered_groups.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/matrix_devices.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/matrix_devices.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\motor.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\motor.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/file_info.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/file_info.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/analog_output_device.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/analog_output_device.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\digital_devices.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\digital_devices.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\analog_inputs.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\analog_inputs.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/port_attached_row.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/port_attached_row.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_view_logs.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\activity_view_logs.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/gray_line.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/gray_line.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/pwms.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/pwms.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/simple_device.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/simple_device.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/activity_inspection.xml",
+        "source": "/Users/margaretli/.android/build-cache/d821d2e67a6ff47d965e0affb62a05edcc0a73db/output/res/layout/activity_inspection.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/button_list.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/button_list.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\motor_list.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\motor_list.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/digital_devices.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/digital_devices.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\digital_devices.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\digital_devices.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\device_interface_module.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\device_interface_module.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/activity_program_and_manage.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/activity_program_and_manage.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/analog_inputs.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/analog_inputs.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\analog_outputs.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\analog_outputs.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\lynx_module_configure_address_spin_item.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\lynx_module_configure_address_spin_item.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\button_list.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\button_list.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\template_info.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\template_info.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/lynx_module_configure_address_spin_item.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/lynx_module_configure_address_spin_item.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_program_and_manage.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\activity_program_and_manage.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\header.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\header.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/activity_ftc_lynx_fw_update.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/activity_ftc_lynx_fw_update.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\item_list_parent.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\item_list_parent.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/motor.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/motor.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\lynx_module_configure_address_spin_item.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\lynx_module_configure_address_spin_item.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/red_line.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/red_line.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/analog_input_device.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/analog_input_device.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_ftc_controller.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\src\\main\\res\\layout\\activity_ftc_controller.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\analog_output_device.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\analog_output_device.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\legacy.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\legacy.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\motor_controller_banner.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\motor_controller_banner.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_config_wifi_direct.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\activity_config_wifi_direct.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/feedback.xml",
+        "source": "/Users/margaretli/.android/build-cache/5ea9fc7dc5cc21749e1655537373429222e9d341/output/res/layout/feedback.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\red_line.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\red_line.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\pwm_device.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\pwm_device.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_blocks.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\7e4b530b119874dc202afdb78b6ea5cf2486cc7a\\output\\res\\layout\\activity_blocks.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/activity_ftc_controller.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/src/main/res/layout/activity_ftc_controller.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\digital_device.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\digital_device.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_ftc_lynx_fw_update.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\activity_ftc_lynx_fw_update.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_program_and_manage.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\activity_program_and_manage.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\lynx_module_configure_address.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\lynx_module_configure_address.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\digital_device_lynx.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\digital_device_lynx.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_generic_settings.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\activity_generic_settings.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/motor_controller_banner.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/motor_controller_banner.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/activity_view_logs.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/activity_view_logs.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\lynx_module_configure_address.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\lynx_module_configure_address.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_ftc_lynx_fw_update.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\activity_ftc_lynx_fw_update.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_generic_settings.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\activity_generic_settings.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\feedback.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\9e270d4adc7596f5bf4fd918c816977fd3466d9c\\output\\res\\layout\\feedback.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\banner_parent.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\banner_parent.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\button_list.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\button_list.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_config_wifi_direct.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\activity_config_wifi_direct.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\red_line.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\red_line.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/item_list_parent.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/item_list_parent.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\servo.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\servo.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/activity_blocks.xml",
+        "source": "/Users/margaretli/.android/build-cache/334e27bf4e3903455f56e965f07ef441f7b79b9e/output/res/layout/activity_blocks.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\lynx_usb_device.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\lynx_usb_device.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_programming_mode.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\7e4b530b119874dc202afdb78b6ea5cf2486cc7a\\output\\res\\layout\\activity_programming_mode.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/legacy.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/legacy.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\i2c_device.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\i2c_device.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/activity_swap_usb_devices.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/activity_swap_usb_devices.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\feedback.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\5ea9fc7dc5cc21749e1655537373429222e9d341\\output\\res\\layout\\feedback.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_inspection.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\d821d2e67a6ff47d965e0affb62a05edcc0a73db\\output\\res\\layout\\activity_inspection.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/loading_indicator_overlay.xml",
+        "source": "/Users/margaretli/.android/build-cache/5ea9fc7dc5cc21749e1655537373429222e9d341/output/res/layout/loading_indicator_overlay.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\matrices.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\matrices.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/lynx_module_configure_address.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/lynx_module_configure_address.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\loading_indicator_overlay.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\9e270d4adc7596f5bf4fd918c816977fd3466d9c\\output\\res\\layout\\loading_indicator_overlay.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\analog_input_device.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\analog_input_device.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/banner_parent.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/banner_parent.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/analog_outputs.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/analog_outputs.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_ftc_configuration.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\activity_ftc_configuration.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\digital_device_lynx.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\digital_device_lynx.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/i2cs.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/i2cs.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/digital_device_lynx.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/digital_device_lynx.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\file_info.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\file_info.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_configure_from_template.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\activity_configure_from_template.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\item_list_parent.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\item_list_parent.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/color_list_preference_line_item.xml",
+        "source": "/Users/margaretli/.android/build-cache/5ea9fc7dc5cc21749e1655537373429222e9d341/output/res/layout/color_list_preference_line_item.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\servo_controller_banner.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\servo_controller_banner.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\color_list_preference_line_item.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\5ea9fc7dc5cc21749e1655537373429222e9d341\\output\\res\\layout\\color_list_preference_line_item.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/servo_list.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/servo_list.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\port_attached_row.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\port_attached_row.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_ftc_lynx_address_update.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\activity_ftc_lynx_address_update.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_ftc_lynx_address_update.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\activity_ftc_lynx_address_update.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\info_button.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\info_button.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\motor.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\motor.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/activity_config_wifi_direct.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/activity_config_wifi_direct.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/activity_programming_mode.xml",
+        "source": "/Users/margaretli/.android/build-cache/334e27bf4e3903455f56e965f07ef441f7b79b9e/output/res/layout/activity_programming_mode.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\i2cs.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\i2cs.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\analog_inputs.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\analog_inputs.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_ftc_wifi_remembered_groups.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\activity_ftc_wifi_remembered_groups.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\gray_line.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\gray_line.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_ftc_configuration.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\activity_ftc_configuration.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/lynx_module.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/lynx_module.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/activity_ftc_wifi_channel_selector.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/activity_ftc_wifi_channel_selector.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\simple_device.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\simple_device.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_view_logs.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\activity_view_logs.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/activity_ftc_lynx_address_update.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/activity_ftc_lynx_address_update.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\banner_parent.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\banner_parent.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/servo.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/servo.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/activity_ftc_configuration.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/activity_ftc_configuration.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\pwm_device.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\pwm_device.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\i2c_device.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\i2c_device.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/i2c_device.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/i2c_device.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\color_list_preference_line_item.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\9e270d4adc7596f5bf4fd918c816977fd3466d9c\\output\\res\\layout\\color_list_preference_line_item.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\servo_list.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\servo_list.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\matrices.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\matrices.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_swap_usb_devices.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\activity_swap_usb_devices.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\matrix_devices.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\matrix_devices.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/template_info.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/template_info.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\motor_controller_banner.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\motor_controller_banner.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/activity_load.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/activity_load.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/matrices.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/matrices.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/info_button.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/info_button.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/header.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/header.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/FtcRobotController/build/intermediates/res/merged/release/layout/motor_list.xml",
+        "source": "/Users/margaretli/.android/build-cache/ac1978c06dabaad5637faf363e9d99db91dab1a0/output/res/layout/motor_list.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\lynx_usb_device.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\lynx_usb_device.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\analog_outputs.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\analog_outputs.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\template_info.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\template_info.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\header.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\header.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\servo.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\servo.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_ftc_wifi_channel_selector.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\activity_ftc_wifi_channel_selector.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\motor_list.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\motor_list.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\digital_device.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\digital_device.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_load.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\activity_load.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\info_button.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\info_button.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_programming_mode.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\334e27bf4e3903455f56e965f07ef441f7b79b9e\\output\\res\\layout\\activity_programming_mode.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\lynx_module.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\lynx_module.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_about.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\activity_about.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_swap_usb_devices.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\activity_swap_usb_devices.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_ftc_wifi_remembered_groups.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\margaretli\\.android\\build-cache\\ac1978c06dabaad5637faf363e9d99db91dab1a0\\output\\res\\layout\\activity_ftc_wifi_remembered_groups.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\device_interface_module.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\device_interface_module.xml"
+    },
+    {
+        "merged": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\Documents\\GitHub\\LockdownPrograms\\FTC8564_2017_2018\\FtcRobotController\\build\\intermediates\\res\\merged\\release\\layout\\activity_ftc_wifi_channel_selector.xml",
+        "source": "/Users/margaretli/Documents/GitHub/LockdownPrograms/FTC8564_2017_2018/C:\\Users\\ACtheGreat\\.android\\build-cache\\76d839ed921b1dfd3d71da78026a6f9cc3876ac0\\output\\res\\layout\\activity_ftc_wifi_channel_selector.xml"
+    }
+]
