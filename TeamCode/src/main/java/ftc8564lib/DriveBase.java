@@ -70,6 +70,15 @@ public class DriveBase implements PIDControl.PidInput {
     private ElapsedTime mRunTime;
     private boolean slow = true;
 
+    double prevAngle = 0;
+    public double intZ(){
+        return Math.abs(angles.firstAngle - prevAngle);
+    }
+    public void resetIntZ(){
+        prevAngle = angles.firstAngle;
+    }
+
+
     /*public interface AbortTrigger
     {
         boolean shouldAbort();
@@ -234,6 +243,7 @@ public class DriveBase implements PIDControl.PidInput {
         //usage: angles.firstAngle......etc
         angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
 
+
         //lowering output range for 10 degs angles. so that it turns more accurately.
         if(Math.abs(degrees) < 10.0)
         {
@@ -244,16 +254,16 @@ public class DriveBase implements PIDControl.PidInput {
         //------------------------------------------------------------------------------------
         //calling in the degrees for spinning
         this.degrees = degrees;
-        if(Math.abs(degrees - angles.firstAngle) < 10.0)      //<10 deg PID dial
+        if(Math.abs(degrees - intZ()) < 10.0)      //<10 deg PID dial
         {
             pidControlTurn.setPID(0.05,0,0.0005,0);
-        } else if(Math.abs(degrees - angles.firstAngle) < 20.0)//<20deg PID dial
+        } else if(Math.abs(degrees - intZ()) < 20.0)//<20deg PID dial
         {
             pidControlTurn.setPID(0.03,0,0.002,0);
-        } else if(Math.abs(degrees - angles.firstAngle) < 45.0)//<40deg PID dial
+        } else if(Math.abs(degrees - intZ()) < 45.0)//<40deg PID dial
         {
             pidControlTurn.setPID(0.022,0,0.0011,0);
-        } else if(Math.abs(degrees - angles.firstAngle) < 90.0)//<90deg PID dial
+        } else if(Math.abs(degrees - intZ()) < 90.0)//<90deg PID dial
         {
             pidControlTurn.setPID(0.023,0,0.0005,0);
         } else {                                       //More than 90deg PID dial
@@ -299,6 +309,7 @@ public class DriveBase implements PIDControl.PidInput {
         leftMotor.setPower(0);
         rightMotor.setPower(0);
         resetPIDDrive();//reset
+        resetIntZ();
     }
 
     /**
@@ -380,7 +391,7 @@ public class DriveBase implements PIDControl.PidInput {
         {
             angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
             double diffPower = (leftPower - rightPower)/2.0;
-            double assistPower = HalUtil.clipRange(gyroAssistKp*(diffPower - gyroRateScale*(angles.firstAngle/(currTime-prevTime))));
+            double assistPower = HalUtil.clipRange(gyroAssistKp*(diffPower - gyroRateScale*(intZ()/(currTime-prevTime))));
             leftPower += assistPower;
             rightPower -= assistPower;
             double maxMag = Math.max(Math.abs(leftPower), Math.abs(rightPower));
@@ -474,7 +485,7 @@ public class DriveBase implements PIDControl.PidInput {
         {
             angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
             //input = gyro.getHeading();
-            input = angles.firstAngle;
+            input = intZ();
         }
         return input;
     }
