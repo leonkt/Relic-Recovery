@@ -93,6 +93,11 @@ public class VuMark {
 
     }
 
+    /**
+     * getCryptoBoxKey returns the VuMark instance
+     *
+     * @return is a RelicRecoveryVuMark object
+     */
     public RelicRecoveryVuMark getCryptoboxKey()
     {
         return(vuMark);

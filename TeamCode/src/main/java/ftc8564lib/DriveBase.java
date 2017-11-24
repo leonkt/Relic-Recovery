@@ -412,20 +412,34 @@ public class DriveBase implements PIDControl.PidInput {
 
     }
 
+    /**
+     * sleep stops the program for number of seconds
+     *
+     * @param seconds is the time in seconds to wait
+     */
     public void sleep(double seconds)
     {
         double startTime = HalUtil.getCurrentTime();
-        while(startTime + seconds > HalUtil.getCurrentTime())
-        {
-
-        }
+        while(startTime + seconds > HalUtil.getCurrentTime()) {}
     }
 
+    /**
+     * slowSpeed sets if the robot should go slowly
+     *
+     * @param slow is whether or not the robot should go slow
+     */
     public void slowSpeed(boolean slow)
     {
         slowSpeed = slow;
     }
 
+
+    /**
+     * tankDrive controls the robot's drive train motors and gets input from the joysticks
+     *
+     * @param leftPower is the power for the left motor
+     * @param rightPower is the power for the right motor
+     */
     public void tankDrive(float leftPower, float rightPower) throws InterruptedException {
         leftPower = Range.clip(leftPower, -1, 1);
         rightPower = Range.clip(rightPower, -1, 1);
