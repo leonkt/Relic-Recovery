@@ -72,11 +72,11 @@ public class ServoTest extends LinearOpMode {
         // get servos
         clampleft = hardwareMap.servo.get("clampleft");
         clampright = hardwareMap.servo.get("clampright");
-        stopper = hardwareMap.servo.get("stopper");
 
 
         //set position to -1
-        stopper.setPosition(.5);
+        clampright.setPosition(0);
+        clampleft.setPosition(1);
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
@@ -85,11 +85,12 @@ public class ServoTest extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
 
-            stopper.setPosition(.58);
-            sleep(1000);
-            stopper.setPosition(.48);
-            sleep(1000);
-            stopper.setPosition(.5);
+            clampleft.setPosition(.75);
+            clampright.setPosition(.25);
+            sleep(5000);
+            clampleft.setPosition(.625);
+            clampright.setPosition(.375);
+            sleep(5000);
 
 
             //loop 20 times

@@ -42,7 +42,7 @@ public class TeleopTest extends OpMode{
     DcMotor intakeleft;
     DcMotor intakeright;
     /*stopper*/
-    Servo stopper;
+    //Servo stopper;
     /*
     * Special values definition:
     * reverseFactor: multiplying with this to reverse the directon of the motor
@@ -72,7 +72,7 @@ public class TeleopTest extends OpMode{
         intakeleft = hardwareMap.dcMotor.get("intakeleft");
         intakeright = hardwareMap.dcMotor.get("intakeright");
         /*stopper*/
-        stopper = hardwareMap.servo.get("stopper");
+        //stopper = hardwareMap.servo.get("stopper");
         motorleft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorright.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
@@ -104,7 +104,7 @@ public class TeleopTest extends OpMode{
         /*clampright.setPosition(75);*/
         clampleft.setPosition(1);
         clampright.setPosition(0);
-        stopper.setPosition(.5);
+        //stopper.setPosition(.5);
     }
 
     /*
@@ -238,8 +238,10 @@ public class TeleopTest extends OpMode{
         }
         //close
         if (gamepad2.right_trigger > .6){
-            clampleft.setPosition(.65);
-            clampright.setPosition(.35);
+            //clampleft.setPosition(.675);
+            //clampright.setPosition(.325);
+            clampleft.setPosition(.625);
+            clampright.setPosition(.375);
         }
         /*
         * Intake - Intake portion.
@@ -289,7 +291,7 @@ public class TeleopTest extends OpMode{
         */
 
         //stopper
-        if (gamepad2.dpad_right){
+        /*if (gamepad2.dpad_right){
             stopper.setPosition(.58);
         }
         else if (gamepad2.dpad_left){
@@ -298,6 +300,7 @@ public class TeleopTest extends OpMode{
         else {
             stopper.setPosition(.5);
         }
+        */
         
        
         

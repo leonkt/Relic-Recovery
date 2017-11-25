@@ -35,7 +35,12 @@ public class turkey extends OpMode{
     /*stopper*/
     Servo stopper;
     //turkey
-    DcMotor turkey;
+    //DcMotor turkey;
+    //clamps
+    Servo clampleft;
+    Servo clampright;
+    //lift
+    DcMotor lift;
     /*
     * Special values definition:
     * reverseFactor: multiplying with this to reverse the directon of the motor
@@ -46,8 +51,6 @@ public class turkey extends OpMode{
     private int reverseFactor = -1;
     private double threshold = 0.1;
     private double slow = 1;
-    private double turkeyon = 0;
-    private double bck = 1;
 
     @Override
     public void init() {
@@ -64,7 +67,12 @@ public class turkey extends OpMode{
         stopper = hardwareMap.servo.get("stopper");
         motorleft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorright.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        turkey = hardwareMap.dcMotor.get("turkey");
+        //turkey = hardwareMap.dcMotor.get("turkey");
+        //clamps
+        clampleft = hardwareMap.servo.get("clampleft");
+        clampright = hardwareMap.servo.get("clampright");
+        //lift
+        lift = hardwareMap.dcMotor.get("liftleft");
 
     }
 
@@ -88,13 +96,13 @@ public class turkey extends OpMode{
         runtime.reset();
         //drive
         if (abs(gamepad1.left_stick_y) > threshold){
-            motorleft.setPower(gamepad1.left_stick_y *reverseFactor * slow * bck);
+            motorleft.setPower(gamepad1.left_stick_y *reverseFactor * slow);
         }
         else{
                 motorleft.setPower(0);
         }
         if (abs(gamepad1.right_stick_y) > threshold){
-            motorright.setPower(gamepad1.right_stick_y * slow * bck);
+            motorright.setPower(gamepad1.right_stick_y * slow);
         }
         else {
             motorright.setPower(0);
@@ -105,12 +113,6 @@ public class turkey extends OpMode{
         }
         else if (gamepad1.a){
             slow = 1;
-        }
-        if (bck == 1 && gamepad1.y){
-            bck = -1;
-        }
-        else if (bck == -1 && gamepad1.y){
-            bck = 1;
         }
         if (abs(gamepad1.left_trigger) > 0.6 && abs(gamepad1.right_trigger) > 0.6){
             intakeleft.setPower(.8);
@@ -141,7 +143,7 @@ public class turkey extends OpMode{
             intakeright.setPower(0);
         }
         //stopper
-        if (gamepad1.dpad_right){
+        /*if (gamepad1.dpad_right){
             stopper.setPosition(.58);
         }
         else if (gamepad1.dpad_left){
@@ -150,8 +152,9 @@ public class turkey extends OpMode{
         else {
             stopper.setPosition(.5);
         }
+        */
         //TURKEY
-        if (gamepad1.dpad_up){
+        /*if (gamepad1.dpad_up){
             turkey.setPower(.25);
         }
         else if (gamepad1.dpad_down){
@@ -159,6 +162,30 @@ public class turkey extends OpMode{
         }
         else {
             turkey.setPower(0);
+        }
+        */
+        if (gamepad1.left_bumper){
+            clampleft.setPosition(1);
+            clampright.setPosition(0);
+        }
+        //close
+        else if (gamepad1.right_bumper){
+            clampleft.setPosition(.75);
+            clampright.setPosition(.25);
+        }
+        //close
+        if (gamepad1.right_trigger > .6){
+            clampleft.setPosition(.675);
+            clampright.setPosition(.325);
+        }
+        if (gamepad1.dpad_up){
+            lift.setPower(1);
+        }
+        if (gamepad1.dpad_down){
+            lift.setPower(-1);
+        }
+        else{
+            lift.setPower(0);
         }
 
         telemetry.addData("Status", "Run Time: " + runtime.toString());

@@ -11,12 +11,12 @@ public class Clamps {
     Servo clampleft;
     Servo clampright;
     LinearOpMode opMode;
-    private double openL = 0;
-    private double openR = 1;
-    private double closeL = .25;
-    private double closeR = .75;
-    private double gripL = .325;
-    private double gripR = .675;
+    private double openL = 1;
+    private double openR = 0;
+    private double closeL = .75;
+    private double closeR = .25;
+    private double gripL = .675;
+    private double gripR = .325;
 
     public Clamps (LinearOpMode opMode) {
         this.opMode = opMode;
