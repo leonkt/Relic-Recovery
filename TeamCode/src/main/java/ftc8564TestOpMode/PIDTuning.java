@@ -43,9 +43,9 @@ public class PIDTuning extends LinearOpMode {
         robot = new Robot(this,true);
         ElapsedTime runtime = new ElapsedTime();
         waitForStart();
-        robot.driveBase.drivePID(24, false);
-        robot.driveBase.drivePID(-24, false);
+
         robot.driveBase.spinPID(90);
+        //robot.driveBase.resetIntZ();
 
     }
 

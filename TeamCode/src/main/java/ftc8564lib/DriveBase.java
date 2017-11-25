@@ -48,7 +48,7 @@ public class DriveBase implements PIDControl.PidInput {
 // Variable Declaration Section --------------------------------------------------------------------
 
     private LinearOpMode opMode;
-    private PIDControl pidControl, pidControlTurn;
+    public PIDControl pidControl, pidControlTurn;
     private Orientation angles;
     private Acceleration gravity;
 
@@ -72,12 +72,18 @@ public class DriveBase implements PIDControl.PidInput {
 
     double prevAngle = 0;
     public double intZ(){
-        return Math.abs(angles.firstAngle - prevAngle);
+
+        return (prevAngle - angles.firstAngle);
+
+
     }
     public void resetIntZ(){
         prevAngle = angles.firstAngle;
     }
-
+    public void reset(){
+        leftMotor.setPower (0);
+        rightMotor.setPower(0);
+    }
 
     /*public interface AbortTrigger
     {
@@ -153,6 +159,7 @@ public class DriveBase implements PIDControl.PidInput {
     //Tip: Input distance in inches and power with decimal to hundredth place
 
     public void drivePID(double distance, boolean slow) throws InterruptedException {
+        this.degrees = 0;
         //Slow Mode check-----------------------------------------------------------------------
         if(slow)
         {
@@ -242,6 +249,7 @@ public class DriveBase implements PIDControl.PidInput {
         //calling in the angle measurements from the gyro
         //usage: angles.firstAngle......etc
         angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+        resetIntZ();
 
 
         //lowering output range for 10 degs angles. so that it turns more accurately.
@@ -256,18 +264,23 @@ public class DriveBase implements PIDControl.PidInput {
         this.degrees = degrees;
         if(Math.abs(degrees - intZ()) < 10.0)      //<10 deg PID dial
         {
-            pidControlTurn.setPID(0.05,0,0.0005,0);
+            //pidControlTurn.setPID(0.05,0,0.0005,0);
+            pidControlTurn.setPID(0.15,0,0.0005,0);
         } else if(Math.abs(degrees - intZ()) < 20.0)//<20deg PID dial
         {
-            pidControlTurn.setPID(0.03,0,0.002,0);
+            //pidControlTurn.setPID(0.03,0,0.002,0);
+            pidControlTurn.setPID(0.13,0,0.002,0);
         } else if(Math.abs(degrees - intZ()) < 45.0)//<40deg PID dial
         {
-            pidControlTurn.setPID(0.022,0,0.0011,0);
+            //pidControlTurn.setPID(0.022,0,0.0011,0);
+            pidControlTurn.setPID(0.122,0,0.0011,0);
         } else if(Math.abs(degrees - intZ()) < 90.0)//<90deg PID dial
         {
-            pidControlTurn.setPID(0.023,0,0.0005,0);
+            pidControlTurn.setPID(0.123,0,0.0005,0);
+            //pidControlTurn.setPID(0.023,0,0.0005,0);
         } else {                                       //More than 90deg PID dial
-            pidControlTurn.setPID(0.023,0,0,0);
+            pidControlTurn.setPID(0.123,0,0,0);
+            //pidControlTurn.setPID(0.023,0,0,0)
         }
         //-----------------------------------------------------------------------------------
         pidControlTurn.setTarget(degrees);//sets target degrees.

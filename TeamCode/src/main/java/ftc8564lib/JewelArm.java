@@ -40,15 +40,9 @@ public class JewelArm {
     private ElapsedTime mClock = new ElapsedTime();
 
     private double servoForward = -.1;
-    private double servoBackward = .4;
+    private double servoBackward = .6;
     private double servoRest = 0;
     private boolean blueAlliance = true;
-
-    private enum Color{
-        RED,
-        BLUE,
-        OTHER
-    }
 
     public JewelArm (LinearOpMode opMode)
     {
@@ -62,11 +56,11 @@ public class JewelArm {
     public void pushJewels (boolean blueAlliance){
         colorSensor.enableLed(true);
         if(blueAlliance){
-            if(getColor(LockdownAutonomous.Alliance.BLUE_ALLIANCE) == Color.BLUE){
+            if(colorSensor.blue() > colorSensor.red() && colorSensor.blue() > colorSensor.green()){
                 colorServo.setPosition(0);
                 HalUtil.sleep(500);
             }
-            else if (getColor(LockdownAutonomous.Alliance.BLUE_ALLIANCE) == Color.RED){
+            else if (colorSensor.red() > colorSensor.blue() && colorSensor.red() > colorSensor.green()){
                 colorServo.setPosition(1);
                 HalUtil.sleep(500);
             }
@@ -74,10 +68,10 @@ public class JewelArm {
                 colorServo.setPosition(.4);
             }
         } else {
-            if (getColor(LockdownAutonomous.Alliance.BLUE_ALLIANCE) == Color.BLUE) {
+            if (colorSensor.blue() > colorSensor.red() && colorSensor.blue() > colorSensor.green()) {
                 colorServo.setPosition(1);
                 HalUtil.sleep(500);
-            } else if (getColor(LockdownAutonomous.Alliance.BLUE_ALLIANCE) == Color.RED) {
+            } else if (colorSensor.red() > colorSensor.blue() && colorSensor.red() > colorSensor.green()) {
                 colorServo.setPosition(0);
                 HalUtil.sleep(500);
             } else {
@@ -100,30 +94,6 @@ public class JewelArm {
         crServo.setPower(servoBackward);
         HalUtil.sleep(1500);
         crServo.setPower(servoRest);
-    }
-
-    private Color getColor (LockdownAutonomous.Alliance alliance){
-        if(LockdownAutonomous.Alliance.RED_ALLIANCE == alliance)
-        {
-            if(colorSensor.red() > colorSensor.blue() && colorSensor.red() > colorSensor.green())
-            {
-                return Color.RED;
-            } else if(colorSensor.blue() > colorSensor.red() && colorSensor.blue() > colorSensor.green())
-            {
-                return Color.BLUE;
-            }
-        } else if(LockdownAutonomous.Alliance.BLUE_ALLIANCE == alliance)
-        {
-            if(colorSensor.red() > colorSensor.blue() && colorSensor.red() > colorSensor.green())
-            {
-                return Color.RED;
-            } else if(colorSensor.blue() > colorSensor.red() && colorSensor.blue() > colorSensor.green())
-            {
-                return Color.BLUE;
-            }
-        }
-        return Color.OTHER;
-
     }
 
     public void resetServo()

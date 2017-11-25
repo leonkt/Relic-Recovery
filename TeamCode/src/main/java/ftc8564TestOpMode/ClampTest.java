@@ -20,15 +20,6 @@ import static java.lang.Math.abs;
 /*@Disabled*/
 
 public class ClampTest extends OpMode{
-    /**
-    * TeleopTest.java is created by A.C.G. for team LockDown #8564.
-    * (c) Copyright 20xx CA Works. All Rights reserved.
-    *
-    * This is a debug teleop program which introduces the basic movement of the robot.
-    * Later the definitions will be moved to a hardware class.
-    *
-    */
-
 
     private ElapsedTime runtime = new ElapsedTime();
 

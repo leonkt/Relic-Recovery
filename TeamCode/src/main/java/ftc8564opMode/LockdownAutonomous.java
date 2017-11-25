@@ -65,8 +65,9 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
 
     @Override
     public void runOpMode() throws InterruptedException {
-        robot = new Robot(this,true);// need this to run menu test
+        robot = new Robot(this, true);// need this to run menu test
         doMenus();
+        robot.VuMark.activate();
         waitForStart();
 
         // robot.driveBase.resetHeading();
@@ -77,63 +78,108 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             robot.jewelArm.pushJewels(true);
             robot.jewelArm.armUp();
             robot.jewelArm.resetServo();
-            robot.driveBase.drivePID(6,false);
-            robot.driveBase.spinPID(90);
-            robot.clamps.open();
-        } else if (alliance == Alliance_Position.BLUE_LEFT) {
-            robot.jewelArm.armDown();
-            robot.jewelArm.pushJewels(true);
-            robot.jewelArm.armUp();
-            if(robot.VuMark.getCryptoboxKey() == RelicRecoveryVuMark.LEFT){
-                robot.driveBase.drivePID(24,false);
+            robot.VuMark.decodePictograph();
+            if (robot.VuMark.getCryptoboxKey() == "LEFT") {
+                telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
+                telemetry.update();
+                robot.driveBase.drivePID(32, false);
+            } else if (robot.VuMark.getCryptoboxKey() == "CENTER") {
+                telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
+                telemetry.update();
+                robot.driveBase.drivePID(38, false);
+            } else {
+                telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
+                telemetry.update();
+                robot.driveBase.drivePID(46, false);
             }
-            else if (robot.VuMark.getCryptoboxKey() == RelicRecoveryVuMark.CENTER){
-                robot.driveBase.drivePID(3,false);
-            }
-            else if (robot.VuMark.getCryptoboxKey() == RelicRecoveryVuMark.RIGHT){
-                robot.driveBase.drivePID(4,false);
-            }
-            robot.driveBase.spinPID(90);
-            robot.driveBase.drivePID(1,true);
-            robot.clamps.open();
-        } else if (alliance == Alliance_Position.RED_RIGHT) {
-            robot.jewelArm.armDown();
-            robot.jewelArm.pushJewels(true);
-            robot.jewelArm.armUp();
-            if(robot.VuMark.getCryptoboxKey() == RelicRecoveryVuMark.LEFT){
-                robot.driveBase.drivePID(2,false);
-            }
-            else if (robot.VuMark.getCryptoboxKey() == RelicRecoveryVuMark.CENTER){
-                robot.driveBase.drivePID(3,false);
-            }
-            else if (robot.VuMark.getCryptoboxKey() == RelicRecoveryVuMark.RIGHT){
-                robot.driveBase.drivePID(4,false);
-            }
-            robot.driveBase.spinPID(90);
-            robot.driveBase.drivePID(1,true);
-            robot.clamps.open();
-        } else if (alliance == Alliance_Position.RED_LEFT) {
-            robot.jewelArm.armDown();
-            robot.jewelArm.pushJewels(true);
-            robot.jewelArm.armUp();
-            if(robot.VuMark.getCryptoboxKey() == RelicRecoveryVuMark.LEFT){
-                robot.driveBase.drivePID(2,false);
-            }
-            else if (robot.VuMark.getCryptoboxKey() == RelicRecoveryVuMark.CENTER){
-                robot.driveBase.drivePID(3,false);
-            }
-            else if (robot.VuMark.getCryptoboxKey() == RelicRecoveryVuMark.RIGHT){
-                robot.driveBase.drivePID(4,false);
-            }
-            robot.driveBase.spinPID(90);
-            robot.driveBase.drivePID(1,true);
-            robot.clamps.open();
+            robot.driveBase.spinPID(-90);
+            robot.driveBase.drivePID(15, false);
+            robot.driveBase.drivePID(-6,false);
         }
-        runCleanUp();
-        telemetry.clearAll();
-        telemetry.update();
-        sleep(7000); // sleep 7s
+        else if (alliance == Alliance_Position.BLUE_LEFT) {
+            robot.jewelArm.resetServo();
+            robot.jewelArm.armDown();
+            robot.jewelArm.pushJewels(true);
+            robot.jewelArm.armUp();
+            robot.VuMark.decodePictograph();
+            if (robot.VuMark.getCryptoboxKey() == "LEFT") {
+                telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
+                telemetry.update();
+                robot.driveBase.drivePID(36, false);
+                robot.driveBase.spinPID(90);
+                robot.driveBase.drivePID(3, false);
+            } else if (robot.VuMark.getCryptoboxKey() == "CENTER") {
+                telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
+                telemetry.update();
+                robot.driveBase.drivePID(36, false);
+                robot.driveBase.spinPID(90);
+                robot.driveBase.drivePID(9.5, false);
+            } else {
+                telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
+                telemetry.update();
+                robot.driveBase.drivePID(36, false);
+                robot.driveBase.spinPID(90);
+                robot.driveBase.drivePID(16, false);
+            }
+            robot.driveBase.spinPID(-90);
+            robot.driveBase.drivePID(15, false);
+            robot.driveBase.drivePID(-6,false);
 
+        }
+        else if (alliance == Alliance_Position.RED_RIGHT) {
+            robot.jewelArm.resetServo();
+            robot.jewelArm.armDown();
+            robot.jewelArm.pushJewels(true);
+            robot.jewelArm.armUp();
+            robot.jewelArm.resetServo();
+            robot.VuMark.decodePictograph();
+            if (robot.VuMark.getCryptoboxKey() == "LEFT") {
+                telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
+                telemetry.update();
+                robot.driveBase.drivePID(-36, false);
+                robot.driveBase.spinPID(90);
+                robot.driveBase.drivePID(3, false);
+            } else if (robot.VuMark.getCryptoboxKey() == "CENTER") {
+                telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
+                telemetry.update();
+                robot.driveBase.drivePID(-36, false);
+                robot.driveBase.spinPID(90);
+                robot.driveBase.drivePID(9.5, false);
+            } else {
+                telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
+                telemetry.update();
+                robot.driveBase.drivePID(-36, false);
+                robot.driveBase.spinPID(90);
+                robot.driveBase.drivePID(16, false);
+            }
+            robot.driveBase.spinPID(90);
+            robot.driveBase.drivePID(15, false);
+            robot.driveBase.drivePID(-6,false);
+        }
+        else if (alliance == Alliance_Position.RED_LEFT) {
+            robot.jewelArm.resetServo();
+            robot.jewelArm.armDown();
+            robot.jewelArm.pushJewels(true);
+            robot.jewelArm.armUp();
+            robot.jewelArm.resetServo();
+            robot.VuMark.decodePictograph();
+            if (robot.VuMark.getCryptoboxKey() == "LEFT") {
+                telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
+                robot.driveBase.drivePID(-27.5, false);
+            } else if (robot.VuMark.getCryptoboxKey() == "CENTER") {
+                telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
+                robot.driveBase.drivePID(-34.5, false);
+            } else if (robot.VuMark.getCryptoboxKey() == "RIGHT") {
+                telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
+                robot.driveBase.drivePID(-42, false);
+                robot.driveBase.spinPID(90);
+                robot.driveBase.drivePID(-15, false);
+            }
+            runCleanUp();
+            telemetry.clearAll();
+            telemetry.update();
+            sleep(7000); // sleep 7s
+        }
     }
 
     private void runCleanUp() throws InterruptedException {

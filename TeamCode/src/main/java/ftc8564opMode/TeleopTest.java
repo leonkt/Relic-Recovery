@@ -1,4 +1,4 @@
-package ftc8564TestOpMode;
+package ftc8564opMode;
 
 /**
  * Created by ACtheGreat on 2017/10/27.
@@ -188,7 +188,7 @@ public class TeleopTest extends OpMode{
         else {
             lift.setPower(0);
         }
-        if ((liftPosition == 0) && (gamepad2.right_stick_y > .6)){
+        /*if ((liftPosition == 0) && (gamepad2.right_stick_y > .6)){
             lift.setTargetPosition(200);
             liftPosition = 1;
         }
@@ -220,6 +220,7 @@ public class TeleopTest extends OpMode{
             lift.setTargetPosition(600);
             liftPosition = 3;
         }
+        */
         /* Grips
         * If right bumper is pressed, the grips will open
         * if left bumper is pressed, the grips will close
