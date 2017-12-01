@@ -15,8 +15,8 @@ public class Clamps {
     private double openR = 0;
     private double closeL = .75;
     private double closeR = .25;
-    private double gripL = .675;
-    private double gripR = .325;
+    private double gripL = .625;
+    private double gripR = .375;
 
     public Clamps (LinearOpMode opMode) {
         this.opMode = opMode;

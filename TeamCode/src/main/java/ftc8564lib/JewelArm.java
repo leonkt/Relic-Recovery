@@ -100,8 +100,8 @@ public class JewelArm {
     {
         colorServo.setPosition(0.4);
         crServo.setPower(servoRest);
-        HalUtil.sleep(500);
         colorSensor.enableLed(false);
+        crServo.setPower(.1);
     }
 
 }

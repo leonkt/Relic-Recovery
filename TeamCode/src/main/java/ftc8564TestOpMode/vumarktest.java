@@ -22,14 +22,12 @@ public class vumarktest extends LinearOpMode{
     @Override
     public void runOpMode() throws InterruptedException {
         robot = new Robot(this, true);// need this to run menu test
+        robot.VuMark.activate();
         waitForStart();
         while (opModeIsActive()) {
-
-            robot.VuMark.activate();
             robot.VuMark.decodePictograph();
             telemetry.addData("VuMark: ", robot.VuMark.getCryptoboxKey());
             telemetry.update();
-            robot.VuMark.deactivate();
         }
     }
 }
