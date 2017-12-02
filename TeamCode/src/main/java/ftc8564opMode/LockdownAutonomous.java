@@ -70,7 +70,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
     @Override
     public void runOpMode() throws InterruptedException {
         robot = new Robot(this, true);
-        lift = hardwareMap.dcMotor.get("liftleft ");// need this to run menu test
+        lift = hardwareMap.dcMotor.get("liftleft");// need this to run menu test
         doMenus();
         robot.VuMark.activate();
         waitForStart();
@@ -106,7 +106,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             robot.clamps.grip();
             HalUtil.sleep(400);
             lift.setPower(1);
-            HalUtil.sleep(300);
+            HalUtil.sleep(400);
             lift.setPower(0);
             robot.jewelArm.resetServo();
             robot.jewelArm.armDown();
@@ -120,18 +120,18 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             if (vumark == RelicRecoveryVuMark.LEFT) {
                 robot.driveBase.drivePID(24, true);
                 robot.driveBase.spinPID(15);
-            } else if (vumark == RelicRecoveryVuMark.CENTER) {
-                robot.driveBase.drivePID(26, false);
+            } else if (vumark == RelicRecoveryVuMark.RIGHT) {
+                robot.driveBase.drivePID(30, false);
                 robot.driveBase.spinPID(90);
-                robot.driveBase.drivePID(18, false);
+                robot.driveBase.drivePID(24, false);
                 robot.driveBase.spinPID(-90);
             } else {
-                robot.driveBase.drivePID(26, false);
+                robot.driveBase.drivePID(30, false);
                 robot.driveBase.spinPID(90);
-                robot.driveBase.drivePID(23, false);
+                robot.driveBase.drivePID(20, false);
                 robot.driveBase.spinPID(-90);
             }
-            robot.driveBase.drivePID(10, false);
+            robot.driveBase.drivePID(11, false);
             robot.clamps.open();
             robot.driveBase.drivePID(-6,false);
 

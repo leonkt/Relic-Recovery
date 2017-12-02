@@ -92,7 +92,7 @@ public class JewelArm {
         HalUtil.sleep(500);
         colorServo.setPosition(0.4);
         crServo.setPower(servoBackward);
-        HalUtil.sleep(1500);
+        HalUtil.sleep(2000);
         crServo.setPower(servoRest);
     }
 
