@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 /*import com.qualcomm.robotcore.eventloop.opmode.Disabled;
  */
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -47,7 +48,7 @@ public class TeleopTest extends OpMode{
     DcMotor arm;
     DcMotor armextension;
     Servo gripperextension;
-    Servo armgripper;
+    CRServo armgripper;
     /*
     * Special values definition:
     * reverseFactor: multiplying with this to reverse the directon of the motor
@@ -88,7 +89,8 @@ public class TeleopTest extends OpMode{
         armextension.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         //relic arm
         gripperextension = hardwareMap.servo.get("gripperextension");
-        armgripper = hardwareMap.servo.get("armgripper");
+        armgripper = hardwareMap.crservo.get("armgripper");
+
 
 
     }
@@ -207,8 +209,15 @@ public class TeleopTest extends OpMode{
         else{
             if (abs(gamepad2.left_stick_y) > threshold){
                 armextension.setPower(gamepad2.left_stick_y);}
+            else{
+                armextension.setPower(0);
+            }
             if (abs(gamepad2.right_stick_y) > threshold){
                 arm.setPower(gamepad2.right_stick_y * 0.2);}
+            else{
+                arm.setPower(0);
+            }
+
 
         }
 
@@ -271,10 +280,10 @@ public class TeleopTest extends OpMode{
         }
         else{
             if (gamepad2.left_bumper){
-                armgripper.setPosition(1);
+                armgripper.setPower(0.5);
             }
             if(gamepad2.right_bumper){
-                armgripper.setPosition(0.5);
+                armgripper.setPower(-0.5);
             }
             if(gamepad2.left_trigger > 0.6){
                 gripperextension.setPosition(gripperextension.getPosition() + 0.05);
