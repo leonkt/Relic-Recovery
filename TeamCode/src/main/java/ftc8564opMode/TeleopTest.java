@@ -43,6 +43,11 @@ public class TeleopTest extends OpMode{
     DcMotor intakeright;
     /*stopper*/
     //Servo stopper;
+    //relic arm:
+    DcMotor arm;
+    DcMotor armextension;
+    Servo gripperextension;
+    Servo armgripper;
     /*
     * Special values definition:
     * reverseFactor: multiplying with this to reverse the directon of the motor
@@ -54,6 +59,7 @@ public class TeleopTest extends OpMode{
     private double threshold = 0.1;
     private double slow = 1;
     private int liftPosition = 0;
+    private boolean relicMode = false;
 
     @Override
     public void init() {
@@ -71,10 +77,19 @@ public class TeleopTest extends OpMode{
         /*intake motors*/
         intakeleft = hardwareMap.dcMotor.get("intakeleft");
         intakeright = hardwareMap.dcMotor.get("intakeright");
+        //arm
+        arm = hardwareMap.dcMotor.get("arm");
+        armextension = hardwareMap.dcMotor.get("armextension");
         /*stopper*/
         //stopper = hardwareMap.servo.get("stopper");
         motorleft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorright.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        armextension.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        //relic arm
+        gripperextension = hardwareMap.servo.get("gripperextension");
+        armgripper = hardwareMap.servo.get("armgripper");
+
 
     }
 
@@ -182,12 +197,21 @@ public class TeleopTest extends OpMode{
         * Player 2 controls: Right Joystick up/down -> lift up/down
         *
         */
-        if ((abs(gamepad2.right_stick_y)) > threshold){
-            lift.setPower(gamepad2.right_stick_y * reverseFactor);
+        if (!relicMode) {
+            if ((abs(gamepad2.right_stick_y)) > threshold) {
+                lift.setPower(gamepad2.right_stick_y * reverseFactor);
+            } else {
+                lift.setPower(0);
+            }
         }
-        else {
-            lift.setPower(0);
+        else{
+            if (abs(gamepad2.left_stick_y) > threshold){
+                armextension.setPower(gamepad2.left_stick_y);}
+            if (abs(gamepad2.right_stick_y) > threshold){
+                arm.setPower(gamepad2.right_stick_y * 0.2);}
+
         }
+
         /*if ((liftPosition == 0) && (gamepad2.right_stick_y > .6)){
             lift.setTargetPosition(200);
             liftPosition = 1;
@@ -227,21 +251,38 @@ public class TeleopTest extends OpMode{
         * if right trigger is pressed, the grips will tighten to pick up the block
          */
         //open
-        if (gamepad2.left_bumper){
-            clampleft.setPosition(1);
-            clampright.setPosition(0);
+        if (!relicMode) {
+            if (gamepad2.left_bumper) {
+                clampleft.setPosition(1);
+                clampright.setPosition(0);
+            }
+            //close
+            else if (gamepad2.right_bumper) {
+                clampleft.setPosition(.75);
+                clampright.setPosition(.25);
+            }
+            //close
+            if (gamepad2.right_trigger > .6) {
+                //clampleft.setPosition(.675);
+                //clampright.setPosition(.325);
+                clampleft.setPosition(.625);
+                clampright.setPosition(.375);
+            }
         }
-        //close
-        else if (gamepad2.right_bumper){
-            clampleft.setPosition(.75);
-            clampright.setPosition(.25);
-        }
-        //close
-        if (gamepad2.right_trigger > .6){
-            //clampleft.setPosition(.675);
-            //clampright.setPosition(.325);
-            clampleft.setPosition(.625);
-            clampright.setPosition(.375);
+        else{
+            if (gamepad2.left_bumper){
+                armgripper.setPosition(1);
+            }
+            if(gamepad2.right_bumper){
+                armgripper.setPosition(0.5);
+            }
+            if(gamepad2.left_trigger > 0.6){
+                gripperextension.setPosition(gripperextension.getPosition() + 0.05);
+            }
+            if (gamepad2.right_trigger >0.6){
+                gripperextension.setPosition(gripperextension.getPosition() - 0.05);
+            }
+
         }
         /*
         * Intake - Intake portion.
@@ -301,6 +342,20 @@ public class TeleopTest extends OpMode{
             stopper.setPosition(.5);
         }
         */
+
+        //arm
+        if (gamepad2.x){
+            if (relicMode){
+                relicMode = false;
+            }
+            else{
+                relicMode = true;
+            }
+
+        }
+
+
+
         
        
         
