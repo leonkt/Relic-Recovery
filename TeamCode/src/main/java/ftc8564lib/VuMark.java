@@ -46,20 +46,30 @@ public class VuMark {
         parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
         this.vuforia = ClassFactory.createVuforiaLocalizer(parameters);
         vuMark = RelicRecoveryVuMark.UNKNOWN;
-        VuforiaTrackables relicTrackables = this.vuforia.loadTrackablesFromAsset("RelicVuMark");
-        VuforiaTrackable relicTemplate = relicTrackables.get(0);
-        relicTemplate.setName("relicVuMarkTemplate"); // can help in debugging; otherwise not necessary
-        relicTrackables.activate();
+        //VuforiaTrackables relicTrackables = this.vuforia.loadTrackablesFromAsset("RelicVuMark");
+        //VuforiaTrackable relicTemplate = relicTrackables.get(0);
+        //relicTemplate.setName("relicVuMarkTemplate"); // can help in debugging; otherwise not necessary
+        //relicTrackables.activate();
     }
 
     public void decodePictograph() throws InterruptedException {
         int count = 0;
+        VuforiaTrackables relicTrackables = this.vuforia.loadTrackablesFromAsset("RelicVuMark");
+        VuforiaTrackable relicTemplate = relicTrackables.get(0);
+        relicTemplate.setName("relicVuMarkTemplate"); // can help in debugging; otherwise not necessary
+        relicTrackables.activate();
         while (vuMark == RelicRecoveryVuMark.UNKNOWN && count < 4000000) {
             count++;
-            RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
+            vuMark = RelicRecoveryVuMark.from(relicTemplate);
+            if (vuMark != RelicRecoveryVuMark.UNKNOWN){
+                break;
+            }
+            else{
+
+            }
             //RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
         }
-        RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
+        vuMark = RelicRecoveryVuMark.from(relicTemplate);
     }
     public RelicRecoveryVuMark getCryptoboxKey() {
         return(vuMark);

@@ -70,14 +70,13 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
     @Override
     public void runOpMode() throws InterruptedException {
         robot = new Robot(this, true);
-        lift = hardwareMap.dcMotor.get("liftleft");// need this to run menu test
+        lift = hardwareMap.dcMotor.get("liftleft ");// need this to run menu test
         doMenus();
         robot.VuMark.activate();
         waitForStart();
         // robot.driveBase.resetHeading();
         if (alliance == Alliance_Position.BLUE_RIGHT) {
             robot.clamps.grip();
-            //robot.VuMark.decodePictograph();
             HalUtil.sleep(400);
             lift.setPower(1);
             HalUtil.sleep(300);
@@ -88,11 +87,9 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             robot.jewelArm.armUp();
             robot.jewelArm.resetServo();
             robot.VuMark.decodePictograph();
-            HalUtil.sleep(2000);
             telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
             telemetry.update();
             vumark = (robot.VuMark.getCryptoboxKey());
-            HalUtil.sleep(2000);
             if (vumark == RelicRecoveryVuMark.LEFT) {
                 robot.driveBase.drivePID(31, false);
             } else if (vumark == RelicRecoveryVuMark.CENTER) {
@@ -106,60 +103,78 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             robot.driveBase.drivePID(-10,false);
         }
         else if (alliance == Alliance_Position.BLUE_LEFT) {
+            robot.clamps.grip();
+            HalUtil.sleep(400);
+            lift.setPower(1);
+            HalUtil.sleep(300);
+            lift.setPower(0);
             robot.jewelArm.resetServo();
             robot.jewelArm.armDown();
             robot.jewelArm.pushJewels(true);
             robot.jewelArm.armUp();
+            robot.jewelArm.resetServo();
             robot.VuMark.decodePictograph();
             telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
             telemetry.update();
             vumark = (robot.VuMark.getCryptoboxKey());
             if (vumark == RelicRecoveryVuMark.LEFT) {
-                robot.driveBase.drivePID(36, false);
-                robot.driveBase.spinPID(90);
-                robot.driveBase.drivePID(3, false);
+                robot.driveBase.drivePID(24, true);
+                robot.driveBase.spinPID(15);
             } else if (vumark == RelicRecoveryVuMark.CENTER) {
-                robot.driveBase.drivePID(36, false);
+                robot.driveBase.drivePID(26, false);
                 robot.driveBase.spinPID(90);
-                robot.driveBase.drivePID(9.5, false);
+                robot.driveBase.drivePID(18, false);
+                robot.driveBase.spinPID(-90);
             } else {
-                robot.driveBase.drivePID(36, false);
+                robot.driveBase.drivePID(26, false);
                 robot.driveBase.spinPID(90);
-                robot.driveBase.drivePID(16, false);
+                robot.driveBase.drivePID(23, false);
+                robot.driveBase.spinPID(-90);
             }
-            robot.driveBase.spinPID(-90);
-            robot.driveBase.drivePID(15, false);
+            robot.driveBase.drivePID(10, false);
+            robot.clamps.open();
             robot.driveBase.drivePID(-6,false);
 
         }
         else if (alliance == Alliance_Position.RED_RIGHT) {
+            robot.clamps.grip();
+            HalUtil.sleep(400);
+            lift.setPower(1);
+            HalUtil.sleep(300);
+            lift.setPower(0);
             robot.jewelArm.resetServo();
             robot.jewelArm.armDown();
-            robot.jewelArm.pushJewels(false);
+            robot.jewelArm.pushJewels(true);
             robot.jewelArm.armUp();
             robot.jewelArm.resetServo();
-
+            robot.VuMark.decodePictograph();
             telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
             telemetry.update();
             vumark = (robot.VuMark.getCryptoboxKey());
             if (vumark == RelicRecoveryVuMark.LEFT) {
-                robot.driveBase.drivePID(-36, false);
-                robot.driveBase.spinPID(90);
-                robot.driveBase.drivePID(3, false);
+                robot.driveBase.drivePID(-24, false);
+                robot.driveBase.spinPID(165);
             } else if (vumark == RelicRecoveryVuMark.CENTER) {
-                robot.driveBase.drivePID(-36, false);
+                robot.driveBase.drivePID(-26, false);
                 robot.driveBase.spinPID(90);
-                robot.driveBase.drivePID(9.5, false);
+                robot.driveBase.drivePID(18, false);
+                robot.driveBase.spinPID(-90);
             } else {
-                robot.driveBase.drivePID(-36, false);
+                robot.driveBase.drivePID(-26, false);
                 robot.driveBase.spinPID(90);
-                robot.driveBase.drivePID(16, false);
+                robot.driveBase.drivePID(23, false);
+                robot.driveBase.spinPID(-90);
             }
-            robot.driveBase.spinPID(90);
-            robot.driveBase.drivePID(15, false);
+            robot.driveBase.drivePID(10, false);
+            robot.clamps.open();
             robot.driveBase.drivePID(-6,false);
         }
         else if (alliance == Alliance_Position.RED_LEFT) {
+            robot.clamps.grip();
+            HalUtil.sleep(400);
+            lift.setPower(1);
+            HalUtil.sleep(300);
+            lift.setPower(0);
             robot.jewelArm.resetServo();
             robot.jewelArm.armDown();
             robot.jewelArm.pushJewels(false);
@@ -170,14 +185,18 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             telemetry.update();
             vumark = (robot.VuMark.getCryptoboxKey());
             if (vumark == RelicRecoveryVuMark.LEFT) {
-                robot.driveBase.drivePID(-27.5, false);
-            } else if (vumark == RelicRecoveryVuMark.LEFT) {
-                robot.driveBase.drivePID(-34.5, false);
+                robot.driveBase.drivePID(-30, false);
+            } else if (vumark == RelicRecoveryVuMark.CENTER) {
+                robot.driveBase.drivePID(-37, false);
             } else {
-                robot.driveBase.drivePID(-42, false);
+                robot.driveBase.drivePID(-48.5, false);
             }
-            robot.driveBase.spinPID(90);
-            robot.driveBase.drivePID(-15, false);
+            robot.driveBase.spinPID(-90);
+            robot.driveBase.drivePID(15, false);
+            robot.clamps.open();
+            robot.driveBase.drivePID(-5,false);
+
+
             runCleanUp();
         }
         telemetry.clearAll();
