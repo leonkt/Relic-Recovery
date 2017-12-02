@@ -26,6 +26,8 @@ package ftc8564lib;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+import hallib.HalUtil;
+
 public class Lift {
 
     private DcMotor lift;
@@ -46,7 +48,7 @@ public class Lift {
      *
      * @param liftPosition is the desired position
      */
-    public void up(int liftPosition){
+    public void up (int liftPosition){
         lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         if (liftPosition == 0) {
             lift.setTargetPosition(1);
@@ -66,6 +68,13 @@ public class Lift {
         while (lift.isBusy()){}
         lift.setPower(0);
         lift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        }
     }
+
+    public void liftglyph(){
+        HalUtil.sleep(400);
+        lift.setPower(1);
+        HalUtil.sleep(300);
+        lift.setPower(0);
+    }
+}
 

@@ -40,8 +40,6 @@ import hallib.HalUtil;
 @Autonomous(name="LockdownAutonomous", group="Autonomous")
 public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButtons{
     Robot robot;
-    DcMotor lift;
-
 
     private ElapsedTime mClock = new ElapsedTime();
 
@@ -69,18 +67,14 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
 
     @Override
     public void runOpMode() throws InterruptedException {
-        robot = new Robot(this, true);
-        lift = hardwareMap.dcMotor.get("liftleft");// need this to run menu test
+        robot = new Robot(this, true);// need this to run menu test
         doMenus();
         robot.VuMark.activate();
         waitForStart();
         // robot.driveBase.resetHeading();
         if (alliance == Alliance_Position.BLUE_RIGHT) {
             robot.clamps.grip();
-            HalUtil.sleep(400);
-            lift.setPower(1);
-            HalUtil.sleep(300);
-            lift.setPower(0);
+            robot.lift.liftglyph();
             robot.jewelArm.resetServo();
             robot.jewelArm.armDown();
             robot.jewelArm.pushJewels(true);
@@ -104,10 +98,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         }
         else if (alliance == Alliance_Position.BLUE_LEFT) {
             robot.clamps.grip();
-            HalUtil.sleep(400);
-            lift.setPower(1);
-            HalUtil.sleep(400);
-            lift.setPower(0);
+            robot.lift.liftglyph();
             robot.jewelArm.resetServo();
             robot.jewelArm.armDown();
             robot.jewelArm.pushJewels(true);
@@ -138,10 +129,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         }
         else if (alliance == Alliance_Position.RED_RIGHT) {
             robot.clamps.grip();
-            HalUtil.sleep(400);
-            lift.setPower(1);
-            HalUtil.sleep(300);
-            lift.setPower(0);
+            robot.lift.liftglyph();
             robot.jewelArm.resetServo();
             robot.jewelArm.armDown();
             robot.jewelArm.pushJewels(true);
@@ -171,10 +159,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         }
         else if (alliance == Alliance_Position.RED_LEFT) {
             robot.clamps.grip();
-            HalUtil.sleep(400);
-            lift.setPower(1);
-            HalUtil.sleep(300);
-            lift.setPower(0);
+            robot.lift.liftglyph();
             robot.jewelArm.resetServo();
             robot.jewelArm.armDown();
             robot.jewelArm.pushJewels(false);
@@ -195,10 +180,8 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             robot.driveBase.drivePID(15, false);
             robot.clamps.open();
             robot.driveBase.drivePID(-5,false);
-
-
-            runCleanUp();
         }
+        runCleanUp();
         telemetry.clearAll();
         telemetry.update();
         sleep(7000); // sleep 7s

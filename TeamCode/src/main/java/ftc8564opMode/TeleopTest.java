@@ -49,6 +49,7 @@ public class TeleopTest extends OpMode{
     DcMotor armextension;
     Servo gripperextension;
     CRServo armgripper;
+    CRServo crServo;
     /*
     * Special values definition:
     * reverseFactor: multiplying with this to reverse the directon of the motor
@@ -80,6 +81,8 @@ public class TeleopTest extends OpMode{
         intakeright = hardwareMap.dcMotor.get("intakeright");
         //arm
         arm = hardwareMap.dcMotor.get("arm");
+        arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         armextension = hardwareMap.dcMotor.get("armextension");
         /*stopper*/
         //stopper = hardwareMap.servo.get("stopper");
@@ -90,6 +93,7 @@ public class TeleopTest extends OpMode{
         //relic arm
         gripperextension = hardwareMap.servo.get("gripperextension");
         armgripper = hardwareMap.crservo.get("armgripper");
+        crServo = hardwareMap.crservo.get("crServo");
 
 
 
@@ -142,6 +146,7 @@ public class TeleopTest extends OpMode{
          */
 
         runtime.reset();
+        crServo.setPower(.1);
 
         /*
         if(gamepad1.left_stick_y >0.1){
@@ -208,14 +213,27 @@ public class TeleopTest extends OpMode{
         }
         else{
             if (abs(gamepad2.left_stick_y) > threshold){
-                armextension.setPower(gamepad2.left_stick_y);}
+                armextension.setPower(-gamepad2.left_stick_y);
+            }
             else{
                 armextension.setPower(0);
             }
             if (abs(gamepad2.right_stick_y) > threshold){
-                arm.setPower(gamepad2.right_stick_y * 0.2);}
+                arm.setPower(-gamepad2.right_stick_y * 0.5);
+            }
             else{
-                arm.setPower(0);
+                if (arm.getCurrentPosition() < -300){
+                    arm.setPower(0.2);
+                }
+                else if (arm.getCurrentPosition() < -400){
+                    arm.setPower(0.3);
+                }
+                else if (arm.getCurrentPosition() < -500){
+                    arm.setPower(0.4);
+                }
+                else {
+                    arm.setPower(0);
+                }
             }
 
 

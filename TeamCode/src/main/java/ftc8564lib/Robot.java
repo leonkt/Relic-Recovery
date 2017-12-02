@@ -38,6 +38,7 @@ public class Robot {
     public JewelArm jewelArm = null;
     public VuMark VuMark = null;
     public Clamps clamps = null;
+    public Lift lift = null;
 
     public Robot(LinearOpMode opMode, boolean auto) throws InterruptedException {
         dashboard = new HalDashboard(opMode.telemetry);
@@ -45,6 +46,7 @@ public class Robot {
         driveBase = new DriveBase(opMode);
         clamps = new Clamps(opMode);
         VuMark = new VuMark(opMode);
+        lift = new Lift(opMode);
         // pulleySystem = new PulleySystem(opMode);
         // shooter = new Shooter(opMode);
         // beaconPush = new BeaconPush(opMode);
