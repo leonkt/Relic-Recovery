@@ -60,9 +60,8 @@ public class ServoTest extends LinearOpMode {
     private ElapsedTime runtime = new ElapsedTime();
     double position = .4;
 
-    Servo clampleft;
-    Servo clampright;
-    Servo stopper;
+    Servo lefttop;
+    Servo righttop;
 
     @Override
     public void runOpMode() {
@@ -70,13 +69,13 @@ public class ServoTest extends LinearOpMode {
         telemetry.update();
 
         // get servos
-        clampleft = hardwareMap.servo.get("clampleft");
-        clampright = hardwareMap.servo.get("clampright");
+        lefttop = hardwareMap.servo.get("lefttop");
+        righttop = hardwareMap.servo.get("righttop");
 
 
         //set position to -1
-        clampright.setPosition(0);
-        clampleft.setPosition(1);
+        righttop.setPosition(0);
+        lefttop.setPosition(1);
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
@@ -84,13 +83,10 @@ public class ServoTest extends LinearOpMode {
 
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
-
-            clampleft.setPosition(.75);
-            clampright.setPosition(.25);
-            sleep(5000);
-            clampleft.setPosition(.625);
-            clampright.setPosition(.375);
-            sleep(5000);
+            //righttop.setPosition(.3);
+            //lefttop.setPosition(.7);
+            righttop.setPosition(.425);
+            lefttop.setPosition(.575);
 
 
             //loop 20 times

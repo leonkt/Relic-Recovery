@@ -14,10 +14,10 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import static java.lang.Math.abs;
 
-@TeleOp(name = "LockdownTeleop", group = "Debug")
+@TeleOp(name = "LockdownTeleop", group = "Teleop")
 /*@Disabled*/
 
-public class TeleopTest extends OpMode{
+public class LockdownTeleop extends OpMode{
     /**
     * TeleopTest.java is created by A.C.G. for team LockDown #8564.
     * (c) Copyright 20xx CA Works. All Rights reserved.
@@ -50,6 +50,9 @@ public class TeleopTest extends OpMode{
     Servo gripperextension;
     CRServo armgripper;
     CRServo crServo;
+    Servo colorservo;
+    Servo lefttop;
+    Servo righttop;
     /*
     * Special values definition:
     * reverseFactor: multiplying with this to reverse the directon of the motor
@@ -94,6 +97,10 @@ public class TeleopTest extends OpMode{
         gripperextension = hardwareMap.servo.get("gripperextension");
         armgripper = hardwareMap.crservo.get("armgripper");
         crServo = hardwareMap.crservo.get("crServo");
+        colorservo=hardwareMap.servo.get("colorServo");
+        lefttop = hardwareMap.servo.get("lefttop");
+        righttop = hardwareMap.servo.get("righttop");
+
 
 
 
@@ -125,6 +132,8 @@ public class TeleopTest extends OpMode{
         /*clampright.setPosition(75);*/
         clampleft.setPosition(1);
         clampright.setPosition(0);
+        righttop.setPosition(0);
+        lefttop.setPosition(1);
         //stopper.setPosition(.5);
     }
 
@@ -147,6 +156,7 @@ public class TeleopTest extends OpMode{
 
         runtime.reset();
         crServo.setPower(.1);
+        colorservo.setPosition(0.5);
 
         /*
         if(gamepad1.left_stick_y >0.1){
@@ -219,7 +229,7 @@ public class TeleopTest extends OpMode{
                 armextension.setPower(0);
             }
             if (abs(gamepad2.right_stick_y) > threshold){
-                arm.setPower(-gamepad2.right_stick_y * 0.5);
+                arm.setPower(-gamepad2.right_stick_y * 0.3);
             }
             else{
                 if (arm.getCurrentPosition() < -300){
@@ -282,18 +292,33 @@ public class TeleopTest extends OpMode{
             if (gamepad2.left_bumper) {
                 clampleft.setPosition(1);
                 clampright.setPosition(0);
+                righttop.setPosition(0);
+                lefttop.setPosition(1);
             }
             //close
             else if (gamepad2.right_bumper) {
                 clampleft.setPosition(.75);
                 clampright.setPosition(.25);
+                righttop.setPosition(.3);
+                lefttop.setPosition(.7);
             }
             //close
             if (gamepad2.right_trigger > .6) {
                 //clampleft.setPosition(.675);
                 //clampright.setPosition(.325);
-                clampleft.setPosition(.625);
-                clampright.setPosition(.375);
+                clampleft.setPosition(.62);
+                clampright.setPosition(.38);
+                righttop.setPosition(.425);
+                lefttop.setPosition(.575);
+
+            }
+            if (gamepad2.dpad_left) {
+                righttop.setPosition(0);
+                lefttop.setPosition(1);
+            }
+            if (gamepad2.dpad_right){
+                righttop.setPosition(.425);
+                lefttop.setPosition(.575);
             }
         }
         else{

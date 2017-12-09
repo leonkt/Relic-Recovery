@@ -86,15 +86,15 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             vumark = (robot.VuMark.getCryptoboxKey());
             if (vumark == RelicRecoveryVuMark.LEFT) {
                 robot.driveBase.drivePID(31, false);
-            } else if (vumark == RelicRecoveryVuMark.CENTER) {
-                robot.driveBase.drivePID(38, false);
-            } else {
+            } else if (vumark == RelicRecoveryVuMark.RIGHT) {
                 robot.driveBase.drivePID(46, false);
+            } else {
+                robot.driveBase.drivePID(38.5, false);
             }
             robot.driveBase.spinPID(-90);
             robot.driveBase.drivePID(15, false);
             robot.clamps.open();
-            robot.driveBase.drivePID(-10,false);
+            robot.driveBase.drivePID(-8,false);
         }
         else if (alliance == Alliance_Position.BLUE_LEFT) {
             robot.clamps.grip();
@@ -142,15 +142,15 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             if (vumark == RelicRecoveryVuMark.LEFT) {
                 robot.driveBase.drivePID(-24, false);
                 robot.driveBase.spinPID(165);
-            } else if (vumark == RelicRecoveryVuMark.CENTER) {
+            } else if (vumark == RelicRecoveryVuMark.RIGHT) {
                 robot.driveBase.drivePID(-26, false);
                 robot.driveBase.spinPID(90);
-                robot.driveBase.drivePID(18, false);
+                robot.driveBase.drivePID(23, false);
                 robot.driveBase.spinPID(-90);
             } else {
                 robot.driveBase.drivePID(-26, false);
                 robot.driveBase.spinPID(90);
-                robot.driveBase.drivePID(23, false);
+                robot.driveBase.drivePID(18, false);
                 robot.driveBase.spinPID(-90);
             }
             robot.driveBase.drivePID(10, false);
@@ -170,11 +170,13 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             telemetry.update();
             vumark = (robot.VuMark.getCryptoboxKey());
             if (vumark == RelicRecoveryVuMark.LEFT) {
-                robot.driveBase.drivePID(-30, false);
-            } else if (vumark == RelicRecoveryVuMark.CENTER) {
-                robot.driveBase.drivePID(-37, false);
-            } else {
                 robot.driveBase.drivePID(-48.5, false);
+            }
+            else if (vumark == RelicRecoveryVuMark.RIGHT){
+                robot.driveBase.drivePID(-30, false);
+            }
+            else {
+                robot.driveBase.drivePID(-37, false);
             }
             robot.driveBase.spinPID(-90);
             robot.driveBase.drivePID(15, false);
