@@ -132,7 +132,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             robot.lift.liftglyph();
             robot.jewelArm.resetServo();
             robot.jewelArm.armDown();
-            robot.jewelArm.pushJewels(true);
+            robot.jewelArm.pushJewels(false);
             robot.jewelArm.armUp();
             robot.jewelArm.resetServo();
             robot.VuMark.decodePictograph();
