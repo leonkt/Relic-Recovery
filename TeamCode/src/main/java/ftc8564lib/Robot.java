@@ -32,13 +32,12 @@ public class Robot {
 
     private static HalDashboard dashboard = null;
     public DriveBase driveBase = null;
-    public PulleySystem pulleySystem = null;
-    public Shooter shooter = null;
-    public BeaconPush beaconPush = null;
     public JewelArm jewelArm = null;
     public VuMark VuMark = null;
     public Clamps clamps = null;
     public Lift lift = null;
+    public Intake intake = null;
+    public RelicArm relicArm = null;
 
     public Robot(LinearOpMode opMode, boolean auto) throws InterruptedException {
         dashboard = new HalDashboard(opMode.telemetry);
@@ -47,11 +46,8 @@ public class Robot {
         clamps = new Clamps(opMode);
         VuMark = new VuMark(opMode);
         lift = new Lift(opMode);
-        // pulleySystem = new PulleySystem(opMode);
-        // shooter = new Shooter(opMode);
-        // beaconPush = new BeaconPush(opMode);
-        // odsLeft = opMode.hardwareMap.opticalDistanceSensor.get("odsLeft");
-        // odsRight = opMode.hardwareMap.opticalDistanceSensor.get("odsRight");
+        intake = new Intake(opMode);
+        relicArm = new RelicArm(opMode);
     }
 
     public static HalDashboard getDashboard() {

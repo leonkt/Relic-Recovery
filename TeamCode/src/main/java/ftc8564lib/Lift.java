@@ -1,6 +1,6 @@
 /*
  * Lockdown Framework Library
- * Copyright (c) 2015 Lockdown Team 8564 (lockdown8564.weebly.com)
+ * Copyright (c) 2017 Lockdown Team 8564 (lockdown8564.weebly.com)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -70,11 +70,14 @@ public class Lift {
         lift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
+
+
     public void liftglyph(){
         HalUtil.sleep(400);
         lift.setPower(1);
         HalUtil.sleep(300);
         lift.setPower(0);
     }
+
 }
 

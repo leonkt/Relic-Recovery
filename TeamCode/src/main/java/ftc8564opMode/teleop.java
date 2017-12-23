@@ -4,8 +4,8 @@ package ftc8564opMode;
  * Created by ACtheGreat on 2017/10/27.
  */
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-/*import com.qualcomm.robotcore.eventloop.opmode.Disabled;
- */
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -14,10 +14,10 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import static java.lang.Math.abs;
 
-@TeleOp(name = "LockdownTeleop", group = "Teleop")
-/*@Disabled*/
+@TeleOp(name = "teleop", group = "TeleOp")
+@Disabled
 
-public class LockdownTeleop extends OpMode{
+public class teleop extends OpMode{
     /**
     * TeleopTest.java is created by A.C.G. for team LockDown #8564.
     * (c) Copyright 20xx CA Works. All Rights reserved.
