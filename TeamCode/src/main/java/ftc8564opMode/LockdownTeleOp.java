@@ -10,17 +10,15 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import static java.lang.Math.abs;
-import ftclib.*;
 import ftc8564lib.*;
-import hallib.HalUtil;
 
 @TeleOp(name = "LockdownTeleOp", group = "TeleOp")
-@Disabled
+//@Disabled
 
 public class LockdownTeleOp extends LinearOpMode {
 
     private Robot robot;
-    private boolean relicMode;
+    private boolean relicMode = false;
 
     public void runOpMode() throws InterruptedException {
         robot = new Robot(this, false);
@@ -36,8 +34,6 @@ public class LockdownTeleOp extends LinearOpMode {
                 robot.driveBase.slowSpeed(false);
             }
             robot.driveBase.tankDrive(gamepad1.right_stick_y, gamepad1.left_stick_y);
-            //lift
-
             //intake
             if (abs(gamepad1.left_trigger) > 0.6) {
                 robot.intake.out();
@@ -50,13 +46,17 @@ public class LockdownTeleOp extends LinearOpMode {
             } else {
                 robot.intake.stop();
             }
+            //relic mode toggle
+            if (!relicMode && gamepad2.x){
+                relicMode = true;
+            }
+            else {
+                relicMode = false;
+            }
             //relic arm
             if (relicMode) {
-                if (abs(gamepad2.left_stick_y) > .6) {
-                    robot.relicArm.armExtension(-gamepad2.left_stick_y);
-                }else
-                    robot.relicArm.armExtension(0);
-                if (abs(gamepad2.right_stick_y) > .6) {
+                robot.relicArm.armExtension(-gamepad2.left_stick_y);
+                if (abs(gamepad2.right_stick_y) > .2) {
                     robot.relicArm.moveArm(-gamepad2.right_stick_y);
                 } else {
                     robot.relicArm.pressure();
@@ -74,6 +74,20 @@ public class LockdownTeleOp extends LinearOpMode {
                     robot.relicArm.retract();
                 }
 
+            }
+            else {
+                //lift
+                robot.lift.control(-gamepad2.right_stick_y);
+                //grippers
+                if (gamepad2.left_bumper) {
+                    robot.clamps.openboth();
+                }
+                else if (gamepad2.right_bumper) {
+                    robot.clamps.closeboth();
+                }
+                if (gamepad2.right_trigger > 0.6) {
+                   robot.clamps.gripboth();
+                }
             }
 
         }

@@ -79,5 +79,9 @@ public class Lift {
         lift.setPower(0);
     }
 
+    public void control(double power){
+        lift.setPower(power);
+    }
+
 }
 
