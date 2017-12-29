@@ -56,48 +56,55 @@ import com.qualcomm.robotcore.util.Range;
 //@Disabled
 public class ServoTest extends LinearOpMode {
 
+    //rightpivot 1 up -1 down
+    //left pivot
+
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
-    double position = .4;
 
-    Servo lefttop;
-    Servo righttop;
+    Servo leftpivot;
+    Servo rightpivot;
+    Servo lefthug;
+    Servo righthug;
+    private double pos = 0;
 
     @Override
     public void runOpMode() {
+        leftpivot = hardwareMap.servo.get("leftpivot");
+        rightpivot = hardwareMap.servo.get("rightpivot");
+        lefthug = hardwareMap.servo.get("lefthug");
+        righthug = hardwareMap.servo.get("righthug");
         telemetry.addData("Status", "Initialized");
         telemetry.update();
-
-        // get servos
-        lefttop = hardwareMap.servo.get("lefttop");
-        righttop = hardwareMap.servo.get("righttop");
-
-
-        //set position to -1
-        righttop.setPosition(0);
-        lefttop.setPosition(1);
-
+        //left .4
+        lefthug.setPosition(.4);
+        righthug.setPosition(.5);
+        /*
+        leftpivot.setPosition(-.25);
+        rightpivot.setPosition(.25);
+        */
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
         runtime.reset();
-
+        //left 1
+        lefthug.setPosition(1);
+        righthug.setPosition(-1);
+        /*
+        leftpivot.setPosition(-.8);
+        rightpivot.setPosition(.8);
+        */
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
-            //righttop.setPosition(.3);
-            //lefttop.setPosition(.7);
-            righttop.setPosition(.425);
-            lefttop.setPosition(.575);
 
 
-            //loop 20 times
-            /*for ( int i = 0;  i < 5; i++){
+           /* for ( int i = 0;  i < 20; i++){
 
                 //increase position by .1 every second
-                position = position + .1;
+                pos = pos + .1;
 
-                stopper.setPosition(position);
+                leftpivot.setPosition(pos);
 
-                telemetry.addData("Position: ", position);
+                telemetry.addData("Position: ", pos);
                 telemetry.update();
 
 
@@ -105,7 +112,6 @@ public class ServoTest extends LinearOpMode {
 
             }
             */
-
 
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());

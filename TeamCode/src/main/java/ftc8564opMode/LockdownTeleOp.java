@@ -13,7 +13,7 @@ import static java.lang.Math.abs;
 import ftc8564lib.*;
 
 @TeleOp(name = "LockdownTeleOp", group = "TeleOp")
-//@Disabled
+@Disabled
 
 public class LockdownTeleOp extends LinearOpMode {
 

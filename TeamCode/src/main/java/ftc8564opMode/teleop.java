@@ -15,7 +15,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import static java.lang.Math.abs;
 
 @TeleOp(name = "teleop", group = "TeleOp")
-@Disabled
+//@Disabled
 
 public class teleop extends OpMode{
     /**
