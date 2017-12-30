@@ -4,6 +4,7 @@ package ftc8564TestOpMode;
  * Created by margaretli on 2017/10/27.
  */
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -17,7 +18,7 @@ import static java.lang.Math.abs;
  */
 
 @TeleOp(name = "ClampTest", group = "LinearOpMode")
-/*@Disabled*/
+@Disabled
 
 public class ClampTest extends OpMode{
 

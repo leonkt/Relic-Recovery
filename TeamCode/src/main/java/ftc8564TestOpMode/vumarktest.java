@@ -1,6 +1,7 @@
 package ftc8564TestOpMode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -13,6 +14,7 @@ import ftclib.FtcMenu;
  * Created by margaretli on 11/20/17.
  */
 @Autonomous(name="vumarktest", group="TestSamples")
+@Disabled
 public class vumarktest extends LinearOpMode{
     Robot robot;
 

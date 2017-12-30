@@ -35,8 +35,10 @@ public class teleop extends OpMode{
     DcMotor motorleft;
     DcMotor motorright;
     /*clamp motor*/
-    Servo clampleft;
-    Servo clampright;
+    Servo leftpivot;
+    Servo rightpivot;
+    Servo lefthug;
+    Servo righthug;
     /*lift motors*/
     DcMotor lift;
     /*intake motors*/
@@ -51,8 +53,7 @@ public class teleop extends OpMode{
     CRServo armgripper;
     CRServo crServo;
     Servo colorservo;
-    Servo lefttop;
-    Servo righttop;
+
     /*
     * Special values definition:
     * reverseFactor: multiplying with this to reverse the directon of the motor
@@ -74,9 +75,6 @@ public class teleop extends OpMode{
         /*Drive Wheels (Motors)*/
         motorleft = hardwareMap.dcMotor.get("left");
         motorright = hardwareMap.dcMotor.get("right");
-        /*clamp motor*/
-        clampleft = hardwareMap.servo.get("clampleft");
-        clampright = hardwareMap.servo.get("clampright");
         /*lift motors*/
         lift = hardwareMap.dcMotor.get("liftleft");
         /*intake motors*/
@@ -98,8 +96,10 @@ public class teleop extends OpMode{
         armgripper = hardwareMap.crservo.get("armgripper");
         crServo = hardwareMap.crservo.get("crServo");
         colorservo=hardwareMap.servo.get("colorServo");
-        lefttop = hardwareMap.servo.get("lefttop");
-        righttop = hardwareMap.servo.get("righttop");
+        leftpivot = hardwareMap.servo.get("leftpivot");
+        rightpivot = hardwareMap.servo.get("rightpivot");
+        lefthug = hardwareMap.servo.get("lefthug");
+        righthug = hardwareMap.servo.get("righthug");
 
 
 
@@ -130,10 +130,10 @@ public class teleop extends OpMode{
 
         /*clampleft.setPosition(20);*/
         /*clampright.setPosition(75);*/
-        clampleft.setPosition(1);
-        clampright.setPosition(0);
-        righttop.setPosition(0);
-        lefttop.setPosition(1);
+        lefthug.setPosition(.6);
+        righthug.setPosition(.4);
+        leftpivot.setPosition(-.8);
+        rightpivot.setPosition(.8);
         //stopper.setPosition(.5);
     }
 
@@ -290,35 +290,27 @@ public class teleop extends OpMode{
         //open
         if (!relicMode) {
             if (gamepad2.left_bumper) {
-                clampleft.setPosition(1);
-                clampright.setPosition(0);
-                righttop.setPosition(0);
-                lefttop.setPosition(1);
+                lefthug.setPosition(1);
+                righthug.setPosition(0);
             }
             //close
             else if (gamepad2.right_bumper) {
-                clampleft.setPosition(.75);
-                clampright.setPosition(.25);
-                righttop.setPosition(.3);
-                lefttop.setPosition(.7);
+                lefthug.setPosition(.6);
+                righthug.setPosition(.4);
             }
-            //close
+            //grip
             if (gamepad2.right_trigger > .6) {
-                //clampleft.setPosition(.675);
-                //clampright.setPosition(.325);
-                clampleft.setPosition(.62);
-                clampright.setPosition(.38);
-                righttop.setPosition(.425);
-                lefttop.setPosition(.575);
+                lefthug.setPosition(.42);
+                righthug.setPosition(.57);
 
             }
-            if (gamepad2.dpad_left) {
-                righttop.setPosition(0);
-                lefttop.setPosition(1);
+            if (gamepad2.left_stick_y > .2) {
+                leftpivot.setPosition(-.8);
+                rightpivot.setPosition(.8);
             }
-            if (gamepad2.dpad_right){
-                righttop.setPosition(.425);
-                lefttop.setPosition(.575);
+            if (gamepad2.left_stick_y < -.2){
+                leftpivot.setPosition(-.25);
+                rightpivot.setPosition(.25);
             }
         }
         else{

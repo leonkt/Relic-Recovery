@@ -2,12 +2,14 @@ package ftc8564TestOpMode;
 
 import android.util.Log;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.AnalogInput;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 @TeleOp(name="Test: Simple Sensor Sample Time", group="TestSamples")
+@Disabled
 public class SensorSampleTimeTest extends LinearOpMode
 {
     private enum SensorType

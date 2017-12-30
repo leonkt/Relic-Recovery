@@ -66,6 +66,7 @@ public class ServoTest extends LinearOpMode {
     Servo rightpivot;
     Servo lefthug;
     Servo righthug;
+    Servo phone;
     private double pos = 0;
 
     @Override
@@ -74,25 +75,28 @@ public class ServoTest extends LinearOpMode {
         rightpivot = hardwareMap.servo.get("rightpivot");
         lefthug = hardwareMap.servo.get("lefthug");
         righthug = hardwareMap.servo.get("righthug");
+        phone = hardwareMap.servo.get("phone");
+
         telemetry.addData("Status", "Initialized");
         telemetry.update();
-        //left .4
-        lefthug.setPosition(.4);
-        righthug.setPosition(.5);
+        //grip - left .42 & right .57
+        //open - left 1 & right 0
+        //close - left .6 & right .4
+
         /*
+        down
         leftpivot.setPosition(-.25);
         rightpivot.setPosition(.25);
-        */
-        // Wait for the game to start (driver presses PLAY)
-        waitForStart();
-        runtime.reset();
-        //left 1
-        lefthug.setPosition(1);
-        righthug.setPosition(-1);
-        /*
+        up
         leftpivot.setPosition(-.8);
         rightpivot.setPosition(.8);
         */
+        phone.setPosition(0);
+        // Wait for the game to start (driver presses PLAY)
+        waitForStart();
+        runtime.reset();
+        phone.setPosition(-.3);
+
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
 

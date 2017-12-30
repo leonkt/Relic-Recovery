@@ -33,7 +33,7 @@ import ftc8564lib.Robot;
 import hallib.HalUtil;
 
 @Autonomous(name="PIDTuning", group="Autonomous")
-//@Disabled
+@Disabled
 public class PIDTuning extends LinearOpMode {
 
     Robot robot;

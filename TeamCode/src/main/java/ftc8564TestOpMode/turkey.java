@@ -4,6 +4,7 @@ package ftc8564TestOpMode;
  * Created by margaretli on 2017/11/19.
  */
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -14,7 +15,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import static java.lang.Math.abs;
 
 @TeleOp(name = "turkey", group = "Debug")
-//@Disabled
+@Disabled
 
 public class turkey extends OpMode{
     /*

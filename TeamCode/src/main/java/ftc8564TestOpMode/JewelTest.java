@@ -61,7 +61,7 @@ import ftc8564lib.Robot;
 
 
 @Autonomous(name="JewelTest", group="Linear Opmode")
-//@Disabled
+@Disabled
 public class JewelTest extends LinearOpMode{
 
 
