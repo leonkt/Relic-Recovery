@@ -35,6 +35,7 @@ public class LockdownTeleOp extends LinearOpMode {
             }
             robot.driveBase.tankDrive(gamepad1.right_stick_y, gamepad1.left_stick_y);
             //intake
+            /*
             if (abs(gamepad1.left_trigger) > 0.6) {
                 robot.intake.out();
             } else if (abs(gamepad1.right_trigger) > 0.6) {
@@ -46,6 +47,7 @@ public class LockdownTeleOp extends LinearOpMode {
             } else {
                 robot.intake.stop();
             }
+            */
             //relic mode toggle
             if (!relicMode && gamepad2.x){
                 relicMode = true;

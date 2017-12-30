@@ -17,15 +17,14 @@ import static java.lang.Math.abs;
 @TeleOp(name = "teleop", group = "TeleOp")
 //@Disabled
 
-public class teleop extends OpMode{
+public class teleop extends OpMode {
     /**
-    * TeleopTest.java is created by A.C.G. for team LockDown #8564.
-    * (c) Copyright 20xx CA Works. All Rights reserved.
-    *
-    * This is a debug teleop program which introduces the basic movement of the robot.
-    * Later the definitions will be moved to a hardware class.
-    *
-    */
+     * TeleopTest.java is created by A.C.G. for team LockDown #8564.
+     * (c) Copyright 20xx CA Works. All Rights reserved.
+     * <p>
+     * This is a debug teleop program which introduces the basic movement of the robot.
+     * Later the definitions will be moved to a hardware class.
+     */
 
 
     private ElapsedTime runtime = new ElapsedTime();
@@ -42,17 +41,17 @@ public class teleop extends OpMode{
     /*lift motors*/
     DcMotor lift;
     /*intake motors*/
-    DcMotor intakeleft;
-    DcMotor intakeright;
+    //DcMotor intakeleft;
+    //DcMotor intakeright;
     /*stopper*/
     //Servo stopper;
     //relic arm:
-    DcMotor arm;
-    DcMotor armextension;
-    Servo gripperextension;
-    CRServo armgripper;
-    CRServo crServo;
-    Servo colorservo;
+    //DcMotor arm;
+    //DcMotor armextension;
+    //Servo gripperextension;
+    //CRServo armgripper;
+    //CRServo crServo;
+    //Servo colorservo;
 
     /*
     * Special values definition:
@@ -66,6 +65,7 @@ public class teleop extends OpMode{
     private double slow = 1;
     private int liftPosition = 0;
     private boolean relicMode = false;
+    private boolean grip = false;
 
     @Override
     public void init() {
@@ -76,32 +76,30 @@ public class teleop extends OpMode{
         motorleft = hardwareMap.dcMotor.get("left");
         motorright = hardwareMap.dcMotor.get("right");
         /*lift motors*/
-        lift = hardwareMap.dcMotor.get("liftleft");
+         lift = hardwareMap.dcMotor.get("liftleft");
         /*intake motors*/
-        intakeleft = hardwareMap.dcMotor.get("intakeleft");
-        intakeright = hardwareMap.dcMotor.get("intakeright");
+        //intakeleft = hardwareMap.dcMotor.get("intakeleft");
+        //intakeright = hardwareMap.dcMotor.get("intakeright");
         //arm
-        arm = hardwareMap.dcMotor.get("arm");
-        arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        armextension = hardwareMap.dcMotor.get("armextension");
+        //arm = hardwareMap.dcMotor.get("arm");
+        //arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //armextension = hardwareMap.dcMotor.get("armextension");
         /*stopper*/
         //stopper = hardwareMap.servo.get("stopper");
         motorleft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorright.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        armextension.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        //arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        //armextension.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         //relic arm
-        gripperextension = hardwareMap.servo.get("gripperextension");
-        armgripper = hardwareMap.crservo.get("armgripper");
-        crServo = hardwareMap.crservo.get("crServo");
-        colorservo=hardwareMap.servo.get("colorServo");
+        //gripperextension = hardwareMap.servo.get("gripperextension");
+        //armgripper = hardwareMap.crservo.get("armgripper");
+        //crServo = hardwareMap.crservo.get("crServo");
+        //colorservo=hardwareMap.servo.get("colorServo");
         leftpivot = hardwareMap.servo.get("leftpivot");
         rightpivot = hardwareMap.servo.get("rightpivot");
         lefthug = hardwareMap.servo.get("lefthug");
         righthug = hardwareMap.servo.get("righthug");
-
-
 
 
     }
@@ -155,8 +153,8 @@ public class teleop extends OpMode{
          */
 
         runtime.reset();
-        crServo.setPower(.1);
-        colorservo.setPosition(0.5);
+        //crServo.setPower(.1);
+        //colorservo.setPosition(0.5);
 
         /*
         if(gamepad1.left_stick_y >0.1){
@@ -184,23 +182,20 @@ public class teleop extends OpMode{
         *  corresponding side wheels move forward/backward
         *
         */
-        if (abs(gamepad1.left_stick_y) > threshold){
-            motorleft.setPower(gamepad1.left_stick_y *reverseFactor * slow);
+        if (abs(gamepad1.left_stick_y) > threshold) {
+            motorleft.setPower(gamepad1.left_stick_y * reverseFactor * slow);
+        } else {
+            motorleft.setPower(0);
         }
-        else{
-                motorleft.setPower(0);
-        }
-        if (abs(gamepad1.right_stick_y) > threshold){
+        if (abs(gamepad1.right_stick_y) > threshold) {
             motorright.setPower(gamepad1.right_stick_y * slow);
-        }
-        else {
+        } else {
             motorright.setPower(0);
         }
 
-        if (gamepad1.b){
+        if (gamepad1.b) {
             slow = .5;
-        }
-        else if (gamepad1.a){
+        } else if (gamepad1.a) {
             slow = 1;
         }
 
@@ -221,6 +216,7 @@ public class teleop extends OpMode{
                 lift.setPower(0);
             }
         }
+        /*
         else{
             if (abs(gamepad2.left_stick_y) > threshold){
                 armextension.setPower(-gamepad2.left_stick_y);
@@ -248,6 +244,7 @@ public class teleop extends OpMode{
 
 
         }
+        */
 
         /*if ((liftPosition == 0) && (gamepad2.right_stick_y > .6)){
             lift.setTargetPosition(200);
@@ -292,27 +289,43 @@ public class teleop extends OpMode{
             if (gamepad2.left_bumper) {
                 lefthug.setPosition(1);
                 righthug.setPosition(0);
+                grip = false;
             }
             //close
             else if (gamepad2.right_bumper) {
                 lefthug.setPosition(.6);
                 righthug.setPosition(.4);
+                grip = false;
             }
             //grip
             if (gamepad2.right_trigger > .6) {
-                lefthug.setPosition(.42);
-                righthug.setPosition(.57);
+                lefthug.setPosition(.39);
+                righthug.setPosition(.6);
+                grip = true;
 
             }
-            if (gamepad2.left_stick_y > .2) {
-                leftpivot.setPosition(-.8);
-                rightpivot.setPosition(.8);
+            if (!grip) {
+                if (gamepad2.left_stick_y > .2) {
+                    leftpivot.setPosition(-.8);
+                    rightpivot.setPosition(.8);
+                }
+                if (gamepad2.left_stick_y < -.2) {
+                    leftpivot.setPosition(-.25);
+                    rightpivot.setPosition(.25);
+                }
+
             }
-            if (gamepad2.left_stick_y < -.2){
-                leftpivot.setPosition(-.25);
-                rightpivot.setPosition(.25);
-            }
+            else {
+                if (gamepad2.left_stick_y > .2) {
+                    leftpivot.setPosition(-.8);
+                    rightpivot.setPosition(.8);
+                }
+                if (gamepad2.left_stick_y < -.2) {
+                    leftpivot.setPosition(-.1);
+                    rightpivot.setPosition(.1);
+                }
         }
+        /*
         else{
             if (gamepad2.left_bumper){
                 armgripper.setPower(0.5);
@@ -328,6 +341,7 @@ public class teleop extends OpMode{
             }
 
         }
+        */
         /*
         * Intake - Intake portion.
         *
@@ -337,7 +351,7 @@ public class teleop extends OpMode{
         *
         * Player 1 controls: left trigger and Right Trigger
         */
-
+/*
         if (abs(gamepad1.left_trigger) > 0.6 && abs(gamepad1.right_trigger) > 0.6){
             intakeleft.setPower(.8);
             intakeright.setPower(.8 * reverseFactor);
@@ -366,6 +380,7 @@ public class teleop extends OpMode{
             intakeleft.setPower(0);
             intakeright.setPower(0 * reverseFactor);
         }
+        */
         /*
         *
         * Intake -> slant cube adjustment
@@ -375,7 +390,7 @@ public class teleop extends OpMode{
         * reverse
         */
 
-        //stopper
+            //stopper
         /*if (gamepad2.dpad_right){
             stopper.setPosition(.58);
         }
@@ -387,27 +402,19 @@ public class teleop extends OpMode{
         }
         */
 
-        //arm
-        if (gamepad2.x){
-            if (relicMode){
-                relicMode = false;
+            //arm
+            if (gamepad2.x) {
+                if (relicMode) {
+                    relicMode = false;
+                } else {
+                    relicMode = true;
+                }
+
             }
-            else{
-                relicMode = true;
-            }
+
+
+            telemetry.addData("Status", "Run Time: " + runtime.toString());
 
         }
-
-
-
-        
-       
-        
-        
-
-
-
-        telemetry.addData("Status", "Run Time: " + runtime.toString());
-
     }
 }
