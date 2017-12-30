@@ -115,6 +115,7 @@ import org.opencv.android.CameraBridgeViewBase;
 import org.opencv.android.JavaCameraView;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
+import org.opencv.core.Core;
 
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -143,7 +144,7 @@ public class FtcRobotControllerActivity extends Activity
     void myOnResume(){
       if (!OpenCVLoader.initDebug()) {
         Log.d(TAG, "Internal OpenCV library not found. Using OpenCV Manager for initialization");
-        OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_0_0, this, mLoaderCallback);
+        OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_4_0, this, mLoaderCallback);
       } else {
         Log.d(TAG, "OpenCV library found inside package. Using it!");
         mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
