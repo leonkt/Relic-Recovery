@@ -31,7 +31,7 @@ public class GripPipeline
     private MatOfKeyPoint findBlobsOutput = new MatOfKeyPoint();
 
     static {
-        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+        System.loadLibrary("opencv_java3");
     }
 
     public GripPipeline(final String instanceName, double[] hslThresholdHue)
