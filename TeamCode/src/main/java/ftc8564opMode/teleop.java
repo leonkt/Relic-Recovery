@@ -35,8 +35,10 @@ public class teleop extends OpMode {
     DcMotor motorright;
     /*clamp motor*/
     Servo winch;
+    Servo claw;
     Servo lefthug;
     Servo righthug;
+    Servo longer;
     /*lift motors*/
     DcMotor lift;
     /*intake motors*/
@@ -44,6 +46,7 @@ public class teleop extends OpMode {
     DcMotor intakeright;
     /*stopper*/
     DcMotor arm;
+    DcMotor binch;
     //relic arm:
     //DcMotor armextension;
     //Servo gripperextension;
@@ -78,14 +81,15 @@ public class teleop extends OpMode {
         intakeright = hardwareMap.dcMotor.get("intakeright");
         //arm
         arm = hardwareMap.dcMotor.get("arm");
-        //arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        //arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        binch = hardwareMap.dcMotor.get("binch");
+        longer = hardwareMap.servo.get("longer");
+        claw = hardwareMap.servo.get("claw");
         //armextension = hardwareMap.dcMotor.get("armextension");
         /*stopper*/
         //stopper = hardwareMap.servo.get("stopper");
         motorleft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorright.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        //arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         //armextension.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         //relic arm
         //gripperextension = hardwareMap.servo.get("gripperextension");
@@ -188,9 +192,14 @@ public class teleop extends OpMode {
         }
         else{
             if ((abs(gamepad2.left_stick_y)) > threshold) {
-                arm.setPower(-gamepad2.left_stick_y);
+                arm.setPower(gamepad2.left_stick_y * .25);
             } else {
                 arm.setPower(0);
+            }
+            if ((abs(gamepad2.right_stick_y)) > threshold) {
+                binch.setPower(-gamepad2.right_stick_y);
+            } else {
+                binch.setPower(0);
             }
         }
 
@@ -237,23 +246,21 @@ public class teleop extends OpMode {
                 winch.setPosition(.5);
             }
         }
-        /*
         else{
+            if(abs(gamepad2.left_trigger) > 0.6){
+                longer.setPosition(.7);
+            }
+            if (abs(gamepad2.right_trigger) > 0.6) {
+                longer.setPosition(0);
+            }
             if (gamepad2.left_bumper){
-                armgripper.setPower(0.5);
+                claw.setPosition(0);
             }
             if(gamepad2.right_bumper){
-                armgripper.setPower(-0.5);
+                claw.setPosition(.85);
             }
-            if(gamepad2.left_trigger > 0.6){
-                gripperextension.setPosition(gripperextension.getPosition() + 0.05);
-            }
-            if (gamepad2.right_trigger >0.6){
-                gripperextension.setPosition(gripperextension.getPosition() - 0.05);
-            }
-
         }
-        */
+
         /*
         * Intake - Intake portion.
         *
@@ -268,17 +275,17 @@ public class teleop extends OpMode {
             intakeleft.setPower(-.8);
             intakeright.setPower(.8);
         }
-            //swallow
+        //swallow
         else if (abs(gamepad1.right_trigger) > 0.6) {
             intakeleft.setPower(0.8);
             intakeright.setPower(-.8);
         }
-            //left fast right slow
+        //left fast right slow
         else if (gamepad1.left_bumper) {
             intakeleft.setPower(.8);
             intakeright.setPower(-.4);
         }
-            //right fast left slow
+        //right fast left slow
         else if (gamepad1.right_bumper) {
             intakeleft.setPower(.4);
             intakeright.setPower(-.8);

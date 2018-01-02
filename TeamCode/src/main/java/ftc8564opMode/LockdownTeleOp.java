@@ -23,7 +23,7 @@ public class LockdownTeleOp extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         robot = new Robot(this, false);
         robot.driveBase.noEncoders();
-        robot.clamps.openboth();
+        robot.clamps.open();
         robot.jewelArm.resetServo();
         waitForStart();
         while (opModeIsActive()) {
@@ -82,13 +82,13 @@ public class LockdownTeleOp extends LinearOpMode {
                 robot.lift.control(-gamepad2.right_stick_y);
                 //grippers
                 if (gamepad2.left_bumper) {
-                    robot.clamps.openboth();
+                    robot.clamps.open();
                 }
                 else if (gamepad2.right_bumper) {
-                    robot.clamps.closeboth();
+                    robot.clamps.close();
                 }
                 if (gamepad2.right_trigger > 0.6) {
-                   robot.clamps.gripboth();
+                   robot.clamps.grip();
                 }
             }
 

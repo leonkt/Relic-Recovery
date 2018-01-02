@@ -3,79 +3,56 @@ package ftc8564lib;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import hallib.HalUtil;
+
 /**
  * Created by margaretli on 11/10/17.
  */
 
 public class Clamps {
-    Servo clampleft;
-    Servo clampright;
-    Servo lefttop;
-    Servo righttop;
+    Servo winch;
+    Servo lefthug;
+    Servo righthug;
     LinearOpMode opMode;
 
     private double openL = 1;
     private double openR = 0;
-    private double closeL = .75;
-    private double closeR = .25;
-    private double gripL = .62;
-    private double gripR = .38;
-    private double tCloseL = .7;
-    private double tCloseR = .3;
-    private double tGripL = .575;
-    private double tGripR = .425;
+    private double closeL = .6;
+    private double closeR = .4;
+    private double gripL = .39;
+    private double gripR = .6;
 
     public Clamps (LinearOpMode opMode) {
         this.opMode = opMode;
-        clampleft = opMode.hardwareMap.servo.get("clampleft");
-        clampright = opMode.hardwareMap.servo.get("clampright");
-        lefttop = opMode.hardwareMap.servo.get("lefttop");
-        righttop = opMode.hardwareMap.servo.get("righttop");
+        lefthug = opMode.hardwareMap.servo.get("lefthug");
+        righthug = opMode.hardwareMap.servo.get("righthug");
+        winch = opMode.hardwareMap.servo.get("winch");
+
     }
 
     public void open(){
-        clampleft.setPosition(openL);
-        clampright.setPosition(openR);
-    }
-
-    public void opentop(){
-        lefttop.setPosition(openL);
-        righttop.setPosition(openR);
-    }
-
-    public void openboth(){
-        clampleft.setPosition(openL);
-        clampright.setPosition(openR);
-        lefttop.setPosition(openL);
-        righttop.setPosition(openR);
+        lefthug.setPosition(openL);
+        righthug.setPosition(openR);
     }
 
     public void close(){
-        clampleft.setPosition(closeL);
-        clampright.setPosition(closeR);
-    }
-
-    public void closeboth(){
-        clampleft.setPosition(closeL);
-        clampright.setPosition(closeR);
-        lefttop.setPosition(tCloseL);
-        righttop.setPosition(tCloseR);
+        lefthug.setPosition(closeL);
+        righthug.setPosition(closeR);
     }
 
     public void grip(){
-        clampleft.setPosition(gripL);
-        clampright.setPosition(gripR);
+        lefthug.setPosition(gripL);
+        righthug.setPosition(gripR);
     }
 
-    public void gripboth(){
-        clampleft.setPosition(gripL);
-        clampright.setPosition(gripR);
-        lefttop.setPosition(tGripL);
-        righttop.setPosition(tGripR);
-    }
+    public void grabglyph(){
+        close();
+        winch.setPosition(0);
+        HalUtil.sleep(1000);
+        grip();
+        winch.setPosition(1);
+        HalUtil.sleep(1000);
+        winch.setPosition(.5);
 
-    public void griptop(){
-        lefttop.setPosition(tGripL);
-        righttop.setPosition(tGripR);
     }
 }

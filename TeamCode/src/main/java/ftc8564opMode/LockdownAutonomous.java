@@ -60,20 +60,19 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         // robot.driveBase.resetHeading();
         if (alliance == Alliance_Position.BLUE_RIGHT) {
             //grab glyph
-            robot.clamps.grip();
-            robot.lift.liftglyph();
+            robot.clamps.grabglyph();
             //jewel arm
             robot.jewelArm.resetServo();
             robot.jewelArm.armDown();
             robot.jewelArm.pushJewels(true);
             robot.jewelArm.armUp();
             robot.jewelArm.resetServo();
-            //read picture and show on phone
+            //scan and read picture
             robot.VuMark.decodePictograph();
             telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
             telemetry.update();
             vumark = (robot.VuMark.getCryptoboxKey());
-            //drive to cryptobox
+            //drive to cryptobox and place glyph
             if (vumark == RelicRecoveryVuMark.LEFT) {
                 robot.driveBase.drivePID(31, false);
             } else if (vumark == RelicRecoveryVuMark.RIGHT) {
@@ -81,26 +80,25 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             } else {
                 robot.driveBase.drivePID(38.5, false);
             }
-            //turn and place block
             robot.driveBase.spinPID(-90);
             robot.driveBase.drivePID(15, false);
             robot.clamps.open();
             robot.driveBase.drivePID(-8,false);
         }
         else if (alliance == Alliance_Position.BLUE_LEFT) {
-            robot.clamps.grip();
-            robot.lift.liftglyph();
+            robot.clamps.grabglyph();
             //jewel arm
             robot.jewelArm.resetServo();
             robot.jewelArm.armDown();
             robot.jewelArm.pushJewels(true);
             robot.jewelArm.armUp();
             robot.jewelArm.resetServo();
+            //scan and read picture
             robot.VuMark.decodePictograph();
             telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
             telemetry.update();
             vumark = (robot.VuMark.getCryptoboxKey());
-            //move to location & place block
+            //drive to cryptobox and place glyph
             if (vumark == RelicRecoveryVuMark.LEFT) {
                 robot.driveBase.drivePID(24, true);
                 robot.driveBase.spinPID(15);
@@ -121,19 +119,19 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
 
         }
         else if (alliance == Alliance_Position.RED_RIGHT) {
-            robot.clamps.grip();
-            robot.lift.liftglyph();
+            robot.clamps.grabglyph();
             //jewel arm
             robot.jewelArm.resetServo();
             robot.jewelArm.armDown();
             robot.jewelArm.pushJewels(false);
             robot.jewelArm.armUp();
             robot.jewelArm.resetServo();
+            //scan and read picture
             robot.VuMark.decodePictograph();
             telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
             telemetry.update();
             vumark = (robot.VuMark.getCryptoboxKey());
-            //move to location & place block
+            //drive to cryptobox and place glyph
             if (vumark == RelicRecoveryVuMark.LEFT) {
                 robot.driveBase.drivePID(-24, false);
                 robot.driveBase.spinPID(165);
@@ -153,19 +151,19 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             robot.driveBase.drivePID(-6,false);
         }
         else if (alliance == Alliance_Position.RED_LEFT) {
-            robot.clamps.grip();
-            robot.lift.liftglyph();
+            robot.clamps.grabglyph();
             //jewel arm
             robot.jewelArm.resetServo();
             robot.jewelArm.armDown();
             robot.jewelArm.pushJewels(false);
             robot.jewelArm.armUp();
             robot.jewelArm.resetServo();
+            //scan and read picture
             robot.VuMark.decodePictograph();
             telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
             telemetry.update();
             vumark = (robot.VuMark.getCryptoboxKey());
-            //move to location & place block
+            //drive to cryptobox and place glyph
             if (vumark == RelicRecoveryVuMark.LEFT) {
                 robot.driveBase.drivePID(-48.5, false);
             }
@@ -187,9 +185,6 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
     }
 
     private void runCleanUp() throws InterruptedException {
-        //robot.shooter.resetMotors();
-        //robot.beaconPush.resetRacks();
-        //robot.pulleySystem.resetMotors();
         //robot.driveBase.resetMotors();
         //robot.driveBase.resetPIDDrive();
     }
