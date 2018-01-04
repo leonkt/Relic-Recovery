@@ -378,7 +378,7 @@ public class FtcRobotControllerActivity extends Activity
     ServiceController.startService(FtcRobotControllerWatchdogService.class);
     bindToService();
     logPackageVersions();
-    myOnCreate();
+    //myOnCreate();
   }
 
   protected UpdateUI createUpdateUI() {
@@ -421,7 +421,7 @@ public class FtcRobotControllerActivity extends Activity
   protected void onResume() {
     super.onResume();
     RobotLog.vv(TAG, "onResume()");
-    myOnResume();
+    //myOnResume();
   }
 
   @Override
@@ -430,7 +430,7 @@ public class FtcRobotControllerActivity extends Activity
     RobotLog.vv(TAG, "onPause()");
     if (programmingModeController.isActive()) {
       programmingModeController.stopProgrammingMode();
-      myOnPause();
+      //myOnPause();
     }
   }
 
@@ -447,7 +447,7 @@ public class FtcRobotControllerActivity extends Activity
     super.onDestroy();
     RobotLog.vv(TAG, "onDestroy()");
 
-    myOnDestroy();
+    //myOnDestroy();
 
     shutdownRobot();  // Ensure the robot is put away to bed
     if (callback != null) callback.close();

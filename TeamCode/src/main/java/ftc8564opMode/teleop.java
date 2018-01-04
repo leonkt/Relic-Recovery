@@ -3,6 +3,9 @@ package ftc8564opMode;
 /**
  * Created by ACtheGreat on 2017/10/27.
  */
+import android.text.method.Touch;
+
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsTouchSensor;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
@@ -10,6 +13,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import static java.lang.Math.abs;
@@ -31,8 +35,8 @@ public class teleop extends OpMode {
 
     /*object creation (will move to a hardware library)*/
     /*Drive Wheels (Motors)*/
-    DcMotor motorleft;
-    DcMotor motorright;
+    private DcMotor motorleft;
+    private DcMotor motorright;
     /*clamp motor*/
     Servo winch;
     Servo claw;
@@ -47,12 +51,13 @@ public class teleop extends OpMode {
     /*stopper*/
     DcMotor arm;
     DcMotor binch;
+    ModernRoboticsTouchSensor touchme;
     //relic arm:
     //DcMotor armextension;
     //Servo gripperextension;
     //CRServo armgripper;
-    //CRServo crServo;
-    //Servo colorservo;
+    CRServo crServo;
+    Servo colorservo;
 
     /*
     * Special values definition:
@@ -74,8 +79,10 @@ public class teleop extends OpMode {
         /*Drive Wheels (Motors)*/
         motorleft = hardwareMap.dcMotor.get("left");
         motorright = hardwareMap.dcMotor.get("right");
+        touchme = (ModernRoboticsTouchSensor) hardwareMap.touchSensor.get("touchme");
         /*lift motors*/
          lift = hardwareMap.dcMotor.get("liftleft");
+         lift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         /*intake motors*/
         intakeleft = hardwareMap.dcMotor.get("intakeleft");
         intakeright = hardwareMap.dcMotor.get("intakeright");
@@ -89,13 +96,13 @@ public class teleop extends OpMode {
         //stopper = hardwareMap.servo.get("stopper");
         motorleft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorright.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        //arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         //armextension.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         //relic arm
         //gripperextension = hardwareMap.servo.get("gripperextension");
         //armgripper = hardwareMap.crservo.get("armgripper");
-        //crServo = hardwareMap.crservo.get("crServo");
-        //colorservo=hardwareMap.servo.get("colorServo");
+        crServo = hardwareMap.crservo.get("crServo");
+        colorservo=hardwareMap.servo.get("colorServo");
         winch = hardwareMap.servo.get("winch");
         lefthug = hardwareMap.servo.get("lefthug");
         righthug = hardwareMap.servo.get("righthug");
@@ -141,8 +148,8 @@ public class teleop extends OpMode {
          */
 
         runtime.reset();
-        //crServo.setPower(.1);
-        //colorservo.setPosition(0.5);
+        crServo.setPower(.1);
+        colorservo.setPosition(0.5);
 
         /* Driving
         *  The previously commented out ones are the implementation of single joystick drive.
@@ -236,7 +243,7 @@ public class teleop extends OpMode {
                 winch.setPower(0);
             }
             */
-            if (gamepad2.left_stick_y > .2) {
+            if (!touchme.isPressed() && gamepad2.left_stick_y > .2 ) {
                 winch.setPosition(1);
             }
             else if (gamepad2.left_stick_y < -.2) {
@@ -257,7 +264,7 @@ public class teleop extends OpMode {
                 claw.setPosition(0);
             }
             if(gamepad2.right_bumper){
-                claw.setPosition(.85);
+                claw.setPosition(.7);
             }
         }
 
@@ -297,6 +304,7 @@ public class teleop extends OpMode {
 
             //arm
         if (gamepad2.x) {
+            // relicMode = relicMode == false;
             if (relicMode) {
                 relicMode = false;
             }
@@ -305,7 +313,8 @@ public class teleop extends OpMode {
             }
         }
 
-        telemetry.addData("Status", "Run Time: " + runtime.toString());
+        telemetry.addData("Status", "touch " + touchme.isPressed()  );
+        telemetry.update();
 
         }
     }
