@@ -27,8 +27,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
 import static com.sun.tools.javac.util.Constants.format;
 
-@TeleOp(name = "Sensor: Sensor", group = "Debug")
-@Disabled
+@TeleOp(name = "Debug: Sensor", group = "Debug")
+//@Disabled
 
 /**
  * Created by ACtheGreat on 2017/10/27.

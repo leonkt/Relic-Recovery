@@ -51,13 +51,14 @@ public class teleop extends OpMode {
     /*stopper*/
     DcMotor arm;
     DcMotor binch;
-    ModernRoboticsTouchSensor touchme;
+    TouchSensor touchme;
     //relic arm:
     //DcMotor armextension;
     //Servo gripperextension;
     //CRServo armgripper;
     CRServo crServo;
     Servo colorservo;
+    Servo kicker;
 
     /*
     * Special values definition:
@@ -70,6 +71,7 @@ public class teleop extends OpMode {
     private double slow = 1;
     private int liftPosition = 0;
     private boolean relicMode = false;
+    private boolean reverseMode = false;
 
     @Override
     public void init() {
@@ -79,7 +81,7 @@ public class teleop extends OpMode {
         /*Drive Wheels (Motors)*/
         motorleft = hardwareMap.dcMotor.get("left");
         motorright = hardwareMap.dcMotor.get("right");
-        touchme = (ModernRoboticsTouchSensor) hardwareMap.touchSensor.get("touchme");
+        touchme =  hardwareMap.touchSensor.get("touchme");
         /*lift motors*/
          lift = hardwareMap.dcMotor.get("liftleft");
          lift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -106,6 +108,7 @@ public class teleop extends OpMode {
         winch = hardwareMap.servo.get("winch");
         lefthug = hardwareMap.servo.get("lefthug");
         righthug = hardwareMap.servo.get("righthug");
+        kicker = hardwareMap.servo.get("kicker");
 
 
     }
@@ -128,6 +131,7 @@ public class teleop extends OpMode {
     public void start() {
         lefthug.setPosition(.6);
         righthug.setPosition(.4);
+        longer.setPosition(0.7);
     }
 
     /*
@@ -179,6 +183,38 @@ public class teleop extends OpMode {
         } else if (gamepad1.a) {
             slow = 1;
         }
+
+        //Beta: reversed DPad Control / intake kicker
+        if (reverseMode) {
+            if (gamepad1.dpad_up) {
+                motorleft.setPower(0.8);
+                motorright.setPower(-.8);
+            } else if (gamepad1.dpad_down) {
+                motorleft.setPower(-0.8);
+                motorright.setPower(.8);
+            } else if (gamepad1.dpad_left) {
+                motorleft.setPower(-1);
+                motorright.setPower(-1);
+            } else if (gamepad1.dpad_right) {
+                motorleft.setPower(-1);
+                motorright.setPower(-1);
+            } else {
+                motorleft.setPower(0);
+                motorright.setPower(0);
+            }
+        }
+        else{
+            if (gamepad1.dpad_up) {
+                kicker.setPosition(kicker.getPosition()+0.1);
+            }
+            else if (gamepad1.dpad_down) {
+                kicker.setPosition(kicker.getPosition()-0.1);
+            }
+            else {
+                kicker.setPosition(kicker.getPosition());
+            }
+        }
+
 
         /* Lifting
         *
@@ -302,6 +338,12 @@ public class teleop extends OpMode {
             intakeright.setPower(0);
         }
 
+
+
+
+
+
+
             //arm
         if (gamepad2.x) {
             // relicMode = relicMode == false;
@@ -314,6 +356,8 @@ public class teleop extends OpMode {
         }
 
         telemetry.addData("Status", "touch " + touchme.isPressed()  );
+        telemetry.addData("Debug","relicMode: " +relicMode);
+        telemetry.addData("Debug", "reverseMode: " +reverseMode);
         telemetry.update();
 
         }
