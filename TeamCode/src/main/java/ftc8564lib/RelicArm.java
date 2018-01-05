@@ -13,7 +13,7 @@ public class RelicArm {
     public DcMotor arm;
     public DcMotor armextension;
     Servo gripperextension;
-    CRServo armgripper;
+    Servo armgripper;
     LinearOpMode opMode;
 
     public RelicArm(LinearOpMode opMode){
@@ -21,18 +21,18 @@ public class RelicArm {
         arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        armextension = opMode.hardwareMap.dcMotor.get("armextension");
+        armextension = opMode.hardwareMap.dcMotor.get("binch");
         armextension.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        gripperextension = opMode.hardwareMap.servo.get("gripperextension");
-        armgripper = opMode.hardwareMap.crservo.get("armgripper");
+        gripperextension = opMode.hardwareMap.servo.get("longer");
+        armgripper = opMode.hardwareMap.servo.get("claw");
     }
 
     public void open(){
-        armgripper.setPower(0.5);
+        armgripper.setPosition(0.7);
     }
 
     public void close(){
-        armgripper.setPower(-0.5);
+        armgripper.setPosition(0);
     }
 
     public void extend(){

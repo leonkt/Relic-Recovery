@@ -108,7 +108,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
                 robot.driveBase.drivePID(24, false);
                 robot.driveBase.spinPID(-90);
             } else {
-                robot.driveBase.drivePID(30, false);
+                robot.driveBase.drivePID(28, false);
                 robot.driveBase.spinPID(90);
                 robot.driveBase.drivePID(20, false);
                 robot.driveBase.spinPID(-90);

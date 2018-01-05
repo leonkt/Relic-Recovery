@@ -47,11 +47,11 @@ public class Clamps {
 
     public void grabglyph(){
         close();
-        winch.setPosition(0);
-        HalUtil.sleep(1000);
-        grip();
         winch.setPosition(1);
-        HalUtil.sleep(1000);
+        HalUtil.sleep(3200);
+        grip();
+        winch.setPosition(0);
+        HalUtil.sleep(3500);
         winch.setPosition(.5);
 
     }

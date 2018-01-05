@@ -73,6 +73,7 @@ public class teleop extends OpMode {
     private double slow = 1;
     private int liftPosition = 0;
     private boolean relicMode = false;
+    private boolean betaMode = false;
 
 
     @Override
@@ -98,8 +99,8 @@ public class teleop extends OpMode {
         //armextension = hardwareMap.dcMotor.get("armextension");
         /*stopper*/
         //stopper = hardwareMap.servo.get("stopper");
-        motorleft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        motorright.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        //motorleft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        //motorright.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         //arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         //armextension.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         //relic arm
@@ -133,7 +134,7 @@ public class teleop extends OpMode {
     public void start() {
         lefthug.setPosition(.6);
         righthug.setPosition(.4);
-        //longer.setPosition(0.7);
+        longer.setPosition(.8);
     }
 
     /*
@@ -169,25 +170,41 @@ public class teleop extends OpMode {
         *  corresponding side wheels move forward/backward
         *
         */
-        if (abs(gamepad1.left_stick_y) > threshold) {
-            motorleft.setPower(-gamepad1.left_stick_y * slow);
-        }
-        else {
-            motorleft.setPower(0);
-        }
-        if (abs(gamepad1.right_stick_y) > threshold) {
-            motorright.setPower(gamepad1.right_stick_y * slow);
-        }
 
-        else {
-            motorright.setPower(0);
+        if (!betaMode) {
+            if (abs(gamepad1.left_stick_y) > threshold) {
+                motorleft.setPower(-gamepad1.left_stick_y * slow);
+            } else {
+                motorleft.setPower(0);
+            }
+            if (abs(gamepad1.right_stick_y) > threshold) {
+                motorright.setPower(gamepad1.right_stick_y * slow);
+            } else {
+                motorright.setPower(0);
+            }
+
+
+            if (gamepad1.b) {
+                slow = .5;
+            } else if (gamepad1.a) {
+                slow = 1;
+            }
         }
+        else{
+            if (abs(gamepad1.left_stick_y )> threshold && abs(gamepad1.left_stick_x) < threshold){
+                motorleft.setPower(gamepad1.left_stick_y);
+                motorright.setPower(-gamepad1.left_stick_y);
+                //forward, backward
+            }
 
-
-        if (gamepad1.b) {
-            slow = .5;
-        } else if (gamepad1.a) {
-            slow = 1;
+            else if (abs(gamepad1.left_stick_y)<threshold && abs(gamepad1.left_stick_x) > threshold){
+                motorleft.setPower(gamepad1.left_stick_x);
+                motorright.setPower(gamepad1.left_stick_x);
+            }
+            else{
+                motorleft.setPower(0);
+                motorright.setPower(0);
+            }
         }
 
         //Beta: reversed DPad Control / intake kicker
@@ -270,7 +287,7 @@ public class teleop extends OpMode {
         }
         else{
             if(abs(gamepad2.left_trigger) > 0.1){
-                longer.setPosition(.7);
+                longer.setPosition(.8);
             }
             if (abs(gamepad2.right_trigger) > 0.1) {
                 longer.setPosition(0);
@@ -317,11 +334,11 @@ public class teleop extends OpMode {
             intakeright.setPower(0);
         }
 
-        if (gamepad1.left_stick_button){
-            kicker.setPosition(kicker.getPosition()+0.1);
+        if (gamepad1.x){
+            kicker.setPosition(kicker.getPosition()+0.2);
         }
-        else if (gamepad1.right_stick_button){
-            kicker.setPosition(kicker.getPosition()-0.1);
+        else if (gamepad1.y){
+            kicker.setPosition(kicker.getPosition()-0.2);
         }
 
 
@@ -342,11 +359,23 @@ public class teleop extends OpMode {
             HalUtil.sleep(100);
         }
 
+        //betaMode
+        if (gamepad1.start){
+            if (betaMode) {
+                betaMode = false;
+            }
+            else {
+                betaMode = true;
+            }
+            HalUtil.sleep(100);
+        }
+
 
 
         telemetry.addData("Status", "touch " + touchme.isPressed()  );
         telemetry.addData("Debug","relicMode: " +relicMode);
-        telemetry.addData("test","test" +longer.getPosition());
+        telemetry.addData("Debug","kicker value: " +kicker.getPosition());
+        telemetry.addData("Debug","betaMode: "+betaMode);
 
         telemetry.update();
 
