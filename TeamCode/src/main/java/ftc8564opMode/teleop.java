@@ -11,6 +11,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
@@ -60,7 +61,8 @@ public class teleop extends OpMode {
     //CRServo armgripper;
     CRServo crServo;
     Servo colorservo;
-    Servo kicker;
+    DcMotor kicker;
+    ColorSensor colorSensor;
 
     /*
     * Special values definition:
@@ -99,8 +101,8 @@ public class teleop extends OpMode {
         //armextension = hardwareMap.dcMotor.get("armextension");
         /*stopper*/
         //stopper = hardwareMap.servo.get("stopper");
-        //motorleft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        //motorright.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        motorleft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        motorright.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         //arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         //armextension.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         //relic arm
@@ -111,7 +113,9 @@ public class teleop extends OpMode {
         winch = hardwareMap.servo.get("winch");
         lefthug = hardwareMap.servo.get("lefthug");
         righthug = hardwareMap.servo.get("righthug");
-        kicker = hardwareMap.servo.get("kicker");
+        kicker = hardwareMap.dcMotor.get("kicker");
+        //kicker.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        colorSensor = hardwareMap.colorSensor.get("colorSensor");
 
 
     }
@@ -155,7 +159,7 @@ public class teleop extends OpMode {
          */
 
         runtime.reset();
-        crServo.setPower(.1);
+        crServo.setPower(.3);
         colorservo.setPosition(0.5);
 
         /* Driving
@@ -335,12 +339,16 @@ public class teleop extends OpMode {
         }
 
         if (gamepad1.x){
-            kicker.setPosition(kicker.getPosition()+0.2);
+            kicker.setPower(0.2);
         }
         else if (gamepad1.y){
-            kicker.setPosition(kicker.getPosition()-0.2);
+            kicker.setPower(-0.4);
         }
-
+        /*
+        else{
+            kicker.setPower(0);
+        }
+        */
 
 
 
@@ -349,7 +357,9 @@ public class teleop extends OpMode {
 
             //arm
         if (gamepad2.x) {
-            // relicMode = relicMode == false;
+
+            relicMode = relicMode == false;
+            /*
             if (relicMode) {
                 relicMode = false;
             }
@@ -357,10 +367,13 @@ public class teleop extends OpMode {
                 relicMode = true;
             }
             HalUtil.sleep(100);
+            */
         }
 
         //betaMode
         if (gamepad1.start){
+            betaMode = betaMode == false;
+            /*
             if (betaMode) {
                 betaMode = false;
             }
@@ -368,13 +381,16 @@ public class teleop extends OpMode {
                 betaMode = true;
             }
             HalUtil.sleep(100);
+            */
         }
+
+        colorSensor.enableLed(false);
 
 
 
         telemetry.addData("Status", "touch " + touchme.isPressed()  );
         telemetry.addData("Debug","relicMode: " +relicMode);
-        telemetry.addData("Debug","kicker value: " +kicker.getPosition());
+        telemetry.addData("Debug","kicker value: " +kicker.getPower());
         telemetry.addData("Debug","betaMode: "+betaMode);
 
         telemetry.update();
