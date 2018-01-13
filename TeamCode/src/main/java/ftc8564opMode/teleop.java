@@ -159,7 +159,7 @@ public class teleop extends OpMode {
          */
 
         runtime.reset();
-        crServo.setPower(.3);
+        crServo.setPower(.7);
         colorservo.setPosition(0.5);
 
         /* Driving
@@ -195,19 +195,32 @@ public class teleop extends OpMode {
             }
         }
         else{
-            if (abs(gamepad1.left_stick_y )> threshold && abs(gamepad1.left_stick_x) < threshold){
-                motorleft.setPower(gamepad1.left_stick_y);
-                motorright.setPower(-gamepad1.left_stick_y);
-                //forward, backward
+
+            if(gamepad1.left_stick_y>threshold && gamepad1.left_stick_y<threshold){
+                motorleft.setPower(-gamepad1.left_stick_y *slow);
+            }
+            else if (abs(gamepad1.left_stick_y) > threshold) {
+                motorleft.setPower(gamepad1.left_stick_y * slow);
+            }
+            else {
+                motorleft.setPower(0);
             }
 
-            else if (abs(gamepad1.left_stick_y)<threshold && abs(gamepad1.left_stick_x) > threshold){
-                motorleft.setPower(gamepad1.left_stick_x);
-                motorright.setPower(gamepad1.left_stick_x);
+            if (gamepad1.left_stick_y<threshold && gamepad1.left_stick_y>threshold){
+                motorright.setPower(gamepad1.right_stick_y*slow);
             }
-            else{
-                motorleft.setPower(0);
+            else if (abs(gamepad1.right_stick_y) > threshold) {
+                motorright.setPower(-gamepad1.right_stick_y * slow);
+            }
+            else {
                 motorright.setPower(0);
+            }
+
+
+            if (gamepad1.b) {
+                slow = .5;
+            } else if (gamepad1.a) {
+                slow = 1;
             }
         }
 
@@ -358,7 +371,7 @@ public class teleop extends OpMode {
             //arm
         if (gamepad2.x) {
 
-            relicMode = relicMode == false;
+            relicMode = true;
             /*
             if (relicMode) {
                 relicMode = false;
@@ -369,10 +382,13 @@ public class teleop extends OpMode {
             HalUtil.sleep(100);
             */
         }
+        if (gamepad2.y){
+            relicMode = false;
+        }
 
         //betaMode
-        if (gamepad1.start){
-            betaMode = betaMode == false;
+        if (gamepad1.right_stick_button){
+            betaMode = true;
             /*
             if (betaMode) {
                 betaMode = false;
@@ -382,6 +398,11 @@ public class teleop extends OpMode {
             }
             HalUtil.sleep(100);
             */
+            kicker.setPower(0);
+        }
+        if (gamepad1.left_stick_button){
+            betaMode = false;
+            kicker.setPower(0);
         }
 
         colorSensor.enableLed(false);
