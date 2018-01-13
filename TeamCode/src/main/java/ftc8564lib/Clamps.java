@@ -44,7 +44,7 @@ public class Clamps {
         lefthug.setPosition(gripL);
         righthug.setPosition(gripR);
     }
-
+    /*
     public void grabglyph(){
         close();
         winch.setPosition(1);
@@ -54,5 +54,15 @@ public class Clamps {
         HalUtil.sleep(4300);
         winch.setPosition(.5);
 
+    }*/
+    public void down(){
+        close();
+        winch.setPosition(1);
+    }
+    public void lift(){
+        grip();
+        winch.setPosition(0);
+        HalUtil.sleep(3500);
+        winch.setPosition(.5);
     }
 }

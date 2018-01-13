@@ -31,6 +31,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
 
 import ftclib.*;
 import ftc8564lib.*;
+import hallib.HalUtil;
 
 @Autonomous(name="LockdownAutonomous", group="Autonomous")
 public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButtons{
@@ -59,14 +60,15 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         waitForStart();
         // robot.driveBase.resetHeading();
         if (alliance == Alliance_Position.BLUE_RIGHT) {
-            //grab glyph
-            robot.clamps.grabglyph();
+            robot.clamps.down();
             //jewel arm
             robot.jewelArm.resetServo();
             robot.jewelArm.armDown();
             robot.jewelArm.pushJewels(true);
             robot.jewelArm.armUp();
             robot.jewelArm.resetServo();
+
+            robot.clamps.lift();
             //scan and read picture
             robot.VuMark.decodePictograph();
             telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
@@ -86,13 +88,15 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             robot.driveBase.drivePID(-8,false);
         }
         else if (alliance == Alliance_Position.BLUE_LEFT) {
-            robot.clamps.grabglyph();
+            robot.clamps.down();
             //jewel arm
             robot.jewelArm.resetServo();
             robot.jewelArm.armDown();
-            robot.jewelArm.pushJewels(true);
+            robot.jewelArm.pushJewels(false);
             robot.jewelArm.armUp();
             robot.jewelArm.resetServo();
+
+            robot.clamps.lift();
             //scan and read picture
             robot.VuMark.decodePictograph();
             telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
@@ -119,13 +123,15 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
 
         }
         else if (alliance == Alliance_Position.RED_RIGHT) {
-            robot.clamps.grabglyph();
+            robot.clamps.down();
             //jewel arm
             robot.jewelArm.resetServo();
             robot.jewelArm.armDown();
             robot.jewelArm.pushJewels(false);
             robot.jewelArm.armUp();
             robot.jewelArm.resetServo();
+
+            robot.clamps.lift();
             //scan and read picture
             robot.VuMark.decodePictograph();
             telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
@@ -151,13 +157,15 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             robot.driveBase.drivePID(-6,false);
         }
         else if (alliance == Alliance_Position.RED_LEFT) {
-            robot.clamps.grabglyph();
+            robot.clamps.down();
             //jewel arm
             robot.jewelArm.resetServo();
             robot.jewelArm.armDown();
             robot.jewelArm.pushJewels(false);
             robot.jewelArm.armUp();
             robot.jewelArm.resetServo();
+
+            robot.clamps.lift();
             //scan and read picture
             robot.VuMark.decodePictograph();
             telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
