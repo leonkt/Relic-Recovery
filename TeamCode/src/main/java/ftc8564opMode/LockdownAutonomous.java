@@ -69,7 +69,6 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             robot.jewelArm.pushJewels(true);
             robot.jewelArm.armUp();
             robot.jewelArm.resetServo();
-
             robot.clamps.lift();
             //scan and read picture
             robot.VuMark.decodePictograph();
@@ -78,15 +77,16 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             vumark = (robot.VuMark.getCryptoboxKey());
             //drive to cryptobox and place glyph
             if (vumark == RelicRecoveryVuMark.LEFT) {
-                robot.driveBase.drivePID(31, false);
+                robot.driveBase.drivePID(32, false);
             } else if (vumark == RelicRecoveryVuMark.RIGHT) {
-                robot.driveBase.drivePID(46, false);
+                robot.driveBase.drivePID(48 , false);
             } else {
-                robot.driveBase.drivePID(38.5, false);
+                robot.driveBase.drivePID(40, false);
             }
             robot.driveBase.spinPID(-90);
             robot.driveBase.drivePID(15, false);
             robot.clamps.open();
+            robot.driveBase.drivePID(4, false);
             robot.driveBase.drivePID(-8,false);
         }
         else if (alliance == Alliance_Position.BLUE_LEFT) {
@@ -99,7 +99,6 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             robot.jewelArm.pushJewels(true);
             robot.jewelArm.armUp();
             robot.jewelArm.resetServo();
-
             robot.clamps.lift();
             //scan and read picture
             robot.VuMark.decodePictograph();
@@ -133,10 +132,9 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             //jewel arm
             robot.jewelArm.resetServo();
             robot.jewelArm.armDown();
-            robot.jewelArm.pushJewels(false);
+            robot.jewelArm.pushJewels(true);
             robot.jewelArm.armUp();
             robot.jewelArm.resetServo();
-
             robot.clamps.lift();
             //scan and read picture
             robot.VuMark.decodePictograph();
@@ -169,10 +167,9 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             //jewel arm
             robot.jewelArm.resetServo();
             robot.jewelArm.armDown();
-            robot.jewelArm.pushJewels(false);
+            robot.jewelArm.pushJewels(true);
             robot.jewelArm.armUp();
             robot.jewelArm.resetServo();
-
             robot.clamps.lift();
             //scan and read picture
             robot.VuMark.decodePictograph();
