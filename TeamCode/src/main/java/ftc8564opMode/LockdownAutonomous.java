@@ -60,6 +60,8 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         waitForStart();
         // robot.driveBase.resetHeading();
         if (alliance == Alliance_Position.BLUE_RIGHT) {
+            //to mark original heading
+            robot.driveBase.resetIntZ();
             robot.clamps.down();
             //jewel arm
             robot.jewelArm.resetServo();
@@ -88,11 +90,13 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             robot.driveBase.drivePID(-8,false);
         }
         else if (alliance == Alliance_Position.BLUE_LEFT) {
+            //to mark original heading
+            robot.driveBase.resetIntZ();
             robot.clamps.down();
             //jewel arm
             robot.jewelArm.resetServo();
             robot.jewelArm.armDown();
-            robot.jewelArm.pushJewels(false);
+            robot.jewelArm.pushJewels(true);
             robot.jewelArm.armUp();
             robot.jewelArm.resetServo();
 
@@ -123,6 +127,8 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
 
         }
         else if (alliance == Alliance_Position.RED_RIGHT) {
+            //to mark original heading
+            robot.driveBase.resetIntZ();
             robot.clamps.down();
             //jewel arm
             robot.jewelArm.resetServo();
@@ -157,6 +163,8 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             robot.driveBase.drivePID(-6,false);
         }
         else if (alliance == Alliance_Position.RED_LEFT) {
+            //to mark original heading
+            robot.driveBase.resetIntZ();
             robot.clamps.down();
             //jewel arm
             robot.jewelArm.resetServo();

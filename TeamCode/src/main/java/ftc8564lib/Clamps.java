@@ -62,7 +62,7 @@ public class Clamps {
     public void lift(){
         grip();
         winch.setPosition(0);
-        HalUtil.sleep(3500);
+        HalUtil.sleep(4000);
         winch.setPosition(.5);
     }
 }

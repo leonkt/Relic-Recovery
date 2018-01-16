@@ -189,7 +189,7 @@ public class teleop extends OpMode {
 
 
             if (gamepad1.b) {
-                slow = .5;
+                slow = .7;
             } else if (gamepad1.a) {
                 slow = 1;
             }
@@ -218,7 +218,7 @@ public class teleop extends OpMode {
 
 
             if (gamepad1.b) {
-                slow = .5;
+                slow = .7;
             } else if (gamepad1.a) {
                 slow = 1;
             }

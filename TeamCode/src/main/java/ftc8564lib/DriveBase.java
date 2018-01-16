@@ -72,12 +72,11 @@ public class DriveBase implements PIDControl.PidInput {
 
     double prevAngle = 0;
     public double intZ(){
-
+        angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
         return (prevAngle - angles.firstAngle);
-
-
     }
     public void resetIntZ(){
+        angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
         prevAngle = angles.firstAngle;
     }
     public void reset(){
@@ -160,6 +159,7 @@ public class DriveBase implements PIDControl.PidInput {
 
     public void drivePID(double distance, boolean slow) throws InterruptedException {
         this.degrees = 0;
+        resetIntZ();
         //Slow Mode check-----------------------------------------------------------------------
         if(slow)
         {
@@ -249,7 +249,7 @@ public class DriveBase implements PIDControl.PidInput {
         //calling in the angle measurements from the gyro
         //usage: angles.firstAngle......etc
         angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-        resetIntZ();
+        //resetIntZ();
 
 
         //lowering output range for 10 degs angles. so that it turns more accurately.
@@ -257,7 +257,7 @@ public class DriveBase implements PIDControl.PidInput {
         {
             pidControlTurn.setOutputRange(-0.45,0.45);
         } else {
-            pidControlTurn.setOutputRange(-0.65,0.65);
+            pidControlTurn.setOutputRange(-0.75,0.75);
         }
         //------------------------------------------------------------------------------------
         //calling in the degrees for spinning
@@ -308,9 +308,9 @@ public class DriveBase implements PIDControl.PidInput {
                 prevLeftPos = currLeftPos;
                 prevRightPos = currRightPos;
             }
-            else if (currTime > stallStartTime + 0.2)
+            else if (currTime > stallStartTime + 1)
             {
-                // The motors are stalled for more than 0.2 seconds.
+                // The motors are stalled for more than 1 seconds.
                 break;
             }
             //---------------------------------------------------------------------------------
