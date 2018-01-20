@@ -23,8 +23,8 @@ public class LockdownTeleOp extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         robot = new Robot(this, false);
         robot.driveBase.noEncoders();
-        robot.clamps.open();
         robot.jewelArm.resetServo();
+        robot.driveBase.slowSpeed(false);
         waitForStart();
         while (opModeIsActive()) {
             //drive train
@@ -35,19 +35,15 @@ public class LockdownTeleOp extends LinearOpMode {
             }
             robot.driveBase.tankDrive(gamepad1.right_stick_y, gamepad1.left_stick_y);
             //intake
-            /*
-            if (abs(gamepad1.left_trigger) > 0.6) {
+            if (gamepad1.right_bumper) {
                 robot.intake.out();
-            } else if (abs(gamepad1.right_trigger) > 0.6) {
-                robot.intake.in();
-            } else if (gamepad1.left_bumper) {
-                robot.intake.rightin();
-            } else if (gamepad1.right_bumper) {
-                robot.intake.leftin();
-            } else {
+            }
+            else if (gamepad1.right_trigger > 0.6) {
+                robot.intake.in(gamepad1.right_trigger);
+            }
+            else{
                 robot.intake.stop();
             }
-            */
             //relic mode toggle
             if (!relicMode && gamepad2.x){
                 relicMode = true;
@@ -80,16 +76,6 @@ public class LockdownTeleOp extends LinearOpMode {
             else {
                 //lift
                 robot.lift.control(-gamepad2.right_stick_y);
-                //grippers
-                if (gamepad2.left_bumper) {
-                    robot.clamps.open();
-                }
-                else if (gamepad2.right_bumper) {
-                    robot.clamps.close();
-                }
-                if (gamepad2.right_trigger > 0.6) {
-                   robot.clamps.grip();
-                }
             }
 
         }

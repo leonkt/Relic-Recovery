@@ -62,14 +62,14 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         if (alliance == Alliance_Position.BLUE_RIGHT) {
             //to mark original heading
             robot.driveBase.resetIntZ();
-            robot.clamps.down();
+            //pick up glyph
+            robot.intake.in(0.8);
             //jewel arm
             robot.jewelArm.resetServo();
             robot.jewelArm.armDown();
             robot.jewelArm.pushJewels(true);
             robot.jewelArm.armUp();
             robot.jewelArm.resetServo();
-            robot.clamps.lift();
             //scan and read picture
             robot.VuMark.decodePictograph();
             telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
@@ -85,21 +85,20 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             }
             robot.driveBase.spinPID(-90);
             robot.driveBase.drivePID(15, false);
-            robot.clamps.open();
             robot.driveBase.drivePID(4, false);
             robot.driveBase.drivePID(-8,false);
         }
         else if (alliance == Alliance_Position.BLUE_LEFT) {
             //to mark original heading
             robot.driveBase.resetIntZ();
-            robot.clamps.down();
+            //pick up glyph
+            robot.intake.in(0.8);
             //jewel arm
             robot.jewelArm.resetServo();
             robot.jewelArm.armDown();
             robot.jewelArm.pushJewels(true);
             robot.jewelArm.armUp();
             robot.jewelArm.resetServo();
-            robot.clamps.lift();
             //scan and read picture
             robot.VuMark.decodePictograph();
             telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
@@ -121,21 +120,20 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
                 robot.driveBase.spinPID(-90);
             }
             robot.driveBase.drivePID(11, false);
-            robot.clamps.open();
             robot.driveBase.drivePID(-6,false);
 
         }
         else if (alliance == Alliance_Position.RED_RIGHT) {
             //to mark original heading
             robot.driveBase.resetIntZ();
-            robot.clamps.down();
+            //pick up glyph
+            robot.intake.in(0.8);
             //jewel arm
             robot.jewelArm.resetServo();
             robot.jewelArm.armDown();
-            robot.jewelArm.pushJewels(true);
+            robot.jewelArm.pushJewels(false);
             robot.jewelArm.armUp();
             robot.jewelArm.resetServo();
-            robot.clamps.lift();
             //scan and read picture
             robot.VuMark.decodePictograph();
             telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
@@ -157,20 +155,19 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
                 robot.driveBase.spinPID(-90);
             }
             robot.driveBase.drivePID(10, false);
-            robot.clamps.open();
             robot.driveBase.drivePID(-6,false);
         }
         else if (alliance == Alliance_Position.RED_LEFT) {
             //to mark original heading
             robot.driveBase.resetIntZ();
-            robot.clamps.down();
+            //pick up glyph
+            robot.intake.in(0.8);
             //jewel arm
             robot.jewelArm.resetServo();
             robot.jewelArm.armDown();
-            robot.jewelArm.pushJewels(true);
+            robot.jewelArm.pushJewels(false);
             robot.jewelArm.armUp();
             robot.jewelArm.resetServo();
-            robot.clamps.lift();
             //scan and read picture
             robot.VuMark.decodePictograph();
             telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
@@ -188,7 +185,6 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             }
             robot.driveBase.spinPID(-90);
             robot.driveBase.drivePID(15, false);
-            robot.clamps.open();
             robot.driveBase.drivePID(-5,false);
         }
         runCleanUp();

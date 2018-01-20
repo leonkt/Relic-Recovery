@@ -12,51 +12,36 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class RelicArm {
     public DcMotor arm;
     public DcMotor armextension;
-    Servo gripperextension;
+    Servo longer;
     Servo armgripper;
+    Servo claw;
     LinearOpMode opMode;
 
     public RelicArm(LinearOpMode opMode){
         arm = opMode.hardwareMap.dcMotor.get("arm");
-        arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         armextension = opMode.hardwareMap.dcMotor.get("binch");
         armextension.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        gripperextension = opMode.hardwareMap.servo.get("longer");
-        armgripper = opMode.hardwareMap.servo.get("claw");
+        longer = opMode.hardwareMap.servo.get("longer");
+        claw = opMode.hardwareMap.servo.get("claw");
     }
 
     public void open(){
-        armgripper.setPosition(0.7);
+        claw.setPosition(.7);
     }
 
     public void close(){
-        armgripper.setPosition(0);
+        claw.setPosition(0);
     }
 
     public void extend(){
-        gripperextension.setPosition(gripperextension.getPosition() + 0.05);
+        longer.setPosition(.8);
     }
 
     public void retract(){
-        gripperextension.setPosition(gripperextension.getPosition() - 0.05);
+        longer.setPosition(0);
     }
 
-    public void pressure(){
-        if (arm.getCurrentPosition() < -300){
-            arm.setPower(0.2);
-        }
-        else if (arm.getCurrentPosition() < -400){
-            arm.setPower(0.3);
-        }
-        else if (arm.getCurrentPosition() < -500){
-            arm.setPower(0.4);
-        }
-        else {
-            arm.setPower(0);
-        }
-    }
 
     public void armExtension (double power){
         armextension.setPower(power);

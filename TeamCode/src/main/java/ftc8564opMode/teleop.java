@@ -16,9 +16,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
-
 import hallib.HalUtil;
-
 import static java.lang.Math.abs;
 
 @TeleOp(name = "teleop", group = "TeleOp")

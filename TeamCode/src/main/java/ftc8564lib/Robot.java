@@ -34,7 +34,6 @@ public class Robot {
     public DriveBase driveBase = null;
     public JewelArm jewelArm = null;
     public VuMark VuMark = null;
-    public Clamps clamps = null;
     public Lift lift = null;
     public Intake intake = null;
     public RelicArm relicArm = null;
@@ -43,7 +42,6 @@ public class Robot {
         dashboard = new HalDashboard(opMode.telemetry);
         jewelArm = new JewelArm(opMode);
         driveBase = new DriveBase(opMode);
-        clamps = new Clamps(opMode);
         VuMark = new VuMark(opMode);
         lift = new Lift(opMode);
         intake = new Intake(opMode);

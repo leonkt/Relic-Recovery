@@ -8,37 +8,45 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  */
 
 public class Intake {
-    DcMotor intakeleft;
-    DcMotor intakeright;
+    DcMotor hugleft;
+    DcMotor hugright;
+
     LinearOpMode opMode;
+    private double rightPower;
+    private double leftPower;
 
     public Intake (LinearOpMode opMode) {
         this.opMode = opMode;
-        intakeleft = opMode.hardwareMap.dcMotor.get("intakeleft");
-        intakeright = opMode.hardwareMap.dcMotor.get("intakeright");
+        hugleft = opMode.hardwareMap.dcMotor.get("hugleft");
+        hugright = opMode.hardwareMap.dcMotor.get("hugright");
     }
 
-    public void in(){
-        intakeleft.setPower(.8);
-        intakeright.setPower(-.8);
+    public void in(double power){
+        if (leftPower < .8){
+            leftPower = (scalePower(power));
+            rightPower = (scalePower(power));
+        }
+        else{
+            leftPower = 0.8;
+            rightPower = 0.8;
+        }
+        hugleft.setPower(leftPower);
+        hugright.setPower(-rightPower);
+    }
+
+    private double scalePower(double dVal)
+    {
+        return (Math.signum(dVal) * ((Math.pow(dVal, 2) * (.9)) + .1));
     }
 
     public void out(){
-        intakeleft.setPower(-.8);
-        intakeright.setPower(0.8);
+        hugleft.setPower(-.8);
+        hugright.setPower(.8);
     }
 
-    public void leftin(){
-        intakeleft.setPower(.8);
-        intakeright.setPower(.8);
-    }
-    public void rightin(){
-        intakeleft.setPower(-.8);
-        intakeright.setPower(-.8);
-    }
     public void stop(){
-        intakeleft.setPower(0);
-        intakeright.setPower(0);
+        hugleft.setPower(0);
+        hugright.setPower(0);
     }
 
 }
