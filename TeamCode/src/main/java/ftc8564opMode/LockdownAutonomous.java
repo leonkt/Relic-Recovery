@@ -58,6 +58,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         doMenus();
         robot.VuMark.activate();
         waitForStart();
+
         // robot.driveBase.resetHeading();
         if (alliance == Alliance_Position.BLUE_RIGHT) {
             //to mark original heading
@@ -87,7 +88,10 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             robot.driveBase.drivePID(15, false);
             robot.driveBase.drivePID(4, false);
             robot.driveBase.drivePID(-8,false);
+
+
         }
+
         else if (alliance == Alliance_Position.BLUE_LEFT) {
             //to mark original heading
             robot.driveBase.resetIntZ();
@@ -119,10 +123,11 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
                 robot.driveBase.drivePID(20, false);
                 robot.driveBase.spinPID(-90);
             }
-            robot.driveBase.drivePID(11, false);
+            robot.driveBase.drivePID(12, false);
             robot.driveBase.drivePID(-6,false);
 
         }
+
         else if (alliance == Alliance_Position.RED_RIGHT) {
             //to mark original heading
             robot.driveBase.resetIntZ();
@@ -146,15 +151,15 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             } else if (vumark == RelicRecoveryVuMark.RIGHT) {
                 robot.driveBase.drivePID(-26, false);
                 robot.driveBase.spinPID(90);
-                robot.driveBase.drivePID(23, false);
-                robot.driveBase.spinPID(-90);
+                robot.driveBase.drivePID(22, false);
+                robot.driveBase.spinPID(75);
             } else {
                 robot.driveBase.drivePID(-26, false);
                 robot.driveBase.spinPID(90);
-                robot.driveBase.drivePID(18, false);
-                robot.driveBase.spinPID(-90);
+                robot.driveBase.drivePID(16, false);
+                robot.driveBase.spinPID(75);
             }
-            robot.driveBase.drivePID(10, false);
+            robot.driveBase.drivePID(12 , false);
             robot.driveBase.drivePID(-6,false);
         }
         else if (alliance == Alliance_Position.RED_LEFT) {
@@ -190,7 +195,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         runCleanUp();
         telemetry.clearAll();
         telemetry.update();
-        sleep(7000); // sleep 7s
+        //sleep(7000); // sleep 7s
     }
 
     private void runCleanUp() throws InterruptedException {
