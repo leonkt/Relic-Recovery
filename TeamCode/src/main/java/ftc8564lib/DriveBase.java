@@ -53,7 +53,7 @@ public class DriveBase implements PIDControl.PidInput {
     private Acceleration gravity;
 
     //private final static double SCALE = (144.5/12556.5);    // INCHES_PER_COUNT
-    private final static double SCALE = (.0436111);
+    private final static double SCALE = (.0074761905);
     private double degrees = 0.0;
     private double stallStartTime = 0.0;
     private double prevTime = 0.0;

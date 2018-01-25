@@ -40,7 +40,7 @@ public class JewelArm {
     private ElapsedTime mClock = new ElapsedTime();
 
     private double servoForward = -.1;
-    private double servoBackward = .6;
+    private double servoBackward = .7;
     private double servoRest = 0;
     private boolean blueAlliance = true;
 
@@ -90,17 +90,16 @@ public class JewelArm {
 
     public void armUp(){
         crServo.setPower(servoBackward);
-        HalUtil.sleep(500);
-        colorServo.setPosition(0.4);
+        HalUtil.sleep(1000);
+        colorServo.setPosition(0.45);
         crServo.setPower(servoBackward);
-        HalUtil.sleep(2000);
+        HalUtil.sleep(3000);
         crServo.setPower(servoRest);
     }
 
     public void resetServo()
     {
         colorServo.setPosition(0.45);
-        crServo.setPower(servoRest);
         colorSensor.enableLed(false);
         crServo.setPower(.1);
     }

@@ -35,11 +35,11 @@ public class LockdownTeleOp extends LinearOpMode {
             }
             robot.driveBase.tankDrive(gamepad1.right_stick_y, gamepad1.left_stick_y);
             //intake
-            if (gamepad1.right_bumper) {
+            if (gamepad1.right_bumper){
                 robot.intake.out();
             }
-            else if (gamepad1.right_trigger > 0.6) {
-                robot.intake.in(gamepad1.right_trigger);
+            else if (gamepad1.right_trigger > .6){
+                robot.intake.in(.8);
             }
             else{
                 robot.intake.stop();
@@ -56,8 +56,6 @@ public class LockdownTeleOp extends LinearOpMode {
                 robot.relicArm.armExtension(-gamepad2.left_stick_y);
                 if (abs(gamepad2.right_stick_y) > .2) {
                     robot.relicArm.moveArm(-gamepad2.right_stick_y);
-                } else {
-                    robot.relicArm.pressure();
                 }
                 if (gamepad2.left_bumper) {
                     robot.relicArm.open();
