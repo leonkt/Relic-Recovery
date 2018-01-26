@@ -20,7 +20,7 @@ import hallib.HalUtil;
 import static java.lang.Math.abs;
 
 @TeleOp(name = "teleop", group = "TeleOp")
-//@Disabled
+@Disabled
 
 public class teleop extends OpMode {
     /**
