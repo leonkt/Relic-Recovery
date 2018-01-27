@@ -530,11 +530,11 @@ public class DriveBase implements PIDControl.PidInput {
             }
 
             if (intZ()< 0 && degrees >0 && over180){
-                heading = intZ() + 360;
+                input = intZ() + 360;
             }
 
             else if (intZ()> 0 && degrees <0 && over180){
-                heading = intZ() - 360;
+                input = intZ() - 360;
             }
             else{
                 input = intZ();
