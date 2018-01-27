@@ -61,7 +61,7 @@ import ftc8564lib.Robot;
 
 
 @Autonomous(name="JewelTest", group="Linear Opmode")
-//@Disabled
+@Disabled
 public class JewelTest extends LinearOpMode{
 
 
@@ -72,7 +72,7 @@ public class JewelTest extends LinearOpMode{
         ElapsedTime runtime = new ElapsedTime();
         robot = new Robot(this,true);
         waitForStart();
-        robot.driveBase.spinPID(90);
-        robot.driveBase.spinPID(90);
+        robot.driveBase.spinPID(180);
+        robot.driveBase.spinPID(-180);
     }
 }
