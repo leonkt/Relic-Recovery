@@ -7,19 +7,19 @@ package ftc8564opMode;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.util.ElapsedTime;
+
+import ftc8564lib.Robot;
 
 import static java.lang.Math.abs;
-import ftc8564lib.*;
 
-@TeleOp(name = "LockdownTeleOp", group = "TeleOp")
-//@Disabled
+@TeleOp(name = "LockdownTeleOpAdam", group = "TeleOp")
+@Disabled
 
-public class LockdownTeleOp extends LinearOpMode {
+public class LockdownTeleOpAdam extends LinearOpMode {
 
     private Robot robot;
     private boolean relicMode = false;
-    private boolean invertDrive = false;
+    private boolean invertDrive = true;
 
     public void runOpMode() throws InterruptedException {
         robot = new Robot(this, false);
@@ -29,15 +29,17 @@ public class LockdownTeleOp extends LinearOpMode {
         waitForStart();
         while (opModeIsActive()) {
             //drive train
-            if (gamepad1.b) {
+            if (gamepad1.x) {
                 robot.driveBase.slowSpeed(true);
             }
-            if (gamepad1.x){
-                invertDrive = true;
-            }
-            else if (gamepad1.a) {
+            else if (gamepad1.y) {
                 robot.driveBase.slowSpeed(false);
+            }
+            if (gamepad1.start && invertDrive){
                 invertDrive = false;
+            }
+            else if (gamepad1.start && !invertDrive){
+                invertDrive = true;
             }
             if (!invertDrive){
                 robot.driveBase.tankDrive(gamepad1.right_stick_y, gamepad1.left_stick_y);
@@ -50,7 +52,7 @@ public class LockdownTeleOp extends LinearOpMode {
             if (gamepad1.right_bumper){
                 robot.intake.out();
             }
-            else if (gamepad1.right_trigger > .6){
+            else if (gamepad1.left_bumper){
                 robot.intake.in(.8);
             }
             else{
