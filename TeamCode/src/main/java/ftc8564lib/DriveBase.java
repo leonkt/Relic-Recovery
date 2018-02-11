@@ -250,6 +250,7 @@ public class DriveBase implements PIDControl.PidInput {
         //usage: angles.firstAngle......etc
         angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
         //resetIntZ();
+        over180 = false;
 
 
         //lowering output range for 10 degs angles. so that it turns more accurately.
