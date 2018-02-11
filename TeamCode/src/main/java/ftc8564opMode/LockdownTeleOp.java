@@ -40,10 +40,10 @@ public class LockdownTeleOp extends LinearOpMode {
                 invertDrive = false;
             }
             if (!invertDrive){
-                robot.driveBase.tankDrive(gamepad1.right_stick_y, gamepad1.left_stick_y);
+                robot.driveBase.tankDrive(gamepad1.left_stick_y, gamepad1.right_stick_y);
             }
             else if (invertDrive){
-                robot.driveBase.tankDrive(-gamepad1.right_stick_y, -gamepad1.left_stick_y);
+                robot.driveBase.tankDrive(-gamepad1.left_stick_y, -gamepad1.right_stick_y);
             }
 
             //intake

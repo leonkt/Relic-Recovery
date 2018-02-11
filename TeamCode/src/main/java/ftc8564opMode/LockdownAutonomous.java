@@ -56,7 +56,12 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
     public void runOpMode() throws InterruptedException {
         robot = new Robot(this, true);// need this to run menu test
         doMenus();
+        //scan and read picture
         robot.VuMark.activate();
+        robot.VuMark.decodePictograph();
+        telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
+        telemetry.update();
+        vumark = (robot.VuMark.getCryptoboxKey());
         waitForStart();
         // robot.driveBase.resetHeading();
         if (alliance == Alliance_Position.BLUE_RIGHT) {
@@ -70,11 +75,6 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             robot.jewelArm.pushJewels(true);
             robot.jewelArm.armUp();
             robot.jewelArm.resetServo();
-            //scan and read picture
-            robot.VuMark.decodePictograph();
-            telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
-            telemetry.update();
-            vumark = (robot.VuMark.getCryptoboxKey());
             //drive to cryptobox and place glyph
             if (vumark == RelicRecoveryVuMark.LEFT) {
                 robot.driveBase.drivePID(32, false);
@@ -88,7 +88,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             robot.intake.out();
             robot.driveBase.drivePID(-8,false);
             robot.intake.stop();
-            robot.driveBase.spinPID(180);
+            //robot.driveBase.spinPID(180);
         }
         else if (alliance == Alliance_Position.BLUE_LEFT) {
             //to mark original heading
@@ -101,11 +101,6 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             robot.jewelArm.pushJewels(true);
             robot.jewelArm.armUp();
             robot.jewelArm.resetServo();
-            //scan and read picture
-            robot.VuMark.decodePictograph();
-            telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
-            telemetry.update();
-            vumark = (robot.VuMark.getCryptoboxKey());
             //drive to cryptobox and place glyph
             if (vumark == RelicRecoveryVuMark.LEFT) {
                 robot.driveBase.drivePID(25, true);
@@ -140,20 +135,15 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             robot.jewelArm.pushJewels(false);
             robot.jewelArm.armUp();
             robot.jewelArm.resetServo();
-            //scan and read picture
-            robot.VuMark.decodePictograph();
-            telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
-            telemetry.update();
-            vumark = (robot.VuMark.getCryptoboxKey());
             //drive to cryptobox and place glyph
             if (vumark == RelicRecoveryVuMark.LEFT) {
-                robot.driveBase.drivePID(-24, false);
-                robot.driveBase.spinPID(165);
-            } else if (vumark == RelicRecoveryVuMark.RIGHT) {
                 robot.driveBase.drivePID(-26, false);
                 robot.driveBase.spinPID(90);
                 robot.driveBase.drivePID(18, false);
                 robot.driveBase.spinPID(90);
+            } else if (vumark == RelicRecoveryVuMark.RIGHT) {
+                robot.driveBase.drivePID(-24, false);
+                robot.driveBase.spinPID(170);
             } else {
                 robot.driveBase.drivePID(-26, false);
                 robot.driveBase.spinPID(90);
@@ -164,7 +154,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             robot.intake.out();
             robot.driveBase.drivePID(-6,false);
             robot.intake.stop();
-            robot.driveBase.spinPID(180);
+            //robot.driveBase.spinPID(180);
         }
         else if (alliance == Alliance_Position.RED_LEFT) {
             //to mark original heading
@@ -177,11 +167,6 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             robot.jewelArm.pushJewels(false);
             robot.jewelArm.armUp();
             robot.jewelArm.resetServo();
-            //scan and read picture
-            robot.VuMark.decodePictograph();
-            telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
-            telemetry.update();
-            vumark = (robot.VuMark.getCryptoboxKey());
             //drive to cryptobox and place glyph
             if (vumark == RelicRecoveryVuMark.LEFT) {
                 robot.driveBase.drivePID(-48.5, false);
@@ -197,7 +182,7 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
             robot.intake.out();
             robot.driveBase.drivePID(-7,false);
             robot.intake.stop();
-            robot.driveBase.spinPID(180);
+            //robot.driveBase.spinPID(180);
         }
         runCleanUp();
         telemetry.clearAll();

@@ -26,8 +26,6 @@ public class DemoTeleOp extends OpMode {
     //object creation !!
     private DcMotor left;
     private DcMotor right;
-    private CRServo crServo;
-    private Servo colorservo;
     Servo claw;
     DcMotor arm;
     Servo longer;
@@ -53,8 +51,6 @@ public class DemoTeleOp extends OpMode {
         //mapping
         left = hardwareMap.dcMotor.get("left");
         right  = hardwareMap.dcMotor.get("right");
-        crServo = hardwareMap.crservo.get("crServo");
-        colorservo=hardwareMap.servo.get("colorServo");
         lift = hardwareMap.dcMotor.get("liftleft");
         arm = hardwareMap.dcMotor.get("arm");
         binch = hardwareMap.dcMotor.get("binch");
@@ -65,8 +61,6 @@ public class DemoTeleOp extends OpMode {
     }
     @Override
     public void start() {
-        crServo.setPower(.1);
-        colorservo.setPosition(0.5);
     }
 
     @Override
@@ -124,7 +118,7 @@ public class DemoTeleOp extends OpMode {
                 arm.setPower(0);
             }
             if ((abs(gamepad2.right_stick_y)) > threshold) {
-                binch.setPower(-gamepad2.right_stick_y);
+                binch.setPower(gamepad2.right_stick_y);
             } else {
                 binch.setPower(0);
             }

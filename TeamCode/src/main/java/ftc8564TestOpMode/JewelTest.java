@@ -33,6 +33,7 @@ import android.graphics.Color;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
@@ -60,19 +61,42 @@ import ftc8564lib.Robot;
  */
 
 
-@Autonomous(name="JewelTest", group="Linear Opmode")
-@Disabled
-public class JewelTest extends LinearOpMode{
+@TeleOp(name="JewelTest", group="Opmode")
+//@Disabled
+public class JewelTest extends OpMode {
 
+    CRServo thrust;
+    Servo kicker;
 
-    Robot robot;
     // Declare OpMode members.
     @Override
-    public void runOpMode() throws InterruptedException {
-        ElapsedTime runtime = new ElapsedTime();
-        robot = new Robot(this,true);
-        waitForStart();
-        robot.driveBase.spinPID(180);
-        robot.driveBase.spinPID(-180);
+    public void init(){
+        thrust = hardwareMap.crservo.get("thrust");
+        kicker = hardwareMap.servo.get("kicker");
+        thrust.setPower(1);
+
+    }
+    @Override
+    public void loop(){
+        thrust.setPower(-1);
+        /*
+        //down back
+        if (gamepad1.a){
+            kicker.setPosition(0);
+        }
+        //front
+        else if (gamepad1.b){
+            kicker.setPosition(.5);
+        }
+        //middle
+        else if (gamepad1.x){
+            kicker.setPosition(.25);
+        }
+        //retract
+        else if (gamepad1.y){
+            kicker.setPosition(.8);
+        }
+        */
+
     }
 }
