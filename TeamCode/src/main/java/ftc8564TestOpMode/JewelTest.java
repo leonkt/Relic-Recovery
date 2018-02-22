@@ -67,18 +67,24 @@ public class JewelTest extends OpMode {
 
     CRServo thrust;
     Servo kicker;
+    Servo claw;
 
     // Declare OpMode members.
     @Override
     public void init(){
         thrust = hardwareMap.crservo.get("thrust");
         kicker = hardwareMap.servo.get("kicker");
-        thrust.setPower(1);
+        claw = hardwareMap.servo.get("claw");
+        claw.setPosition(.1);
+        //thrust.setPower(1);
 
     }
     @Override
     public void loop(){
-        thrust.setPower(-1);
+        if (gamepad1.a){
+            claw.setPosition(.65);
+        }
+        //thrust.setPower(-1);
         /*
         //down back
         if (gamepad1.a){

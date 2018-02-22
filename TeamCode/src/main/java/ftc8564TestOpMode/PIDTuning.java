@@ -39,41 +39,22 @@ import hallib.HalUtil;
 //@Disabled
 public class PIDTuning extends LinearOpMode {
 
-    CRServo thrust;
-    Servo kicker;
-    ColorSensor colorSensor;
+    Robot robot;
 
     @Override
     public void runOpMode() throws InterruptedException {
-        ElapsedTime runtime = new ElapsedTime();
-        thrust = hardwareMap.crservo.get("thrust");
-        kicker = hardwareMap.servo.get("kicker");
-        colorSensor = hardwareMap.colorSensor.get("colorSensor");
-        waitForStart();
-        thrust.setPower(1);
-        HalUtil.sleep(1500);
-        kicker.setPosition(.25);
-        HalUtil.sleep(1500);
-        colorSensor.enableLed(true);
-        if(colorSensor.blue() > colorSensor.red() && colorSensor.blue() > colorSensor.green()){
-            kicker.setPosition(0);
-            HalUtil.sleep(500);
-        }
-        else if (colorSensor.red() > colorSensor.blue() && colorSensor.red() > colorSensor.green()){
-            kicker.setPosition(.5);
-            HalUtil.sleep(500);
-        }
-        else {
-            kicker.setPosition(.25);
-        }
-        colorSensor.enableLed(false);
-        thrust.setPower(1);
-        HalUtil.sleep(1500);
-        kicker.setPosition(.8);
-        HalUtil.sleep(1500);
 
-
-
+        robot = new Robot(this, true);
+        robot.driveBase.spinPID(90);
+        robot.driveBase.spinPID(-90);
+        robot.driveBase.spinPID(175);
+        robot.driveBase.spinPID(-175);
+        robot.driveBase.spinPID(180);
+        robot.driveBase.spinPID(-180);
+        robot.driveBase.spinPID(90);
+        robot.driveBase.spinPID(90);
+        robot.driveBase.spinPID(-90);
+        robot.driveBase.spinPID(-90);
     }
 
 

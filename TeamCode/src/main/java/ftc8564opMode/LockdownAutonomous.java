@@ -58,131 +58,136 @@ public class LockdownAutonomous extends LinearOpMode implements FtcMenu.MenuButt
         doMenus();
         //scan and read picture
         robot.VuMark.activate();
-        robot.VuMark.decodePictograph();
-        telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
-        telemetry.update();
-        vumark = (robot.VuMark.getCryptoboxKey());
         waitForStart();
         // robot.driveBase.resetHeading();
         if (alliance == Alliance_Position.BLUE_RIGHT) {
             //to mark original heading
             robot.driveBase.resetIntZ();
-            //pick up glyph
-            //robot.intake.in(0.8);
             //jewel arm
-            robot.jewelArm.resetServo();
             robot.jewelArm.armDown();
+            robot.VuMark.decodePictograph();
+            telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
+            telemetry.update();
+            vumark = (robot.VuMark.getCryptoboxKey());
             robot.jewelArm.pushJewels(true);
             robot.jewelArm.armUp();
-            robot.jewelArm.resetServo();
             //drive to cryptobox and place glyph
             if (vumark == RelicRecoveryVuMark.LEFT) {
-                robot.driveBase.drivePID(32, false);
+                robot.driveBase.drivePID(31, false);
             } else if (vumark == RelicRecoveryVuMark.RIGHT) {
-                robot.driveBase.drivePID(48 , false);
+                robot.driveBase.drivePID(47 , false);
             } else {
-                robot.driveBase.drivePID(40, false);
+                robot.driveBase.drivePID(39, false);
             }
             robot.driveBase.spinPID(-90);
             robot.driveBase.drivePID(15, false);
             robot.intake.out();
             robot.driveBase.drivePID(-8,false);
             robot.intake.stop();
-            //robot.driveBase.spinPID(180);
+            /*
+            robot.driveBase.spinPID(180);
+            robot.intake.in(.8);
+            robot.driveBase.drivePID(18,false);
+            robot.driveBase.spinPID(-180);
+            robot.driveBase.drivePID(32,false);
+            robot.intake.out();
+            robot.driveBase.drivePID(-8,false);
+            robot.intake.stop();
+            */
         }
         else if (alliance == Alliance_Position.BLUE_LEFT) {
             //to mark original heading
             robot.driveBase.resetIntZ();
-            //pick up glyph
-            //robot.intake.in(0.8);
             //jewel arm
-            robot.jewelArm.resetServo();
             robot.jewelArm.armDown();
+            robot.VuMark.decodePictograph();
+            telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
+            telemetry.update();
+            vumark = (robot.VuMark.getCryptoboxKey());
             robot.jewelArm.pushJewels(true);
             robot.jewelArm.armUp();
-            robot.jewelArm.resetServo();
             //drive to cryptobox and place glyph
             if (vumark == RelicRecoveryVuMark.LEFT) {
-                robot.driveBase.drivePID(25, true);
+                robot.driveBase.drivePID(25, false);
                 robot.driveBase.spinPID(15);
                 robot.driveBase.drivePID(11, false);
             } else if (vumark == RelicRecoveryVuMark.RIGHT) {
-                robot.driveBase.drivePID(28, false);
+                robot.driveBase.drivePID(26, false);
                 robot.driveBase.spinPID(90);
-                robot.driveBase.drivePID(20, false);
+                robot.driveBase.drivePID(22, false);
                 robot.driveBase.spinPID(-90);
                 robot.driveBase.drivePID(6, false);
             } else {
-                robot.driveBase.drivePID(28, false);
+                robot.driveBase.drivePID(26, false);
                 robot.driveBase.spinPID(90);
-                robot.driveBase.drivePID(14, false);
+                robot.driveBase.drivePID(16, false);
                 robot.driveBase.spinPID(-90);
                 robot.driveBase.drivePID(6, false);
             }
             robot.intake.out();
             robot.driveBase.drivePID(-6,false);
             robot.intake.stop();
-            //robot.driveBase.spinPID(180);
         }
         else if (alliance == Alliance_Position.RED_RIGHT) {
             //to mark original heading
             robot.driveBase.resetIntZ();
-            //pick up glyph
-            //robot.intake.in(0.8);
             //jewel arm
-            robot.jewelArm.resetServo();
             robot.jewelArm.armDown();
+            robot.VuMark.decodePictograph();
+            telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
+            telemetry.update();
+            vumark = (robot.VuMark.getCryptoboxKey());
             robot.jewelArm.pushJewels(false);
             robot.jewelArm.armUp();
-            robot.jewelArm.resetServo();
             //drive to cryptobox and place glyph
             if (vumark == RelicRecoveryVuMark.LEFT) {
                 robot.driveBase.drivePID(-26, false);
                 robot.driveBase.spinPID(90);
                 robot.driveBase.drivePID(18, false);
-                robot.driveBase.spinPID(90);
+                robot.driveBase.spinPID(85);
+                robot.driveBase.drivePID(10, false);
             } else if (vumark == RelicRecoveryVuMark.RIGHT) {
                 robot.driveBase.drivePID(-24, false);
-                robot.driveBase.spinPID(170);
+                robot.driveBase.spinPID(-170);
+                robot.driveBase.drivePID(5, false);
+
             } else {
                 robot.driveBase.drivePID(-26, false);
                 robot.driveBase.spinPID(90);
                 robot.driveBase.drivePID(12, false);
-                robot.driveBase.spinPID(90);
+                robot.driveBase.spinPID(85);
+                robot.driveBase.drivePID(10, false);
             }
-            robot.driveBase.drivePID(10, false);
             robot.intake.out();
             robot.driveBase.drivePID(-6,false);
             robot.intake.stop();
-            //robot.driveBase.spinPID(180);
         }
         else if (alliance == Alliance_Position.RED_LEFT) {
             //to mark original heading
             robot.driveBase.resetIntZ();
-            //pick up glyph
-            //robot.intake.in(0.8);
             //jewel arm
-            robot.jewelArm.resetServo();
             robot.jewelArm.armDown();
+            robot.VuMark.decodePictograph();
+            telemetry.addData("VuMark", "%s visible", robot.VuMark.getCryptoboxKey());
+            telemetry.update();
+            vumark = (robot.VuMark.getCryptoboxKey());
             robot.jewelArm.pushJewels(false);
             robot.jewelArm.armUp();
-            robot.jewelArm.resetServo();
             //drive to cryptobox and place glyph
             if (vumark == RelicRecoveryVuMark.LEFT) {
-                robot.driveBase.drivePID(-48.5, false);
+                robot.driveBase.drivePID(-40, false);
             }
             else if (vumark == RelicRecoveryVuMark.RIGHT){
-                robot.driveBase.drivePID(-30, false);
+                robot.driveBase.drivePID(-26    , false);
             }
             else {
-                robot.driveBase.drivePID(-37, false);
+                robot.driveBase.drivePID(-34, false);
             }
             robot.driveBase.spinPID(-90);
             robot.driveBase.drivePID(13, false);
             robot.intake.out();
             robot.driveBase.drivePID(-7,false);
             robot.intake.stop();
-            //robot.driveBase.spinPID(180);
         }
         runCleanUp();
         telemetry.clearAll();

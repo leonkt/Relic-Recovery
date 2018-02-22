@@ -53,7 +53,7 @@ public class DriveBase implements PIDControl.PidInput {
     private Acceleration gravity;
 
     //private final static double SCALE = (144.5/12556.5);    // INCHES_PER_COUNT
-    private final static double SCALE = (.0074761905);
+    private final static double SCALE = (.0112142857);
     private double degrees = 0.0;
     private double stallStartTime = 0.0;
     private double prevTime = 0.0;
@@ -71,6 +71,7 @@ public class DriveBase implements PIDControl.PidInput {
     private boolean slow = true;
 
     double prevAngle = 0;
+
     public double intZ(){
         angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
         return (prevAngle - angles.firstAngle);
@@ -246,12 +247,11 @@ public class DriveBase implements PIDControl.PidInput {
      *
      * */
     public void spinPID(double degrees) throws InterruptedException {
+        resetIntZ();
         //calling in the angle measurements from the gyro
         //usage: angles.firstAngle......etc
         angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
         //resetIntZ();
-        over180 = false;
-
 
         //lowering output range for 10 degs angles. so that it turns more accurately.
         if(Math.abs(degrees) < 10.0)

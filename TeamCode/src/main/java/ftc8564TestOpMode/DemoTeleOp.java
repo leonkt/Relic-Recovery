@@ -33,6 +33,7 @@ public class DemoTeleOp extends OpMode {
     DcMotor lift;
     DcMotor hugleft;
     DcMotor hugright;
+    DcMotor pull;
 
     //variablesssss
     private double slow = 1;
@@ -58,6 +59,7 @@ public class DemoTeleOp extends OpMode {
         claw = hardwareMap.servo.get("claw");
         hugleft = hardwareMap.dcMotor.get("hugleft");
         hugright = hardwareMap.dcMotor.get("hugright");
+        pull = hardwareMap.dcMotor.get("pull");
     }
     @Override
     public void start() {
@@ -103,6 +105,16 @@ public class DemoTeleOp extends OpMode {
             hugright.setPower(0);
         }
 
+        if (gamepad1.left_trigger > .6){
+            pull.setPower(1);
+        }
+        if (gamepad1.left_bumper){
+            pull.setPower(-1);
+        }
+        else {
+            pull.setPower(0);
+        }
+
         if (!relicMode) {
             if ((abs(gamepad2.right_stick_y)) > threshold) {
                 lift.setPower(-gamepad2.right_stick_y);
@@ -129,10 +141,10 @@ public class DemoTeleOp extends OpMode {
                 longer.setPosition(0);
             }
             if (gamepad2.left_bumper){
-                claw.setPosition(0);
+                claw.setPosition(.1);
             }
             if(gamepad2.right_bumper){
-                claw.setPosition(.7);
+                claw.setPosition(.65);
             }
         }
 

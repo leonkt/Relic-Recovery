@@ -34,8 +34,8 @@ import ftc8564opMode.LockdownAutonomous;
 public class JewelArm {
 
     private ColorSensor colorSensor;
-    private Servo colorServo;
-    private CRServo crServo;
+    private CRServo thrust;
+    private Servo kicker;
     private LinearOpMode opMode;
     private ElapsedTime mClock = new ElapsedTime();
 
@@ -48,8 +48,8 @@ public class JewelArm {
     {
         this.opMode = opMode;
         colorSensor = opMode.hardwareMap.colorSensor.get("colorSensor");
-        colorServo = opMode.hardwareMap.servo.get("colorServo");
-        crServo = opMode.hardwareMap.crservo.get("crServo");
+        thrust = opMode.hardwareMap.crservo.get("thrust");
+        kicker = opMode.hardwareMap.servo.get("kicker");
         mClock.reset();
     }
 
@@ -57,51 +57,49 @@ public class JewelArm {
         colorSensor.enableLed(true);
         if(blueAlliance){
             if(colorSensor.blue() > colorSensor.red() && colorSensor.blue() > colorSensor.green()){
-                colorServo.setPosition(0);
+                kicker.setPosition(0);
                 HalUtil.sleep(500);
             }
             else if (colorSensor.red() > colorSensor.blue() && colorSensor.red() > colorSensor.green()){
-                colorServo.setPosition(1);
+                kicker.setPosition(.5);
                 HalUtil.sleep(500);
             }
             else {
-                colorServo.setPosition(.4);
+                kicker.setPosition(.25);
             }
         } else {
             if (colorSensor.blue() > colorSensor.red() && colorSensor.blue() > colorSensor.green()) {
-                colorServo.setPosition(1);
+                kicker.setPosition(.5);
                 HalUtil.sleep(500);
             } else if (colorSensor.red() > colorSensor.blue() && colorSensor.red() > colorSensor.green()) {
-                colorServo.setPosition(0);
+                kicker.setPosition(0);
                 HalUtil.sleep(500);
             } else {
-                colorServo.setPosition(.4);
+                kicker.setPosition(.25);
             }
         }
         colorSensor.enableLed(false);
     }
 
     public void armDown() {
-        crServo.setPower(servoForward);
-        HalUtil.sleep(1000);
-        crServo.setPower(servoRest);
-        HalUtil.sleep(500);
+        thrust.setPower(1);
+        HalUtil.sleep(2500);
+        kicker.setPosition(.25);
+        HalUtil.sleep(3500);
     }
 
     public void armUp(){
-        crServo.setPower(servoBackward);
-        HalUtil.sleep(1000);
-        colorServo.setPosition(0.45);
-        crServo.setPower(servoBackward);
-        HalUtil.sleep(3000);
-        crServo.setPower(servoRest);
+        thrust.setPower(-1);
+        HalUtil.sleep(2500);
+        kicker.setPosition(.8);
+
     }
 
     public void resetServo()
     {
-        colorServo.setPosition(0.45);
+        kicker.setPosition(0.25);
         colorSensor.enableLed(false);
-        crServo.setPower(.1);
+        thrust.setPower(-.2);
     }
 
 }
