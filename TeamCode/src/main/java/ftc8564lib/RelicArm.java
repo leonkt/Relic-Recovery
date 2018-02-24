@@ -10,19 +10,14 @@ import com.qualcomm.robotcore.hardware.Servo;
  */
 
 public class RelicArm {
-    public DcMotor arm;
     public DcMotor armextension;
-    Servo longer;
     Servo armgripper;
     Servo claw;
     LinearOpMode opMode;
 
     public RelicArm(LinearOpMode opMode){
-        arm = opMode.hardwareMap.dcMotor.get("arm");
-        arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         armextension = opMode.hardwareMap.dcMotor.get("binch");
         armextension.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        longer = opMode.hardwareMap.servo.get("longer");
         claw = opMode.hardwareMap.servo.get("claw");
     }
 
@@ -35,11 +30,9 @@ public class RelicArm {
     }
 
     public void extend(){
-        longer.setPosition(.8);
     }
 
     public void retract(){
-        longer.setPosition(0);
     }
 
 
@@ -48,6 +41,5 @@ public class RelicArm {
     }
 
     public void moveArm (double power){
-        arm.setPower(power * 0.3);
     }
 }

@@ -27,8 +27,6 @@ public class DemoTeleOp extends OpMode {
     private DcMotor left;
     private DcMotor right;
     Servo claw;
-    DcMotor arm;
-    Servo longer;
     DcMotor binch;
     DcMotor lift;
     DcMotor hugleft;
@@ -53,9 +51,7 @@ public class DemoTeleOp extends OpMode {
         left = hardwareMap.dcMotor.get("left");
         right  = hardwareMap.dcMotor.get("right");
         lift = hardwareMap.dcMotor.get("liftleft");
-        arm = hardwareMap.dcMotor.get("arm");
         binch = hardwareMap.dcMotor.get("binch");
-        longer = hardwareMap.servo.get("longer");
         claw = hardwareMap.servo.get("claw");
         hugleft = hardwareMap.dcMotor.get("hugleft");
         hugright = hardwareMap.dcMotor.get("hugright");
@@ -125,9 +121,7 @@ public class DemoTeleOp extends OpMode {
         }
         else{
             if ((abs(gamepad2.left_stick_y)) > threshold) {
-                arm.setPower(gamepad2.left_stick_y * .25);
             } else {
-                arm.setPower(0);
             }
             if ((abs(gamepad2.right_stick_y)) > threshold) {
                 binch.setPower(gamepad2.right_stick_y);
@@ -135,10 +129,8 @@ public class DemoTeleOp extends OpMode {
                 binch.setPower(0);
             }
             if(abs(gamepad2.left_trigger) > 0.1){
-                longer.setPosition(.8);
             }
             if (abs(gamepad2.right_trigger) > 0.1) {
-                longer.setPosition(0);
             }
             if (gamepad2.left_bumper){
                 claw.setPosition(.1);
